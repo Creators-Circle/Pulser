@@ -4,5 +4,8 @@ module.exports = {
     "plugins": [
         "standard",
         "promise"
-    ]
+    ],
+    "rules": {
+      "semi":"off"
+   }    
 };
