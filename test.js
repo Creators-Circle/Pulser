@@ -12,10 +12,17 @@ describe('Array', function() {
 
 describe('increment', function() {
     // pending test below
+    // feed it an array
+    // we want to get back an array that is one longer
+    // last value should be one more 
     it('should return -1 when the value is not present');
   });
 
 describe('decrement', function() {
     // pending test below
+    // pending test below
+    // feed it an array
+    // we want to get back an array that is one longer
+    // last value should be one last 
     it('should return -1 when the value is not present');
   });
