@@ -4,7 +4,7 @@
   "description": "A presentation augmentation app that gives teachers and presenters real-time feedback on the effectiveness of their lecture.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/eslint **/*.js **/*.jsx",
     "build": "node_modules/.bin/webpack  --watch --devtools inline-source-map",
     "start": "nodemon server/server.js "
   },
