@@ -8,7 +8,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        <p>Hello World</p>
+        <p>Hello World!</p>
         {/* {if role === audience display feedback component} */}
         <FeedbackBox />
       </div>

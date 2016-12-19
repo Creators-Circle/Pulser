@@ -64,6 +64,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//Redux store name:  store
 	var render = function render() {
 	  _reactDom2.default.render(React.createElement(
 	    _reactRedux.Provider,
@@ -29187,9 +29188,26 @@
 
 	var _redux = __webpack_require__(183);
 
-	// store all reducers in one variable
+	var pulseData = function pulseData() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [0];
+	  var action = arguments[1];
+
+	  var last = state[state.length - 1];
+	  switch (action.type) {
+	    case 'INCREMENT':
+	      return state.concat([++last]);
+	    case 'DECREMENT':
+	      if (last !== 0) {
+	        return state.concat([--last]);
+	      }
+	    default:
+	      return state;
+	  }
+	};
+
+	//store all reducers in one variable
 	var combinedReducers = (0, _redux.combineReducers)({
-	  // fill in with reducers
+	  pulseData: pulseData
 	});
 
 	var store = (0, _redux.createStore)(combinedReducers);
@@ -29242,7 +29260,7 @@
 	        React.createElement(
 	          'p',
 	          null,
-	          'Hello World'
+	          'Hello World!'
 	        ),
 	        React.createElement(_FeedbackBox2.default, null)
 	      );

@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 
-const pulseData = (state, action) => {
+const pulseData = (state = [0], action) => {
   let last = state[state.length-1];
   switch (action.type) {
     case 'INCREMENT':
