@@ -9,7 +9,7 @@ const pulseData = (state, action) => {
     case 'decrement':
       if(last !== 0){
       return state.concat([--last])
-      }
+      } 
     default:
       return state;
   }
