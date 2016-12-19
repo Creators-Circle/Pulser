@@ -6,12 +6,12 @@ var bodyParser = require('body-parser');
 //TODO: SOCKETS, DOTENV
 
 // code from the express.static docs
-app.use(express.static(path.join(__dirname, '/../client/'))); //TODO
+app.use(express.static(path.join(__dirname, '/../client/public/'))); //TODO
 app.use (bodyParser.json());
 
 app.get('/', function(req,res){ //TODO
   //SERVE UP INDEX.HTML 
-  res.sendFile(path.join(__dirname, /*very present*/ )); //TODO
+  res.sendFile(path.join(__dirname, '/../client/public/index.html' )); //TODO
 });
 
 //HEROKU ENV VAR OR LOCALHOST:5000

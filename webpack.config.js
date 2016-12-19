@@ -5,9 +5,9 @@ const path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.jsx'),
+  entry: path.join(__dirname, 'client', 'src', 'index.jsx'),
   output: {
-    path: path.join(__dirname, 'public', 'static'),
+    path: path.join(__dirname, 'client', 'public', 'static'),
     filename: 'bundle.js'
   },
   resolve: {
@@ -16,7 +16,7 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: path.join(__dirname, 'src'),
+      test: path.join(__dirname, 'client/src'),
       loader: 'babel',
       query: {
         cacheDirectory: 'babel_cache',
