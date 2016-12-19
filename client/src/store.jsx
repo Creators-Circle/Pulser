@@ -1,12 +1,12 @@
 import { createStore, combineReducers } from 'redux';
 
-//reducer for incrememnt/decrement
+//reducer for INCREMENT/DECREMENT
 const pulseData = (state, action) => {
   let last = state[state.length-1];
   switch (action.type) {
-    case 'increment':
+    case 'INCREMENT':
       return state.concat([++last])
-    case 'decrement':
+    case 'DECREMENT':
       if(last !== 0){
       return state.concat([--last])
       } 
