@@ -1,6 +1,5 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux'
 
-//reducer for INCREMENT/DECREMENT
 const pulseData = (state, action) => {
   let last = state[state.length-1];
   switch (action.type) {
@@ -9,17 +8,17 @@ const pulseData = (state, action) => {
     case 'DECREMENT':
       if(last !== 0){
       return state.concat([--last])
-      } 
+      }
     default:
-      return state;
+      return state
   }
 }
 
 //store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData
-});
+})
 
-const store = createStore(combinedReducers);
+const store = createStore(combinedReducers)
 
-export default store;
+export default store

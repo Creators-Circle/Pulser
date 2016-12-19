@@ -44,11 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 
 	var _reactDom = __webpack_require__(34);
 
@@ -62,26 +58,27 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _App = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/App.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _App = __webpack_require__(272);
 
 	var _App2 = _interopRequireDefault(_App);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var render = function render() {
-	  _reactDom2.default.render(_react2.default.createElement(
+	  _reactDom2.default.render(React.createElement(
 	    _reactRedux.Provider,
 	    { store: _store2.default },
-	    _react2.default.createElement(
+	    React.createElement(
 	      _reactRouter.Router,
 	      { history: _reactRouter.hashHistory },
-	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default })
+	      React.createElement(_reactRouter.Route, { path: '/', component: _App2.default })
 	    )
 	  ), document.getElementById('app'));
 	};
 
 	_store2.default.subscribe(render);
 	render();
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 1 */
@@ -29190,14 +29187,118 @@
 
 	var _redux = __webpack_require__(183);
 
-	//store all reducers in one variable
+	// store all reducers in one variable
 	var combinedReducers = (0, _redux.combineReducers)({
-	  //fill in with reducers
+	  // fill in with reducers
 	});
 
 	var store = (0, _redux.createStore)(combinedReducers);
 
 	exports.default = store;
+
+/***/ },
+/* 272 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _reactRedux = __webpack_require__(172);
+
+	var _FeedbackBox = __webpack_require__(273);
+
+	var _FeedbackBox2 = _interopRequireDefault(_FeedbackBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var App = function (_Component) {
+	  _inherits(App, _Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'p',
+	          null,
+	          'Hello World'
+	        ),
+	        React.createElement(_FeedbackBox2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react.Component);
+
+	exports.default = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	})(App);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _FeedbackButton = __webpack_require__(274);
+
+	var _FeedbackButton2 = _interopRequireDefault(_FeedbackButton);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FeedbackBox = function FeedbackBox() {
+	  return React.createElement(_FeedbackButton2.default, null);
+	};
+
+	exports.default = FeedbackBox;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var FeedbackButton = function FeedbackButton() {
+	  return React.createElement(
+	    "button",
+	    null,
+	    "Feedback"
+	  );
+	};
+
+	exports.default = FeedbackButton;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
 /******/ ]);

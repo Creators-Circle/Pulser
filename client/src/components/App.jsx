@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component } from 'react'
+import { connect } from 'react-redux'
 
-import FeedbackBox from './FeedbackBox';
+import FeedbackBox from './FeedbackBox'
 
 class App extends Component {
-  constructor(){
-    super()
-  }
 
-  render() {
-    return(
+  render () {
+    return (
       <div>
         <p>Hello World</p>
         {/* {if role === audience display feedback component} */}
@@ -19,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App);
+export default connect(state => state)(App)

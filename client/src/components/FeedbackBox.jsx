@@ -1,4 +1,3 @@
-import React from 'react';
 import FeedbackButton from './FeedbackButton'
 
 const FeedbackBox = () => {
@@ -7,4 +6,4 @@ const FeedbackBox = () => {
   )
 }
 
-export default FeedbackBox;
+export default FeedbackBox

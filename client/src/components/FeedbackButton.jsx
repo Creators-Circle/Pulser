@@ -1,9 +1,7 @@
-import React from 'react';
-
 const FeedbackButton = () => {
-  return(
+  return (
     <button>Feedback</button>
   )
 }
 
-export default FeedbackButton;
+export default FeedbackButton
