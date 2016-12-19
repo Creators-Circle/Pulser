@@ -3,6 +3,8 @@
 ## General Workflow
 
 1. Fork the Or Repo to your local github (url: https://github.com/Creators-Circle/FollowMe)
+1a.  Clone your repo (git clone <url>).
+1b.  Setup a remote called upstream that point's to the org's repo, for rebasing purposes.  (git remote add upstream https://github.com/Creators-Circle/FollowMe )
 
 2. Create a branch for your feature.
 2a.  Create a remote that points to the Org's master for purposes of rebasing. (git remote add upstream).
@@ -95,6 +97,7 @@ Thanks for contributing!
 
 ### Guidelines
 
+1. We are using ESLint standard config :  https://www.npmjs.com/package/eslint .
 1. Uphold the current code standard:
     - Keep your code [DRY][].
     - Apply the [boy scout rule][].
