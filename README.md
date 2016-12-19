@@ -36,6 +36,11 @@ PostgresSQL
 From within the root directory:
 npm install
 
+### Running Server
+To start the server
+npm run build
+npm start
+
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 
+//Redux store name:  store
 import store from './store.jsx';
 import App from './components/App.jsx';
 
