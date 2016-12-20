@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
 
-// define LineChart component from rd3
+// define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
 // pass the pulseData coming from redux store
