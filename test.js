@@ -27,13 +27,13 @@ describe('Reducers', function() { //describe creates a header
 
     describe('UNDEFINED STATE', function() {
       it('sets a default state if inputted state is undefined', function() {
-        assert.deepEqual([{x: 0, y: 0}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
+        assert.deepEqual([{x: 0, y: 0}, {x: 0, y: 1}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
       });
     });
 
     describe('INCREMENT', function() {
       it('last value after running INCREMENT should be 1 greater than the last value before running INCREMENT', function() {
-        assert.equal({x: 0,y: 6}, pulseData(testState, {type: 'INCREMENT',time: 0})[testStateLength]);
+        assert.deepEqual([{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5},{x:0, y:6}], pulseData(testState, {type: 'INCREMENT',time: 0}));
       });
 
       it('returned array should be longer by 1 value after running INCREMENT', function() {
