@@ -8,11 +8,11 @@ const PulseBox = ({pulseData}) => {
       <p>Pulse Box</p>
       {pulseData}
     </div>
-  )
-}
+  );
+};
 
 // get the pulseData from redux store
 const mapStatetoProps = (state) => {
-  return {pulseData: state.pulseData}
-}
-export default connect(mapStatetoProps)(PulseBox)
+  return {pulseData: state.pulseData};
+};
+export default connect(mapStatetoProps)(PulseBox);

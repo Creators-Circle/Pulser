@@ -6,6 +6,6 @@ module.exports = {
         "promise"
     ],
     "rules": {
-      "no-unused-vars":"warn"
+      "no-unused-vars":"off"
    }    
 };
