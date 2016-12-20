@@ -55,6 +55,13 @@ describe('Reducers', function() {
         deepFreeze(testState); // don't allow testState to be overwritten
         assert.equal(pulseData(testState, {type: 'DECREMENT'}).length, lengthBefore+1);
       });
+
+      it('pushes 0 when decrementing from 0', function() {
+        var testState = [1, 0];
+        
+        deepFreeze(testState); // don't allow testState to be overwritten
+        assert.equal([1, 0, 0], pulseData(testState, {type: 'DECREMENT'}));
+      });
     });
 
   });
