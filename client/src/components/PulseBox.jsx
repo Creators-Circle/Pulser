@@ -17,7 +17,6 @@ const PulseBox = ({pulseData}) => {
   return (
     <div>
       <p>Pulse Box</p>
-      {}
       <LineChart
         className = 'pulsedata-linechart'
         data={lineData}// replace this with pulseData
