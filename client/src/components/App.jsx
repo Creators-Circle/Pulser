@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import FeedbackBox from './FeedbackBox'
 
 class App extends Component {
-
   render () {
+    console.log(this.props)
     return (
       <div>
         <p>Hello World!</p>
@@ -16,4 +16,11 @@ class App extends Component {
   }
 }
 
-export default connect(state => state)(App)
+// connect(state => state) is a bad practice because it will rerender after every action
+// mapStatetoProps lets you specify specific state you want to import
+const mapStatetoProps = (state) => {
+  //return pulseData coming from redux store
+  return {pulseData: state.pulseData}
+}
+
+export default connect(mapStatetoProps)(App)
