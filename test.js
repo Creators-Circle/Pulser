@@ -30,12 +30,17 @@ describe('Reducers', function() { //describe creates a header
       it('should return state if inputted action is undefined', function(){
         console.log("hi 1", testState)
         assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}))
+        console.log("hi 1", testState)
+        console.log("result: ", pulseData(testState, {type: 'ARGLEBARGLE'}))
       });
     });
+
     console.log("independent teststate 2", testState)
+    
     describe('UNDEFINED STATE', function() {
       it('sets a default state if inputted state is undefined', function() {
         assert.deepEqual([0, 1], pulseData(undefined, {type: 'INCREMENT'}))      
+        console.log(pulseData(undefined, {type: 'INCREMENT'}))
       });
     });
 
@@ -43,11 +48,15 @@ describe('Reducers', function() { //describe creates a header
       it('last value after running INCREMENT should be 1 greater than the last value before running INCREMENT', function() {
         console.log("hi 2", testState)
         assert.equal(6, pulseData(testState, {type: 'INCREMENT'})[testStateLength])
+        console.log("hi 2", testState)
+        console.log("result: ", pulseData(testState, {type: 'INCREMENT'}))
       });
 
       it('returned array should be longer by 1 value after running INCREMENT', function() {
         console.log("hi 3", testState)
         assert.equal(pulseData(testState, {type: 'INCREMENT'}).length, testStateLength+1);
+        console.log("hi 3", testState)
+        console.log("result: ", pulseData(testState, {type: 'INCREMENT'}))
       });
 
     });
@@ -55,12 +64,16 @@ describe('Reducers', function() { //describe creates a header
     describe('DECREMENT', function() {
       it('last value after running DECREMENT should be 1 less than the last value before running DECREMENT', function() {
         console.log("hi 4", testState)
-        assert.equal(4, pulseData(testState, {type: 'DECREMENT'})[testStateLength])      
+        assert.equal(4, pulseData(testState, {type: 'DECREMENT'})[testStateLength])
+        console.log("hi 4", testState)
+        console.log(pulseData(testState, {type: 'DECREMENT'})[testStateLength])      
       });
 
       it('returned array should be longer by 1 value after running DECREMENT', function() {
         console.log("hi 5", testState)
         assert.equal(pulseData(testState, {type: 'DECREMENT'}).length, testStateLength+1);
+        console.log("hi 5", testState)
+        console.log(pulseData(testState, {type: 'DECREMENT'}).length, testStateLength+1)
       });
 
       it('pushes 0 to array when DECREMENTING from 0', function() {
