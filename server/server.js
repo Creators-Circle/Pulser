@@ -19,16 +19,11 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
   console.log('a user connected');
   // Listen for Audience button clicks
-<<<<<<< HEAD
   socket.on('updatePulse', function (action, currTime) {
-    console.log("updatePulse event: ", action, currTime)
-=======
-  socket.on('updatePulse', function (action) {
-    console.log('updatePulse event: ', action)
->>>>>>> FeedbackButton Socket implementation, server socket refactor, package.json update
+    console.log('updatePulse event: ', action, currTime);
     // Broadcast to presenter (technically also everyone else)
-    socket.broadcast.emit('updatePulse', action);
-  })
+    socket.broadcast.emit('updatePulse', action, currTime);
+  });
 });
 
 // HEROKU ENV VAR OR LOCALHOST:5000

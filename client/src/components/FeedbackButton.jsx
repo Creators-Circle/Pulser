@@ -3,42 +3,42 @@
 import { connect } from 'react-redux';
 // import a helper function to compute the time difference
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
+import React, { Component } from 'react';
 
-const FeedbackButton = () => {
+class FeedbackButton extends Component {
 
-  render() {
+  render () {
     return (
       <button id="updatePulse">Feedback</button>
     );
   }
 
-  componentDidMount() {
-
+  componentDidMount () {
     let canIncrement = true;
     let resetCode;
 
-    document.getElementById('updatePulse').addEventListener("click", function(){
+    document.getElementById('updatePulse').addEventListener('click', function () {
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
       if (canIncrement) {
-        socket.emit('updatePulse', 'INCREMENT', new Date())
+        socket.emit('updatePulse', 'INCREMENT', new Date());
         decrement();
         canIncrement = false;
       } else {
-        resetDecrement()
+        resetDecrement();
       }
-    }
-    
-    function decrement() {
+    });
+
+    function decrement () {
       // In 30 seconds, emit "decrement" event
       // Capture reset code for setTimeout and store in resetCode
-      resetCode = setTimeout( function () {
-        socket.emit('updatePulse', "DECREMENT", new Date());
+      resetCode = setTimeout(function () {
+        socket.emit('updatePulse', 'DECREMENT', new Date());
         canIncrement = true;
-       }, 5000);
+      }, 5000);
     }
 
-    function resetDecrement() {
+    function resetDecrement () {
       clearTimeout(resetCode); // use clearTimeout to kill the other setTimeout
       decrement(); // fire another setTimeout instead.
     }

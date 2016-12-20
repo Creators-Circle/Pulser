@@ -12,6 +12,8 @@ const PulseBox = ({pulseData, presentationStartTime, dispatch}) => {
   // this function is for calling a dispatch to increment the number the pulseData
   socket.on('updatePulse', function (action, currTime) {
     // compute the time difference and pass it with the action
+    console.log('ACTION: ', action);
+    console.log('CURR TIME: ', currTime);
     let timeDifference = timeDiffToMinutes(startTime, currTime);
     dispatch({
       type: action,
@@ -24,7 +26,7 @@ const PulseBox = ({pulseData, presentationStartTime, dispatch}) => {
       values: pulseData,
       strokeWidth: 3
     }
-  ]
+  ];
 
   return (
     <div>
@@ -62,5 +64,5 @@ const mapStatetoProps = (state) => {
   };
 };
 export default connect(mapStatetoProps, dispatch => {
-  return {dispatch}
-})(PulseBox)
+  return {dispatch};
+})(PulseBox);
