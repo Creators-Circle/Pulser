@@ -1,5 +1,6 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Slides from './Slides';
 
 import FeedbackBox from './FeedbackBox'
 import PulseBox from './PulseBox'
