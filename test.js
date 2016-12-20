@@ -16,7 +16,6 @@ describe('Reducers', function() { //describe creates a header
     beforeEach(function() {
     // runs before all tests in this block
       testState = [1,2,3,4,5], testStateLength = testState.length
-      console.log("before", testState)
       deepFreeze(testState); 
     });
 
@@ -64,7 +63,7 @@ describe('Reducers', function() { //describe creates a header
 /*
 How to Import Functions for Testing.
 If you're use to using ES6 Import/Export functions, this should look familiar
-1. Open the file where the function is located (in this example we will call it functionFile.jsx)
+1. Open the file where the function is located (in this example we will call it 'functionFile.jsx'
 2. Create an export variable and set it equal to the function, for example:
     export const exportFunction = function;
 
