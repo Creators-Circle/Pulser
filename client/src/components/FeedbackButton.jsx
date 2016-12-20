@@ -6,7 +6,6 @@ import timeDiffToMinutes from '../util/timeDiffToMinutes';
 
 const FeedbackButton = () => {
 
-
   render() {
     return (
       <button id="updatePulse">Feedback</button>
@@ -14,8 +13,9 @@ const FeedbackButton = () => {
   }
 
   componentDidMount() {
-    let canIncrement = true; // variable to toggle increment ability
-    let resetCode; // variable to store setTimeout reset code
+
+    let canIncrement = true;
+    let resetCode;
 
     document.getElementById('updatePulse').addEventListener("click", function(){
       // If button has not been clicked in last 30 seconds,
@@ -24,12 +24,10 @@ const FeedbackButton = () => {
         socket.emit('updatePulse', 'INCREMENT', new Date())
         decrement();
         canIncrement = false;
-        // TODO: send click to DB with user info
-      } else { // if button has been clicked in last 30 seconds, reset decrement event
-        resetDecrement();
-        // TODO: send click to DB with user info
+      } else {
+        resetDecrement()
       }
-    });
+    }
     
     function decrement() {
       // In 30 seconds, emit "decrement" event
@@ -37,12 +35,12 @@ const FeedbackButton = () => {
       resetCode = setTimeout( function () {
         socket.emit('updatePulse', "DECREMENT", new Date());
         canIncrement = true;
-       }, 10000);
+       }, 5000);
     }
 
-    function resetDecrement () {
-        clearTimeout(resetCode); //use clearTimeout to kill the other setTimeout
-        decrement(); //fire another setTimeout instead.
+    function resetDecrement() {
+      clearTimeout(resetCode); // use clearTimeout to kill the other setTimeout
+      decrement(); // fire another setTimeout instead.
     }
   }
 }
