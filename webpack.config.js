@@ -1,4 +1,4 @@
-//type this in the terminal to run the webpack: node_modules/.bin/webpack
+//  type this in the terminal to run the webpack: node_modules/.bin/webpack
 
 const webpack = require('webpack');
 const path = require('path');
@@ -11,7 +11,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx','.css']
+    extensions: ['', '.js', '.jsx', '.css']
   },
 
   module: {
@@ -33,9 +33,9 @@ module.exports = {
     ]
   },
   plugins: [
-        new ExtractTextPlugin('[name].css'),
-        new webpack.ProvidePlugin({
-            "React": "react",
-        }),
-  ],
+    new ExtractTextPlugin('[name].css'),
+    new webpack.ProvidePlugin({
+      'React': 'react'
+    })
+  ]
 };
