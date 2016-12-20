@@ -28,4 +28,5 @@ const mapStatetoProps = (state) => {
   return {pulseData: state.pulseData}
 }
 
+
 export default connect(mapStatetoProps)(App)
