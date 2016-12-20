@@ -4,30 +4,47 @@ import { connect } from 'react-redux';
 // import a helper function to compute the time difference
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 
-const FeedbackButton = ({presentationStartTime, dispatch}) => {
-  let startTime = presentationStartTime;
-  let currTime, timeDifference;
+const FeedbackButton = () => {
 
-  // this function is for calling a dispatch to increment the number the pulseData
-  const onSubmit = () => {
-    currTime = new Date();
-    // compute the time difference and pass it with the action
-    timeDifference = timeDiffToMinutes(startTime, currTime);
-    dispatch({
-      type: 'INCREMENT',
-      time: timeDifference
-    })
+
+  render() {
+    return (
+      <button id="updatePulse">Feedback</button>
+    );
   }
 
-  return (
-    <button onClick={ () => { onSubmit() } }>Feedback</button>
-  )
-}
-// get the start time of the presentation in the redux store
-const mapStatetoProps = (state) => {
-  return {presentationStartTime: state.presentationStartTime};
+  componentDidMount() {
+    let canIncrement = true; // variable to toggle increment ability
+    let resetCode; // variable to store setTimeout reset code
+
+    document.getElementById('updatePulse').addEventListener("click", function(){
+      // If button has not been clicked in last 30 seconds,
+      // then fire "increment" event and queue "decrement" event
+      if (canIncrement) {
+        socket.emit('updatePulse', 'INCREMENT', new Date())
+        decrement();
+        canIncrement = false;
+        // TODO: send click to DB with user info
+      } else { // if button has been clicked in last 30 seconds, reset decrement event
+        resetDecrement();
+        // TODO: send click to DB with user info
+      }
+    });
+    
+    function decrement() {
+      // In 30 seconds, emit "decrement" event
+      // Capture reset code for setTimeout and store in resetCode
+      resetCode = setTimeout( function () {
+        socket.emit('updatePulse', "DECREMENT", new Date());
+        canIncrement = true;
+       }, 10000);
+    }
+
+    function resetDecrement () {
+        clearTimeout(resetCode); //use clearTimeout to kill the other setTimeout
+        decrement(); //fire another setTimeout instead.
+    }
+  }
 }
 
-export default connect(mapStatetoProps, dispatch => {
-  return {dispatch}
-})(FeedbackButton)
+export default FeedbackButton;

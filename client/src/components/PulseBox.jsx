@@ -1,12 +1,24 @@
 // this component is for displaying the live visualization of users' feedback
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
-
+import timeDiffToMinutes from '../util/timeDiffToMinutes';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
 // pass the pulseData coming from redux store
-const PulseBox = ({pulseData}) => {
+const PulseBox = ({pulseData, presentationStartTime, dispatch}) => {
+  let startTime = presentationStartTime;
+
+  // this function is for calling a dispatch to increment the number the pulseData
+  socket.on('updatePulse', function (action, currTime) {
+    // compute the time difference and pass it with the action
+    let timeDifference = timeDiffToMinutes(startTime, currTime);
+    dispatch({
+      type: action,
+      time: timeDifference
+    });
+  });
+
   var lineData = [
     {
       values: pulseData,
@@ -44,6 +56,11 @@ const PulseBox = ({pulseData}) => {
 
 // get the pulseData from redux store
 const mapStatetoProps = (state) => {
-  return {pulseData: state.pulseData};
+  return {
+    pulseData: state.pulseData,
+    presentationStartTime: state.presentationStartTime
+  };
 };
-export default connect(mapStatetoProps)(PulseBox);
+export default connect(mapStatetoProps, dispatch => {
+  return {dispatch}
+})(PulseBox)

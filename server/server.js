@@ -19,10 +19,11 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
   console.log('a user connected');
   // Listen for Audience button clicks
-  io.on('updatePulse', function (action) {
+  socket.on('updatePulse', function (action, currTime) {
+    console.log("updatePulse event: ", action, currTime)
     // Broadcast to presenter (technically also everyone else)
-    io.broadcast('updatePulse', action);
-  });
+    socket.broadcast.emit('updatePulse', action);
+  })
 });
 
 // HEROKU ENV VAR OR LOCALHOST:5000
