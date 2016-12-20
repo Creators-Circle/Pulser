@@ -1,20 +1,22 @@
-const deepFreeze = require('deep-freeze')
+const deepFreeze = require('deep-freeze');
+import { exportPulseData } from './client/src/store.jsx'
+var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 const assert = require('assert');
 /*YOUR FUNCTIONS GO IN THIS SECTION*/
-const pulseData = (state = [0], action) => {
-  let last = state[state.length-1];
-  switch (action.type) {
-    case 'INCREMENT':
-      return state.concat([++last])
-    case 'DECREMENT':
-      if(last !== 0){
-      return state.concat([--last])
-      } 
-      return state.concat([0]);
-    default:
-      return state;
-  }
-}
+// const pulseData = (state = [0], action) => {
+//   let last = state[state.length-1];
+//   switch (action.type) {
+//     case 'INCREMENT':
+//       return state.concat([++last])
+//     case 'DECREMENT':
+//       if(last !== 0){
+//       return state.concat([--last])
+//       } 
+//       return state.concat([0]);
+//     default:
+//       return state;
+//   }
+// }
 /*END YOUR FUNCTIONS GO IN THIS SECTION*/
 
 /*YOUR VARS FOR ALL TESTS GO HERE UNTIL BEFOREEACH GETS FIGURED OUT*/
