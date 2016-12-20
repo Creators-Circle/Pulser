@@ -1,28 +1,28 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers } from 'redux';
 
-//reducer for INCREMENT/DECREMENT
+//  reducer for INCREMENT/DECREMENT
 const pulseData = (state = [0], action) => {
-  let last = state[ state.length - 1 ]
+  let last = state[ state.length - 1 ];
   switch (action.type) {
     case 'INCREMENT':
-      return state.concat([++last])
+      return state.concat([++last]);
     case 'DECREMENT':
-      if(last !== 0){
-      return state.concat([--last])
-      } 
+      if (last !== 0) {
+        return state.concat([--last]);
+      }
       return state.concat([0]);
     default:
-      return state
+      return state;
   }
-}
+};
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData
-})
+});
 
-const store = createStore(combinedReducers)
+const store = createStore(combinedReducers);
 
-export default store
+export default store;
 
-export const exportPulseData = pulseData; //new variable created for export to make pulseData available for testing
+export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing

@@ -6,6 +6,6 @@ module.exports = {
         "promise"
     ],
     "rules": {
-      "semi":"off"
+      "no-unused-vars":"off"
    }    
 };

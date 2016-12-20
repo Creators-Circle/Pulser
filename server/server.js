@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
   io.on('updatePulse', function (action) {
     // Broadcast to presenter (technically also everyone else)
     io.broadcast('updatePulse', action);
-  })
+  });
 });
 
 // HEROKU ENV VAR OR LOCALHOST:5000
@@ -31,4 +31,4 @@ var port = process.env.PORT || 5000;
 // http server listening to port (HTTP needed for Socket.io)
 http.listen(port, function () {
   console.log('Listening on ' + port);
-})
+});
