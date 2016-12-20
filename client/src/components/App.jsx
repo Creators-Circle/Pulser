@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <p>Hello World!</p>
-        {/* {if role === console presen display feedback component} */}
+        {/* {if role === presenter display PulseBox component} */}
         <PulseBox />
         {/* {if role === audience display feedback component} */}
         <FeedbackBox />

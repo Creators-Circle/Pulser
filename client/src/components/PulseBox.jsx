@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // pass the pulseData coming from redux store
 const PulseBox = ({pulseData}) => {
-  return(
+  return (
     <div>
       <p>Pulse Box</p>
       {pulseData}
