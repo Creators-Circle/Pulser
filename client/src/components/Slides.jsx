@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
-
+// Component to display embedded Goolge Slides presentation
 export class Slides extends Component {
 
   render() {
 
+    // return <iframe> with embedded google slides presentation
+    // current default presentation is "Effective Pairing and Feedback"
     return(
       <iframe
       height="100%"
