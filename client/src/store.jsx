@@ -12,7 +12,7 @@ const pulseData = (state = [{x: 0, y: 0}], action) => {
       if (last !== 0) {
         return [...state, { x: action.time, y: --last }]
       }
-      return state.concat([0]);
+      return [...state, { x: action.time, y: 0 }]
     default:
       return state;
   }
