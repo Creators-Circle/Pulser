@@ -32,7 +32,7 @@ describe('Reducers', function() { //describe creates a header
         assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}))
       });
     });
-
+    console.log("independent teststate 2", testState)
     describe('UNDEFINED STATE', function() {
       it('sets a default state if inputted state is undefined', function() {
         assert.deepEqual([0, 1], pulseData(undefined, {type: 'INCREMENT'}))      
@@ -71,4 +71,5 @@ describe('Reducers', function() { //describe creates a header
 
   });
 });
+
 
