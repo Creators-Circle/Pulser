@@ -2,12 +2,7 @@ const deepFreeze = require('deep-freeze');
 import { exportPulseData } from './client/src/store.jsx'
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 const assert = require('assert');
-
-/*YOUR VARS FOR ALL TESTS GO HERE UNTIL BEFOREEACH GETS FIGURED OUT*/
-//var testState = [1,2,3,4,5], testStateLength = testState.length
-//deepFreeze(testState); // don't allow testState to be overwritten (tests purity)
-/*END YOUR VARS FOR ALL TESTS GO HERE UNTIL BEFOREEACH GETS FIGURED OUT */      
-
+     
 /*YOUR TESTS GO IN THIS SECTION*/
 //POINTERS:
 // 1) place an x before a block of tests or an individual test to disable that test as pending
@@ -62,8 +57,23 @@ describe('Reducers', function() { //describe creates a header
         assert.deepEqual([1, 0, 0], pulseData(zeroTestState, {type: 'DECREMENT'}));
       });
     });
-
   });
 });
 
 
+/*
+How to Import Functions for Testing.
+If you're use to using ES6 Import/Export functions, this should look familiar
+1. Open the file where the function is located (in this example we will call it functionFile.jsx)
+2. Create an export variable and set it equal to the function, for example:
+    export const exportFunction = function;
+
+3. Open your tests file
+4. Import the function into your tests file, for example 
+    import { exportFunction } from 'functionFile.jsx'
+  Note that you will need the correct path to your functionFile 
+5. Set that to a variable, ie.:
+    var importedFunction = exportFunction;
+6. You can now use it like any other function, ie.:
+    importedFunction();
+*/
