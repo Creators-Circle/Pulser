@@ -5,24 +5,19 @@ import rd3 from 'rd3';
 // define LineChart component from rd3
 const LineChart = rd3.LineChart;
 
-// dummy data to test the LineChart
-var lineData = [
-  {
-    values: [ { x: 0.0166667, y: 0 }, { x: 0.0333333, y: 1 }, { x: 0.0833333, y: 2 }, { x: 0.366667, y: 2 }, { x: 0.45, y: 3 } ],
-    strokeWidth: 3
-  }
-];
-
 // pass the pulseData coming from redux store
 const PulseBox = ({pulseData}) => {
-  var test = (y) => {
-    lineData[0].values.push({ x: 100, y: y })
-  }
+  var lineData = [
+    {
+      values: pulseData,
+      strokeWidth: 3
+    }
+  ]
 
   return (
     <div>
       <p>Pulse Box</p>
-      {pulseData}
+      {}
       <LineChart
         className = 'pulsedata-linechart'
         data={lineData}// replace this with pulseData
