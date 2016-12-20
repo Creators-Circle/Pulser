@@ -18,7 +18,9 @@ app.get('/', function (req, res) {
 // Socket.io listeners / emitters
 io.on('connection', function (socket) {
   console.log('a user connected');
+  // Listen for Audience button clicks
   io.on('updatePulse', function (action) {
+    // Broadcast to presenter (technically also everyone else)
     io.broadcast('updatePulse', action);
   })
 });
@@ -26,6 +28,7 @@ io.on('connection', function (socket) {
 // HEROKU ENV VAR OR LOCALHOST:5000
 var port = process.env.PORT || 5000;
 
+// http server listening to port (HTTP needed for Socket.io)
 http.listen(port, function () {
   console.log('Listening on ' + port);
 })
