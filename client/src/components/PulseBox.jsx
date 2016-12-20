@@ -19,7 +19,7 @@ const PulseBox = ({pulseData}) => {
       <p>Pulse Box</p>
       <LineChart
         className = 'pulsedata-linechart'
-        data={lineData}// replace this with pulseData
+        data={lineData}
         width='100%'
         height={400}
         viewBoxObject={{
@@ -31,8 +31,8 @@ const PulseBox = ({pulseData}) => {
         }
         circleRadius = {0}
         domain={
-          // set the maximum value of x to the number of audience
-          // set the maximum value of y to the estimated time of presentation
+          // set the maximum value of x to the estimated time of presentation
+          // set the maximum value of y to the number of audience
           { x: [0, 20], y: [0, 18] }
         }
         xAxisLabel="Elapsed Time (minutes)"

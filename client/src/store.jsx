@@ -42,7 +42,7 @@ export default store;
 // testing line chart -- delete this once the set time functionality is working in the client side
 store.dispatch({type: 'SET_TIME_START'});
 console.log('time', store.getState().presentationStartTime)
-//--------------------------------------------------------------------
+// --------------------------------------------------------------------/
 
 
 export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing
