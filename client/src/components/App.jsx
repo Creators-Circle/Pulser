@@ -1,3 +1,11 @@
+//  App structure
+  //  ---||-------App--------||-----
+  // PresenterView      AudienceView
+  //     ||                  ||
+  //  PulseBox          FeedbackBox
+  //                         ||
+  //                   FeedbackButton
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Slides from './Slides';
@@ -14,8 +22,8 @@ class App extends Component {
     return (
       <div>
         <p>Hello World!</p>
-        <li><Link to="/pulsebox">Presenter</Link></li>
-        <li><Link to="/feedbackbox">Audience</Link></li>
+        <li><Link to="/presenter">Presenter</Link></li>
+        <li><Link to="/audience">Audience</Link></li>
       </div>
     );
   };
