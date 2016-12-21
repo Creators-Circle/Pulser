@@ -20,24 +20,24 @@ var session = require('cookie-session');
 AuthPort.registerService('makerpass', MakerpassService);
 
 
-AuthPort.createServer({
-  service: 'makerpass',
-  id: 'd125322e59940ae2554e017b1bde13259f187bfd2e58c7dc24eed0ec52d980cf', //process.env.MAKERPASS_CLIENT_ID
-  secret: 'd38f64490545506512960894df4d568759b5e7292792b6a777e0b4b65d740cbe',  //process.env.MAKERPASS_CLIENT_SECRET
-  callbackURL: 'http://localhost:5000' + '/auth/makerpass/callback',
-  // scope: 'admin.read admin.write',
-})
+// AuthPort.createServer({
+//   service: 'makerpass',
+//   id: '', //process.env.MAKERPASS_CLIENT_ID
+//   secret: '',  //process.env.MAKERPASS_CLIENT_SECRET
+//   callbackURL: 'http://localhost:5000' + '/auth/makerpass/callback',
+//   // scope: 'admin.read admin.write',
+// })
 
-AuthPort.on('auth', function (req, res, data) {
-  console.log("OAuth success!", req);
-  req.session.accessToken = data.token;
-  res.redirect('/');
-})
+// AuthPort.on('auth', function (req, res, data) {
+//   console.log("OAuth success!", req);
+//   req.session.accessToken = data.token;
+//   res.redirect('/');
+// })
 
-AuthPort.on('error', function(req, res, data) {
-  console.log("OAuth failed.", data);
-  res.status(500).send({ error: 'oauth_failed' })
-});
+// AuthPort.on('error', function(req, res, data) {
+//   console.log("OAuth failed.", data);
+//   res.status(500).send({ error: 'oauth_failed' })
+// });
 //END authport stuff.
 
 // code from the express.static docs
