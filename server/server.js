@@ -9,8 +9,8 @@ var Authport = require('authport');
 var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
 var credentials = require('./env/config.js');
-
 // TODO: require('dot-env')
+require('dotenv').config({silent: true});
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -26,13 +26,13 @@ Authport.registerService('makerpass', MakerpassService);
 
 // callback urls for MakerPass Authentication
 var localCallbackUrl = 'http://localhost:5000/auth/makerpass/callback';
-var deployedCallbackUrl = null;// Fill in with the deployed url
+var deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/';
 
 // provide credentials for making an Authport server
 Authport.createServer({
   service: 'makerpass',
-  id: credentials.makerpass.id,
-  secret: credentials.makerpass.secret,
+  id: process.env.MAKERPASS_ID,
+  secret: process.env.MAKERPASS_SECRET,
   callbackURL: deployedCallbackUrl || localCallbackUrl
 });
 
@@ -78,7 +78,9 @@ var createSession = function (req, res, token) {
   });
 };
 
-// HEROKU ENV VAR OR LOCALHOST:5000
+// HEROKU OR DOTENV VAR OR LOCALHOST:5000
+// Check to see if there is a port environment variable or just use port 5000 instead
+module.exports.NODEPORT = process.env.PORT || 5000;
 var port = process.env.PORT || 5000;
 
 // http server listening to port (HTTP needed for Socket.io)
