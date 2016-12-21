@@ -40,6 +40,9 @@ describe('Reducers', function() { //describe creates a header
         assert.equal(pulseData(testState, {type: 'INCREMENT', time: 0}).length, testStateLength+1);
       });
 
+      it('tracks different time values', function() {
+        assert.deepEqual([{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5},{x:1, y:6}], pulseData(testState, {type: 'INCREMENT',time: 1}));
+      });
     });
 
     describe('DECREMENT', function() {
@@ -49,6 +52,10 @@ describe('Reducers', function() { //describe creates a header
 
       it('returned array should be longer by 1 value after running DECREMENT', function() {
         assert.equal(pulseData(testState, {type: 'DECREMENT', time: 0}).length, testStateLength+1);
+      });
+
+      it('tracks different time values', function() {
+        assert.deepEqual([{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5},{x:1, y:4}], pulseData(testState, {type: 'DECREMENT',time: 1}));
       });
 
       it('pushes 0 to array when DECREMENTING from 0', function() {
