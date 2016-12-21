@@ -23,10 +23,10 @@ io.on('connection', function (socket) {
     console.log('updatePulse event: ', action, currTime);
     // Broadcast to presenter (technically also everyone else)
     io.emit('updatedPulse', action, currTime);
-  });
+  });  
 });
 
-// HEROKU ENV VAR OR LOCALHOST:5000
+// Heroku ENV VAR OR LOCALHOST:5000
 var port = process.env.PORT || 5000;
 
 // http server listening to port (HTTP needed for Socket.io)
