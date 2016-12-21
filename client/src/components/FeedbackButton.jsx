@@ -47,28 +47,3 @@ class FeedbackButton extends Component {
 }
 
 export default FeedbackButton;
-=======
-  // this function is for calling a dispatch to increment the number the pulseData
-  const onSubmit = () => {
-    currTime = new Date();
-    // compute the time difference and pass it with the action
-    timeDifference = timeDiffToMinutes(startTime, currTime);
-    dispatch({
-      type: 'INCREMENT',
-      time: timeDifference
-    });
-  };
-
-  return (
-    <button onClick={ () => { onSubmit(); } }>Feedback</button>
-  );
-};
-// get the start time of the presentation in the redux store
-const mapStatetoProps = (state) => {
-  return {presentationStartTime: state.presentationStartTime};
-};
-
-export default connect(mapStatetoProps, dispatch => {
-  return {dispatch};
-})(FeedbackButton);
->>>>>>> Getting rebase done.

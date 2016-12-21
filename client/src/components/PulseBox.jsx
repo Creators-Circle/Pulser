@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
-<<<<<<< HEAD
 class PulseBox extends Component {
 
   render () {
@@ -45,16 +44,7 @@ class PulseBox extends Component {
       </div>
     );
   }
-=======
-// pass the pulseData coming from redux store
-const PulseBox = ({pulseData}) => {
-  var lineData = [
-    {
-      values: pulseData,
-      strokeWidth: 3
-    }
-  ];
->>>>>>> Getting rebase done.
+
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
