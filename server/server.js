@@ -9,6 +9,8 @@ var Authport = require('authport');
 var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
 require('dotenv').config({silent: true});
+var credentials = require('./env/config.js');
+var MP = require('node-makerpass');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
