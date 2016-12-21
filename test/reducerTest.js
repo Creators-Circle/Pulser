@@ -11,6 +11,19 @@ const assert = require('assert');
 describe('Reducers', function() { //describe creates a header
   describe('presentationStartTime', function() {
 
+    var testState, testStateLength
+
+    beforeEach(function() {
+    // runs before all tests in this block
+      testState = [{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5}], testStateLength = testState.length
+      deepFreeze(testState);
+    });
+
+    describe('UNDEFINED ACTION', function(){ //if action is undefined
+      it('should return state if inputted action is undefined', function(){
+        assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}));
+      });
+    });
   });
 
   describe('pulseData', function() { //you can nest describes to make nested groups of tests
