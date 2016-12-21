@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
   socket.on('updatePulse', function (action, currTime) {
     console.log('updatePulse event: ', action, currTime);
     // Broadcast to presenter (technically also everyone else)
-    socket.broadcast.emit('updatePulse', action, currTime);
+    io.emit('updatedPulse', action, currTime);
   });
 });
 

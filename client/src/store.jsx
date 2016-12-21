@@ -4,7 +4,6 @@ import { createStore, combineReducers } from 'redux';
 // x = time of clicks, y = number of clicks
 const pulseData = (state = [{x: 0, y: 0}], action) => {
   let last = state[ state.length - 1 ].y;
-
   switch (action.type) {
     case 'INCREMENT':
       return [...state, { x: action.time, y: ++last }];
