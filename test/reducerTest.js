@@ -1,5 +1,5 @@
 const deepFreeze = require('deep-freeze');
-import { exportPulseData } from '../client/src/store.jsx'
+import { exportPulseData, exportPresentationStartTime } from '../client/src/store.jsx'
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 const assert = require('assert');
 
@@ -9,6 +9,10 @@ const assert = require('assert');
 // 2) use deepFreeze to test purity of inputs
 
 describe('Reducers', function() { //describe creates a header
+  describe('presentationStartTime', function() {
+
+  });
+
   describe('pulseData', function() { //you can nest describes to make nested groups of tests
 
    var testState, testStateLength
