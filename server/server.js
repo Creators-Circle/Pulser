@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var Authport = require('authport');
 var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
-var credentials = require('./env/config.js');
 // TODO: require('dot-env')
 require('dotenv').config({silent: true});
 
