@@ -12,34 +12,6 @@ require('dotenv').config({silent: true});
 var credentials = require('./env/config.js');
 var MP = require('node-makerpass');
 
-//Stuff for Authport-Makerpass
-// First set up sessions (independent of MakerPass and OAuth)
-// This will give your middleware & endpoints access to req.session
-//
-var session = require('cookie-session');
-AuthPort.registerService('makerpass', MakerpassService);
-
-
-// AuthPort.createServer({
-//   service: 'makerpass',
-//   id: '', //process.env.MAKERPASS_CLIENT_ID
-//   secret: '',  //process.env.MAKERPASS_CLIENT_SECRET
-//   callbackURL: 'http://localhost:5000' + '/auth/makerpass/callback',
-//   // scope: 'admin.read admin.write',
-// })
-
-// AuthPort.on('auth', function (req, res, data) {
-//   console.log("OAuth success!", req);
-//   req.session.accessToken = data.token;
-//   res.redirect('/');
-// })
-
-// AuthPort.on('error', function(req, res, data) {
-//   console.log("OAuth failed.", data);
-//   res.status(500).send({ error: 'oauth_failed' })
-// });
-//END authport stuff.
-
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
 app.use(bodyParser.json());
@@ -80,7 +52,6 @@ Authport.on('error', function (req, res, data) {
 
 app.get('/auth/:service', Authport.app);
 // ----------------------------------------------------------
-
 
 app.get('/', function (req, res) {
   // check if the user is logged in by checking his session,

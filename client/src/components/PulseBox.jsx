@@ -45,7 +45,6 @@ class PulseBox extends Component {
     );
   }
 
-
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
     let startTime = this.props.presentationStartTime;
