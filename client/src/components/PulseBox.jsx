@@ -6,18 +6,18 @@ import React, { Component } from 'react';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
-// pass the pulseData coming from redux store
 class PulseBox extends Component {
 
-  // this function is for calling a dispatch to increment the number the pulseData
   render () {
+    // need to set lineData prior to return statement to preserve "this" context
     var lineData = [
       {
-        values: this.props.pulseData,
+        values: this.props.pulseData, // pass the pulseData coming from redux store
         strokeWidth: 3
       }
     ];
 
+    // Render "stock ticker" style line graph
     return (
       <div>
         <p>Pulse Box</p>
@@ -46,14 +46,15 @@ class PulseBox extends Component {
     );
   }
 
+  // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
     let startTime = this.props.presentationStartTime;
-    let dispatch = this.props.dispatch;
+    let dispatch = this.props.dispatch; // set keyword "this"
     socket.on('updatedPulse', function (action, currTime) {
       // compute the time difference and pass it with the action
-      console.log('ACTION: ', action);
-      console.log('CURR TIME: ', currTime);
       let timeDifference = timeDiffToMinutes(startTime, currTime);
+
+      // Dispatch either DECREMENT or INCREMENT action
       dispatch({
         type: action,
         time: timeDifference
