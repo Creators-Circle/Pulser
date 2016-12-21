@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var Authport = require('authport');
 var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
-// TODO: require('dot-env')
 require('dotenv').config({silent: true});
 
 // code from the express.static docs
@@ -28,6 +27,10 @@ var localCallbackUrl = 'http://localhost:5000/auth/makerpass/callback';
 var deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/';
 
 // provide credentials for making an Authport server
+// These references to process.env will look for environment variables
+  //Deployment: set these in Heroku
+  //Local: save them in a .env file in the root directory - see dotenv npm for docs
+    //.gitignore includes the .env - this is advisable
 Authport.createServer({
   service: 'makerpass',
   id: process.env.MAKERPASS_ID,
