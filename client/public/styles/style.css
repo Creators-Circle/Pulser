@@ -1,0 +1,12 @@
+
+iframe {
+  width:100%;
+}
+
+iframe#presenterSlides.slides {
+  height:80vh;
+}
+
+iframe#audienceSlides.slides {
+  height:90vh;
+}

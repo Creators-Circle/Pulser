@@ -3,12 +3,13 @@
      //  FeedbackButton.jsx
 
 import FeedbackBox from './FeedbackBox';
+import Slides from './Slides';
 
 const AudienceView = () => {
   return (
     <div>
-    <h1> Audience View</h1>
-    <FeedbackBox />
+      <Slides id="audienceSlides" class="slides" role="audience"/>
+      <FeedbackBox />
     </div>
   );
 };

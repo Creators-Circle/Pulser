@@ -7,8 +7,8 @@ import Slides from './Slides';
 const PresenterView = () => {
   return (
     <div>
-    <h1> Presenter View</h1>
-    <PulseBox />
+      <Slides id="presenterSlides" role="presenter"/>
+      <PulseBox />
     </div>
   );
 };
