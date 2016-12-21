@@ -13,7 +13,7 @@ class PulseBox extends Component {
     var lineData = [
       {
         values: this.props.pulseData, // pass the pulseData coming from redux store
-        strokeWidth: 3
+        strokeWidth: 1 
       }
     ];
 
@@ -24,7 +24,7 @@ class PulseBox extends Component {
           className = 'pulsedata-linechart'
           data={lineData}
           width='100%'
-          height={400}
+          height='20%'
           viewBoxObject={{
             x: 0,
             y: 0,
@@ -36,7 +36,7 @@ class PulseBox extends Component {
           domain={
             // set the maximum value of x to the estimated time of presentation
             // set the maximum value of y to the number of audience
-            { x: [0, 20], y: [0, 18] }
+            { x: [0, 5], y: [0, 5] }
           }
           xAxisLabel="Elapsed Time (minutes)"
           gridHorizontal={true}
