@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 
 class FeedbackButton extends Component {
 
-<<<<<<< HEAD
   render () {
     return (
       <button id="updatePulse">Feedback</button>
