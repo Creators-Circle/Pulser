@@ -11,11 +11,11 @@ const assert = require('assert');
 describe('Reducers', function() { //describe creates a header
   describe('presentationStartTime', function() {
 
-    var testState, testStateLength
+    var testTimeState, testStateLength
 
     beforeEach(function() {
     // runs before all tests in this block
-      testState = [{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5}], testStateLength = testState.length
+      testTimeState = 0;
       deepFreeze(testState);
     });
 
