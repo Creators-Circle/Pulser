@@ -37,23 +37,23 @@ describe('Reducers', function() { //describe creates a header
       });
 
       it('returned array should be longer by 1 value after running INCREMENT', function() {
-        assert.equal(pulseData(testState, {type: 'INCREMENT'}).length, testStateLength+1);
+        assert.equal(pulseData(testState, {type: 'INCREMENT', time: 0}).length, testStateLength+1);
       });
 
     });
 
     describe('DECREMENT', function() {
       it('last value after running DECREMENT should be 1 less than the last value before running DECREMENT', function() {
-        assert.equal({x: 0,y: 4}, pulseData(testState, {type: 'DECREMENT', time: 0})[testStateLength])
+        assert.deepEqual([{x: 0,y: 1},{x: 0,y: 2},{x: 0,y: 3},{x: 0,y: 4},{x: 0,y: 5},{x: 0,y: 4}], pulseData(testState, {type: 'DECREMENT', time: 0}));
       });
 
       it('returned array should be longer by 1 value after running DECREMENT', function() {
-        assert.equal(pulseData(testState, {type: 'DECREMENT' ,type: 0}).length, testStateLength+1);
+        assert.equal(pulseData(testState, {type: 'DECREMENT', time: 0}).length, testStateLength+1);
       });
 
       it('pushes 0 to array when DECREMENTING from 0', function() {
-        var zeroTestState = [1, 0]; deepFreeze(zeroTestState);
-        assert.deepEqual([1, 0, 0], pulseData(zeroTestState, {type: 'DECREMENT'}));
+        var zeroTestState = [{x: 0,y: 0}]; deepFreeze(zeroTestState);
+        assert.deepEqual([{x: 0,y: 0}, {x: 0,y: 0}], pulseData(zeroTestState, {type: 'DECREMENT', time: 0}));
       });
     });
   });
