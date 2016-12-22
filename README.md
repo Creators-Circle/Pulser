@@ -6,7 +6,7 @@ FollowMe -- Give your teacher the thumb!
 
   - __Product Owner__: Ross Topol
   - __Scrum Master__: Johnny McDuff
-  - __Development Team Members__: Christian Aquino, Ari L. Frankel
+  - __Development Team Members__: Christian Aquino, Ari L. Frankel, Sheel Bedi
 
 ## Table of Contents
 
