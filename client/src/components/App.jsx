@@ -20,20 +20,24 @@ import getUserData from '../util/getUserData';
 // Links route users to pulsebox and feedbackbox as appropriate.
 class App extends Component {
 
-  componentWillMount () {
-    // getUserData((user)=>{
-    //   this.props.dispatch({
-    //     type: ,
-    //     time: timeDifference
-    //   });
-    // })
+  componentWillMount() {
+    //store user data when the application loads
+    getUserData((user)=>{
+      this.props.dispatch({
+        type: 'STORE_USER',
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar
+      });
+    })
   }
 
   render () {
     console.log('app props', this.props);
     return (
       <div>
-        <p>Hello World!</p>
+        <p>Hello {this.props.user.name}!</p>
+        <img src={this.props.user.avatar} />
         <li><Link to="/presenter">Presenter</Link></li>
         <li><Link to="/audience">Audience</Link></li>
       </div>
@@ -44,11 +48,9 @@ class App extends Component {
 // connect(state => state) is a bad practice because it will rerender after every action
 // mapStatetoProps lets you specify specific state you want to import
 const mapStatetoProps = (state) => {
-  // return pulseData coming from redux store
   return {
     pulseData: state.pulseData,
     user: state.user,
-    dispatch: state.dispatch
   };
 };
 
