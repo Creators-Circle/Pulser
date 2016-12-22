@@ -32,7 +32,7 @@ FollowMe!
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-  "By providing a way for students to signal "
+  "By providing a way for students to signal their instructors digitally, FollowMe enables seamless, realtime feedback."
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
