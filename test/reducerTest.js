@@ -1,9 +1,9 @@
 const deepFreeze = require('deep-freeze');
 const assert = require('assert');
-import { exportPulseData, exportPresentationStartTime, exportUsersClicks } from '../client/src/store.jsx';
-var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
-var presentationStartTime = exportPresentationStartTime;
-var usersClicks = exportUsersClicks
+import user from '../client/src/reducers/userReducer';
+import usersClicks from '../client/src/reducers/usersClicks';
+import presentationStartTime from '../client/src/reducers/presentationStartTime';
+import pulseData from '../client/src/reducers/pulseData';
 
 /*YOUR TESTS GO IN THIS SECTION*/
 //POINTERS:
@@ -50,7 +50,7 @@ describe('Reducers', function() { //describe creates a header
 // *** End PresentationStartTime Tests ***
   
   // *** usersClicks Tests ***
-  xdescribe('usersClicks', function() {
+  describe('usersClicks', function() {
     var testState;
 
     beforeEach(function() {
@@ -70,10 +70,6 @@ describe('Reducers', function() { //describe creates a header
         it('should return state if action.time is undefined', function(){
           assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
         });  
-
-        it('should return a default state if state is undefined', function() {
-          assert.deepEqual({}, usersClicks(undefined, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
-        });
       })
       
       it('should add a click to a user\'s clicks array if a user is specified', function() {
