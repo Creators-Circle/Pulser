@@ -62,7 +62,6 @@ class PulseBox extends Component {
     socket.on('updatedPulse', function (action, currTime) {
       // compute the time difference and pass it with the action
       let timeDifference = timeDiffToMinutes(startTime, currTime);
-
       // Dispatch either DECREMENT or INCREMENT action
       dispatch({
         type: action,

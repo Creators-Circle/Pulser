@@ -18,23 +18,24 @@ describe('Reducers', function() { //describe creates a header
       testState.length
       deepFreeze(testState);
     });
+      describe('undefined parameters', function(){
+        it('should return state if action.type is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });
+
+        it('should return state if action.user is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });
+
+        it('should return state if action.time is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });  
+
+        it('should return a default state if state is undefined', function() {
+          assert.deepEqual({}, usersClicks(undefined, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
+        });
+      })
       
-      it('should return state if action.type is undefined', function(){
-        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
-      });
-
-      it('should return state if action.user is undefined', function(){
-        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
-      });
-
-      it('should return state if action.time is undefined', function(){
-        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
-      });
-
-      it('should return a default state if state is undefined', function() {
-        assert.deepEqual({}, usersClicks(undefined, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
-      });
-
       it('should add a click to a user\'s clicks array if a user is specified', function() {
         assert.equal(4, usersClicks(testState, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}).Ari.length) 
       })
