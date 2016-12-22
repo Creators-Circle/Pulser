@@ -1,6 +1,7 @@
 const deepFreeze = require('deep-freeze');
 import { exportPulseData, exportPresentationStartTime } from '../client/src/store.jsx'
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
+var presentationStartTime = exportPresentationStartTime;
 const assert = require('assert');
 
 /*YOUR TESTS GO IN THIS SECTION*/
@@ -11,17 +12,17 @@ const assert = require('assert');
 describe('Reducers', function() { //describe creates a header
   describe('presentationStartTime', function() {
 
-    var testTimeState, testStateLength
+    var testTimeState
 
     beforeEach(function() {
     // runs before all tests in this block
-      testTimeState = 0;
-      deepFreeze(testState);
+      testTimeState = 1;
+      deepFreeze(testTimeState);
     });
 
     describe('UNDEFINED ACTION', function(){ //if action is undefined
       it('should return state if inputted action is undefined', function(){
-        assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}));
+        assert.equal(testTimeState, presentationStartTime(testTimeState, {type: 'ARGLEBARGLE'}));
       });
     });
   });
