@@ -9,7 +9,6 @@ module.exports = {
       "no-unused-vars":"off",
       "semi": [2, "always"],
       "no-undef": 1
-
    }    
 };
 

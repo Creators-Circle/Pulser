@@ -7,7 +7,7 @@ import store from './store.jsx';
 import App from './components/App.jsx';
 import PresenterView from './components/PresenterView';
 import FeedbackBox from './components/FeedbackBox.jsx';
-import PulseBox from './components/PulseBox.jsx'
+import PulseBox from './components/PulseBox.jsx';
 
 const render = () => {
   ReactDOM.render(
