@@ -38,6 +38,7 @@ FollowMe!
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  "Simply go to FollowMe.com to get started."
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
