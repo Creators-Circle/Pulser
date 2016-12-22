@@ -32,7 +32,7 @@ describe('Reducers', function() { //describe creates a header
       });
     });
 
-    describe('UNDEFINED STATE', function() {
+    describe('RETURNING DATE', function() {
       it('returns the date', function() {
         assert.deepEqual(new Date(), presentationStartTime(testTimeState, {type: 'SET_TIME_START'}));
       });
