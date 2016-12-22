@@ -32,6 +32,12 @@ describe('Reducers', function() { //describe creates a header
       });
     });
 
+    describe('RETURNING OBJECT', function() {
+      it('returns an object', function() {
+        assert.equal(typeof(new Date()), typeof(presentationStartTime(testTimeState, {type: 'SET_TIME_START'})));
+      });
+    });
+
     describe('RETURNING DATE', function() {
       it('returns the date', function() {
         assert.deepEqual(new Date(), presentationStartTime(testTimeState, {type: 'SET_TIME_START'}));
@@ -58,6 +64,12 @@ describe('Reducers', function() { //describe creates a header
     describe('UNDEFINED STATE', function() {
       it('sets a default state if inputted state is undefined', function() {
         assert.deepEqual([{x: 0, y: 0}, {x: 0, y: 1}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
+      });
+    });
+
+    describe('RETURNS ARRAY', function() {
+      it('returns an array', function() {
+        assert.equal(Array.isArray(testState), Array.isArray(pulseData(testState, {type: 'INCREMENT',time: 0})));
       });
     });
 
