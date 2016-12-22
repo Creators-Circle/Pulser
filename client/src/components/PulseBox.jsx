@@ -9,11 +9,21 @@ const LineChart = rd3.LineChart;
 class PulseBox extends Component {
 
   render () {
+    var currTime = new Date();
+    var timeDiff = timeDiffToMinutes(this.props.presentationStartTime, currTime);
+
+    // filter every data with less than (n)minutes time
+    // compare the time to 1 minute for testing
+    var filteredPulse = this.props.pulseData.filter(pulse => Math.abs(timeDiff - pulse.x) <= 1);
+
+    // set the min and max of x axis with the time value of the first element from filteredPulse
+    var xMin = filteredPulse[0].x;
+    var xMax = filteredPulse[0].x + 1;
     // need to set lineData prior to return statement to preserve "this" context
     var lineData = [
       {
-        values: this.props.pulseData, // pass the pulseData coming from redux store
-        strokeWidth: 1
+        values: filteredPulse,
+        strokeWidth: 2
       }
     ];
 
@@ -36,7 +46,7 @@ class PulseBox extends Component {
           domain={
             // set the maximum value of x to the estimated time of presentation
             // set the maximum value of y to the number of audience
-            { x: [0, 5], y: [0, 5] }
+            { x: [xMin, xMax], y: [0, 5] }
           }
           xAxisLabel="Elapsed Time (minutes)"
           gridHorizontal={true}
