@@ -27,36 +27,34 @@ const presentationStartTime = (state = 0, action) => {
       return state;
   }
 };
-//reducer for tracking the number of clicks from each audience member
+// reducer for tracking the number of clicks from each audience member
 // state = {user: [time, time, ...]}
 // action = {type: 'ADDCLICKTOUSER', user: String, time: String}
 const usersClicks = (state = {}, action) => {
-  if(
-    action.time === undefined || 
-    action.user === undefined ||
-    state === undefined
-    )
-  { 
+  if (action.time === undefined || action.user === undefined || state === undefined) {
     return state;
   }
-  let user = action.user, time = action.time, addObj = {};
+  let user = action.user;
+  let time = action.time;
+  let addObj = {};
   switch (action.type) {
-    case 'ADDCLICKTOUSER': 
-      if(state[user]){
+    case 'ADDCLICKTOUSER':
+      if (state[user]) {
         addObj[action.user] = state[user].concat([time]);
       } else {
         addObj[action.user] = [time];
       }
-      return {...state, ...addObj}; 
-    default: 
+      return {...state, ...addObj};
+    default:
       return state;
   }
-}
+};
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
-  presentationStartTime
+  presentationStartTime,
+  usersClicks
 });
 
 const store = createStore(combinedReducers);

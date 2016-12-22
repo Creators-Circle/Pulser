@@ -7,8 +7,9 @@ module.exports = {
     ],
     "rules": {
       "no-unused-vars":"off",
-      "no-undef":"off",
-      "semi": [2, "always"]
+      "semi": [2, "always"],
+      "no-undef": 1
+
    }    
 };
 
