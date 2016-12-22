@@ -28,9 +28,11 @@ FollowMe!
 
 ## Problem ##
   > Describe the problem your product solves.
+  "In a classroom environment, students are not always comfortable asking for help. Moreover, once a class reaches a certain size, in class discussion becomes cumbersome and unfeasible."
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  "By providing a way for students to signal "
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
