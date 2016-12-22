@@ -82,6 +82,10 @@ io.on('connection', function (socket) {
     // Broadcast to presenter (technically also everyone else)
     io.emit('updatedPulse', action, currTime);
   });
+
+  socket.on('userClick', function (action, currTime, user) {
+    io.emit('userClicked', action, currTime, user);
+  });
 });
 
 // helper function for creating a session

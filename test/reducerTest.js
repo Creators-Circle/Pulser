@@ -48,7 +48,7 @@ describe('Reducers', function() { //describe creates a header
     });
   });
 // *** End PresentationStartTime Tests ***
-  
+
   // *** usersClicks Tests ***
   describe('usersClicks', function() {
     var testState;
@@ -69,11 +69,11 @@ describe('Reducers', function() { //describe creates a header
 
         it('should return state if action.time is undefined', function(){
           assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
-        });  
+        });
       })
-      
+
       it('should add a click to a user\'s clicks array if a user is specified', function() {
-        assert.equal(4, usersClicks(testState, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}).Ari.length) 
+        assert.equal(4, usersClicks(testState, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}).Ari.length)
       })
 
       it('should add a user to state on their first click', function() {
@@ -82,7 +82,7 @@ describe('Reducers', function() { //describe creates a header
 
   })
   // *** End usersClicks Tests ***
-  
+
   // *** Begin pulseData Tests ***
   xdescribe('pulseData', function() { //you can nest describes to make nested groups of tests
 
