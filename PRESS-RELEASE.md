@@ -25,6 +25,7 @@ FollowMe!
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  "FollowMe provides a way for students to electronically signal their instructor during a class that they need help. By simply pressing a button, a student can signal that he finds a particular subject troublesome."
 
 ## Problem ##
   > Describe the problem your product solves.
@@ -44,6 +45,8 @@ FollowMe!
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Thanks to FollowMe, I don't even have to come in. Also, why am I still recieving emails?" - Mitch Dunn
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  "Log on now."
