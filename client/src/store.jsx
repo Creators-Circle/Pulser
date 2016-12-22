@@ -28,6 +28,25 @@ const presentationStartTime = (state = 0, action) => {
   }
 };
 
+const usersClicks = (state, action) => {
+  if(state ===undefined) return {};
+  if(action.time === undefined || action.user === undefined){ 
+    return state;
+  }
+  let user = action.user, time = action.time, addObj = {};
+  switch (action.type) {
+    case 'ADDCLICKTOUSER':
+      if(state[user]){
+        addObj[action.user] = state[user].concat([time]);
+      } else {
+        addObj[action.user] = [time];
+      }
+      return {...state, ...addObj}; 
+    default: 
+      return state;
+  }
+}
+
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
@@ -43,4 +62,5 @@ store.dispatch({type: 'SET_TIME_START'});
 console.log('time', store.getState().presentationStartTime);
 // --------------------------------------------------------------------/
 
-export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing
+export const exportPulseData = pulseData; // new variable created for export to make pulseData available for testing
+export const exportUsersClicks = usersClicks;

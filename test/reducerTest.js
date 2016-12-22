@@ -1,15 +1,50 @@
 const deepFreeze = require('deep-freeze');
+const assert = require('assert');
 import { exportPulseData } from '../client/src/store.jsx'
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
-const assert = require('assert');
-
+import { exportUsersClicks } from '../client/src/store.jsx'
+var usersClicks = exportUsersClicks
 /*YOUR TESTS GO IN THIS SECTION*/
 //POINTERS:
 // 1) place an x before a block of tests or an individual test to disable that test as pending
 // 2) use deepFreeze to test purity of inputs
 
 describe('Reducers', function() { //describe creates a header
-  describe('pulseData', function() { //you can nest describes to make nested groups of tests
+  xdescribe('usersClicks', function() {
+    var testState;
+
+    beforeEach(function() {
+      testState = {Ari: [9, 5, 6], Ross: [5], Christian: []};
+      testState.length
+      deepFreeze(testState);
+    });
+      
+      it('should return state if action.type is undefined', function(){
+        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+      });
+
+      it('should return state if action.user is undefined', function(){
+        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+      });
+
+      it('should return state if action.time is undefined', function(){
+        assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+      });
+
+      it('should return a default state if state is undefined', function() {
+        assert.deepEqual({}, usersClicks(undefined, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
+      });
+
+      it('should add a click to a user\'s clicks array if a user is specified', function() {
+        assert.equal(4, usersClicks(testState, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}).Ari.length) 
+      })
+
+      it('should add a user to state on their first click', function() {
+        assert.deepEqual({Ari: [10]}, usersClicks({}, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
+      })
+
+  })
+  xdescribe('pulseData', function() { //you can nest describes to make nested groups of tests
 
    var testState, testStateLength
 
@@ -20,13 +55,13 @@ describe('Reducers', function() { //describe creates a header
     });
 
     describe('UNDEFINED ACTION', function(){ //if action is undefined
-      it('should return state if inputted action is undefined', function(){
+      it('should return state if action is undefined', function(){
         assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}));
       });
     });
 
     describe('UNDEFINED STATE', function() {
-      it('sets a default state if inputted state is undefined', function() {
+      it('should return a default state if state is undefined', function() {
         assert.deepEqual([{x: 0, y: 0}, {x: 0, y: 1}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
       });
     });
