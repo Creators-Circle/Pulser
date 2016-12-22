@@ -21,24 +21,32 @@ FollowMe!
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  "Connecting instructors and students in real time."
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  "FollowMe provides a way for students to electronically signal their instructor during a class that they need help. By simply pressing a button, a student can signal that he finds a particular subject troublesome."
 
 ## Problem ##
   > Describe the problem your product solves.
+  "In a classroom environment, students are not always comfortable asking for help. Moreover, once a class reaches a certain size, in class discussion becomes cumbersome and unfeasible."
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  "By providing a way for students to signal their instructors digitally, FollowMe enables seamless, realtime feedback."
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "FollowMe was born out of our own experiences attempting to understand lectures and presentations. In a large classroom, it's not always possible to ask for clarification or help, and sometimes the instructor moves on to a new topic before you can adequately understand."
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  "Simply go to FollowMe.com to get started."
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Thanks to FollowMe, I don't even have to come in. Also, why am I still recieving emails?" - Mitch Dunn
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  "Log on now."
