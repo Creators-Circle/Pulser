@@ -1,15 +1,55 @@
 const deepFreeze = require('deep-freeze');
 const assert = require('assert');
-import { exportPulseData } from '../client/src/store.jsx'
+import { exportPulseData, exportPresentationStartTime, exportUsersClicks } from '../client/src/store.jsx';
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
-import { exportUsersClicks } from '../client/src/store.jsx'
+var presentationStartTime = exportPresentationStartTime;
 var usersClicks = exportUsersClicks
+
 /*YOUR TESTS GO IN THIS SECTION*/
 //POINTERS:
 // 1) place an x before a block of tests or an individual test to disable that test as pending
 // 2) use deepFreeze to test purity of inputs
 
 describe('Reducers', function() { //describe creates a header
+
+  //  ***  PresentationStartTime Tests ***
+  describe('presentationStartTime', function() {
+
+    var testTimeState
+
+    beforeEach(function() {
+    // runs before all tests in this block
+      testTimeState = 1;
+      deepFreeze(testTimeState);
+    });
+
+    describe('UNDEFINED ACTION', function(){ //if action is undefined
+      it('should return state if inputted action is undefined', function(){
+        assert.equal(testTimeState, presentationStartTime(testTimeState, {type: 'ARGLEBARGLE'}));
+      });
+    });
+
+    describe('UNDEFINED STATE', function() {
+      it('sets a default state if inputted state is undefined', function() {
+        assert.deepEqual(new Date(), presentationStartTime(undefined, {type: 'SET_TIME_START'}));
+      });
+    });
+
+    describe('RETURNING OBJECT', function() {
+      it('returns an object', function() {
+        assert.equal(typeof(new Date()), typeof(presentationStartTime(testTimeState, {type: 'SET_TIME_START'})));
+      });
+    });
+
+    describe('RETURNING DATE', function() {
+      it('returns the date', function() {
+        assert.deepEqual(new Date(), presentationStartTime(testTimeState, {type: 'SET_TIME_START'}));
+      });
+    });
+  });
+// *** End PresentationStartTime Tests ***
+  
+  // *** usersClicks Tests ***
   xdescribe('usersClicks', function() {
     var testState;
 
@@ -45,6 +85,9 @@ describe('Reducers', function() { //describe creates a header
       })
 
   })
+  // *** End usersClicks Tests ***
+  
+  // *** Begin pulseData Tests ***
   xdescribe('pulseData', function() { //you can nest describes to make nested groups of tests
 
    var testState, testStateLength
@@ -64,6 +107,12 @@ describe('Reducers', function() { //describe creates a header
     describe('UNDEFINED STATE', function() {
       it('should return a default state if state is undefined', function() {
         assert.deepEqual([{x: 0, y: 0}, {x: 0, y: 1}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
+      });
+    });
+
+    describe('RETURNS ARRAY', function() {
+      it('returns an array', function() {
+        assert.equal(Array.isArray(testState), Array.isArray(pulseData(testState, {type: 'INCREMENT',time: 0})));
       });
     });
 
@@ -100,6 +149,7 @@ describe('Reducers', function() { //describe creates a header
       });
     });
   });
+  // *** End pulseData Tests ***
 });
 
 

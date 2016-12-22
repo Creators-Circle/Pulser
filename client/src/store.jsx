@@ -71,5 +71,7 @@ store.dispatch({type: 'SET_TIME_START'});
 console.log('time', store.getState().presentationStartTime);
 // --------------------------------------------------------------------/
 
-export const exportPulseData = pulseData; // new variable created for export to make pulseData available for testing
+export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing
+export const exportPresentationStartTime = presentationStartTime;
+export const exportCombined = combinedReducers;
 export const exportUsersClicks = usersClicks;
