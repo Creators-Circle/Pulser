@@ -8,6 +8,7 @@ const PresenterView = () => {
   return (
     <div>
       <Slides id="presenterSlides" role="presenter"/>
+      <iframe src="http://ipadstopwatch.com/embed.html" frameborder="0" scrolling="no" width="391" height="140"></iframe>
       <PulseBox />
     </div>
   );
