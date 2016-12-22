@@ -20,7 +20,7 @@ import getUserData from '../util/getUserData';
 // Links route users to pulsebox and feedbackbox as appropriate.
 class App extends Component {
 
-  componentWillMount() {
+  componentWillMount () {
     // getUserData((user)=>{
     //   this.props.dispatch({
     //     type: ,
@@ -28,13 +28,14 @@ class App extends Component {
     //   });
     // })
   }
+
   render () {
-    console.log("app props",this.props);
+    console.log('app props', this.props);
     return (
       <div>
         <p>Hello World!</p>
-        <li><Link to="/pulsebox">Presenter</Link></li>
-        <li><Link to="/feedbackbox">Audience</Link></li>
+        <li><Link to="/presenter">Presenter</Link></li>
+        <li><Link to="/audience">Audience</Link></li>
       </div>
     );
   };

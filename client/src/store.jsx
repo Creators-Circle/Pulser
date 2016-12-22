@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 
-//import reducers here
+// import reducers here
 import user from './reducers/userReducer';
 
 //  reducer for INCREMENT/DECREMENT

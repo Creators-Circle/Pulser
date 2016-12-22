@@ -39,13 +39,12 @@ Authport.createServer({
   callbackURL: deployedCallbackUrl || localCallbackUrl
 });
 
-var userData = {} // temp storage for user's data, delete once db is created
+var userData = {}; // temp storage for user's data, delete once db is created
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
-
-  //store user data, replace this with query once we have a user table in db
-  userData = {name:data.data.user.name, email:data.data.user.email, avatar:data.data.user.avatar_url}
+  // store user data, replace this with query once we have a user table in db
+  userData = {name: data.data.user.name, email: data.data.user.email, avatar: data.data.user.avatar_url};
 
   createSession(req, res, data.token);
 });
@@ -72,7 +71,7 @@ app.get('/', function (req, res) {
 app.get('/user', function (req, res) {
   res.json(userData);
 });
-//--------------------------------------
+// --------------------------------------
 
 // Socket.io listeners / emitters
 io.on('connection', function (socket) {
