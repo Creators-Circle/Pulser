@@ -31,6 +31,12 @@ describe('Reducers', function() { //describe creates a header
         assert.deepEqual(new Date(), presentationStartTime(undefined, {type: 'SET_TIME_START'}));
       });
     });
+
+    describe('UNDEFINED STATE', function() {
+      it('returns the date', function() {
+        assert.deepEqual(new Date(), presentationStartTime(testTimeState, {type: 'SET_TIME_START'}));
+      });
+    });
   });
 
   describe('pulseData', function() { //you can nest describes to make nested groups of tests

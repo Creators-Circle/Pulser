@@ -45,3 +45,4 @@ console.log('time', store.getState().presentationStartTime);
 
 export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing
 export const exportPresentationStartTime = presentationStartTime;
+export const exportCombined = combinedReducers;
