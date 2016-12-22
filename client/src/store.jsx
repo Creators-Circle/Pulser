@@ -18,6 +18,12 @@ const store = createStore(combinedReducers);
 
 export default store;
 
+// testing user clicks
+store.dispatch({ type: 'ADDCLICKTOUSER', user: 'duck', time: 1 });
+store.dispatch({ type: 'ADDCLICKTOUSER', user: 'duck', time: 3 });
+store.dispatch({ type: 'ADDCLICKTOUSER', user: 'rubber', time: 1 });
+//
+
 // testing line chart -- delete this once the set time functionality is working in the client side
 store.dispatch({type: 'SET_TIME_START'});
 console.log('time', store.getState().presentationStartTime);

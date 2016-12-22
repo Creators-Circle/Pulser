@@ -14,12 +14,15 @@ class FeedbackButton extends Component {
   }
 
   componentDidMount () {
+    console.log(this.props);
     let canIncrement = true;
     let resetCode;
 
-    document.getElementById('updatePulse').addEventListener('click', function () {
+    document.getElementById('updatePulse').addEventListener('click', () => {
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
+      console.log('name', this.props.user.name);
+      socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
       if (canIncrement) {
         socket.emit('updatePulse', 'INCREMENT', new Date());
         decrement();
@@ -45,4 +48,8 @@ class FeedbackButton extends Component {
   }
 }
 
-export default FeedbackButton;
+const mapStatetoProps = state => {
+  return {user: state.user};
+};
+
+export default connect(mapStatetoProps)(FeedbackButton);

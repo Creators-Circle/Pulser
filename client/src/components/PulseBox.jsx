@@ -59,7 +59,7 @@ class PulseBox extends Component {
   componentWillMount () {
     let startTime = this.props.presentationStartTime;
     let dispatch = this.props.dispatch; // set keyword "this"
-    socket.on('updatedPulse', function (action, currTime) {
+    socket.on('updatedPulse', (action, currTime) => {
       // compute the time difference and pass it with the action
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       // Dispatch either DECREMENT or INCREMENT action
@@ -68,7 +68,16 @@ class PulseBox extends Component {
         time: timeDifference
       });
     });
-  }
+
+    socket.on('userClicked', (action, currTime, user) => {
+      let timeDifference = timeDiffToMinutes(startTime, currTime);
+      dispatch({
+        type: action,
+        time: timeDifference,
+        user: user
+      });
+    });
+  };
 };
 
 // get the pulseData from redux store
