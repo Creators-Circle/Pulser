@@ -28,8 +28,4 @@ describe('userReducer', function() {
        {type: 'CHANGE_ROLE', role:'scrum master'}))
     })
   });
-
-
-
-
 });
