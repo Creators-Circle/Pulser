@@ -33,6 +33,7 @@ FollowMe!
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "FollowMe was born out of our own experiences attempting to understand lectures and presentations. In a large classroom, it's not always possible to ask for clarification or help, and sometimes the instructor moves on to a new topic before you can adequately understand."
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
