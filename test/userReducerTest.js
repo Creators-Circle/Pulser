@@ -13,15 +13,20 @@ describe('userReducer', function() {
   describe('STORE_USER', function () {
     it('it should store user\'s information', function () {
       assert.deepEqual(testState,
-        user(testState, {type: 'STORE_USER',name:"Alice", email: "alice@y.com", role:'presenter', avatar:"alice_photo"}));
+        user({}, {type: 'STORE_USER',name:"Alice", email: "alice@y.com", role:'presenter', avatar:"alice_photo"}));
     });
   });
 
   describe('CHANGE_ROLE', function () {
-    it('it should change the role of the user', function(){
-      assert.deepEqual({name:"Alice", email: "alice@y.com",role:'audience', avatar:"alice_photo"},
-        user(testState, {type: 'CHANGE_ROLE', role: 'audience'}));
+    it('it should change the role of the user', function() {
+      assert.deepEqual(testState,
+        user({name:"Alice", email: "alice@y.com",role:'audience', avatar:"alice_photo"},
+         {type: 'CHANGE_ROLE', role: 'presenter'}));
     });
+    it('it should not accept other roles aside from presenter or audience', function() {
+      assert.deepEqual(testState, user({name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"},
+       {type: 'CHANGE_ROLE', role:'scrum master'}))
+    })
   });
 
 
