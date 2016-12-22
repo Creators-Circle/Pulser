@@ -32,4 +32,3 @@ node_modules/
 bower_components/
 babel_cache/
 client/public/static/
-server/env/
