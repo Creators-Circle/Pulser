@@ -1,5 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 
+//import reducers here
+import user from './reducers/userReducer';
+
 //  reducer for INCREMENT/DECREMENT
 // x = time of clicks, y = number of clicks
 const pulseData = (state = [{x: 0, y: 0}], action) => {
@@ -27,11 +30,36 @@ const presentationStartTime = (state = 0, action) => {
       return state;
   }
 };
+// reducer for tracking the number of clicks from each audience member
+// state = {user: [time, time, ...]}
+// action = {type: 'ADDCLICKTOUSER', user: String, time: String}
+const usersClicks = (state, action) => {
+  if (action.time === undefined || action.user === undefined || state === undefined) {
+    return {};
+  }
+  let user = action.user;
+  let time = action.time;
+  let addObj = {};
+  switch (action.type) {
+    case 'ADDCLICKTOUSER':
+      Object.assign(addObj, state);
+      if (state[user]) {
+        addObj[action.user] = state[user].concat([time]);
+      } else {
+        addObj[action.user] = [time];
+      }
+      return addObj;
+    default:
+      return state;
+  }
+};
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
-  presentationStartTime
+  presentationStartTime,
+  user,
+  usersClicks
 });
 
 const store = createStore(combinedReducers);
@@ -46,3 +74,4 @@ console.log('time', store.getState().presentationStartTime);
 export const exportPulseData = pulseData; //  new variable created for export to make pulseData available for testing
 export const exportPresentationStartTime = presentationStartTime;
 export const exportCombined = combinedReducers;
+export const exportUsersClicks = usersClicks;

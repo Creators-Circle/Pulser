@@ -1,8 +1,9 @@
 const deepFreeze = require('deep-freeze');
-import { exportPulseData, exportPresentationStartTime } from '../client/src/store.jsx'
+const assert = require('assert');
+import { exportPulseData, exportPresentationStartTime, exportUsersClicks } from '../client/src/store.jsx';
 var pulseData = exportPulseData; //this will need to be changed if the exports in store.jsx are changed
 var presentationStartTime = exportPresentationStartTime;
-const assert = require('assert');
+var usersClicks = exportUsersClicks
 
 /*YOUR TESTS GO IN THIS SECTION*/
 //POINTERS:
@@ -10,6 +11,8 @@ const assert = require('assert');
 // 2) use deepFreeze to test purity of inputs
 
 describe('Reducers', function() { //describe creates a header
+
+  //  ***  PresentationStartTime Tests ***
   describe('presentationStartTime', function() {
 
     var testTimeState
@@ -44,8 +47,48 @@ describe('Reducers', function() { //describe creates a header
       });
     });
   });
+// *** End PresentationStartTime Tests ***
+  
+  // *** usersClicks Tests ***
+  xdescribe('usersClicks', function() {
+    var testState;
 
-  describe('pulseData', function() { //you can nest describes to make nested groups of tests
+    beforeEach(function() {
+      testState = {Ari: [9, 5, 6], Ross: [5], Christian: []};
+      testState.length
+      deepFreeze(testState);
+    });
+      describe('undefined parameters', function(){
+        it('should return state if action.type is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });
+
+        it('should return state if action.user is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });
+
+        it('should return state if action.time is undefined', function(){
+          assert.deepEqual(testState, usersClicks(testState, {type:'ARGLEBARGLE', user:'Ari', time: 10}) )
+        });  
+
+        it('should return a default state if state is undefined', function() {
+          assert.deepEqual({}, usersClicks(undefined, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
+        });
+      })
+      
+      it('should add a click to a user\'s clicks array if a user is specified', function() {
+        assert.equal(4, usersClicks(testState, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}).Ari.length) 
+      })
+
+      it('should add a user to state on their first click', function() {
+        assert.deepEqual({Ari: [10]}, usersClicks({}, {type:'ADDCLICKTOUSER', user:'Ari', time: 10}) );
+      })
+
+  })
+  // *** End usersClicks Tests ***
+  
+  // *** Begin pulseData Tests ***
+  xdescribe('pulseData', function() { //you can nest describes to make nested groups of tests
 
    var testState, testStateLength
 
@@ -56,13 +99,13 @@ describe('Reducers', function() { //describe creates a header
     });
 
     describe('UNDEFINED ACTION', function(){ //if action is undefined
-      it('should return state if inputted action is undefined', function(){
+      it('should return state if action is undefined', function(){
         assert.deepEqual(testState, pulseData(testState, {type: 'ARGLEBARGLE'}));
       });
     });
 
     describe('UNDEFINED STATE', function() {
-      it('sets a default state if inputted state is undefined', function() {
+      it('should return a default state if state is undefined', function() {
         assert.deepEqual([{x: 0, y: 0}, {x: 0, y: 1}], pulseData(undefined, {type: 'INCREMENT',time: 0}));
       });
     });
@@ -106,6 +149,7 @@ describe('Reducers', function() { //describe creates a header
       });
     });
   });
+  // *** End pulseData Tests ***
 });
 
 

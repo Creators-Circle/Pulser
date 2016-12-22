@@ -26,17 +26,6 @@ class Slides extends Component {
 
   componentDidMount () {
     // TODO: Add in event listeners for slides navigation clicks / key presses
-
-    // Add styles to size iframe
-    // Should move this to style.css later if possible
-    $('#audienceSlides').css({
-      'height': '90vh',
-      'width': '100%'
-    });
-    $('#presenterSlides').css({
-      'height': '70vh',
-      'width': '100%'
-    });
   }
 }
 

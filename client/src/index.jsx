@@ -6,8 +6,8 @@ import { Router, Route, hashHistory } from 'react-router';
 import store from './store.jsx';
 import App from './components/App.jsx';
 import PresenterView from './components/PresenterView';
-import AudienceView from './components/AudienceView';
 import FeedbackBox from './components/FeedbackBox.jsx';
+import PulseBox from './components/PulseBox.jsx';
 
 const render = () => {
   ReactDOM.render(
@@ -15,8 +15,8 @@ const render = () => {
     <Provider store = {store}>
       <Router history = {hashHistory}>
         <Route path="/" component={App} />
-        <Route path="/presenter" component={PresenterView}/>
-        <Route path="/audience" components={AudienceView}/>
+        <Route path="/pulsebox" component={PulseBox} />
+        <Route path="/feedbackbox" components={FeedbackBox} />
         {/* {fill in with other components that needs a specific route} */}
       </Router>
     </Provider>

@@ -9,7 +9,6 @@ var Authport = require('authport');
 var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
 require('dotenv').config({silent: true});
-var credentials = require('./env/config.js');
 var MP = require('node-makerpass');
 
 // code from the express.static docs
@@ -26,7 +25,7 @@ Authport.registerService('makerpass', MakerpassService);
 
 // callback urls for MakerPass Authentication
 var localCallbackUrl = 'http://localhost:5000/auth/makerpass/callback';
-var deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/';
+var deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/auth/makerpass/callback';
 
 // provide credentials for making an Authport server
 // These references to process.env will look for environment variables
@@ -40,8 +39,14 @@ Authport.createServer({
   callbackURL: deployedCallbackUrl || localCallbackUrl
 });
 
+var userData = {} // temp storage for user's data, delete once db is created
+
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
+
+  //store user data, replace this with query once we have a user table in db
+  userData = {name:data.data.user.name, email:data.data.user.email, avatar:data.data.user.avatar_url}
+
   createSession(req, res, data.token);
 });
 
@@ -62,6 +67,12 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/../client/public/index.html'));
   }
 });
+
+// transfer this to a api router--------
+app.get('/user', function (req, res) {
+  res.json(userData);
+});
+//--------------------------------------
 
 // Socket.io listeners / emitters
 io.on('connection', function (socket) {
