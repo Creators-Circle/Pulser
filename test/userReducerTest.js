@@ -1,3 +1,4 @@
+// tests for user reducer
 const assert = require('assert');
 import  user  from '../client/src/reducers/userReducer.jsx';
 

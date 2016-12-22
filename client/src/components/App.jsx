@@ -20,18 +20,17 @@ import getUserData from '../util/getUserData';
 // Links route users to pulsebox and feedbackbox as appropriate.
 class App extends Component {
 
-  componentWillMount() {
-    //store user data when the application loads
-    getUserData((user)=>{
+  componentWillMount () {
+    // store user data when the application loads
+    getUserData((user) => {
       this.props.dispatch({
         type: 'STORE_USER',
         name: user.name,
         email: user.email,
         avatar: user.avatar
       });
-    })
-  }
-
+    });
+  };
   render () {
     console.log('app props', this.props);
     return (
@@ -50,7 +49,7 @@ class App extends Component {
 const mapStatetoProps = (state) => {
   return {
     pulseData: state.pulseData,
-    user: state.user,
+    user: state.user
   };
 };
 
