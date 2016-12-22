@@ -1,5 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 
+//import reducers here
+import user from './reducers/userReducer';
+
 //  reducer for INCREMENT/DECREMENT
 // x = time of clicks, y = number of clicks
 const pulseData = (state = [{x: 0, y: 0}], action) => {
@@ -55,6 +58,7 @@ const usersClicks = (state, action) => {
 const combinedReducers = combineReducers({
   pulseData,
   presentationStartTime,
+  user,
   usersClicks
 });
 
