@@ -18,13 +18,18 @@ class PulseBox extends Component {
     var filteredPulse = this.props.pulseData.filter(pulse => {
       return Math.abs(timeDiff - pulse.x) <= 0.5;
     });
+    // if filteredPulse is empty, populate it with a default 0,0 data point
+    if (!filteredPulse.length) {
+      filteredPulse = [{x: 0, y: 0}];
+    }
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 0.5;
-
+    let audience = this.props.audience > 4 ? this.props.audience : 4;
+   // let yMax = Math.max([audience, 4]);
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
-    if (filteredPulse[filteredPulse.length - 1].y > (5 * 0.70)) {
+    if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
       $('.pulse-box').addClass('alert-red');
       setTimeout(function () {
         $('.pulse-box').removeClass('alert-red');
@@ -57,8 +62,8 @@ class PulseBox extends Component {
           circleRadius = {0}
           domain={
             // set the maximum value of x to the estimated time of presentation
-            // set the maximum value of y to the number of audience
-            { x: [xMin, xMax], y: [0, 5] }
+            // set the maximum value of y to the number of audience members
+            { x: [xMin, xMax], y: [0, audience] }
           }
           xAxisLabel="Elapsed Time (minutes)"
           gridHorizontal={true}

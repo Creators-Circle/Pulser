@@ -76,6 +76,8 @@ app.get('/user', function (req, res) {
 // Socket.io listeners / emitters
 io.on('connection', function (socket) {
   console.log('a user connected');
+  // Alert the presenter that an audience member has connected
+  io.emit('connected');
   // Listen for Audience button clicks
   socket.on('updatePulse', function (action, currTime) {
     console.log('updatePulse event: ', action, currTime);
@@ -86,6 +88,12 @@ io.on('connection', function (socket) {
   socket.on('userClick', function (action, currTime, user) {
     io.emit('userClicked', action, currTime, user);
   });
+
+  socket.on('disconnect', function () {
+    console.log('a user disconnected')
+    // Alert the presenter that an audience member has disconnected
+    io.emit('disconnected');
+  })
 });
 
 // helper function for creating a session
