@@ -1,11 +1,8 @@
+// Component to display embedded Goolge Slides presentation
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-// Component to display embedded Goolge Slides presentation
 class Slides extends Component {
-  constructor (props) {
-    super();
-  }
 
   render () {
     let slidesId = '1pjT5Dgb9DVmxEPe3KvAcjUIRLhsPY458PWPwZ6uce40';

@@ -2,6 +2,10 @@
 const assert = require('assert');
 import  user  from '../client/src/reducers/userReducer.jsx';
 
+//POINTERS:
+// 1) place an x before a block of tests or an individual test to disable that test as pending
+// 2) use deepFreeze to test purity of inputs
+
 describe('userReducer', function() {
   var testState = {name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"}
 

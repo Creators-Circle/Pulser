@@ -18,7 +18,9 @@ import getUserData from '../util/getUserData';
 class App extends Component {
 
   componentWillMount () {
-    // store user data when the application loads
+    // store user data when App loads.
+    // Note that by this point the user will have logged in.
+    // Their user information comes from the auth
     getUserData((user) => {
       this.props.dispatch({
         type: 'STORE_USER',
@@ -28,8 +30,9 @@ class App extends Component {
       });
     });
   };
+
   render () {
-    console.log('app props', this.props);
+    // console.log('props in App render', this.props);
     return (
       <div>
         <p>Hello {this.props.user.name}!</p>
@@ -42,7 +45,7 @@ class App extends Component {
 };
 
 // connect(state => state) is a bad practice because it will rerender after every action
-// mapStatetoProps lets you specify specific state you want to import
+// mapStatetoProps lets you specify specific parts of the state that you want to import
 const mapStatetoProps = (state) => {
   return {
     pulseData: state.pulseData,
