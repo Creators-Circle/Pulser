@@ -37,7 +37,7 @@ class PresenterView extends Component {
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>
-        <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="140"></iframe>
+        <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="70"></iframe>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
       </div>
     );
