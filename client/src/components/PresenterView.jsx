@@ -16,20 +16,20 @@ class PresenterView extends Component {
   constructor () {
     super();
     this.date = new Date();
-    this.state = {audience: 0}
+    this.state = {audience: 0};
   }
 
   componentDidMount () {
     // If an audience member has connected, update the state
     socket.on('connected', () => {
-      this.setState({audience: ++this.state.audience})
+      this.setState({audience: ++this.state.audience});
     });
     socket.on('disconnected', () => {
       // If an audience member has disconnected, update the state
       if (this.state.audience > 0) {
-        this.setState({audience: --this.state.audience})
+        this.setState({audience: --this.state.audience});
       }
-    })
+    });
   }
 
   render () {
