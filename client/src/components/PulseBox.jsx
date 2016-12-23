@@ -23,7 +23,7 @@ class PulseBox extends Component {
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 0.5;
 
-    // if the number of clicks reaches 70% of number of audience, display a warning for the user
+    // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (5 * 0.70)) {
       $('.pulse-box').addClass('alert-red');
       setTimeout(function () {
@@ -82,7 +82,7 @@ class PulseBox extends Component {
         time: timeDifference
       });
     });
-    // socket event handler for an audience click that updates that user's Array of clicks in the store
+    // socket event handler for an audience click that updates that audience member's array of clicks in the store
     socket.on('userClicked', (action, currTime, user) => {
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       dispatch({
