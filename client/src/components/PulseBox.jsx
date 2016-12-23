@@ -79,7 +79,7 @@ class PulseBox extends Component {
         user: user
       });
       // This can be used to test that usersClicks have been added to store
-      // console.log(this.props.usersClicks); 
+      // console.log(this.props.usersClicks);
     });
   };
 };

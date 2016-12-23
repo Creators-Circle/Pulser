@@ -18,8 +18,8 @@ import getUserData from '../util/getUserData';
 class App extends Component {
 
   componentWillMount () {
-    // store user data when App loads. 
-    // Note that by this point the user will have logged in. 
+    // store user data when App loads.
+    // Note that by this point the user will have logged in.
     // Their user information comes from the auth
     getUserData((user) => {
       this.props.dispatch({
