@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
+import $ from 'jquery';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
@@ -14,11 +15,22 @@ class PulseBox extends Component {
 
     // filter every data with less than (n)minutes time
     // compare the time to 1 minute for testing
-    var filteredPulse = this.props.pulseData.filter(pulse => Math.abs(timeDiff - pulse.x) <= 1);
+    var filteredPulse = this.props.pulseData.filter(pulse => {
+      return Math.abs(timeDiff - pulse.x) <= 0.5;
+    });
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
     var xMin = filteredPulse[0].x;
-    var xMax = filteredPulse[0].x + 1;
+    var xMax = filteredPulse[0].x + 0.5;
+
+    // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
+    if (filteredPulse[filteredPulse.length - 1].y > (5 * 0.70)) {
+      $('.pulse-box').addClass('alert-red');
+      setTimeout(function () {
+        $('.pulse-box').removeClass('alert-red');
+      }, 5000);
+    }
+
     // need to set lineData prior to return statement to preserve "this" context
     var lineData = [
       {
@@ -29,7 +41,7 @@ class PulseBox extends Component {
 
     // Render "stock ticker" style line graph
     return (
-      <div>
+      <div className = "pulse-box">
         <LineChart
           className = 'pulsedata-linechart'
           data={lineData}
@@ -70,7 +82,7 @@ class PulseBox extends Component {
         time: timeDifference
       });
     });
-    // socket event handler for an audience click that updates that user's Array of clicks in the store
+    // socket event handler for an audience click that updates that audience member's array of clicks in the store
     socket.on('userClicked', (action, currTime, user) => {
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       dispatch({

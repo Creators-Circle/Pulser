@@ -1,0 +1,26 @@
+iframe {
+  width:100%;
+}
+
+iframe#presenterSlides.slides {
+  height:80vh;
+}
+
+iframe#audienceSlides.slides {
+  height:90vh;
+}
+
+#updatePulse{
+	cursor: pointer;
+}
+
+.alert-red{
+  color: red;
+  background-color: red;
+  animation: blind-red 1s ease 0s infinite normal;
+}
+
+@keyframes blind-red {
+  from{background-color: red}
+  to{background-color: transparent};
+}

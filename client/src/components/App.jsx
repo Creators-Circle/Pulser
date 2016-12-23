@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import Slides from './Slides';
 // Allows html-like link functionality.
 import { Link } from 'react-router';
-
 import getUserData from '../util/getUserData';
 
 // Links route users to pulsebox and feedbackbox as appropriate.

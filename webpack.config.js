@@ -33,7 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('./client/public/styles/style.css'),
+    new ExtractTextPlugin('[name].css'),
     new webpack.ProvidePlugin({
       'React': 'react'
     })
