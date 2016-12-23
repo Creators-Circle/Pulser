@@ -11,9 +11,12 @@ import PulseBox from './PulseBox';
 import Slides from './Slides';
 
 class PresenterView extends Component {
+
+
   render () {
     return (
-      <div>
+
+      <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>
         <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="140"></iframe>
         <PulseBox startTime={new Date()} />

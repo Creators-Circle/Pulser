@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
+import $ from 'jquery'
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
+
+
 
 class PulseBox extends Component {
 
@@ -19,6 +22,15 @@ class PulseBox extends Component {
     // set the min and max of x axis with the time value of the first element from filteredPulse
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 1;
+
+    // if y reaches 70% of number of audience, display a warning for the user
+    if(filteredPulse[filteredPulse.length-1].y > (5 * 0.70)) {
+      $('.pulse-box').addClass('alert-red');
+      setTimeout(function(){
+        $('.pulse-box').removeClass('alert-red');
+      },5000);
+    }
+
     // need to set lineData prior to return statement to preserve "this" context
     var lineData = [
       {
@@ -29,7 +41,7 @@ class PulseBox extends Component {
 
     // Render "stock ticker" style line graph
     return (
-      <div>
+      <div className = "pulse-box">
         <LineChart
           className = 'pulsedata-linechart'
           data={lineData}
@@ -57,6 +69,7 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
+
     // console.log("PulseBox props in component will mount,", this.props)
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
