@@ -1,4 +1,3 @@
-
 iframe {
   width:100%;
 }
@@ -20,7 +19,6 @@ iframe#audienceSlides.slides {
   background-color: red;
   animation: blind-red 1s ease 0s infinite normal;
 }
-
 
 @keyframes blind-red {
   from{background-color: red}

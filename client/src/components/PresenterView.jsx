@@ -10,15 +10,19 @@ import { connect } from 'react-redux';
 import PulseBox from './PulseBox';
 import Slides from './Slides';
 
-class PresenterView extends Component {
+import '../css/Presentation.css';
 
+class PresenterView extends Component {
+  constructor () {
+    super();
+    this.date = new Date();
+  }
   render () {
     return (
-
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>
         <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="140"></iframe>
-        <PulseBox startTime={new Date()} />
+        <PulseBox startTime={this.date} />
       </div>
     );
   }

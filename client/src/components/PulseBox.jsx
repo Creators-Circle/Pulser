@@ -15,13 +15,15 @@ class PulseBox extends Component {
 
     // filter every data with less than (n)minutes time
     // compare the time to 1 minute for testing
-    var filteredPulse = this.props.pulseData.filter(pulse => Math.abs(timeDiff - pulse.x) <= 1);
+    var filteredPulse = this.props.pulseData.filter(pulse => {
+      return Math.abs(timeDiff - pulse.x) <= 0.5;
+    });
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
     var xMin = filteredPulse[0].x;
-    var xMax = filteredPulse[0].x + 1;
+    var xMax = filteredPulse[0].x + 0.5;
 
-    // if y reaches 70% of number of audience, display a warning for the user
+    // if the number of clicks reaches 70% of number of audience, display a warning for the user
     if (filteredPulse[filteredPulse.length - 1].y > (5 * 0.70)) {
       $('.pulse-box').addClass('alert-red');
       setTimeout(function () {
