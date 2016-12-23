@@ -10,7 +10,7 @@ class PulseBox extends Component {
 
   render () {
     var currTime = new Date();
-    var timeDiff = timeDiffToMinutes(this.props.presentationStartTime, currTime);
+    var timeDiff = timeDiffToMinutes(this.props.startTime, currTime);
 
     // filter every data with less than (n)minutes time
     // compare the time to 1 minute for testing
@@ -57,8 +57,10 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
-    let startTime = this.props.presentationStartTime;
+    // console.log("PulseBox props in component will mount,", this.props)
+    let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
+    // socket event handler for an audience click that updates the presenter's pulse graph x axis
     socket.on('updatedPulse', (action, currTime) => {
       // compute the time difference and pass it with the action
       let timeDifference = timeDiffToMinutes(startTime, currTime);
@@ -68,7 +70,7 @@ class PulseBox extends Component {
         time: timeDifference
       });
     });
-
+    // socket event handler for an audience click that updates that user's Array of clicks in the store
     socket.on('userClicked', (action, currTime, user) => {
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       dispatch({
@@ -76,16 +78,10 @@ class PulseBox extends Component {
         time: timeDifference,
         user: user
       });
+      // This can be used to test that usersClicks have been added to store
+      // console.log(this.props.usersClicks); 
     });
   };
 };
 
-// get the pulseData from redux store
-// REFACTOR LATER
-// const mapStatetoProps = (state) => {
-//   return {
-//     pulseData: state.pulseData,
-//     presentationStartTime: state.presentationStartTime
-//   };
-// };
 export default connect(state => state)(PulseBox);

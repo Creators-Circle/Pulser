@@ -1,5 +1,5 @@
 // reducer for tracking the number of clicks from each audience member
-// state = {user: [time, time, ...]}
+// state = {user: [time, time, ...], user: [time, time, ...]}
 // action = {type: 'ADDCLICKTOUSER', user: String, time: String}
 const usersClicks = (state = {}, action) => {
   switch (action.type) {

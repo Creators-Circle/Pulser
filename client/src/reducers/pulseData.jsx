@@ -1,5 +1,5 @@
 //  reducer for INCREMENT/DECREMENT
-// x = time of clicks, y = number of clicks
+// x = time of click, y = number of clicks
 const pulseData = (state = [{x: 0, y: 0}], action) => {
   let last = state[ state.length - 1 ].y;
   switch (action.type) {

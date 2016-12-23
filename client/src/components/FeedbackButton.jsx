@@ -1,8 +1,5 @@
 // this component is for firing an event to update the pulseData inside redux store
-// needs to be inside FeedbackBox component
 import { connect } from 'react-redux';
-// import a helper function to compute the time difference
-import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
 
 class FeedbackButton extends Component {
@@ -21,7 +18,7 @@ class FeedbackButton extends Component {
     document.getElementById('updatePulse').addEventListener('click', () => {
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
-      console.log('name', this.props.user.name);
+      console.log('props in FeedbackButton componentDidMount', this.props);
       socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
       if (canIncrement) {
         socket.emit('updatePulse', 'INCREMENT', new Date());
