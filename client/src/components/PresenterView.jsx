@@ -12,7 +12,6 @@ import Slides from './Slides';
 
 class PresenterView extends Component {
 
-
   render () {
     return (
 
