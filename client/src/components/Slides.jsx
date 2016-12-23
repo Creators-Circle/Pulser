@@ -23,7 +23,6 @@ class Slides extends Component {
 
   componentDidMount () {
     // TODO: Add in event listeners for slides navigation clicks / key presses
- 
   }
 }
 

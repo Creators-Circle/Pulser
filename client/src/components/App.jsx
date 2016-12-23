@@ -39,8 +39,8 @@ class App extends Component {
       });
     });
     // Check whether there is a presenter already
-    checkAudienceOnly ((audienceOnlyObject) => {
-      this.setState ( {audienceOnly: audienceOnlyObject.audienceOnly});
+    checkAudienceOnly((audienceOnlyObject) => {
+      this.setState({audienceOnly: audienceOnlyObject.audienceOnly});
     });
   };
 
