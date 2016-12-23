@@ -40,7 +40,7 @@ Authport.createServer({
 });
 
 var userData = []; // temp storage for user's data, delete once db is created
-var audienceOnly = false; //switch variable for whether or not there is a presenter already
+var audienceOnly = false; // switch variable for whether or not there is a presenter already
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
@@ -69,20 +69,21 @@ app.get('/', function (req, res) {
 
 // let the App know whether or not there is already a presenter
 app.get('/audienceOnly', function (req, res) {
-  console.log("about to send audienceOnly response ", audienceOnly)
-  res.send({audienceOnly: audienceOnly})
+  // console.log('about to send audienceOnly response ', audienceOnly);
+  res.send({audienceOnly: audienceOnly});
 });
 
+// resets the audienceOnly switch to false.
 app.get('/!audienceOnly', function (req, res) {
-  console.log("received a !audienceOnly request");
+  // console.log('received a !audienceOnly request');
   audienceOnly = false;
-  res.send('audienceOnly set to false')
+  res.send('audienceOnly set to false');
 });
 
 // transfer this to a api router--------
 app.get('/user', function (req, res) {
   console.log('user', req.session.id);
-  let user = userData.filter((user)=> user.token === req.session.token);
+  let user = userData.filter((user) => user.token === req.session.token);
   res.json(user[0]);
 });
 // --------------------------------------
@@ -93,13 +94,13 @@ io.on('connection', function (socket) {
   // Alert the presenter that an audience member has connected
   io.emit('connected');
   // Listen for audienceOnly event
-  socket.on('audienceOnly', function(){
+  socket.on('audienceOnly', function () {
     audienceOnly = true;
-    console.log("server heard audienceOnly and emitted an audienceOnly event")
-  })
+    // console.log('server heard audienceOnly and emitted an audienceOnly event')
+  });
   // Listen for Audience button clicks
   socket.on('updatePulse', function (action, currTime) {
-    console.log('updatePulse event: ', action, currTime);
+    // console.log('updatePulse event: ', action, currTime);
     // Broadcast to presenter (technically also everyone else)
     io.emit('updatedPulse', action, currTime);
   });
@@ -109,10 +110,10 @@ io.on('connection', function (socket) {
   });
 
   socket.on('disconnect', function () {
-    console.log('a user disconnected')
+    console.log('a user disconnected');
     // Alert the presenter that an audience member has disconnected
     io.emit('disconnected');
-  })
+  });
 });
 
 // helper function for creating a session

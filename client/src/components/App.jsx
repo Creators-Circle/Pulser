@@ -23,7 +23,7 @@ class App extends Component {
     super();
     this.state = {
       audienceOnly: false
-    }
+    };
   }
 
   componentWillMount () {
@@ -39,26 +39,26 @@ class App extends Component {
       });
     });
     // Check whether there is a presenter already
-    checkAudienceOnly((audienceOnlyObject) => {
-      this.setState ({audienceOnly: audienceOnlyObject.audienceOnly});
-    })
+    checkAudienceOnly ((audienceOnlyObject) => {
+      this.setState ( {audienceOnly: audienceOnlyObject.audienceOnly});
+    });
   };
 
   componentDidMount () {
     // Alter the server that there is already a presenter
-    $('#presenter').on('click', function(){
-      socket.emit('audienceOnly')
-    })
+    $('#presenter').on('click', function () {
+      socket.emit('audienceOnly');
+    });
   }
 
   render () {
-    console.log("render",this.state.audienceOnly)
-    if(this.state.audienceOnly === true){
+    console.log('render', this.state.audienceOnly);
+    if (this.state.audienceOnly === true) {
       return (
       <div>
         <AudienceView />
       </div>
-      );  
+      );
     } else {
     // console.log('props in App render', this.props);
       return (
