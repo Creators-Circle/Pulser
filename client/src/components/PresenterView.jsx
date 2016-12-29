@@ -32,10 +32,10 @@ class PresenterView extends Component {
         this.setState({audience: --this.state.audience});
       }
     });
-    $('#stopPresentation').on('click', function(){
+    $('#stopPresentation').on('click', function () {
       // emit an !audienceOnly event to the server to reset audienceOnly
       socket.emit('!audienceOnly');
-    })
+    });
   }
 
   render () {
