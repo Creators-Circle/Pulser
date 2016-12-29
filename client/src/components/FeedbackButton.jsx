@@ -30,7 +30,7 @@ class FeedbackButton extends Component {
     });
 
     function decrement () {
-      // In 30 seconds, emit "decrement" event
+      // In '30' seconds, emit "decrement" event
       // Capture reset code for setTimeout and store in resetCode
       resetCode = setTimeout(function () {
         socket.emit('updatePulse', 'DECREMENT', new Date());
