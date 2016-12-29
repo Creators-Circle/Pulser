@@ -44,23 +44,22 @@ var google = Authport.createServer({
   id: process.env.GOOGLE_ID,
   secret: process.env.GOOGLE_SECRET,
   scope: ""
-})
-
+});
 
 var userData = []; // temp storage for user's data, delete once db is created
 var audienceOnly = false; // switch variable for whether or not there is a presenter already
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
-  console.log(data.service)
+
+  // depending on which login option the user chooses, send them to appropriate service
   switch(data.service) {
-    case "makerpass": 
+    case 'makerpass':
       userData.push({token: data.token, name: data.data.user.name, email: data.data.user.email, avatar: data.data.user.avatar_url});
       createSession(req, res, data.token);
       break;
 
-    case "google": 
-    console.log("data:", data)
+    case 'google':
       userData.push({token: data.token, name: data.data.name, email: 'test@test.mail.com', avatar: data.data.picture});
       createSession(req, res, data.token);
       break;
@@ -78,7 +77,7 @@ app.get('/auth/:service', Authport.app);
 
 app.get('/', function (req, res) {
   // check if the user is logged in by checking his session,
-  // if no session found redirect to makerpass login page
+  // if no session found redirect to auth crossroads page (google / github)
   if (!req.session.token) {
     res.sendFile(path.join(__dirname, '/../client/public/auth.html'));
   } else {
