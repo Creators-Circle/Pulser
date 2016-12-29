@@ -7,6 +7,7 @@ import store from './store.jsx';
 import App from './components/App.jsx';
 import PresenterView from './components/PresenterView';
 import AudienceView from './components/AudienceView';
+import SummaryView from './components/SummaryView';
 
 const render = () => {
   ReactDOM.render(
@@ -16,6 +17,7 @@ const render = () => {
         <Route path="/" component={App} />
         <Route path="/presenter" component={PresenterView} />
         <Route path="/audience" components={AudienceView} />
+        <Route path="/summary" components={SummaryView} />
         {/* {fill in with other components that needs a specific route} */}
       </Router>
     </Provider>
