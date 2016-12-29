@@ -11,8 +11,8 @@ import PulseBox from './PulseBox';
 import Slides from './Slides';
 import { Link } from 'react-router';
 import $ from 'jquery';
-
 import '../css/Presentation.css';
+import SummaryView from './SummaryView';
 
 class PresenterView extends Component {
   constructor () {
@@ -39,10 +39,9 @@ class PresenterView extends Component {
   }
 
   render () {
-    console.log(this.state.audience);
     return (
       <div className = 'presenter-view'>
-        <Link id="stopPresentation" to="/">Stop Presentation</Link>
+        <Link id="stopPresentation" to="/summary">Stop Presentation</Link>
         <Slides id="presenterSlides" role="presenter"/>
         <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="70"></iframe>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
@@ -51,4 +50,4 @@ class PresenterView extends Component {
   }
 };
 
-export default PresenterView;
+export default connect(state => state)(PresenterView);

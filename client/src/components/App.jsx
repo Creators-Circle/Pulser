@@ -15,7 +15,6 @@ import getUserData from '../util/getUserData';
 import $ from 'jquery';
 import checkAudienceOnly from '../util/checkAudienceOnly';
 import AudienceView from './AudienceView';
-
 // Links route users to pulsebox and feedbackbox as appropriate.
 class App extends Component {
 
