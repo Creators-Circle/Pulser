@@ -40,10 +40,10 @@ Authport.createServer({
 });
 
 var google = Authport.createServer({
-  service: "google",
+  service: 'google',
   id: process.env.GOOGLE_ID,
   secret: process.env.GOOGLE_SECRET,
-  scope: ""
+  scope: ''
 });
 
 var userData = []; // temp storage for user's data, delete once db is created
@@ -51,20 +51,20 @@ var audienceOnly = false; // switch variable for whether or not there is a prese
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
-
   // depending on which login option the user chooses, send them to appropriate service
-  switch(data.service) {
+  switch (data.service) {
     case 'makerpass':
       userData.push({token: data.token, name: data.data.user.name, email: data.data.user.email, avatar: data.data.user.avatar_url});
+      // store user data, replace this with query once we have a user table in db
       createSession(req, res, data.token);
       break;
 
     case 'google':
       userData.push({token: data.token, name: data.data.name, email: 'test@test.mail.com', avatar: data.data.picture});
+      // store user data, replace this with query once we have a user table in db
       createSession(req, res, data.token);
       break;
     }
-  // store user data, replace this with query once we have a user table in db
 });
 
 Authport.on('error', function (req, res, data) {
