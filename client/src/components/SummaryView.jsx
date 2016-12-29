@@ -17,8 +17,8 @@ class SummaryView extends Component {
     // Pull out the usersClicks from the this context of React for use in jQuery
     var usersClicks = this.props.usersClicks;
     $('.user').on('click', function () {
-        alert(usersClicks[$(this).data('user').split('_').join(' ')]);
-      });
+      alert(usersClicks[$(this).data('user').split('_').join(' ')]);
+    });
     return (
       <div>
         <Link to="/">Home</Link>
