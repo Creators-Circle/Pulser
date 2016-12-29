@@ -1,10 +1,10 @@
 //  App structure
-  //  ---||-------App--------||-----
-  // PresenterView      AudienceView
-  //     ||                  ||
-  //  PulseBox          FeedbackBox
-  //                         ||
-  //                   FeedbackButton
+  //  ---||--------------App--------------||-----
+  // PresenterView                   AudienceView
+  //     ||                               ||
+  //  iframe, Slides, PulseBox      Slides, FeedbackBox
+  //                                            ||
+  //                                        FeedbackButton
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   render () {
-    console.log('render', this.state.audienceOnly);
+    // console.log('audienceOnly in App render', this.state.audienceOnly);
     if (this.state.audienceOnly === true) {
       return (
       <div>

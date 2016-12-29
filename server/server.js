@@ -73,9 +73,10 @@ app.get('/audienceOnly', function (req, res) {
   res.send({audienceOnly: audienceOnly});
 });
 
-// resets the audienceOnly switch to false.
+// Vestigial HotFix Route
+// resets the audienceOnly switch to false. 
 app.get('/!audienceOnly', function (req, res) {
-  // console.log('received a !audienceOnly request');
+  // console.log('received an !audienceOnly request');
   audienceOnly = false;
   res.send('audienceOnly set to false');
 });
@@ -98,6 +99,10 @@ io.on('connection', function (socket) {
     audienceOnly = true;
     // console.log('server heard audienceOnly and emitted an audienceOnly event')
   });
+  // Listen for !audienceOnly event, which is intended to undo the audienceOnly event
+  socket.on('!audienceOnly', function() {
+    audienceOnly = false;
+  })
   // Listen for Audience button clicks
   socket.on('updatePulse', function (action, currTime) {
     // console.log('updatePulse event: ', action, currTime);

@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PulseBox from './PulseBox';
 import Slides from './Slides';
+import { Link } from 'react-router';
+import $ from 'jquery';
 
 import '../css/Presentation.css';
 
@@ -30,12 +32,17 @@ class PresenterView extends Component {
         this.setState({audience: --this.state.audience});
       }
     });
+    $('#stopPresentation').on('click', function () {
+      // emit an !audienceOnly event to the server to reset audienceOnly
+      socket.emit('!audienceOnly');
+    });
   }
 
   render () {
     console.log(this.state.audience);
     return (
       <div className = 'presenter-view'>
+        <Link id="stopPresentation" to="/">Stop Presentation</Link>
         <Slides id="presenterSlides" role="presenter"/>
         <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="70"></iframe>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
