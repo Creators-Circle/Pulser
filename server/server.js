@@ -64,7 +64,7 @@ Authport.on('auth', function (req, res, data) {
       // store user data, replace this with query once we have a user table in db
       createSession(req, res, data.token);
       break;
-    }
+  }
 });
 
 Authport.on('error', function (req, res, data) {
