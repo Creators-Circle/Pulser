@@ -13,6 +13,7 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 import '../css/Presentation.css';
 import SummaryView from './SummaryView';
+import picker from '../util/googlePicker'; // import Google Picker function
 
 class PresenterView extends Component {
   constructor () {
@@ -39,9 +40,11 @@ class PresenterView extends Component {
   }
 
   render () {
+    // inserted temporary button to test Google Picker functionality
     return (
       <div className = 'presenter-view'>
         <Link id="stopPresentation" to="/summary">Stop Presentation</Link>
+        <button onClick={picker}>Google Picker</button>
         <Slides id="presenterSlides" role="presenter"/>
         <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="70"></iframe>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
