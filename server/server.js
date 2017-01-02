@@ -10,6 +10,7 @@ var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
 require('dotenv').config({silent: true});
 var MP = require('node-makerpass');
+var db = require('./db.js');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -145,6 +146,15 @@ io.on('connection', function (socket) {
     io.emit('disconnected');
   });
 });
+
+// for testing database connection
+app.get('/getUsers' , function(req, res){
+  db.select().table('users').then(function(data){
+    console.log("users from db", data);
+    res.send(data);
+  })
+})
+
 
 // helper function for creating a session
 var createSession = function (req, res, token, name) {
