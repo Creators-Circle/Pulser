@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <title>Follow Me</title>
     <button id="logout" type="button">Logout</button>
+    <input type="button" onclick="location.href='http://localhost:5000/logout';" value="Log Out" />
     <link rel="stylesheet" href="./static/main.css">
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script>
       $(document).ready(function() { 
         console.log("ready")
       });
-      
+
       $('#logout').on('click', function (e){
         $.ajax ({
-            url: "/logout", //issue get to repos
+            url: "#/logout", 
             type: "GET",
             success: function() {
               console.log("success!")
