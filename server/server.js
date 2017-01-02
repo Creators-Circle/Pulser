@@ -137,7 +137,6 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('disconnected');
     });
   });
-
   res.send('post accepted');
 });
 // --------------------------------------
