@@ -5,6 +5,23 @@
     <title>Follow Me</title>
     <button id="logout" type="button">Logout</button>
     <link rel="stylesheet" href="./static/main.css">
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script>
+      $(document).ready(function() { 
+        console.log("ready")
+      });
+      
+      $('#logout').on('click', function (e){
+        $.ajax ({
+            url: "/logout", //issue get to repos
+            type: "GET",
+            success: function() {
+              console.log("success!")
+            }
+        })
+      });
+
+    </script>
     <script src="../../socket.io/socket.io.js"></script>
     <!-- Load Google API script for use with Google Picker-->
     <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
