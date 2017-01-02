@@ -156,7 +156,7 @@ io.on('connection', function (socket) {
     io.emit('disconnected');
   });
 
-  socket.on('joinRoom', function (roomId){
+  socket.on('joinRoom', function (roomId) {
     console.log('a user has been added to room ', roomId);
     socket.join(roomId);
   });
