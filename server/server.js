@@ -143,8 +143,10 @@ io.on('connection', function (socket) {
     // Broadcast to presenter (technically also everyone else)
     io.emit('updatedPulse', action, currTime);
   });
-
+  // Listen for user clicks
   socket.on('userClick', function (action, currTime, user) {
+    // console.log('userClick event: ', action, currTime, user);
+    // Broadcast to presenter (technically also everyone else)
     io.emit('userClicked', action, currTime, user);
   });
 
@@ -153,6 +155,12 @@ io.on('connection', function (socket) {
     // Alert the presenter that an audience member has disconnected
     io.emit('disconnected');
   });
+
+  socket.on('joinRoom', function (roomId){
+    console.log('a user has been added to room ', roomId);
+    socket.join(roomId);
+  });
+
 });
 
 // helper function for creating a session
