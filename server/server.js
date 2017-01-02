@@ -11,6 +11,7 @@ var session = require('express-session');
 require('dotenv').config({silent: true});
 var MP = require('node-makerpass');
 var db = require('./db.js');
+var router = require('./router.js');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -20,6 +21,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use('/api', router);
 
 // MakerPass Authentication ---------------------------------
 Authport.registerService('makerpass', MakerpassService);
