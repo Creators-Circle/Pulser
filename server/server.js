@@ -160,7 +160,6 @@ io.on('connection', function (socket) {
     console.log('a user has been added to room ', roomId);
     socket.join(roomId);
   });
-
 });
 
 // helper function for creating a session
