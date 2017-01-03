@@ -4,10 +4,16 @@ import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
 import $ from 'jquery';
+import io from 'socket.io-client';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
 class PulseBox extends Component {
+  constructor (props) {
+    super();
+    console.log("props in pulseBox", props);
+    this.socket=props.socket;
+  }
 
   render () {
     var currTime = new Date();
@@ -27,7 +33,6 @@ class PulseBox extends Component {
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 0.5;
     let audience = this.props.audience > 4 ? this.props.audience : 4;
-   // let yMax = Math.max([audience, 4]);
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
       $('.pulse-box').addClass('alert-red');
@@ -74,11 +79,12 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
-    // console.log("PulseBox props in component will mount,", this.props)
+    console.log("PulseBox props in component will mount,", this.props, "this.socket: ", this.socket)
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
-    socket.on('updatedPulse', (action, currTime) => {
+    this.socket.on('updatedPulse', (action, currTime) => {
+      console.log('updatedPulse fired', "a, c", action, currTime);
       // compute the time difference and pass it with the action
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       // Dispatch either DECREMENT or INCREMENT action
@@ -88,7 +94,8 @@ class PulseBox extends Component {
       });
     });
     // socket event handler for an audience click that updates that audience member's array of clicks in the store
-    socket.on('userClicked', (action, currTime, user) => {
+    this.socket.on('userClicked', (action, currTime, user) => {
+      console.log('userClicked fired', "a, c, u", action, currTime, user);
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       dispatch({
         type: action,
