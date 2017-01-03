@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 
 // button for firing an event to update the pulseData inside redux store
 class FeedbackButton extends Component {
+
   constructor (props) {
     super();
   }
   render () {
-    // console.log('this.socket in FeedbackButton: ', this.props.socket);
+    // console.log('props in FeedbackButton: ', this.props);
     return (
       <button id="updatePulse">Feedback</button>
     );
@@ -17,7 +18,6 @@ class FeedbackButton extends Component {
   componentDidMount () {
     let canIncrement = true;
     let resetCode;
-
     document.getElementById('updatePulse').addEventListener('click', () => {
       // console.log('props in FeedbackButton componentDidMount', this.props);
       // If button has not been clicked in last 30 seconds,
