@@ -2,7 +2,7 @@
 import $ from 'jquery';
 
 const getUserData = (callback) => {
-  $.get('/user')
+  $.get('/api/user')
     .done((data) => {
       callback(data);
     })
