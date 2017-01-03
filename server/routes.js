@@ -3,6 +3,6 @@ var router = require('express').Router();
 var controllers = require('./controllers.js');
 
 router.get('/user', controllers.getUser);
-router.get('/userPresentation', controllers.getUserPresentations);
+router.get('/userLectures', controllers.getUserLectures);
 
 module.exports = router;

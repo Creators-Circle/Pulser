@@ -1,8 +1,8 @@
 // helper function for fetching user's presentation
 import $ from 'jquery';
 
-const getUserPresentations = (callback) => {
-  $.get('api/userPresentations')
+const getUserLectures = (callback) => {
+  $.get('api/userLectures')
   .done((data)=>{
     callback(data);
   })
@@ -12,3 +12,5 @@ const getUserPresentations = (callback) => {
     );
   });
 }
+
+export default getUserLectures;
