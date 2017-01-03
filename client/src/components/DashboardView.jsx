@@ -9,7 +9,7 @@ import DashMainContent from './DashMainContent';
 class DashboardView extends Component {
 
   render () {
-    return(
+    return (
       <div>
         <LogoutButton/>
         <div>

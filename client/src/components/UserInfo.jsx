@@ -4,11 +4,11 @@ import getUserData from '../util/getUserData';
 
 class UserInfo extends Component {
 
-  constructor(props) {
-    super()
+  constructor (props) {
+    super();
   }
 
-  componentWillMount() {
+  componentWillMount () {
     // store user data when App loads.
     // Note that by this point the user will have logged in.
     // Their user information comes from the auth
@@ -20,18 +20,15 @@ class UserInfo extends Component {
         avatar: user.avatar
       });
     });
-
   }
 
   render () {
-    
-      return (
-        <div>
-          <p>{this.props.user.name}</p>
-          <img id='profilePic' src={this.props.user.avatar} />
-        </div>
-      );
-
+    return (
+      <div>
+        <p>{this.props.user.name}</p>
+        <img id='profilePic' src={this.props.user.avatar} />
+      </div>
+    );
   };
 };
 
