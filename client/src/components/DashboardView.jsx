@@ -9,20 +9,18 @@ import DashMainContent from './DashMainContent';
 class DashboardView extends Component {
 
   render () {
-    
-      return (
+    return(
+      <div>
+        <LogoutButton/>
         <div>
-          <LogoutButton/>
-          <div>
-            <NewPresButton/>
-            <Searchbar/>
-            <UserInfo/>
-          </div>
-          <DashMainContent/>
-          <JoinPresBox/>
+          <NewPresButton/>
+          <Searchbar/>
+          <UserInfo/>
         </div>
-      );
-
+        <DashMainContent/>
+        <JoinPresBox/>
+      </div>
+    );
   };
 };
 

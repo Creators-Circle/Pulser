@@ -85,10 +85,6 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('/slides', function (req, res) {
-    res.sendFile(path.join(__dirname, '/../client/public/slidesTest.html'));
-});
-
 // let the App know whether or not there is already a presenter
 app.get('/audienceOnly', function (req, res) {
   // console.log('about to send audienceOnly response ', audienceOnly);

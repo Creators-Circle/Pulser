@@ -14,7 +14,6 @@ import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
 
-
 class PresenterView extends Component {
   constructor () {
     super();

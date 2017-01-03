@@ -44,19 +44,12 @@
         | |                     | |
         | +---------------------+ |
         +-------------------------+
-
-
-
-
 */
 
-
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Slides from './Slides';
 // Allows html-like link functionality.
 import { Link } from 'react-router';
-import getUserData from '../util/getUserData';
 import $ from 'jquery';
 import checkAudienceOnly from '../util/checkAudienceOnly';
 import AudienceView from './AudienceView';
@@ -71,17 +64,6 @@ class App extends Component {
   }
 
   componentWillMount () {
-    // store user data when App loads.
-    // Note that by this point the user will have logged in.
-    // Their user information comes from the auth
-    getUserData((user) => {
-      this.props.dispatch({
-        type: 'STORE_USER',
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar
-      });
-    });
     // Check whether there is a presenter already
     checkAudienceOnly((audienceOnlyObject) => {
       this.setState({audienceOnly: audienceOnlyObject.audienceOnly});
@@ -105,9 +87,6 @@ class App extends Component {
     } else {
       return (
         <div>
-          <img id='profilePic' src={this.props.user.avatar} />
-          <p>Hello {this.props.user.name}!</p>
-
           <Link to='/presenter'><button id='presenterButton'>Presenter</button></Link>
           <Link to='/audience'><button id='audienceButton'>Audience</button></Link>
         </div>
@@ -116,13 +95,4 @@ class App extends Component {
   };
 };
 
-// connect(state => state) is a bad practice because it will rerender after every action
-// mapStatetoProps lets you specify specific parts of the state that you want to import
-const mapStatetoProps = (state) => {
-  return {
-    pulseData: state.pulseData,
-    user: state.user
-  };
-};
-
-export default connect(mapStatetoProps)(App);
+export default App;
