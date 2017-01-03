@@ -1,14 +1,18 @@
 // Update with your config settings.
+var pg = require('pg');
+pg.defaults.ssl = true;
+require('dotenv').config({silent: true});
 
 module.exports = {
 
   development: {
-    client: 'postgresql',
-    connection: process.env.DATABASE_URL
+    client: 'pg',
+    connection:process.env.DATABASE_URL,
+    searchPath: 'followme'
   },
 
   staging: {
-    client: 'postgresql',
+    client: 'pg',
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
@@ -20,12 +24,9 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
+    client: 'pg',
+    connection:process.env.DATABASE_URL,
+    searchPath: 'followme',
     pool: {
       min: 2,
       max: 10
