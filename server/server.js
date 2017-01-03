@@ -116,6 +116,7 @@ app.post('/newRoom', function (req, res) {
   // Socket.io listeners / emitters for the presentation 'room'
   nsp.on('connection', function (socket) {
     console.log('a user connected to ', nsp.name);
+
     nsp.emit('connected');
 
     // Listen for Audience button clicks

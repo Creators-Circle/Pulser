@@ -7,8 +7,15 @@ import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import React, { Component } from 'react';
 import $ from 'jquery';
+import io from 'socket.io-client';
 
 class AudienceView extends Component {
+  constructor () {
+  	super();
+  	this.state = {
+  	  room: null
+  	}
+  }
 
   render () {
     return (
