@@ -2,6 +2,7 @@
 var db = require('./db.js');
 
 module.exports = {
+  // getting user info from the database
   getUser: function (req, res) {
     db('users').where('id', req.session.token)
       .then(function (data) {
