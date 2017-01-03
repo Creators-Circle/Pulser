@@ -45,11 +45,9 @@
         | +---------------------+ |
         +-------------------------+
 */
-
 import React, { Component } from 'react';
 import $ from 'jquery';
 import DashboardView from './DashboardView';
-
 
 class App extends Component {
   render () {
