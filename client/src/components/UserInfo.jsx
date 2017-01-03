@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getUserData from '../util/getUserData';
+import getUserLectures from '../util/getUserLectures';
 
 // component to display basic user data (profile pic + name)
 class UserInfo extends Component {
@@ -20,6 +21,9 @@ class UserInfo extends Component {
         email: user.email,
         avatar: user.avatar
       });
+    });
+    getUserLectures((presentations) => {
+      console.log('client side', presentations);
     });
   }
 
