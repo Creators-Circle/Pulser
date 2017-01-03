@@ -68,13 +68,13 @@ function listSlides() {
   }).then(function(response) {
     var presentation = response.result;
     var length = presentation.slides.length;
-    console.log('SLIDES:', presentation.slides)
-    appendPre('The presentation contains ' + length + ' slides:');
-    for (i = 0; i < length; i++) {
-      var slide = presentation.slides[i];
-      appendPre('- Slide #' + (i + 1) + ' contains ' +
-          slide.pageElements.length + ' elements.')
-    }
+    console.log(`${length} slides:`, presentation.slides)
+    // appendPre('The presentation contains ' + length + ' slides:');
+    // for (i = 0; i < length; i++) {
+    //   var slide = presentation.slides[i];
+    //   appendPre('- Slide #' + (i + 1) + ' contains ' +
+    //       slide.pageElements.length + ' elements.')
+    // }
   }, function(response) {
     appendPre('Error: ' + response.result.error.message);
   });

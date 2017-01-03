@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getUserData from '../util/getUserData';
 
+// component to display basic user data (profile pic + name)
 class UserInfo extends Component {
 
   constructor (props) {
@@ -24,9 +25,9 @@ class UserInfo extends Component {
 
   render () {
     return (
-      <div>
-        <p>{this.props.user.name}</p>
+      <div id='userInfo'>
         <img id='profilePic' src={this.props.user.avatar} />
+        <p>{this.props.user.name}</p>
       </div>
     );
   };

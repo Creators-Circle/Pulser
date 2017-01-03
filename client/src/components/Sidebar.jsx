@@ -1,6 +1,7 @@
 import FeedbackBox from './FeedbackBox';
 import { Link } from 'react-router';
 
+// sidebar menu for presenter to toggle modules and use additional functionality
 const Sidebar = () => {
   return (
     <div>

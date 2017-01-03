@@ -1,6 +1,7 @@
 // Google Picker window to choose presentation from user's Google Drive files
 
 import $ from 'jquery';
+import checkAuth from './googleSlides';
 
 // The Browser API key obtained from the Google Developers Console.
 var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';

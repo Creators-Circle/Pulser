@@ -73,7 +73,6 @@ Authport.on('error', function (req, res, data) {
 });
 
 app.get('/auth/:service', Authport.app);
-// ----------------------------------------------------------
 
 app.get('/', function (req, res) {
   // check if the user is logged in by checking his session,
@@ -106,17 +105,14 @@ app.get('/user', function (req, res) {
   res.json(user[0]);
 });
 
-app.get('/logout', function(req, res){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-  // destroy the user's session to log them out                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+app.get('/logout', function (req, res) {
+  // destroy the user's session to log them out
   // will be re-created next request
-  console.log("goodbye")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-  req.session.destroy(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-    res.redirect('/');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-  });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-});  
-
-
-// --------------------------------------
+  console.log('goodbye');
+  req.session.destroy(function () {
+    res.redirect('/');
+  });
+});
 
 // Socket.io listeners / emitters
 io.on('connection', function (socket) {
