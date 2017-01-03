@@ -43,6 +43,7 @@ class PresenterView extends Component {
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>
+        <Sidebar />
         <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
       </div>
