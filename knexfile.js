@@ -7,7 +7,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection:process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL,
     searchPath: 'followme'
   },
 
@@ -25,7 +25,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection:process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL,
     searchPath: 'followme',
     pool: {
       min: 2,
