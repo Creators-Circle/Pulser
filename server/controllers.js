@@ -22,5 +22,15 @@ module.exports = {
           return db('users').insert(user);
         }
       });
+  },
+  getUserPresentations: function (req, res) {
+    var user = req.session.token;
+    db('presentation')
+    .join('user_presentations', 'presentation.id', 'user_presentations.presentation_id')
+    .where('user_id', user).orderBy('date', 'desc')
+    .then(function (data) {
+      console.log('presentations', data);
+      res.send(data);
+    });
   }
 };
