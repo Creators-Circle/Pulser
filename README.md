@@ -29,15 +29,21 @@ React/Redux
 PostgresSQL
 
 
-## Development
+## Development Requirements
+Heroku CLI required to connect to heroku db from local.
+https://devcenter.heroku.com/articles/heroku-cli
+
+Command to connect to db via CLI once setup:
+heroku pg:psql DATABASE_URL --app present-me-beta
 
 ### Installing Dependencies
 
 From within the root directory:
 npm install
 
-### Running Server
+### Setup and Running Server
 To start the server
+npm run db_setup (Only need to do this the first time in a given terminal session.)
 npm run build
 npm start
 
