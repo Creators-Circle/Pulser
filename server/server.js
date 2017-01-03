@@ -105,6 +105,17 @@ app.get('/user', function (req, res) {
   let user = userData.filter((user) => user.token === req.session.token);
   res.json(user[0]);
 });
+
+app.get('/logout', function(req, res){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  // destroy the user's session to log them out                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+  // will be re-created next request
+  console.log("goodbye")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  req.session.destroy(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    res.redirect('/');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+});  
+
+
 // --------------------------------------
 
 // Socket.io listeners / emitters
