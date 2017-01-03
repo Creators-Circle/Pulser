@@ -2,7 +2,7 @@
 var db = require('./db.js');
 
 module.exports = {
-  // getting user info from the database
+  // getting user information from the users table
   getUser: function (req, res) {
     db('users').where('id', req.session.token)
       .then(function (data) {
@@ -11,14 +11,15 @@ module.exports = {
       });
   },
   saveUser: function (user) {
-    db('users').where('id', user.id)
+    return db('users').where('id', user.id)
       .then(function (res) {
         if (res.length > 0) {
           // if user exist in the database update user info
-          db('users').where('id', user.id).update(user);
+          return db('users').where('id', user.id).update(user);
         } else {
-          // save user info to the database
-          db('users').insert(user);
+          console.log("didn't exist");
+          // save user info to the database then return a promise
+          return db('users').insert(user);
         }
       });
   }

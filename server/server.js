@@ -54,30 +54,31 @@ var audienceOnly = false; // switch variable for whether or not there is a prese
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
-  // depending on which login option the user chooses, send them to appropriate service
   let userInfo = {};// temp storage for user information that needs to be passed to contollers.saveUser function
-
+  // depending on which login option the user chooses, send them to appropriate service
   switch (data.service) {
     case 'makerpass':
-
       userInfo.id = data.data.user.uid;
       userInfo.name = data.data.user.name;
       userInfo.avatar = data.data.user.avatar_url;
       userInfo.email = data.data.user.email;
 
-      controllers.saveUser(userInfo);
-      createSession(req, res, userInfo.id);
+      controllers.saveUser(userInfo)
+      .then(function () {
+        createSession(req, res, userInfo.id);
+      });
       break;
 
     case 'google':
-
       userInfo.id = data.id;
       userInfo.name = data.data.name;
-      userInfo.avatar = data.data.user.avatar_url;
+      userInfo.avatar = data.data.picture;
       userInfo.email = 'test@test.mail.com';
 
-      controllers.saveUser(userInfo);
-      createSession(req, res, data.token);
+      controllers.saveUser(userInfo)
+      .then(function (data) {
+        createSession(req, res, userInfo.id);
+      });
       break;
   }
 });
