@@ -10,6 +10,9 @@ var MakerpassService = require('authport-makerpass');
 var session = require('express-session');
 require('dotenv').config({silent: true});
 var MP = require('node-makerpass');
+var db = require('./db.js');
+var router = require('./routes.js');
+var controllers = require('./controllers.js');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -19,6 +22,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use('/api', router);
 
 // MakerPass Authentication ---------------------------------
 Authport.registerService('makerpass', MakerpassService);
@@ -46,23 +50,35 @@ var google = Authport.createServer({
   scope: ''
 });
 
-var userData = []; // temp storage for user's data, delete once db is created
 var audienceOnly = false; // switch variable for whether or not there is a presenter already
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
+  let userInfo = {};// temp storage for user information that needs to be passed to contollers.saveUser function
   // depending on which login option the user chooses, send them to appropriate service
   switch (data.service) {
     case 'makerpass':
-      userData.push({token: data.token, name: data.data.user.name, email: data.data.user.email, avatar: data.data.user.avatar_url});
-      // store user data, replace this with query once we have a user table in db
-      createSession(req, res, data.token);
+      userInfo.id = data.data.user.uid;
+      userInfo.name = data.data.user.name;
+      userInfo.avatar = data.data.user.avatar_url;
+      userInfo.email = data.data.user.email;
+
+      controllers.saveUser(userInfo)
+      .then(function () {
+        createSession(req, res, userInfo.id);
+      });
       break;
 
     case 'google':
-      userData.push({token: data.token, name: data.data.name, email: 'test@test.mail.com', avatar: data.data.picture});
-      // store user data, replace this with query once we have a user table in db
-      createSession(req, res, data.token);
+      userInfo.id = data.id;
+      userInfo.name = data.data.name;
+      userInfo.avatar = data.data.picture;
+      userInfo.email = 'test@test.mail.com';
+
+      controllers.saveUser(userInfo)
+      .then(function (data) {
+        createSession(req, res, userInfo.id);
+      });
       break;
   }
 });
@@ -96,13 +112,6 @@ app.get('/!audienceOnly', function (req, res) {
   // console.log('received an !audienceOnly request');
   audienceOnly = false;
   res.send('audienceOnly set to false');
-});
-
-// transfer this to a api router--------
-app.get('/user', function (req, res) {
-  console.log('user', req.session.id);
-  let user = userData.filter((user) => user.token === req.session.token);
-  res.json(user[0]);
 });
 
 app.get('/logout', function (req, res) {
@@ -147,10 +156,10 @@ io.on('connection', function (socket) {
 });
 
 // helper function for creating a session
-var createSession = function (req, res, token, name) {
+var createSession = function (req, res, token) {
   return req.session.regenerate(function () {
+    // set user id as an access token for now, need to refactor later
     req.session.token = token;
-    req.session.name = name;
     res.redirect('/');
   });
 };
