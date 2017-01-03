@@ -37,16 +37,16 @@ class FeedbackButton extends Component {
       // Capture reset code for setTimeout and store in resetCode
       // bind the this context
       let socket = this.props.socket;
-      resetCode = setTimeout( function () {
+      resetCode = setTimeout(function () {
         socket.emit('updatePulse', 'DECREMENT', new Date());
         canIncrement = true;
       }, 5000);
-    }
+    };
 
     let resetDecrement = () => {
       clearTimeout(resetCode); // use clearTimeout to kill the other setTimeout
       decrement(); // fire another setTimeout instead.
-    }
+    };
   }
 }
 
