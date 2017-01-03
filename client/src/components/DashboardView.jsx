@@ -22,7 +22,7 @@ class DashboardView extends Component {
           <UserInfo/>
         </div>
         <DashMainContent/>
-        <JoinPresBox/>
+        <JoinPresBox />
       </div>
     );
   };
