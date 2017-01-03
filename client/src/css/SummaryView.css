@@ -1,0 +1,18 @@
+#mainPane {
+  float:left;
+  width:78vw;
+  margin: 0 2vw;
+  background:lightblue;
+}
+
+#leftPane {
+  float:left;
+  width:18vw;
+  margin-left:2vw;
+  background:lightblue;
+}
+
+.summaryInfoBox {
+  width:45%;
+  margin:2.5%;
+}

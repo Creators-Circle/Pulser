@@ -1,6 +1,6 @@
 // Contains the elements for the Presenter, including:
   // Slides
-  // Stopwatch iframe
+  // Timer
   // PulseBox Component
     // PulseBox is passed a startTime to represent the time at which the presentation is started,
     // which is assumed to be the time that the PresenterView renders
@@ -9,11 +9,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PulseBox from './PulseBox';
 import Slides from './Slides';
-import { Link } from 'react-router';
 import $ from 'jquery';
 import '../css/Presentation.css';
 import SummaryView from './SummaryView';
-import picker from '../util/googlePicker'; // import Google Picker function
+import Timer from './Timer';
 
 class PresenterView extends Component {
   constructor () {
@@ -43,10 +42,9 @@ class PresenterView extends Component {
     // inserted temporary button to test Google Picker functionality
     return (
       <div className = 'presenter-view'>
-        <Link id="stopPresentation" to="/summary">Stop Presentation</Link>
-        <button onClick={picker}>Google Picker</button>
         <Slides id="presenterSlides" role="presenter"/>
-        <iframe src="http://ipadstopwatch.com/embed.html" frameBorder="0" scrolling="no" width="391" height="70"></iframe>
+        <Sidebar />
+        <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
       </div>
     );

@@ -1,0 +1,52 @@
+
+/* --------------------------------------- DASHBOARD VIEW -------------------------------- */
+
+#userInfo, #userInfo p, #userInfo img {
+  float:right;
+}
+
+button {
+  margin:10px;
+}
+
+#profilePic {
+  width: 10%;
+}
+
+#logoutButton {
+  float:right;
+}
+
+#recentMenu {
+  width:70vw;
+  margin:20px;
+  background:lightgray;
+}
+
+#recentlyPresented {
+  width:50%;
+  float:left;
+  background:lightpink;
+  text-align:center;
+} 
+
+#recentlyViewed {
+  width:50%;
+  float:left;
+  text-align:center;
+}
+
+.slideThumb {
+  width:150px;
+  text-align:center;
+  float:left;
+  margin:10px;
+}
+
+.slideThumb img {
+  width:100%;
+}
+
+#joinBox {
+  float:right;
+}

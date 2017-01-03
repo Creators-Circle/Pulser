@@ -1,7 +1,7 @@
-// this component is for firing an event to update the pulseData inside redux store
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
+// button for firing an event to update the pulseData inside redux store
 class FeedbackButton extends Component {
 
   render () {
@@ -10,6 +10,7 @@ class FeedbackButton extends Component {
     );
   }
 
+  // TODO: Move setTimeout reset functionality to back-end
   componentDidMount () {
     console.log(this.props);
     let canIncrement = true;
