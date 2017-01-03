@@ -11,16 +11,16 @@ import io from 'socket.io-client';
 
 class AudienceView extends Component {
   constructor () {
-  	super();
-  	this.state = {
-  	  room: null
-  	}
+    super();
+    this.state = {
+      room: null
+    };
   }
 
   joinPresentation () {
     // console.log("this.socket in AudienceView: ", this.socket);
     let roomId = $('#joinPresentation').val();
-    this.setState({room:io(`/${roomId}`)});
+    this.setState({room: io(`/${roomId}`)});
   }
 
   render () {
