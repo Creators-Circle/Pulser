@@ -7,14 +7,20 @@ import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import React, { Component } from 'react';
 import $ from 'jquery';
+import io from 'socket.io-client';
 
 class AudienceView extends Component {
+  constructor () {
+  	super();
+  	this.state = {
+  	  room: null
+  	}
+  }
 
   joinPresentation () {
-    // console.log('this event was triggered with ', $('#joinPresentation').val());
+    // console.log("this.socket in AudienceView: ", this.socket);
     let roomId = $('#joinPresentation').val();
-    // fire off a socket event to add this user to the room for that presentation
-    socket.emit('joinRoom', roomId);
+    this.setState({room:io(`/${roomId}`)});
   }
 
   render () {
@@ -22,10 +28,10 @@ class AudienceView extends Component {
       <div>
         <span>Join a Presentation:
           <input type="text" id="joinPresentation"></input>
-          <button id="joinPresentationButton" onClick={this.joinPresentation}>JOIN!</button>
+          <button id="joinPresentationButton" onClick={this.joinPresentation.bind(this)}>JOIN!</button>
         </span>
         <Slides id="audienceSlides" class="slides" role="audience"/>
-        <FeedbackBox />
+        <FeedbackBox socket={this.state.room}/>
       </div>
     );
   }
