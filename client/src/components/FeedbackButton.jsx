@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 // button for firing an event to update the pulseData inside redux store
 class FeedbackButton extends Component {
+
   constructor (props) {
     super();
   }
