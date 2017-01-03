@@ -3,7 +3,7 @@
 import FeedbackButton from './FeedbackButton';
 
 const FeedbackBox = (props) => {
-	// console.log('props in FeedbackBox: ', props)
+  // console.log('props in FeedbackBox: ', props)
   return (
     <FeedbackButton socket={props.socket}/>
   );

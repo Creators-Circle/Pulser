@@ -11,8 +11,8 @@ const LineChart = rd3.LineChart;
 class PulseBox extends Component {
   constructor (props) {
     super();
-    console.log("props in pulseBox", props);
-    this.socket=props.socket;
+    // console.log('props in pulseBox', props);
+    this.socket = props.socket;
   }
 
   render () {
@@ -79,12 +79,10 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
-    console.log("PulseBox props in component will mount,", this.props, "this.socket: ", this.socket)
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
     this.socket.on('updatedPulse', (action, currTime) => {
-      console.log('updatedPulse fired', "a, c", action, currTime);
       // compute the time difference and pass it with the action
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       // Dispatch either DECREMENT or INCREMENT action
@@ -95,7 +93,6 @@ class PulseBox extends Component {
     });
     // socket event handler for an audience click that updates that audience member's array of clicks in the store
     this.socket.on('userClicked', (action, currTime, user) => {
-      console.log('userClicked fired', "a, c, u", action, currTime, user);
       let timeDifference = timeDiffToMinutes(startTime, currTime);
       dispatch({
         type: action,
