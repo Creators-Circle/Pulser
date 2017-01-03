@@ -13,6 +13,7 @@ import $ from 'jquery';
 import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
+import Sidebar from './Sidebar';
 
 class PresenterView extends Component {
   constructor () {
