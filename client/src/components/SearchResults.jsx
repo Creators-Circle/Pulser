@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PresThumb from './PresThumb';
 
 // panel to display search results from querying DB for specific presentation data
-  //Rendered by loginDashboard.
+  // Rendered by loginDashboard.
 class SearchResults extends Component {
 
   render () {
