@@ -7,7 +7,8 @@
     "test": "./node_modules/.bin/eslint **/*.js **/*.jsx *.js *.jsx ; ./node_modules/mocha/bin/mocha --compilers js:babel/register",
     "build": "node_modules/.bin/webpack  --watch --devtools inline-source-map",
     "start": "nodemon server/server.js ",
-    "deploy": "node_modules/.bin/webpack && npm run start"
+    "deploy": "node_modules/.bin/webpack && npm run start",
+    "db_setup": "; DATABASE_URL=$(heroku config:get DATABASE_URL -a present-me-beta)"
   },
   "repository": {
     "type": "git",
