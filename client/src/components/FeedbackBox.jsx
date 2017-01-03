@@ -2,9 +2,10 @@
 
 import FeedbackButton from './FeedbackButton';
 
-const FeedbackBox = () => {
+const FeedbackBox = (props) => {
+	// console.log('props in FeedbackBox: ', props)
   return (
-    <FeedbackButton />
+    <FeedbackButton socket={props.socket}/>
   );
 };
 

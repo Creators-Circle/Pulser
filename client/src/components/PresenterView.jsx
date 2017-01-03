@@ -14,28 +14,39 @@ import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
+import io from 'socket.io-client';
 
 class PresenterView extends Component {
   constructor () {
     super();
     this.date = new Date();
-    this.state = {audience: 0};
+    this.state = {audience: 0
+                 };
+    // Generate a random, 6 character string to name the socket 'room' for that presentation
+    this.room = (Math.random().toString(36) + '00000000000000000').slice(2, 8);
+    // Join the presenter to that room
+    this.socket=io(`/${this.room}`);
+    let room = this.room;
+    $.ajax({
+      type: 'POST',
+      url: '/newRoom', 
+      data: JSON.stringify({room: room}),
+      contentType: 'application/json'
+      });
   }
 
   componentDidMount () {
     // If an audience member has connected, update the state
-    socket.on('connected', () => {
+    this.socket.on('connected', () => {
       this.setState({audience: ++this.state.audience});
     });
-    socket.on('disconnected', () => {
-      // If an audience member has disconnected, update the state
+    
+    // If an audience member has disconnected, update the state
+    this.socket.on('disconnected', () => {
+      // Don't decrement the audience count past 0
       if (this.state.audience > 0) {
         this.setState({audience: --this.state.audience});
       }
-    });
-    $('#stopPresentation').on('click', function () {
-      // emit an !audienceOnly event to the server to reset audienceOnly
-      socket.emit('!audienceOnly');
     });
   }
 
