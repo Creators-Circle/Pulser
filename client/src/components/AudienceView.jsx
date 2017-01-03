@@ -11,10 +11,10 @@ import io from 'socket.io-client';
 
 class AudienceView extends Component {
   constructor () {
-  	super();
-  	this.state = {
-  	  room: null
-  	}
+    super();
+    this.state = {
+      room: null
+    };
   }
 
   render () {

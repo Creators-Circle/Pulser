@@ -81,6 +81,7 @@ class PulseBox extends Component {
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
+
     // this.socket.on('updatedPulse', (action, currTime) => {
     //   // compute the time difference and pass it with the action
     //   let timeDifference = timeDiffToMinutes(startTime, currTime);
