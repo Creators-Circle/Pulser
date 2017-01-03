@@ -1,10 +1,55 @@
-//  App structure
-  //  ---||--------------App--------------||-----
-  // PresenterView                   AudienceView
-  //     ||                               ||
-  //  iframe, Slides, PulseBox      Slides, FeedbackBox
-  //                                            ||
-  //                                        FeedbackButton
+/*    App structure
+
+                                                    +-------+
+                                                    |  App  |
+                                                    +-------+
+                                                        |
+                +---------------------------------------------------------------------------------------------------+
+                |                              |                    |                       |                       |
+        +-------------------------+  +---------------------+  +-------------+  +--------------------------+   +-------------+
+        |    DashboardView        |  |     AudienceView    |  |PresenterView|  |       SummaryView        |   |ProjectorView|
+        +-------------------------+  +---------------------+  +-------------+  +--------------------------+   +-------------+
+        | +NewPresButton          |  | +Slides             |  |  +Slides    |  |                          |   | +Slides     |
+        |                         |  |                     |  |             |  | +----------------------+ |   |             |
+        | +Searchbar              |  | +-----------------+ |  |  +PulseBox  |  | |   SummaryLeftPane    | |   +-------------+
+        |                         |  | |   FeedbackBox   | |  |             |  | +----------------------+ |
+        | +LogoutButton           |  | +-----------------+ |  |  +Sidebar   |  | |  +TotalClicksTable   | |
+        |                         |  | | +FeedbackButton | |  |             |  | |                      | |
+        | +UserInfo               |  | |                 | |  |  +Questions |  | |     .....OR.....     | |
+        |                         |  | +-----------------+ |  |             |  | |                      | |
+        | +JoinPresBox            |  +---------------------+  |  +Timer     |  | |  +UserClicksTimeline | |
+        |                         |                           +-------------+  | +----------------------+ |
+        | +---------------------+ |                                            |                          |
+        | |   DashMainContent   | |                                            | +----------------------+ |
+        | +---------------------+ |                                            | |   SummaryMainPane    | |
+        | |                     | |                                            | +----------------------+ |
+        | | +-----------------+ | |                                            | |   +SummaryInfoBox    | |
+        | | |  PresPreviews   | | |                                            | |        (many)        | |
+        | | +-----------------+ | |                                            | +----------------------+ |
+        | | |                 | | |                                            +--------------------------+
+        | | | +RecentPresMenu | | |
+        | | |                 | | |
+        | | | +PresThumb      | | |
+        | | |    (many)       | | |
+        | | +-----------------+ | |
+        | |                     | |
+        | |   ......OR......    | |
+        | |                     | |
+        | |   +-------------+   | |
+        | |   |SearchResults|   | |
+        | |   +-------------+   | |
+        | |   | +PresThumb  |   | |
+        | |   |    (many)   |   | |
+        | |   +-------------+   | |
+        | |                     | |
+        | +---------------------+ |
+        +-------------------------+
+
+
+
+
+*/
+
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -51,7 +96,6 @@ class App extends Component {
   }
 
   render () {
-    // console.log('audienceOnly in App render', this.state.audienceOnly);
     if (this.state.audienceOnly === true) {
       return (
       <div>
@@ -59,13 +103,13 @@ class App extends Component {
       </div>
       );
     } else {
-    // console.log('props in App render', this.props);
       return (
         <div>
+          <img id='profilePic' src={this.props.user.avatar} />
           <p>Hello {this.props.user.name}!</p>
-          <img src={this.props.user.avatar} />
-          <li id='presenter'><Link to='/presenter'>Presenter</Link></li>
-          <li><Link to='/audience'>Audience</Link></li>
+
+          <Link to='/presenter'><button id='presenterButton'>Presenter</button></Link>
+          <Link to='/audience'><button id='audienceButton'>Audience</button></Link>
         </div>
       );
     }
