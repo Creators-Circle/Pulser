@@ -4,7 +4,6 @@ import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
 import $ from 'jquery';
-import io from 'socket.io-client';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
@@ -12,7 +11,6 @@ class PulseBox extends Component {
   constructor (props) {
     super();
     // console.log('props in pulseBox', props);
-    this.socket = props.socket;
   }
 
   render () {
@@ -82,26 +80,26 @@ class PulseBox extends Component {
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
-    this.socket.on('updatedPulse', (action, currTime) => {
-      // compute the time difference and pass it with the action
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      // Dispatch either DECREMENT or INCREMENT action
-      dispatch({
-        type: action,
-        time: timeDifference
-      });
-    });
+    // this.socket.on('updatedPulse', (action, currTime) => {
+    //   // compute the time difference and pass it with the action
+    //   let timeDifference = timeDiffToMinutes(startTime, currTime);
+    //   // Dispatch either DECREMENT or INCREMENT action
+    //   dispatch({
+    //     type: action,
+    //     time: timeDifference
+    //   });
+    // });
     // socket event handler for an audience click that updates that audience member's array of clicks in the store
-    this.socket.on('userClicked', (action, currTime, user) => {
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      dispatch({
-        type: action,
-        time: timeDifference,
-        user: user
-      });
-      // This can be used to test that usersClicks have been added to store
-      // console.log(this.props.usersClicks);
-    });
+    // this.socket.on('userClicked', (action, currTime, user) => {
+    //   let timeDifference = timeDiffToMinutes(startTime, currTime);
+    //   dispatch({
+    //     type: action,
+    //     time: timeDifference,
+    //     user: user
+    //   });
+    //   // This can be used to test that usersClicks have been added to store
+    //   // console.log(this.props.usersClicks);
+    // });
   };
 };
 
