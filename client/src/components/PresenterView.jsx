@@ -20,8 +20,8 @@ class PresenterView extends Component {
     super();
     this.date = new Date();
     this.state = {
-      audience:0
-    }
+      audience: 0
+    };
   }
 
   componentDidMount () {
