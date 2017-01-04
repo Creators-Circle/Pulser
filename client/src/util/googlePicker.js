@@ -83,7 +83,6 @@ function pickerSlideCallback(data) {
     let embedUrl = data.docs[0].embedUrl;
     console.log('Data: ', data.docs[0])
     let lectureId = setLectureId()
-    // $.post('/newRoom', {room: lectureId});
     $.ajax({
       type: 'POST',
       url: '/newRoom',
