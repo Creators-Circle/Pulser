@@ -14,7 +14,6 @@ import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
-import io from 'socket.io-client';
 
 class PresenterView extends Component {
   constructor () {
@@ -24,7 +23,7 @@ class PresenterView extends Component {
     // Generate a random, 6 character string to name the socket 'room' for that presentation
     this.room = (Math.random().toString(36) + '00000000000000000').slice(2, 8);
     // Join the presenter to that room
-    this.socket = io(`/${this.room}`);
+    // this.socket = io(`/${this.room}`);
     let room = this.room;
     $.ajax({
       type: 'POST',
@@ -36,16 +35,16 @@ class PresenterView extends Component {
 
   componentDidMount () {
     // If an audience member has connected, update the state
-    this.socket.on('connected', () => {
-      this.setState({audience: ++this.state.audience});
-    });
+    // this.socket.on('connected', () => {
+    //   this.setState({audience: ++this.state.audience});
+    // });
     // If an audience member has disconnected, update the state
-    this.socket.on('disconnected', () => {
-      // Don't decrement the audience count past 0
-      if (this.state.audience > 0) {
-        this.setState({audience: --this.state.audience});
-      }
-    });
+    // this.socket.on('disconnected', () => {
+    //   // Don't decrement the audience count past 0
+    //   if (this.state.audience > 0) {
+    //     this.setState({audience: --this.state.audience});
+    //   }
+    // });
   }
 
   render () {

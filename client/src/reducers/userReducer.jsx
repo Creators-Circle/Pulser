@@ -6,8 +6,8 @@ const user = (state = {}, action) => {
     case 'CHANGE_ROLE':
       return action.role === 'presenter' || action.role === 'audience'
         ? Object.assign(state, {role: action.role}) : state;
-    case 'ASSIGN_NSP':
-      return action.nsp ? Object.assign(state, {nsp: action.nsp}) : state;
+    // case 'ASSIGN_LECTURE':
+    //   return action.lecture ? Object.assign(state, {lecture: action.lecture}) : state;
     default:
       return state;
   }
