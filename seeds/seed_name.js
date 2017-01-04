@@ -1,13 +1,16 @@
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('users_clicks').del()
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('table_name').insert({id: 1, colName: 'rowValue1'}),
-        knex('table_name').insert({id: 2, colName: 'rowValue2'}),
-        knex('table_name').insert({id: 3, colName: 'rowValue3'})
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '114267757081727627546'}),
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '110709938641205847283'}),
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '110709938641205847283'}),
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '114267757081727627546'}),
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
+        knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'})
       ]);
     });
 };
@@ -24,6 +27,7 @@ exports.seed = function (knex, Promise) {
 // users_clicks
 //                                                        Table "followme.users_clicks"
 //   Column   |            Type             |                         Modifiers                         | Storage  | Stats target | Description 
+//  id | lecture_id |        user_id        |           date       
   // 1 | cc0001     | 114267757081727627546 | 
   // 2 | cc0001     | 110709938641205847283 | 
   // 3 | cc0001     | 114267757081727627546 | 
