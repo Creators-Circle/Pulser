@@ -18,13 +18,16 @@ exports.seed = function (knex, Promise) {
                 knex('users').insert({id: '110709938641205847283', name: 'Ari Gold Frankel', avatar: 'https://lh5.googleusercontent.com/-F0mWWBnynZI/AAAAAAAAAAI/AAAAAAAAP6o/IXUujroyAlo/photo.jpg', email: 'test@test.mail.com'}),
                 knex('users').insert({id: 'a083b72cbc4b', name: 'Sheel Freeway Rick Bedi', avatar: 'https://avatars.githubusercontent.com/u/13170829?v=3', email: 'sheel.bedi@gmail.com'}),
                 knex('users').insert({id: 'ea2f59c19983', name: 'Christian The Hammer Aquino', avatar: 'https://avatars.githubusercontent.com/u/17533705?v=3', email: 'christianaquino223@gmail.com'}),
-                knex('questions').insert({lecture_id: 'cc0001', user_id: 'ea2f59c19983', question: 'help', votes: 2}),
-                knex('questions').insert({lecture_id: 'cc0001', user_id: 'ea2f59c19983', question: 'this is not clear', votes: 1}),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'ea23aa', role: 'presenter', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'ea2355', role: 'presenter', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0001', role: 'presenter', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'ea2351', role: 'audience', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: '12dwwa', role: 'audience', comment:, no_of_clicks: }),
+                knex('questions').insert({lecture_id: 'cc0001', user_id: '110709938641205847283', question: 'help', votes: 2}),
+                knex('questions').insert({lecture_id: 'cc0001', user_id: '114267757081727627546', question: 'i dont understand', votes: 1}),
+                knex('questions').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b', question: 'this is not clear', votes: 3}),
+                knex('questions').insert({lecture_id: 'cc0002', user_id: '114267757081727627546', question: 'can we go over that again', votes: 2}),
+                knex('questions').insert({lecture_id: 'cc0002', user_id: '110709938641205847283', question: 'can we go over that again', votes: 2}),
+                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0002', role: 'audience', comment: 'attentive', no_of_clicks: }),
+                knex('user_lectures').insert({user_id: 'a083b72cbc4b', lecture_id: 'cc0002', role: 'presenter', comment: 'i need to make this shorter', no_of_clicks: 0}),
+                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0001', role: 'presenter', comment: 'i need to add detail', no_of_clicks: 0}),
+                knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0002', role: 'audience', comment:, no_of_clicks: }),
+                knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0002', role: 'audience', comment:, no_of_clicks: }),
                 knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0001', role: 'audience', comment:, no_of_clicks: }),
                 knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0001', role: 'audience', comment:, no_of_clicks: }),
                 knex('user_lectures').insert({user_id: 'a083b72cbc4b', lecture_id: 'cc0001', role: 'audience'}),
@@ -34,6 +37,12 @@ exports.seed = function (knex, Promise) {
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '114267757081727627546'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'})
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: '114267757081727627546'}),
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: '110709938641205847283'}),
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: 'a083b72cbc4b'}),
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: '114267757081727627546'}),
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: 'a083b72cbc4b'}),
+                knex('users_clicks').insert({lecture_id: 'cc0002', user_id: 'a083b72cbc4b'})
               ]);
             });
           });
