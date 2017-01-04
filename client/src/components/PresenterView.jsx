@@ -23,7 +23,7 @@ class PresenterView extends Component {
 
   componentDidMount () {
     // If an audience member has connected, update the state
-    
+
     // this.socket.on('connected', () => {
     //   this.setState({audience: ++this.state.audience});
     // });

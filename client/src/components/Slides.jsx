@@ -7,15 +7,17 @@ class Slides extends Component {
 
   render () {
     let embedUrl = this.props.activeLecture.embedUrl;
+    let title = this.props.activeLecture.name;
+    let id = this.props.activeLecture.presentationId;
     // return <iframe> with embedded google slides presentation
     // current default presentation is "Effective Pairing and Feedback"
     return (
       <iframe
       className="slides"
-      id={this.props.id}
+      id={id}
       allowFullScreen="true"
       type="iframe"
-      title={ undefined /* <-- Will need to be replaced with variable */ || '[Slides] Effective Pairing and Feedback' }
+      title={title}
       src={embedUrl}
       >
       </iframe>

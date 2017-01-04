@@ -10,7 +10,7 @@ const activeLecture = (state = {}, action) => {
         return Object.assign(state, {
           lectureId: action.lectureId,
           name: action.name,
-          id: action.presentationId,
+          presentationId: action.presentationId,
           embedUrl: action.embedUrl,
           socket: action.socket
         });

@@ -78,7 +78,6 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
-
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
