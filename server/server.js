@@ -117,7 +117,22 @@ app.post('/newRoom', function (req, res) {
   nsp.on('connection', function (socket) {
     console.log('a user connected to ', nsp.name);
 
+    // Emits connection message when user connects to specific namespace
     nsp.emit('connected');
+
+    // Listen for audience request for presentation URL
+    socket.on('presentationUrlRequest', function () {
+      // console.log('User requesting presentationUrl');
+      // Send request to presenter (technically also everyone else)
+      nsp.emit('presentationUrlRequest');
+    });
+
+    // Listen for presenter's response with presesntation URL
+    socket.on('presentationUrlResponse', function (presentationUrl) {
+      // console.log('Lecturer responding with presentationUrl');
+      // Send response to audience member
+      nsp.emit('presentationUrlResponse', presentationUrl);
+    });
 
     // Listen for Audience button clicks
     socket.on('updatePulse', function (action, currTime) {

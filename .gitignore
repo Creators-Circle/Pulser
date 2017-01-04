@@ -7,6 +7,9 @@ logs
 #.env
 .env
 
+# Mac OS .DS_Store
+.DS_Store
+
 # Runtime data
 pids
 *.pid

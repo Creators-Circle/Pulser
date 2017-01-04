@@ -8,24 +8,31 @@ import { browserHistory } from 'react-router';
 class JoinPresBox extends Component {
 
   joinPresentation () {
+    // Get lectureId from input box above join button
     let lectureId = $('#join').val();
-    console.log('this', this);
+
+    // Subscribe to custom namespace based on lectureId
     let socket = io(`/${lectureId}`);
-    this.props.dispatch({
-      type: 'ASSIGN_LECTURE_ID',
-      lectureId: lectureId,
-      socket: socket
+
+    // Preserve the context of "this"
+    let dispatch = this.props.dispatch;
+
+    // Listen for presentation URL response from presenter
+    socket.on('presentationUrlResponse', function (presentationUrl) {
+      // Update store with presentation data and store socket reference
+      dispatch({
+        type: 'ASSIGN_LECTURE_ID',
+        lectureId: lectureId,
+        embedUrl: presentationUrl,
+        socket: socket
+      });
+
+      // Redirect user to <AudienceView/>
+      browserHistory.push('/audience');
     });
-    // socket.emit('requestPresentation');
-    // socket.on(this.props.user.name, function (data) {
-    //   this.props.dispatch({
-    //     type: 'ASSIGN_LECTURE_ID',
-    //     lectureId: lectureId,
-    //     presentationId: data
-    //   })
-    // })
-    console.log('presentation joined');
-    browserHistory.push('/audience');
+
+    // Emit request to server (and then to presenter) for presention URL
+    socket.emit('presentationUrlRequest');
   }
 
   render () {

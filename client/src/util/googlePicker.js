@@ -76,15 +76,23 @@ function createPicker() {
   }
 }
 
+// CALLBACK THAT HAPPENS WHEN PRESENTATION IS SELECTED
 function pickerSlideCallback(data) {
   if (data.action == google.picker.Action.PICKED) {
     let selectedPresentation = data.docs[0].id;
     let name = data.docs[0].name;
     let embedUrl = data.docs[0].embedUrl;
-    console.log('Data: ', data.docs[0])
-    let lectureId = setLectureId()
-    $.post('/newRoom', {room: lectureId});
-    console.log("DATA:", data)
+    let lectureId = setLectureId();
+
+    // Send POST request to initiate custom namespace on server
+    $.ajax({
+      type: 'POST',
+      url: '/newRoom',
+      data: JSON.stringify({room: lectureId}),
+      contentType: 'application/json'
+    });
+
+    // Update store with presentation data
     store.dispatch({
       type: 'ASSIGN_LECTURE_ID',
       presentationId: selectedPresentation,
@@ -93,6 +101,8 @@ function pickerSlideCallback(data) {
       name: name,
       socket: io(`/${lectureId}`)
     });
+
+    // Redirect user to <PresenterView/>
     browserHistory.push('/presenter');
   }
 }
