@@ -31,6 +31,7 @@ class PulseBox extends Component {
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 0.5;
     let audience = this.props.audience > 4 ? this.props.audience : 4;
+
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
       $('.pulse-box').addClass('alert-red');
@@ -77,6 +78,7 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
+
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis

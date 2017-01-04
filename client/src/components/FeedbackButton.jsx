@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 class FeedbackButton extends Component {
 
   render () {
-    // console.log('props in FeedbackButton: ', this.props);
     return (
       <button id="updatePulse">Feedback</button>
     );

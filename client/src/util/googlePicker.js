@@ -2,6 +2,9 @@
 // Assign a lectureId to the chosen presentation. Load this information to the store 
 // TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 
+// Assign a lectureId to the chosen presentation. Load this information to the store 
+// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
+
 import $ from 'jquery';
 import setLectureId from './setLectureId';
 import { connect } from 'react-redux';
@@ -81,10 +84,6 @@ function pickerSlideCallback(data) {
       presentationId: selectedPresentation,
       lectureId: lectureId
     });
-    // this.props.dispatch({
-    //   type: 'ASSIGN_LECTURE',
-    //   lecture: lectureId
-    // });
   }
 }
 

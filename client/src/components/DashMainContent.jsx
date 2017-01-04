@@ -7,6 +7,7 @@ import '../css/Dashboard.css';
   // by default it renders Recently Presented Slideshows / Recently Viewed Presentations
   // if a specific presentation is searched for, the results will appear in this area
 class DashMainContent extends Component {
+
   constructor () {
     super();
     this.state = {
