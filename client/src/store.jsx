@@ -5,7 +5,11 @@ import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
 import pulseData from './reducers/pulseData';
 import userLectures from './reducers/userLectures';
+<<<<<<< HEAD
 import activeLecture from './reducers/activeLecture';
+=======
+import searchValue from './reducers/searchValue';
+>>>>>>> Converted react state to redux
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
@@ -13,7 +17,8 @@ const combinedReducers = combineReducers({
   user,
   usersClicks,
   userLectures,
-  activeLecture
+  activeLecture,
+  searchValue
 });
 
 const store = createStore(combinedReducers);

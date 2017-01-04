@@ -9,16 +9,6 @@ import { Link } from 'react-router';
 
 // view that every user sees after logging in
 class DashboardView extends Component {
-  constructor () {
-    super();
-    this.state = {
-      search: ''
-    };
-  };
-  updateSearch (value) {
-    this.setState({search: value});
-    console.log('dashview', this.state.search);
-  };
 
   render () {
     return (
