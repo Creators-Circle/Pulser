@@ -3,6 +3,7 @@ exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   console.log("name")
   return knex('users_clicks').del()
+    .then(function () { return knex('user_lectures').del() 
     .then(function () {
       return Promise.all([
         // Inserts seed entries
@@ -13,6 +14,7 @@ exports.seed = function (knex, Promise) {
         knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
         knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'})
       ]);
+    });
     });
 };
 
