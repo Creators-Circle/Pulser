@@ -5,14 +5,19 @@
 
 import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
+import React, { Component } from 'react';
+import $ from 'jquery';
 
-const AudienceView = () => {
-  return (
-    <div>
-      <Slides id="audienceSlides" class="slides" role="audience"/>
-      <FeedbackBox />
-    </div>
-  );
+class AudienceView extends Component {
+
+  render () {
+    return (
+      <div>
+        <Slides id="audienceSlides" class="slides" role="audience"/>
+        <FeedbackBox/>
+      </div>
+    );
+  }
 };
 
 export default AudienceView;

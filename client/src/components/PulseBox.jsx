@@ -8,6 +8,10 @@ import $ from 'jquery';
 const LineChart = rd3.LineChart;
 
 class PulseBox extends Component {
+  constructor (props) {
+    super();
+    // console.log('props in pulseBox', props);
+  }
 
   render () {
     var currTime = new Date();
@@ -27,7 +31,7 @@ class PulseBox extends Component {
     var xMin = filteredPulse[0].x;
     var xMax = filteredPulse[0].x + 0.5;
     let audience = this.props.audience > 4 ? this.props.audience : 4;
-   // let yMax = Math.max([audience, 4]);
+
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
       $('.pulse-box').addClass('alert-red');
@@ -74,30 +78,30 @@ class PulseBox extends Component {
 
   // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
   componentWillMount () {
-    // console.log("PulseBox props in component will mount,", this.props)
     let startTime = this.props.startTime; // set keyword "this"
     let dispatch = this.props.dispatch; // set keyword "this"
     // socket event handler for an audience click that updates the presenter's pulse graph x axis
-    socket.on('updatedPulse', (action, currTime) => {
-      // compute the time difference and pass it with the action
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      // Dispatch either DECREMENT or INCREMENT action
-      dispatch({
-        type: action,
-        time: timeDifference
-      });
-    });
+
+    // this.socket.on('updatedPulse', (action, currTime) => {
+    //   // compute the time difference and pass it with the action
+    //   let timeDifference = timeDiffToMinutes(startTime, currTime);
+    //   // Dispatch either DECREMENT or INCREMENT action
+    //   dispatch({
+    //     type: action,
+    //     time: timeDifference
+    //   });
+    // });
     // socket event handler for an audience click that updates that audience member's array of clicks in the store
-    socket.on('userClicked', (action, currTime, user) => {
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      dispatch({
-        type: action,
-        time: timeDifference,
-        user: user
-      });
-      // This can be used to test that usersClicks have been added to store
-      // console.log(this.props.usersClicks);
-    });
+    // this.socket.on('userClicked', (action, currTime, user) => {
+    //   let timeDifference = timeDiffToMinutes(startTime, currTime);
+    //   dispatch({
+    //     type: action,
+    //     time: timeDifference,
+    //     user: user
+    //   });
+    //   // This can be used to test that usersClicks have been added to store
+    //   // console.log(this.props.usersClicks);
+    // });
   };
 };
 

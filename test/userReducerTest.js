@@ -1,5 +1,6 @@
 // tests for user reducer
 const assert = require('assert');
+const deepFreeze = require('deep-freeze');
 import  user  from '../client/src/reducers/userReducer.jsx';
 
 //POINTERS:
@@ -7,8 +8,8 @@ import  user  from '../client/src/reducers/userReducer.jsx';
 // 2) use deepFreeze to test purity of inputs
 
 describe('userReducer', function() {
-  var testState = {name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"}
-
+  var testState = {name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"};
+  deepFreeze(testState);
   describe('UNDEFINED ACTION', function(){
     it('should return default state if action is undefined', function () {
       assert.deepEqual(testState, user(testState, {type: 'TEST'}));
@@ -26,11 +27,11 @@ describe('userReducer', function() {
     it('it should change the role of the user', function() {
       assert.deepEqual(testState,
         user({name:"Alice", email: "alice@y.com",role:'audience', avatar:"alice_photo"},
-         {type: 'CHANGE_ROLE', role: 'presenter'}));
+        {type: 'CHANGE_ROLE', role: 'presenter'}));
     });
     it('it should not accept other roles aside from presenter or audience', function() {
       assert.deepEqual(testState, user({name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"},
-       {type: 'CHANGE_ROLE', role:'scrum master'}))
+      {type: 'CHANGE_ROLE', role:'scrum master'}))
     })
   });
 });

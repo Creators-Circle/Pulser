@@ -100,60 +100,47 @@ app.get('/', function (req, res) {
   }
 });
 
-// let the App know whether or not there is already a presenter
-app.get('/audienceOnly', function (req, res) {
-  // console.log('about to send audienceOnly response ', audienceOnly);
-  res.send({audienceOnly: audienceOnly});
+// transfer this to a api router--------
+app.get('/user', function (req, res) {
+  // console.log('user', req.session.id);
+  let user = userData.filter((user) => user.token === req.session.token);
+  res.json(user[0]);
 });
 
-// Vestigial HotFix Route
-// resets the audienceOnly switch to false.
-app.get('/!audienceOnly', function (req, res) {
-  // console.log('received an !audienceOnly request');
-  audienceOnly = false;
-  res.send('audienceOnly set to false');
+// a route to create a new socket namespace
+app.post('/newRoom', function (req, res) {
+  console.log('room in post request', req.body.room);
+  // launch a custom namespace called 'nsp' for the presentation 'room'
+  let nsp = io.of(`/${req.body.room}`);
+  // ------------------------------------
+  // Socket.io listeners / emitters for the presentation 'room'
+  nsp.on('connection', function (socket) {
+    console.log('a user connected to ', nsp.name);
+
+    nsp.emit('connected');
+
+    // Listen for Audience button clicks
+    socket.on('updatePulse', function (action, currTime) {
+      // console.log('updatePulse event: ', action, currTime);
+      // Broadcast to presenter (technically also everyone else)
+      nsp.emit('updatedPulse', action, currTime);
+    });
+    // Listen for user clicks
+    socket.on('userClick', function (action, currTime, user) {
+      // console.log('userClick event: ', action, currTime, user);
+      // Broadcast to presenter (technically also everyone else)
+      nsp.emit('userClicked', action, currTime, user);
+    });
+
+    socket.on('disconnect', function (socket) {
+      console.log('a user disconnected from ', nsp.name);
+      // Alert the presenter that an audience member has disconnected
+      nsp.emit('disconnected');
+    });
+  });
+  res.send('post accepted');
 });
-
-app.get('/logout', function (req, res) {
-  // destroy the user's session to log them out
-  // will be re-created next request
-  console.log('goodbye');
-  req.session.destroy(function () {
-    res.redirect('/');
-  });
-});
-
-// Socket.io listeners / emitters
-io.on('connection', function (socket) {
-  console.log('a user connected');
-  // Alert the presenter that an audience member has connected
-  io.emit('connected');
-  // Listen for audienceOnly event
-  socket.on('audienceOnly', function () {
-    audienceOnly = true;
-    // console.log('server heard audienceOnly and emitted an audienceOnly event')
-  });
-  // Listen for !audienceOnly event, which is intended to undo the audienceOnly event
-  socket.on('!audienceOnly', function () {
-    audienceOnly = false;
-  });
-  // Listen for Audience button clicks
-  socket.on('updatePulse', function (action, currTime) {
-    // console.log('updatePulse event: ', action, currTime);
-    // Broadcast to presenter (technically also everyone else)
-    io.emit('updatedPulse', action, currTime);
-  });
-
-  socket.on('userClick', function (action, currTime, user) {
-    io.emit('userClicked', action, currTime, user);
-  });
-
-  socket.on('disconnect', function () {
-    console.log('a user disconnected');
-    // Alert the presenter that an audience member has disconnected
-    io.emit('disconnected');
-  });
-});
+// --------------------------------------
 
 // helper function for creating a session
 var createSession = function (req, res, token) {

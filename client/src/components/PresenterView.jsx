@@ -19,28 +19,29 @@ class PresenterView extends Component {
   constructor () {
     super();
     this.date = new Date();
-    this.state = {audience: 0};
+    this.state = {
+      audience: 0
+    };
   }
 
   componentDidMount () {
     // If an audience member has connected, update the state
-    socket.on('connected', () => {
-      this.setState({audience: ++this.state.audience});
-    });
-    socket.on('disconnected', () => {
-      // If an audience member has disconnected, update the state
-      if (this.state.audience > 0) {
-        this.setState({audience: --this.state.audience});
-      }
-    });
-    $('#stopPresentation').on('click', function () {
-      // emit an !audienceOnly event to the server to reset audienceOnly
-      socket.emit('!audienceOnly');
-    });
+
+    // this.socket.on('connected', () => {
+    //   this.setState({audience: ++this.state.audience});
+    // });
+    // If an audience member has disconnected, update the state
+    // this.socket.on('disconnected', () => {
+    //   // Don't decrement the audience count past 0
+    //   if (this.state.audience > 0) {
+    //     this.setState({audience: --this.state.audience});
+    //   }
+    // });
   }
 
   render () {
     // inserted temporary button to test Google Picker functionality
+    console.log('Lecture ID:', this.props.activeLecture.lectureId);
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>

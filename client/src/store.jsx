@@ -5,13 +5,15 @@ import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
 import pulseData from './reducers/pulseData';
 import userLectures from './reducers/userLectures';
+import activeLecture from './reducers/activeLecture';
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
   user,
   usersClicks,
-  userLectures
+  userLectures,
+  activeLecture
 });
 
 const store = createStore(combinedReducers);

@@ -1,7 +1,16 @@
 // Google Picker window to choose presentation from user's Google Drive files
+// Assign a lectureId to the chosen presentation. Load this information to the store 
+// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
+
+// Assign a lectureId to the chosen presentation. Load this information to the store 
+// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 
 import $ from 'jquery';
-import checkAuth from './googleSlides';
+import setLectureId from './setLectureId';
+// import { connect } from 'react-redux';
+import store from '../store.jsx';
+import { browserHistory } from 'react-router';
+
 
 // The Browser API key obtained from the Google Developers Console.
 var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
@@ -63,29 +72,29 @@ function createPicker() {
         .setDeveloperKey(developerKey)
         .setCallback(pickerSlideCallback)
         .build();
-     picker.setVisible(true);
-  }
-}
-
-// A simple callback implementation.
-function pickerCallback(data) {
-  if (data.action == google.picker.Action.PICKED) {
-    var fileId = data.docs[0].id;
-    alert('The user selected: ' + fileId);
-    console.log('Selected: ', data.docs[0]);
+    picker.setVisible(true);
   }
 }
 
 function pickerSlideCallback(data) {
   if (data.action == google.picker.Action.PICKED) {
-    var selectedPresentation = data.docs[0].id;
+    let selectedPresentation = data.docs[0].id;
+    let name = data.docs[0].name;
+    let embedUrl = data.docs[0].embedUrl;
     console.log('Data: ', data.docs[0])
-    checkAuth();
-     // google.apps.slides.v1.PresentationsService.GetPresentation 
-    //  GET https://slides.googleapis.com/v1/presentations/
-    // $.get(`https://slides.googleapis.com/v1/presentations/${fileId}?fields=presentationId%2Cslides%2Ctitle&key=${developerKey}`, function(response) {
-    //   console.log('Slides response: ', response);
-    // })
+    let lectureId = setLectureId()
+    $.post('/newRoom', {room: lectureId});
+    console.log("DATA:", data)
+    store.dispatch({
+      type: 'ASSIGN_LECTURE_ID',
+      presentationId: selectedPresentation,
+      lectureId: lectureId,
+      embedUrl: embedUrl,
+      name: name,
+      socket: io(`/${lectureId}`)
+    });
+    browserHistory.push('/presenter');
   }
 }
-export default loadPicker;
+
+export default loadPicker

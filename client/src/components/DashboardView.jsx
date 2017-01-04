@@ -17,12 +17,10 @@ class DashboardView extends Component {
         <div>
           <NewPresButton/>
           <Searchbar/>
-          <Link to='/presenter'><button id='presenterButton'>Presenter</button></Link>
-          <Link to='/audience'><button id='audienceButton'>Audience</button></Link>
           <UserInfo/>
         </div>
         <DashMainContent/>
-        <JoinPresBox/>
+        <JoinPresBox />
       </div>
     );
   };

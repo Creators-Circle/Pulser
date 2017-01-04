@@ -55,7 +55,6 @@ Presentation:  A set of Google slides.
 lectureId:  ID assigned in database to lecture.
 presentationId:  The ID provided by Google Slides API for slides.
 
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
