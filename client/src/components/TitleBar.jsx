@@ -1,6 +1,6 @@
-//TitleBar renders at the top of PresenterView.
+//  TitleBar renders at the top of PresenterView.
   // Displays the presentation title and the Date as default lectureTitle.
-    //lectureTitle is editable.
+    //  lectureTitle is editable.
   // Displays lectureID.
 
 import React, { Component } from 'react';
