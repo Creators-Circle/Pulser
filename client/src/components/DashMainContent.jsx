@@ -20,8 +20,8 @@ class DashMainContent extends Component {
   }
 
   render () {
-    let search = false; // temp variable to be replaced with state value
-    if (!search) {
+    // let search = false; // temp variable to be replaced with state value
+    if (!this.props.search) {
       return (
         <div>
           <div id='recentMenu'>
@@ -33,7 +33,10 @@ class DashMainContent extends Component {
       );
     } else {
       return (
-        <SearchResults />
+        <div>
+          <h1>Search Results</h1>
+          <SearchResults />
+        </div>
       );
     }
   };
