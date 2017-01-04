@@ -10,7 +10,7 @@ class DashMainContent extends Component {
   constructor () {
     super();
     this.state = {
-      role: 'presenter'
+      role: 'presenter'// state for changing the view of presPreview component
     };
   }
 

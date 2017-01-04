@@ -29,7 +29,7 @@ class PresPreviews extends Component {
           recentLectures.length > 0
             ? recentLectures.map(lecture =>
               <PresThumb key = {lecture.id} date = {lecture.date} name = {lecture.name} />
-            ) : null
+            ) : <p>No recent activites</p>
         }
       </div>
     );
