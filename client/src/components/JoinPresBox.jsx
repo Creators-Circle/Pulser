@@ -9,23 +9,23 @@ class JoinPresBox extends Component {
 
   joinPresentation () {
     let lectureId = $('#join').val();
-    console.log('this', this);
     let socket = io(`/${lectureId}`);
-    this.props.dispatch({
+    let dispatch = this.props.dispatch;
+    
+    dispatch({
       type: 'ASSIGN_LECTURE_ID',
       lectureId: lectureId,
       socket: socket
     });
-    // socket.emit('requestPresentation');
-    // socket.on(this.props.user.name, function (data) {
-    //   this.props.dispatch({
-    //     type: 'ASSIGN_LECTURE_ID',
-    //     lectureId: lectureId,
-    //     presentationId: data
-    //   })
-    // })
-    console.log('presentation joined');
-    browserHistory.push('/audience');
+      socket.on('presentationUrlResponse', function (presentationUrl) {
+        dispatch({
+          type: 'ASSIGN_LECTURE_ID',
+          lectureId: lectureId,
+          embedUrl: presentationUrl
+        })
+        browserHistory.push('/audience');
+      })
+      socket.emit('presentationUrlRequest');
   }
 
   render () {

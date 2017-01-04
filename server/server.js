@@ -119,6 +119,19 @@ app.post('/newRoom', function (req, res) {
 
     nsp.emit('connected');
 
+    // 
+    socket.on('presentationUrlRequest', function () {
+      // Broadcast to presenter (technically also everyone else)
+      console.log('User requesting presentationUrl')
+      nsp.emit('presentationUrlRequest');
+    });
+
+    socket.on('presentationUrlResponse', function (presentationUrl) {
+      console.log('Lecturer responding with presentationUrl')
+      console.log('presentationUrl:', presentationUrl)
+      nsp.emit('presentationUrlResponse', presentationUrl);
+    });
+
     // Listen for Audience button clicks
     socket.on('updatePulse', function (action, currTime) {
       // console.log('updatePulse event: ', action, currTime);

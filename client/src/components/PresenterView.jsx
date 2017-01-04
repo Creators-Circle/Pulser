@@ -25,8 +25,23 @@ class PresenterView extends Component {
   }
 
   componentDidMount () {
+    let presentationUrl = this.props.activeLecture.embedUrl;
+    let socket = this.props.activeLecture.socket;
+
+    socket.on('presentationUrlRequest', function () {
+      socket.emit('presentationUrlResponse', presentationUrl);
+    });
+
     // If an audience member has connected, update the state
 
+    socket.on('connected', () => {
+      // Another User has connected
+      // Need to increment the audience store
+    })
+    socket.on('disconnected', () => {
+      // A user has left the lecture
+      // Need to decrement the audience store (but not past 0)
+    })
     // this.socket.on('connected', () => {
     //   this.setState({audience: ++this.state.audience});
     // });
