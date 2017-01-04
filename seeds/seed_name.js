@@ -82,17 +82,16 @@ exports.seed = function (knex, Promise) {
 //  a083b72cbc4b          | Sheel Bedi       | https://avatars.githubusercontent.com/u/13170829?v=3                                         | sheel.bedi@gmail.com
 //  ea2f59c19983          | Christian Aquino | https://avatars.githubusercontent.com/u/17533705?v=3                                         | christianaquino223@gmail.com
 // lectures
-//    id   |          name           |             date              | presentation_id 
+//    id   |          name           |             date              | presentation_id
 // --------+-------------------------+-------------------------------+-----------------
-//  ea23aa | test time presenttion   | 2017-01-03 22:36:58.674286+00 | 
-//  ea2351 | test order presenttion  | 2017-01-03 22:37:13.609998+00 | 
-//  ea2355 | test1 order presenttion | 2017-01-03 22:46:06.317797+00 | 
-//  12dwwa | test server time        | 2017-01-03 22:53:48.70374+00  | 
-//  112355 | test1 order presenttion | 2017-01-03 22:55:19.220139+00 | 
-//  cc0001 | sample presentation     | 2017-01-03 22:58:04.039861+00 | 
+//  ea23aa | test time presenttion   | 2017-01-03 22:36:58.674286+00 |
+//  ea2351 | test order presenttion  | 2017-01-03 22:37:13.609998+00 |
+//  ea2355 | test1 order presenttion | 2017-01-03 22:46:06.317797+00 |
+//  12dwwa | test server time        | 2017-01-03 22:53:48.70374+00  |
+//  112355 | test1 order presenttion | 2017-01-03 22:55:19.220139+00 |
+//  cc0001 | sample presentation     | 2017-01-03 22:58:04.039861+00 |
 
 // questions
-//  id | lecture_id |   user_id    |    question     | votes 
+//  id | lecture_id |   user_id    |    question     | votes
 // ----+------------+--------------+-----------------+-------
 //   1 | ea23aa     | a083b72cbc4b | is this working |     0
-
