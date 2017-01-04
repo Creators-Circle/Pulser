@@ -14,6 +14,11 @@ exports.seed = function (knex, Promise) {
               return Promise.all([
                 knex('lectures').insert({id: 'cc0001', name: 'sample presentation', presentation_id: 'sample1', preview_image: 'https://www.engageselling.com/blog/wp-content/uploads/2014/12/RefreshBLogDecember2nd.jpg'}),
                 knex('lectures').insert({id: 'cc0002', name: 'sample presentation', presentation_id: 'sample2', preview_image: 'https://blognumbers.files.wordpress.com/2010/09/2.jpg'}),
+                knex('lectures').insert({id: 'ea23aa', name: 'test time presentation'}),
+                knex('lectures').insert({id: 'ea2351', name: 'test order presentation'}),
+                knex('lectures').insert({id: 'ea2355', name: 'test1 order presentation'}),
+                knex('lectures').insert({id: '12dwwa', name: 'test server time'}),
+                knex('lectures').insert({id: '112355', name: 'test1 order presentation'}),
                 knex('users').insert({id: '114267757081727627546', name: 'Sneaky Ross Topol', avatar: 'https://lh4.googleusercontent.com/-ENvzYvvyW_k/AAAAAAAAAAI/AAAAAAAAEOA/_nB-8dk8arg/photo.jpg', email: 'test@test.mail.com'}),
                 knex('users').insert({id: '110709938641205847283', name: 'Ari Gold Frankel', avatar: 'https://lh5.googleusercontent.com/-F0mWWBnynZI/AAAAAAAAAAI/AAAAAAAAP6o/IXUujroyAlo/photo.jpg', email: 'test@test.mail.com'}),
                 knex('users').insert({id: 'a083b72cbc4b', name: 'Sheel Freeway Rick Bedi', avatar: 'https://avatars.githubusercontent.com/u/13170829?v=3', email: 'sheel.bedi@gmail.com'}),
@@ -23,20 +28,20 @@ exports.seed = function (knex, Promise) {
                 knex('questions').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b', question: 'this is not clear', votes: 3}),
                 knex('questions').insert({lecture_id: 'cc0002', user_id: '114267757081727627546', question: 'can we go over that again', votes: 2}),
                 knex('questions').insert({lecture_id: 'cc0002', user_id: '110709938641205847283', question: 'can we go over that again', votes: 2}),
-                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0002', role: 'audience', comment: 'attentive', no_of_clicks: }),
+                knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0002', role: 'audience', comment: 'attentive', no_of_clicks: 3}),
                 knex('user_lectures').insert({user_id: 'a083b72cbc4b', lecture_id: 'cc0002', role: 'presenter', comment: 'i need to make this shorter', no_of_clicks: 0}),
                 knex('user_lectures').insert({user_id: 'ea2f59c19983', lecture_id: 'cc0001', role: 'presenter', comment: 'i need to add detail', no_of_clicks: 0}),
-                knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0002', role: 'audience', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0002', role: 'audience', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0001', role: 'audience', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0001', role: 'audience', comment:, no_of_clicks: }),
-                knex('user_lectures').insert({user_id: 'a083b72cbc4b', lecture_id: 'cc0001', role: 'audience'}),
+                knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0002', role: 'audience', comment: 'consider office hours on this topic', no_of_clicks: 2}),
+                knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0002', role: 'audience', comment: 'appears to understand material', no_of_clicks: 1}),
+                knex('user_lectures').insert({user_id: '114267757081727627546', lecture_id: 'cc0001', role: 'audience', comment: 'consider remedial instruction', no_of_clicks: 2}),
+                knex('user_lectures').insert({user_id: '110709938641205847283', lecture_id: 'cc0001', role: 'audience', comment: 'consider office hours', no_of_clicks: 1}),
+                knex('user_lectures').insert({user_id: 'a083b72cbc4b', lecture_id: 'cc0001', role: 'audience', comment: 'consider office hours', no_of_clicks: 3}}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '114267757081727627546'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '110709938641205847283'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: '114267757081727627546'}),
                 knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
-                knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'})
+                knex('users_clicks').insert({lecture_id: 'cc0001', user_id: 'a083b72cbc4b'}),
                 knex('users_clicks').insert({lecture_id: 'cc0002', user_id: '114267757081727627546'}),
                 knex('users_clicks').insert({lecture_id: 'cc0002', user_id: '110709938641205847283'}),
                 knex('users_clicks').insert({lecture_id: 'cc0002', user_id: 'a083b72cbc4b'}),
@@ -50,7 +55,6 @@ exports.seed = function (knex, Promise) {
       });
     });
 };
-
 // user_lectures
 // id |        user_id        | lecture_id |   role
 // ea2f59c19983          | cc0001     | presenter
@@ -75,7 +79,7 @@ exports.seed = function (knex, Promise) {
 //  110709938641205847283 | Ari Frankel      | https://lh5.googleusercontent.com/-F0mWWBnynZI/AAAAAAAAAAI/AAAAAAAAP6o/IXUujroyAlo/photo.jpg | test@test.mail.com
 //  a083b72cbc4b          | Sheel Bedi       | https://avatars.githubusercontent.com/u/13170829?v=3                                         | sheel.bedi@gmail.com
 //  ea2f59c19983          | Christian Aquino | https://avatars.githubusercontent.com/u/17533705?v=3                                         | christianaquino223@gmail.com
-
+// lectures
 //    id   |          name           |             date              | presentation_id 
 // --------+-------------------------+-------------------------------+-----------------
 //  ea23aa | test time presenttion   | 2017-01-03 22:36:58.674286+00 | 
