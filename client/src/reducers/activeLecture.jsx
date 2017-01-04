@@ -1,5 +1,5 @@
 // reducer for storing data about a presentation, including a lectureId for that lecture
-// state = { lectureId1 : {name: String, id: String}, ...}
+// state = { lectureId: lectureId : name: String, id: String, ...}
 // action = {type: STRING, presentationId: String, presentationName: String, lectureId: String }
 const activeLecture = (state = {}, action) => {
   switch (action.type) {
