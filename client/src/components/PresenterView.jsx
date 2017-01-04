@@ -25,22 +25,39 @@ class PresenterView extends Component {
   }
 
   componentDidMount () {
+    let presentationUrl = this.props.activeLecture.embedUrl;
+    let socket = this.props.activeLecture.socket;
+    console.log('Lecture ID:', this.props.activeLecture.lectureId); // REMOVE WHEN <TitleBar/> IS PRESENT
+
+    // Listen for audience request for presentation URL
+    socket.on('presentationUrlRequest', function () {
+      // response with presentation URL
+      socket.emit('presentationUrlResponse', presentationUrl);
+    });
+
     // If an audience member has connected, update the state
     // this.socket.on('connected', () => {
     //   this.setState({audience: ++this.state.audience});
     // });
+    socket.on('connected', () => {
+      // Another User has connected
+      // Need to increment the audience store
+      // OLD CODE (REFACTOR): this.setState({audience: ++this.state.audience});
+    });
+
     // If an audience member has disconnected, update the state
-    // this.socket.on('disconnected', () => {
-    //   // Don't decrement the audience count past 0
-    //   if (this.state.audience > 0) {
-    //     this.setState({audience: --this.state.audience});
-    //   }
-    // });
+    socket.on('disconnected', () => {
+      // A user has left the lecture
+      // Need to decrement the audience store (but not past 0)
+    /* OLD CODE (REFACTOR):
+        if (this.state.audience > 0) {
+          this.setState({audience: --this.state.audience});
+        }
+    */
+    });
   }
 
   render () {
-    // inserted temporary button to test Google Picker functionality
-    console.log('Lecture ID:', this.props.activeLecture.lectureId);
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>
