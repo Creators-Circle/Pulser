@@ -27,7 +27,7 @@ module.exports = {
     var user = req.session.token;
     db.select('*').from('lectures')
     .join('user_lectures', 'lectures.id', 'user_lectures.lecture_id')
-    .where({user_id: user, role: 'presenter'}).orderBy('date', 'desc')
+    .where({user_id: user}).orderBy('date', 'desc')
     .then(function (data) {
       console.log('presentations', data);
       res.send(data);
