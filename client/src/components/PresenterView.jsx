@@ -14,7 +14,6 @@ import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
-import io from 'socket.io-client';
 
 class PresenterView extends Component {
   constructor () {
@@ -24,7 +23,7 @@ class PresenterView extends Component {
 
   componentDidMount () {
     // If an audience member has connected, update the state
-
+    
     // this.socket.on('connected', () => {
     //   this.setState({audience: ++this.state.audience});
     // });

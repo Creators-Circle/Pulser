@@ -4,7 +4,6 @@ import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
 import $ from 'jquery';
-import io from 'socket.io-client';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
