@@ -1,6 +1,7 @@
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
+  console.log("name")
   return knex('users_clicks').del()
     .then(function () {
       return Promise.all([
