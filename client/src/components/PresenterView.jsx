@@ -58,7 +58,8 @@ class PresenterView extends Component {
       <div>
       <LogoutButton/>
       <div className = 'presenter-view'>
-        <Slides />
+        <TitleBar className = 'title-bar' />
+        <Slides id="presenterSlides" role="presenter"/>
         <Sidebar />
         <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
