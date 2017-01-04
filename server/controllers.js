@@ -32,5 +32,23 @@ module.exports = {
     .then(function (data) {
       res.send(data);
     });
+  },
+  getSummary: function (req, res) {
+    var lectureId = req.params.lecture_id;
+    var summary = {};
+    db.select('*').from('users')
+    .join('user_lectures', 'users.id', 'user_lectures.user_id')
+    .where('lecture_id', lectureId)
+    .then(function (users) { summary.users = users; })
+    .then(function () {
+      return db.select('*').from('users_clicks').where('lecture_id', lectureId);
+    })
+    .then(function (clicks) { summary.clicks = clicks; })
+    .then(function () {
+      return db.select('*').from('questions').where('lecture_id', lectureId);
+    }).then(function (questions) {
+      summary.questions = questions;
+      res.send(summary);
+    });
   }
 };
