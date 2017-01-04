@@ -5,6 +5,7 @@ import $ from 'jquery';
 import setLectureId from './setLectureId';
 import { connect } from 'react-redux';
 import store from '../store.jsx';
+import { browserHistory } from 'react-router';
 // The Browser API key obtained from the Google Developers Console.
 var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
 
