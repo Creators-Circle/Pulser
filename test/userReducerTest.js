@@ -35,12 +35,12 @@ describe('userReducer', function() {
     })
   });
 
-  describe('ASSIGN_NSP', function () {
-    var nspTestState = {name:'Alice', email: "alice@y.com",role:'presenter', avatar:"alice_photo", nsp:'123abc'};
-    deepFreeze(nspTestState);
-    it('it should assign the user to a namespace', function () {
-      assert.deepEqual(nspTestState, user({name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"}, 
-      {type: 'ASSIGN_NSP', nsp: '123abc'}));
-    })
-  })
+  // describe('ASSIGN_LECTURE', function () {
+  //   var lectureTestState = {name:'Alice', email: "alice@y.com",role:'presenter', avatar:"alice_photo", lecture:'123abc'};
+  //   deepFreeze(lectureTestState);
+  //   it('it should assign the user to a namespace', function () {
+  //     assert.deepEqual(lectureTestState, user({name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"}, 
+  //     {type: 'ASSIGN_LECTURE', lecture: '123abc'}));
+  //   })
+  // })
 });

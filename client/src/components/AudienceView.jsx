@@ -7,7 +7,6 @@ import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import React, { Component } from 'react';
 import $ from 'jquery';
-import io from 'socket.io-client';
 
 class AudienceView extends Component {
   constructor () {
@@ -17,21 +16,11 @@ class AudienceView extends Component {
     };
   }
 
-  joinPresentation () {
-    // console.log("this.socket in AudienceView: ", this.socket);
-    let roomId = $('#joinPresentation').val();
-    this.setState({room: io(`/${roomId}`)});
-  }
-
   render () {
     return (
       <div>
-        <span>Join a Presentation:
-          <input type="text" id="joinPresentation"></input>
-          <button id="joinPresentationButton" onClick={this.joinPresentation.bind(this)}>JOIN!</button>
-        </span>
         <Slides id="audienceSlides" class="slides" role="audience"/>
-        <FeedbackBox socket={this.state.room}/>
+        <FeedbackBox/>
       </div>
     );
   }
