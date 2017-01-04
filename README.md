@@ -49,8 +49,11 @@ npm start
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
+### Important Nomenclature
+Lecture:  A specific instance in which a presenter is giving a presentation.
+Presentation:  A set of Google slides.
+lectureId:  ID assigned in database to lecture.
+presentationId:  The ID provided by Google Slides API for slides.
 
 ## Contributing
 

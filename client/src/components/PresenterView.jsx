@@ -19,18 +19,9 @@ class PresenterView extends Component {
   constructor () {
     super();
     this.date = new Date();
-    this.state = {audience: 0};
-    // Generate a random, 6 character string to name the socket 'room' for that presentation
-    this.room = (Math.random().toString(36) + '00000000000000000').slice(2, 8);
-    // Join the presenter to that room
-    // this.socket = io(`/${this.room}`);
-    let room = this.room;
-    $.ajax({
-      type: 'POST',
-      url: '/newRoom',
-      data: JSON.stringify({room: room}),
-      contentType: 'application/json'
-    });
+    this.state = {
+      audience: 0
+    };
   }
 
   componentDidMount () {
@@ -49,6 +40,7 @@ class PresenterView extends Component {
 
   render () {
     // inserted temporary button to test Google Picker functionality
+    console.log('Lecture ID:', this.props.activeLecture.lectureId);
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>

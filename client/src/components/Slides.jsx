@@ -1,21 +1,24 @@
 // Component to display embedded Goolge Slides presentation
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import $ from 'jquery';
 
 class Slides extends Component {
 
   render () {
-    let slidesId = '1pjT5Dgb9DVmxEPe3KvAcjUIRLhsPY458PWPwZ6uce40';
+    let embedUrl = this.props.activeLecture.embedUrl;
+    let title = this.props.activeLecture.name;
+    let id = this.props.activeLecture.presentationId;
     // return <iframe> with embedded google slides presentation
     // current default presentation is "Effective Pairing and Feedback"
     return (
       <iframe
       className="slides"
-      id={this.props.id}
+      id={id}
       allowFullScreen="true"
       type="iframe"
-      title={ undefined /* <-- Will need to be replaced with variable */ || '[Slides] Effective Pairing and Feedback' }
-      src={ `https://docs.google.com/a/hackreactor.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000` }
+      title={title}
+      src={embedUrl}
       >
       </iframe>
     );
@@ -26,4 +29,4 @@ class Slides extends Component {
   }
 }
 
-export default Slides;
+export default connect(state => state)(Slides);
