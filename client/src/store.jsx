@@ -5,7 +5,7 @@ import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
 import pulseData from './reducers/pulseData';
 import userLectures from './reducers/userLectures';
-import presentationsLectures from './reducers/presentationsLectures';
+import activeLecture from './reducers/activeLecture';
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
@@ -13,7 +13,7 @@ const combinedReducers = combineReducers({
   user,
   usersClicks,
   userLectures,
-  presentationsLectures
+  activeLecture
 });
 
 const store = createStore(combinedReducers);

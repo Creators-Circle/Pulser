@@ -7,8 +7,10 @@
 
 import $ from 'jquery';
 import setLectureId from './setLectureId';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import store from '../store.jsx';
+import { browserHistory } from 'react-router';
+
 
 // The Browser API key obtained from the Google Developers Console.
 var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
@@ -77,13 +79,21 @@ function createPicker() {
 function pickerSlideCallback(data) {
   if (data.action == google.picker.Action.PICKED) {
     let selectedPresentation = data.docs[0].id;
+    let name = data.docs[0].name;
+    let embedUrl = data.docs[0].embedUrl;
     console.log('Data: ', data.docs[0])
     let lectureId = setLectureId()
+    $.post('/newRoom', {room: lectureId});
+    console.log("DATA:", data)
     store.dispatch({
       type: 'ASSIGN_LECTURE_ID',
       presentationId: selectedPresentation,
-      lectureId: lectureId
+      lectureId: lectureId,
+      embedUrl: embedUrl,
+      name: name,
+      socket: io(`/${lectureId}`)
     });
+    browserHistory.push('/presenter');
   }
 }
 

@@ -38,6 +38,7 @@ class PresenterView extends Component {
 
   render () {
     // inserted temporary button to test Google Picker functionality
+    console.log('Lecture ID:', this.props.activeLecture.lectureId);
     return (
       <div className = 'presenter-view'>
         <Slides id="presenterSlides" role="presenter"/>

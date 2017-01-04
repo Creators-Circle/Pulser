@@ -109,7 +109,7 @@ app.get('/user', function (req, res) {
 
 // a route to create a new socket namespace
 app.post('/newRoom', function (req, res) {
-  // console.log('room in post request', req.body.room);
+  console.log('room in post request', req.body.room);
   // launch a custom namespace called 'nsp' for the presentation 'room'
   let nsp = io.of(`/${req.body.room}`);
   // ------------------------------------
