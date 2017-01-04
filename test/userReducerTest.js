@@ -34,16 +34,4 @@ describe('userReducer', function() {
       {type: 'CHANGE_ROLE', role:'scrum master'}))
     })
   });
-<<<<<<< HEAD
-=======
-
-  // describe('ASSIGN_LECTURE', function () {
-  //   var lectureTestState = {name:'Alice', email: "alice@y.com",role:'presenter', avatar:"alice_photo", lecture:'123abc'};
-  //   deepFreeze(lectureTestState);
-  //   it('it should assign the user to a namespace', function () {
-  //     assert.deepEqual(lectureTestState, user({name:"Alice", email: "alice@y.com",role:'presenter', avatar:"alice_photo"}, 
-  //     {type: 'ASSIGN_LECTURE', lecture: '123abc'}));
-  //   })
-  // })
->>>>>>> lecturesPresentations
 });
