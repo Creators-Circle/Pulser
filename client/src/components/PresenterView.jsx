@@ -46,13 +46,12 @@ class PresenterView extends Component {
     socket.on('disconnected', () => {
       // A user has left the lecture
       // Need to decrement the audience store (but not past 0)
-    /* OLD CODE (REFACTOR): 
+    /* OLD CODE (REFACTOR):
         if (this.state.audience > 0) {
           this.setState({audience: --this.state.audience});
         }
     */
     });
-
   }
 
   render () {

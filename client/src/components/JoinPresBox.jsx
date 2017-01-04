@@ -10,7 +10,7 @@ class JoinPresBox extends Component {
   joinPresentation () {
     // Get lectureId from input box above join button
     let lectureId = $('#join').val();
-    
+
     // Subscribe to custom namespace based on lectureId
     let socket = io(`/${lectureId}`);
 
@@ -19,7 +19,6 @@ class JoinPresBox extends Component {
 
     // Listen for presentation URL response from presenter
     socket.on('presentationUrlResponse', function (presentationUrl) {
-
       // Update store with presentation data and store socket reference
       dispatch({
         type: 'ASSIGN_LECTURE_ID',

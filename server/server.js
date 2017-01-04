@@ -122,14 +122,14 @@ app.post('/newRoom', function (req, res) {
 
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
+      // console.log('User requesting presentationUrl');
       // Send request to presenter (technically also everyone else)
-      console.log('User requesting presentationUrl')
       nsp.emit('presentationUrlRequest');
     });
 
     // Listen for presenter's response with presesntation URL
     socket.on('presentationUrlResponse', function (presentationUrl) {
-      console.log('Lecturer responding with presentationUrl')
+      // console.log('Lecturer responding with presentationUrl');
       // Send response to audience member
       nsp.emit('presentationUrlResponse', presentationUrl);
     });
