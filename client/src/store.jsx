@@ -4,12 +4,14 @@ import { createStore, combineReducers } from 'redux';
 import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
 import pulseData from './reducers/pulseData';
+import userLectures from './reducers/userLectures';
 
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
   user,
-  usersClicks
+  usersClicks,
+  userLectures
 });
 
 const store = createStore(combinedReducers);

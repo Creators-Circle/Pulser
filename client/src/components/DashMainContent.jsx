@@ -7,6 +7,16 @@ import '../css/Dashboard.css';
   // by default it renders Recently Presented Slideshows / Recently Viewed Presentations
   // if a specific presentation is searched for, the results will appear in this area
 class DashMainContent extends Component {
+  constructor () {
+    super();
+    this.state = {
+      role: 'presenter'// state for changing the view of presPreview component
+    };
+  }
+
+  changeView (view) {
+    this.setState({role: view});
+  }
 
   render () {
     let search = false; // temp variable to be replaced with state value
@@ -14,9 +24,9 @@ class DashMainContent extends Component {
       return (
         <div>
           <div id='recentMenu'>
-            <div id='recentlyPresented'>Recently Presented</div>
-            <div id='recentlyViewed'>Recently Viewed</div>
-            <PresPreviews />
+            <div id='recentlyPresented' onClick = { () => { this.changeView('presenter'); } }>Recently Presented</div>
+            <div id='recentlyViewed' onClick = { () => { this.changeView('audience'); } }>Recently Viewed</div>
+            <PresPreviews role = {this.state.role} />
           </div>
         </div>
       );
