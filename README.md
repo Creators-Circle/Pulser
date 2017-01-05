@@ -26,7 +26,7 @@ FollowMe -- Give your teacher the thumb!
 Node
 Express
 React/Redux
-PostgresSQL
+Knex/PostgresSQL
 
 
 ## Development Requirements
@@ -40,6 +40,13 @@ heroku pg:psql DATABASE_URL --app present-me-beta
 
 From within the root directory:
 npm install
+
+### Run the Seed File
+FollowMe comes with Dummy Data located in the /seeds directory
+To load this data into the databases, type:
+knex seed:run
+
+This command will wipe the existing database and reload it with dummy data. 
 
 ### Setup and Running Server
 To start the server
