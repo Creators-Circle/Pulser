@@ -35,10 +35,6 @@ class PresenterView extends Component {
       socket.emit('presentationUrlResponse', presentationUrl);
     });
 
-    // If an audience member has connected, update the state
-    // this.socket.on('connected', () => {
-    //   this.setState({audience: ++this.state.audience});
-    // });
     socket.on('connected', () => {
       // Another User has connected
       // Need to increment the audience store

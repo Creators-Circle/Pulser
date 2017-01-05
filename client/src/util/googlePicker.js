@@ -3,7 +3,6 @@
 // TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 import $ from 'jquery';
 import setLectureId from './setLectureId';
-import { connect } from 'react-redux';
 import store from '../store.jsx';
 import { browserHistory } from 'react-router';
 // The Browser API key obtained from the Google Developers Console.
