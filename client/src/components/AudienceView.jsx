@@ -6,6 +6,7 @@
 import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import React, { Component } from 'react';
+import LogoutButton from './LogoutButton';
 import $ from 'jquery';
 
 class AudienceView extends Component {
@@ -13,8 +14,11 @@ class AudienceView extends Component {
   render () {
     return (
       <div>
+      <LogoutButton/>
+      <div>
         <Slides id="audienceSlides" class="slides" role="audience"/>
         <FeedbackBox/>
+      </div>
       </div>
     );
   }
