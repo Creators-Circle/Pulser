@@ -21,8 +21,6 @@ class SummaryView extends Component {
   }
 
   render () {
-    // test for displaying summary
-    console.log('summary', this.props.summary);
     return (
       <div>
       <LogoutButton/>

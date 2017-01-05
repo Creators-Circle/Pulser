@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
-    console.log('summary main pain', this.props.summary);
     // store all the users
     var users = this.props.summary.users;
     // compute total number of clicks
@@ -14,7 +13,8 @@ class SummaryMainPane extends Component {
       return sum + Number(curr.no_of_clicks);
     }, 0);
     // compute the average click per user, remove the presenter from the users
-    let avgClickPerUser = totalClicks / (users.length - 1);
+    // round to 1 decimal place
+    let avgClickPerUser = Math.round((totalClicks / (users.length - 1) * 10)) / 10;
     // total number of questions asked about the lecture
     let questions = this.props.summary.questions.length;
     // store count of clicks per minute
@@ -25,8 +25,8 @@ class SummaryMainPane extends Component {
     });
     // copy time of click to an array
     let time = Object.keys(clickPerTime);
-    // compute the average click per minute
-    let avgClickPerMinute = totalClicks / time.length;
+    // compute the average click per minute then round to 1 decimal place
+    let avgClickPerMinute = Math.round((totalClicks / time.length) * 10) / 10;
     // sort by the highest number of clicks then get the first element
     let maxPeak = time.sort((a, b) => clickPerTime[b] - clickPerTime[a])[0];
     // convert time to minutes
@@ -35,7 +35,7 @@ class SummaryMainPane extends Component {
       return Number(time[0]) * 60 + Number(time[1]);
     });
     // compute the longest time the users didn't click the feedback button
-    var longestMinutesWithOutClicks = 0;
+    let longestMinutesWithOutClicks = 0;
     for (var i = 0; i < minutes.length - 1; i++) {
       let difference = Math.abs(minutes[i] - minutes[i + 1]);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
