@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Slides from './Slides';
 import { Link } from 'react-router';
-import getUserData from '../util/getUserData';
-import $ from 'jquery';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
 
   render () {
-    console.log('props in TotalClicksView: ', this.props);
-    // Render a table of users and their total clicks
-    for (var user in this.props.usersClicks) {
-      $('#usersClicks').find('tr:gt(0)').remove();
-      $('#usersClicks tr:last').after(`<tr><td><a class="user" data-user=${user.split(' ').join('_')}>${user}</a></td><td>${this.props.usersClicks[user].length}</td></tr>`);
-    }
-    // Pull out the usersClicks from the this context of React for use in jQuery
-    var usersClicks = this.props.usersClicks;
-    $('.user').on('click', function () {
-      alert(usersClicks[$(this).data('user').split('_').join(' ')]);
-    });
+    // pull out the users from the store and filter by audience
+    let usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
+
     return (
       <div>
         <Link to="/">Home</Link>
@@ -29,6 +18,14 @@ class TotalClicksTable extends Component {
             <th>User</th>
             <th>Clicks</th>
           </tr>
+          {
+            usersClicks.map(user =>
+            <tr>
+              <td><img id='profilePic' src={user.avatar} /><span>{user.name}</span></td>
+              <td>{user.no_of_clicks}</td>
+            </tr>
+            )
+          }
         </tbody>
         </table>
       </div>
@@ -38,7 +35,7 @@ class TotalClicksTable extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    usersClicks: state.usersClicks
+    summary: state.summary
   };
 };
 
