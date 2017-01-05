@@ -3,14 +3,13 @@
     //  lectureTitle is editable.
   // Displays lectureID.
 
-
 import React, { Component } from 'react';
 import UserInfo from './UserInfo';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 class TitleBar extends Component {
- constructor () {
+  constructor () {
     super();
     this.date = new Date();
   }

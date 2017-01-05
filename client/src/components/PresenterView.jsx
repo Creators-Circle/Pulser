@@ -1,6 +1,6 @@
 // Contains the elements for the Presenter, including:
   // TitleBar
-     //Is passed date from PresenterView props, lectureId from props, and 
+    //  Is passed date from PresenterView props, lectureId from props, and
   // Slides
   // Timer
   // Menu of yet to be built modules
@@ -31,6 +31,7 @@ class PresenterView extends Component {
   componentDidMount () {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
+
     //console.log('Lecture ID:', this.props.activeLecture.lectureId); Commenting out until TitleBar is confirmed working.
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
@@ -59,7 +60,7 @@ class PresenterView extends Component {
       <div>
       <LogoutButton/>
       <div className = 'presenter-view'>
-        <TitleBar className = 'title-bar' date={this.date} lectureId={this.props.activeLecture.lectureId} presentationId={this.props.presentationId} />
+        <TitleBar className = 'title-bar'/>
         <Slides id="presenterSlides" role="presenter"/>
         <Sidebar />
         <Timer/>
