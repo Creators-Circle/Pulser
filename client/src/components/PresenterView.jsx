@@ -15,6 +15,7 @@ import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
+import LogoutButton from './LogoutButton';
 
 class PresenterView extends Component {
   constructor () {
@@ -54,11 +55,14 @@ class PresenterView extends Component {
 
   render () {
     return (
+      <div>
+      <LogoutButton/>
       <div className = 'presenter-view'>
         <Slides />
         <Sidebar />
         <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
+      </div>
       </div>
     );
   }
