@@ -18,6 +18,7 @@ import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
 import LogoutButton from './LogoutButton';
+import TitleBar from './TitleBar';
 
 class PresenterView extends Component {
   constructor () {
@@ -59,8 +60,8 @@ class PresenterView extends Component {
     return (
       <div>
       <LogoutButton/>
-      <div className = 'presenter-view'>
-        <TitleBar className = 'title-bar'/>
+      <div className='presenter-view'>
+        <TitleBar className='title-bar'/>
         <Slides id="presenterSlides" role="presenter"/>
         <Sidebar />
         <Timer/>
