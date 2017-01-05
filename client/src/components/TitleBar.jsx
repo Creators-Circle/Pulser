@@ -3,25 +3,27 @@
     //  lectureTitle is editable.
   // Displays lectureID.
 
-  // Appears that currently the presentation name is not stored in state when presentation picked via googlePicker.
-    //  Will check in with Ross tomorrow on that.
 
 import React, { Component } from 'react';
 import UserInfo from './UserInfo';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-
 class TitleBar extends Component {
+ constructor () {
+    super();
+    this.date = new Date();
+  }
 
   render () {
     return (
       <div>
-       <h1> Lecture Title  {this.props.date}</h1>
-       <h2> LectureId {this.props.LectureId} </h2>
+       <h1> Lecture Title {this.props.activeLecture.name}</h1>
+       <h2> Join Code {this.props.activeLecture.lectureId} </h2>
+       <h3> Date {this.props.activeLecture.lectureId} </h3>
       </div>
     );
   };
 };
 
-export default TitleBar;
+export default connect(state => state)(TitleBar);
