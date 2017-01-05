@@ -33,18 +33,22 @@ module.exports = {
       res.send(data);
     });
   },
+  // getting the summary for lectures
   getSummary: function (req, res) {
     var lectureId = req.params.lecture_id;
     var summary = {};
+    // get all the users connected to the lecture
     db.select('*').from('users')
     .join('user_lectures', 'users.id', 'user_lectures.user_id')
     .where('lecture_id', lectureId)
     .then(function (users) { summary.users = users; })
     .then(function () {
+      // get all the clicks of the users
       return db.select('*').from('users_clicks').where('lecture_id', lectureId);
     })
     .then(function (clicks) { summary.clicks = clicks; })
     .then(function () {
+      // get all the questions for the lecture
       return db.select('*').from('questions').where('lecture_id', lectureId);
     }).then(function (questions) {
       summary.questions = questions;
