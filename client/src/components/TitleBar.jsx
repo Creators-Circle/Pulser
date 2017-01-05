@@ -2,7 +2,7 @@
   // Displays the presentation title and the Date as default lectureTitle.
     //  lectureTitle is editable.
   // Displays lectureID.
-  //TODO Make Title editable.
+  // TODO Make Title editable.
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
