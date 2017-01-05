@@ -29,14 +29,18 @@ class SummaryMainPane extends Component {
 
     console.log('clicks time', clickPerTime);
 
-    let avgClickPerMinute = totalClicks / Object.keys(clickPerTime).length - 1;
+    let time = Object.keys(clickPerTime);
+    let avgClickPerMinute = totalClicks / time.length;
     console.log('avgClickPerMinute', avgClickPerMinute);
+
+    let maxPeak = time.sort((a, b) => clickPerTime[b] - clickPerTime[a])[0];
+    console.log('max peak', maxPeak);
 
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
-        <SummaryInfoBox title={'Average click per minutes'}/>
-        <SummaryInfoBox title={'Max click peak'}/>
+        <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
+        <SummaryInfoBox title={'Max click peak'} value={maxPeak}/>
         <SummaryInfoBox title={'Number of minuts w/o clicks'}/>
         <SummaryInfoBox title={'Questions'} value={questions}/>
       </div>
