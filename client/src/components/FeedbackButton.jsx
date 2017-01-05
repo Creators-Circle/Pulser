@@ -15,29 +15,29 @@ class FeedbackButton extends Component {
   componentDidMount () {
     let canIncrement = true;
     let resetCode;
+    let socket = this.props.socket;
     document.getElementById('updatePulse').addEventListener('click', () => {
-      // console.log('props in FeedbackButton componentDidMount', this.props);
+      console.log('props in FeedbackButton componentDidMount', this.props);
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
-      // this.props.socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
-      // if (canIncrement) {
-      //   this.props.socket.emit('updatePulse', 'INCREMENT', new Date());
-      //   decrement();
-      //   canIncrement = false;
-      // } else {
-      //   resetDecrement();
-      // }
+      socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
+      if (canIncrement) {
+        socket.emit('updatePulse', 'INCREMENT', new Date());
+        decrement();
+        canIncrement = false;
+      } else {
+        resetDecrement();
+      }
     });
 
     let decrement = () => {
       // In '30' seconds, emit "decrement" event
       // Capture reset code for setTimeout and store in resetCode
       // bind the this context
-      // let socket = this.props.socket;
-      // resetCode = setTimeout(function () {
-      //   socket.emit('updatePulse', 'DECREMENT', new Date());
-      //   canIncrement = true;
-      // }, 5000);
+      resetCode = setTimeout(function () {
+        socket.emit('updatePulse', 'DECREMENT', new Date());
+        canIncrement = true;
+      }, 5000);
     };
 
     let resetDecrement = () => {
