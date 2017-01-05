@@ -8,7 +8,7 @@ class SummaryInfoBox extends Component {
     return (
       <div className='summaryInfoBox'>
         <img src='http://png.clipart.me/graphics/thumbs/103/presentation-template-with-six-colored-text-box_103671569.jpg' />
-        <span><strong>{this.props.title}</strong></span><br/>
+        <span><strong>{this.props.title}</strong></span>:
         <span>{this.props.value}</span>
       </div>
     );
