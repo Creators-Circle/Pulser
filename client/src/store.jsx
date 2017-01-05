@@ -4,6 +4,7 @@ import { createStore, combineReducers } from 'redux';
 import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
 import pulseData from './reducers/pulseData';
+import presentationsLectures from './reducers/presentationsLectures';
 import userLectures from './reducers/userLectures';
 import activeLecture from './reducers/activeLecture';
 import searchValue from './reducers/searchValue';
@@ -13,6 +14,7 @@ const combinedReducers = combineReducers({
   user,
   usersClicks,
   userLectures,
+  presentationsLectures,
   activeLecture,
   searchValue
 });

@@ -29,4 +29,10 @@ class Slides extends Component {
   }
 }
 
-export default connect(state => state)(Slides);
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture
+  };
+};
+
+export default connect(mapStateToProps)(Slides);
