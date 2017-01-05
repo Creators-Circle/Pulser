@@ -100,13 +100,12 @@ app.get('/', function (req, res) {
   }
 });
 
-// transfer this to a api router--------
-app.get('/user', function (req, res) {
-  // console.log('user', req.session.id);
-  let user = userData.filter((user) => user.token === req.session.token);
-  res.json(user[0]);
+app.get('/logout', function (req, res) {
+  console.log('goodbye');
+  req.session.destroy(function () {
+    res.redirect('/');
+  });
 });
-
 // a route to create a new socket namespace
 app.post('/newRoom', function (req, res) {
   // console.log('room in post request', req.body.room);

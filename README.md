@@ -42,6 +42,8 @@ From within the root directory:
 npm install
 
 ### Run the Seed File
+NOTE: THIS WIPES THE DATABASE. USE WITH CAUTION. THIS MEANS YOU!!!
+
 FollowMe comes with Dummy Data located in the /seeds directory
 To load this data into the databases, type:
 knex seed:run
