@@ -8,7 +8,7 @@ import $ from 'jquery';
 const LineChart = rd3.LineChart;
 
 class PulseBox extends Component {
-  
+
   render () {
     // console.log('props in pulseBox render: ', this.props);
     var currTime = new Date();
