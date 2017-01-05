@@ -7,10 +7,10 @@ import SummaryView from './components/SummaryView';
 
 const routes = (
   <Route>
-    <Route path="/" component={App} />
-    <Route path="/presenter" component={PresenterView} />
-    <Route path="/audience" components={AudienceView} />
-    <Route path="/summary" components={SummaryView} />
+    <Route path='/' component={App} />
+    <Route path='/presenter' component={PresenterView} />
+    <Route path='/audience' components={AudienceView} />
+    <Route path='/summary' components={SummaryView} />
   </Route>
 );
 

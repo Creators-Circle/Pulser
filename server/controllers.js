@@ -31,7 +31,7 @@ module.exports = {
       name: lecture.name,
       presentation_id: lecture.presentationId
     })
-      .then(()=>{
+      .then(() => {
         return db('user_lectures').insert({
           user_id: lecture.userId,
           lecture_id: lecture.id,
