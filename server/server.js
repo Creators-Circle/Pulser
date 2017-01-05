@@ -126,6 +126,12 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('presentationUrlRequest');
     });
 
+    // Listen for new lecture event
+    socket.on('newLecture', function (lecture) {
+      // console.log('Presenter selected a presentation');
+      controllers.saveLecture(lecture);
+    });
+
     // Listen for presenter's response with presesntation URL
     socket.on('presentationUrlResponse', function (presentationUrl) {
       // console.log('Lecturer responding with presentationUrl');

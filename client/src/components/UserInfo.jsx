@@ -18,7 +18,8 @@ class UserInfo extends Component {
         type: 'STORE_USER',
         name: user.name,
         email: user.email,
-        avatar: user.avatar
+        avatar: user.avatar,
+        id: user.id
       });
     });
   }
