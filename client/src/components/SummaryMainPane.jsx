@@ -6,25 +6,32 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
-    console.log("summary main pain",this.props.summary);
+    console.log('summary main pain', this.props.summary);
     var users = this.props.summary.users;
 
-    let avgClickPerUser = users.reduce(function(sum,curr){
-      return sum + Number( curr.no_of_clicks);
-    },0)/(users.length-1);
+    let totalClicks = users.reduce(function (sum, curr) {
+      return sum + Number(curr.no_of_clicks);
+    }, 0);
+    console.log('total clicks', totalClicks);
+
+    let avgClickPerUser = totalClicks / (users.length - 1);
     let questions = this.props.summary.questions.length;
-    console.log("questions", questions);
+    console.log('questions', questions);
 
-    console.log("avg", avgClickPerUser);
+    console.log('avg', avgClickPerUser);
 
-    let clickPerTime = {}
+    let clickPerTime = {};
 
-    this.props.summary.clicks.forEach(click=>{
-      let time = click.date.split('T')[1].slice(0,5);
-      clickPerTime[time] = clickPerTime[time] ? clickPerTime[time]+= 1 : 1;
+    this.props.summary.clicks.forEach(click => {
+      let time = click.date.split('T')[1].slice(0, 5);
+      clickPerTime[time] = clickPerTime[time] ? clickPerTime[time] += 1 : 1;
     });
 
-    console.log("clicks time", clickPerTime);
+    console.log('clicks time', clickPerTime);
+
+    let avgClickPerMinute = totalClicks / Object.keys(clickPerTime).length - 1;
+    console.log('avgClickPerMinute', avgClickPerMinute);
+
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
@@ -39,8 +46,8 @@ class SummaryMainPane extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    summary : state.summary
-  }
-}
+    summary: state.summary
+  };
+};
 
 export default connect(mapStatetoProps)(SummaryMainPane);
