@@ -16,7 +16,7 @@ class Sidebar extends Component {
         <button>Timer</button>
         <button>Question</button>
         <button>Pulse</button>
-        <button>Summary</button>
+        <Link id="stopPresentation" to="/summary"><button>Summary</button></Link>
         <Link id="stopPresentation" to="/summary"><button>Stop Presentation</button></Link>
       </div>
     );
