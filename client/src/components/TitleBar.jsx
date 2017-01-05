@@ -18,9 +18,8 @@ class TitleBar extends Component {
   render () {
     return (
       <div>
-       <h1> Lecture Title {this.props.activeLecture.name} </h1>
+       <h1> Lecture Title {this.props.activeLecture.name + '  ' + this.now} </h1>
        <h2> Join Code {this.props.activeLecture.lectureId} </h2>
-       <h3> Date {this.now} </h3>
       </div>
     );
   };

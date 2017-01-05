@@ -33,7 +33,6 @@ class PresenterView extends Component {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
 
-    // console.log('Lecture ID:', this.props.activeLecture.lectureId); Commenting out until TitleBar is confirmed working.
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
       // response with presentation URL
