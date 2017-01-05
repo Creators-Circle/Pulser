@@ -1,5 +1,5 @@
 // file for creating routes for specific components
-import { Route } from 'react-router';
+import { Route, browserHistory } from 'react-router';
 import App from './components/App.jsx';
 import PresenterView from './components/PresenterView';
 import AudienceView from './components/AudienceView';

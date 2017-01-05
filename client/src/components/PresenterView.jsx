@@ -1,4 +1,6 @@
 // Contains the elements for the Presenter, including:
+  // TitleBar
+    //  Is passed date from PresenterView props, lectureId from props, and
   // Slides
   // Timer
   // Menu of yet to be built modules
@@ -16,6 +18,7 @@ import SummaryView from './SummaryView';
 import Timer from './Timer';
 import Sidebar from './Sidebar';
 import LogoutButton from './LogoutButton';
+import TitleBar from './TitleBar';
 
 class PresenterView extends Component {
   constructor () {
@@ -29,7 +32,6 @@ class PresenterView extends Component {
   componentDidMount () {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
-    // console.log('props in presenter view:', this.props.activeLecture); // REMOVE WHEN <TitleBar/> IS PRESENT
 
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
@@ -57,8 +59,9 @@ class PresenterView extends Component {
     return (
       <div>
       <LogoutButton/>
-      <div className = 'presenter-view'>
-        <Slides />
+      <div className='presenter-view'>
+        <TitleBar className='title-bar'/>
+        <Slides id="presenterSlides" role="presenter"/>
         <Sidebar />
         <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
