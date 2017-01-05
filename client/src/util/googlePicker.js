@@ -76,7 +76,7 @@ function pickerSlideCallback(data) {
     let name = data.docs[0].name;
     let embedUrl = data.docs[0].embedUrl;
     let lectureId = setLectureId();
-
+    let userId = store.getState().user.id;
     // Send POST request to initiate custom namespace on server
     $.ajax({
       type: 'POST',
@@ -95,6 +95,16 @@ function pickerSlideCallback(data) {
       socket: io(`/${lectureId}`)
     });
 
+    // Socket event to trigger saving the lecture data in the DB
+    let lecture = {
+      id: lectureId,
+      name: name,
+      presentationId: selectedPresentation,
+      userId: userId
+    };
+    let socket = store.getState().activeLecture.socket;
+    socket.emit('newLecture', lecture);
+    
     // Redirect user to <PresenterView/>
     browserHistory.push('/presenter');
   }
