@@ -12,6 +12,7 @@ class SummaryMainPane extends Component {
     let avgClickPerUser = users.reduce(function(sum,curr){
       return sum + Number( curr.no_of_clicks);
     },0)/(users.length-1);
+    let questions = this.props.summary.questions.length;
 
     return (
       <div id='mainPane' className='summary'>
