@@ -155,7 +155,7 @@ app.post('/newRoom', function (req, res) {
         userId: userId,
         lectureId: lectureId,
         date: currTime
-      }
+      };
       controllers.saveClick(click);
     });
 
