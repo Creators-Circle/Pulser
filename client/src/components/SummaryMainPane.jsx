@@ -45,7 +45,7 @@ class SummaryMainPane extends Component {
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
         <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
-        <SummaryInfoBox title={'Max click peak'} value={maxPeak}/>
+        <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
         <SummaryInfoBox title={'Questions'} value={questions}/>
       </div>
