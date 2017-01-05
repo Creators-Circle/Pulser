@@ -12,3 +12,5 @@ const getLectureSummary = (lectureId, callback) => {
     );
   });
 }
+
+export default getLectureSummary;
