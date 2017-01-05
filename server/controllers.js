@@ -7,7 +7,6 @@ module.exports = {
     db('users').where('id', req.session.token)
       .then(function (data) {
         var user = data[0];
-        console.log(user);
         res.send({name: user.name, avatar: user.avatar, email: user.email, id: user.id});
       });
   },
@@ -38,6 +37,15 @@ module.exports = {
           role: 'presenter'
         });
       });
+  },
+  // save a click to the database then return a promise
+  saveClick: function (click) {
+    return db('users_clicks').insert({
+      lecture_id: click.lectureId,
+      user_id: click.userId,
+      date: click.date
+    })
+      .then((data) => {console.log('successfully inserted')});
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {

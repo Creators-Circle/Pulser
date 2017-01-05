@@ -17,10 +17,13 @@ class FeedbackButton extends Component {
     let canIncrement = true;
     let resetCode;
     let socket = this.props.activeLecture.socket;
+    let name = this.props.user.name;
+    let userId = this.props.user.id;
+    let lectureId = this.props.activeLecture.lectureId;
     document.getElementById('updatePulse').addEventListener('click', () => {
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
-      socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
+      socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), name, userId, lectureId);
       if (canIncrement) {
         socket.emit('updatePulse', 'INCREMENT', new Date());
         decrement();

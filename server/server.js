@@ -146,10 +146,17 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('updatedPulse', action, currTime);
     });
     // Listen for user clicks
-    socket.on('userClick', function (action, currTime, user) {
-      // console.log('userClick event: ', action, currTime, user);
+    socket.on('userClick', function (action, currTime, name, userId, lectureId) {
+      // console.log('userClick event: ', action, currTime, name, userId, lectureId);
       // Broadcast to presenter (technically also everyone else)
-      nsp.emit('userClicked', action, currTime, user);
+      nsp.emit('userClicked', action, currTime, name);
+      console.log('u, l, d', userId, lectureId, currTime);
+      let click = {
+        userId: userId,
+        lectureId: lectureId,
+        date: currTime
+      }
+      controllers.saveClick(click);
     });
 
     socket.on('disconnect', function (socket) {
