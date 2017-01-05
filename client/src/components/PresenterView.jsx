@@ -27,7 +27,7 @@ class PresenterView extends Component {
   componentDidMount () {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
-    console.log('props in presenter-view:', this.props.activeLecture); // REMOVE WHEN <TitleBar/> IS PRESENT
+    // console.log('props in presenter view:', this.props.activeLecture); // REMOVE WHEN <TitleBar/> IS PRESENT
 
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
@@ -67,4 +67,10 @@ class PresenterView extends Component {
   }
 };
 
-export default connect(state => state)(PresenterView);
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture
+  };
+};
+
+export default connect(mapStateToProps)(PresenterView);

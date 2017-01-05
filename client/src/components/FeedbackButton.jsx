@@ -13,11 +13,11 @@ class FeedbackButton extends Component {
 
   // TODO: Move setTimeout reset functionality to back-end
   componentDidMount () {
+    // console.log('this.props in FeedbackButton: ', this.props);
     let canIncrement = true;
     let resetCode;
-    let socket = this.props.socket;
+    let socket = this.props.activeLecture.socket;
     document.getElementById('updatePulse').addEventListener('click', () => {
-      console.log('props in FeedbackButton componentDidMount', this.props);
       // If button has not been clicked in last 30 seconds,
       // then fire "increment" event and queue "decrement" event
       socket.emit('userClick', 'ADDCLICKTOUSER', new Date(), this.props.user.name);
@@ -48,7 +48,7 @@ class FeedbackButton extends Component {
 }
 
 const mapStatetoProps = state => {
-  return {user: state.user};
+  return {user: state.user, activeLecture: state.activeLecture};
 };
 
 export default connect(mapStatetoProps)(FeedbackButton);

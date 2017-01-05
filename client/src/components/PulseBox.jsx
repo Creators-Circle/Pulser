@@ -8,13 +8,9 @@ import $ from 'jquery';
 const LineChart = rd3.LineChart;
 
 class PulseBox extends Component {
-  constructor (props) {
-    super();
-    console.log('props in pulseBox constructor', props);
-  }
-
+  
   render () {
-    console.log('props in pulseBox render');
+    // console.log('props in pulseBox render: ', this.props);
     var currTime = new Date();
     var timeDiff = timeDiffToMinutes(this.props.startTime, currTime);
 
@@ -100,10 +96,15 @@ class PulseBox extends Component {
         time: timeDifference,
         user: user
       });
-      // This can be used to test that usersClicks have been added to store
-      // console.log(this.props.usersClicks);
     });
   };
 };
 
-export default connect(state => state)(PulseBox);
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture,
+    pulseData: state.pulseData
+  };
+};
+
+export default connect(mapStateToProps)(PulseBox);

@@ -10,12 +10,8 @@ class NewPresButton extends Component {
     super();
     store.subscribe(this.render);
   }
-  // clickHandler () {
-  //   let actionObj = Object.assign({}, picker());
-  //  this.props.dispatch(actionObj);
-  // }
   render () {
-    console.log('this.props in NewPresButton', this.props);
+    // console.log('this.props in NewPresButton', this.props);
     return (
     <div>
       <button onClick={picker}>New Presentation</button>
