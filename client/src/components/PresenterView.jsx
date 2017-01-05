@@ -5,7 +5,7 @@
   // PulseBox Component
     // PulseBox is passed a startTime to represent the time at which the presentation is started,
     // which is assumed to be the time that the PresenterView renders
-  
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PulseBox from './PulseBox';
