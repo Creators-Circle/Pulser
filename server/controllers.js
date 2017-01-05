@@ -29,13 +29,13 @@ module.exports = {
     return db('lectures').insert({
       id: lecture.id,
       name: lecture.name,
-      presentation_id: lecture.presentationId,
+      presentation_id: lecture.presentationId
     })
-      .then( () => {
+      .then(()=>{
         return db('user_lectures').insert({
           user_id: lecture.userId,
           lecture_id: lecture.id,
-          role: 'presenter',
+          role: 'presenter'
         });
       });
   },
