@@ -13,7 +13,18 @@ class SummaryMainPane extends Component {
       return sum + Number( curr.no_of_clicks);
     },0)/(users.length-1);
     let questions = this.props.summary.questions.length;
+    console.log("questions", questions);
 
+    console.log("avg", avgClickPerUser);
+
+    let clickPerTime = {}
+
+    this.props.summary.clicks.forEach(click=>{
+      let time = click.date.split('T')[1].slice(0,5);
+      clickPerTime[time] = clickPerTime[time] ? clickPerTime[time]+= 1 : 1;
+    });
+
+    console.log("clicks time", clickPerTime);
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
