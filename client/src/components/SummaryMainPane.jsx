@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
 import SummaryInfoBox from './SummaryInfoBox';
+import { connect } from 'react-redux';
 
 // this component holds boxes of data about the presentation
 class SummaryMainPane extends Component {
 
   render () {
+    console.log("summary main pain",this.props.summary);
+    var users = this.props.summary.users;
+
+    let avgClickPerUser = users.reduce(function(sum,curr){
+      return sum + Number( curr.no_of_clicks);
+    },0)/(users.length-1);
+
     return (
       <div id='mainPane' className='summary'>
-        <SummaryInfoBox />
-        <SummaryInfoBox />
-        <SummaryInfoBox />
-        <SummaryInfoBox />
-        <SummaryInfoBox />
-        <SummaryInfoBox />
+        <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
+        <SummaryInfoBox title={'Average click per minutes'}/>
+        <SummaryInfoBox title={'Max click peak'}/>
+        <SummaryInfoBox title={'Number of minuts w/o clicks'}/>
+        <SummaryInfoBox title={'Questions'} value={questions}/>
       </div>
     );
   };
 };
 
-export default SummaryMainPane;
+const mapStatetoProps = (state) => {
+  return {
+    summary : state.summary
+  }
+}
+
+export default connect(mapStatetoProps)(SummaryMainPane);
