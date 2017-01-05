@@ -1,17 +1,10 @@
 // Google Picker window to choose presentation from user's Google Drive files
 // Assign a lectureId to the chosen presentation. Load this information to the store 
 // TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
-
-// Assign a lectureId to the chosen presentation. Load this information to the store 
-// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
-
 import $ from 'jquery';
 import setLectureId from './setLectureId';
-// import { connect } from 'react-redux';
 import store from '../store.jsx';
 import { browserHistory } from 'react-router';
-
-
 // The Browser API key obtained from the Google Developers Console.
 var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
 

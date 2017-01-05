@@ -27,7 +27,7 @@ class PresenterView extends Component {
   componentDidMount () {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
-    console.log('Lecture ID:', this.props.activeLecture.lectureId); // REMOVE WHEN <TitleBar/> IS PRESENT
+    // console.log('props in presenter view:', this.props.activeLecture); // REMOVE WHEN <TitleBar/> IS PRESENT
 
     // Listen for audience request for presentation URL
     socket.on('presentationUrlRequest', function () {
@@ -35,22 +35,19 @@ class PresenterView extends Component {
       socket.emit('presentationUrlResponse', presentationUrl);
     });
 
-    // If an audience member has connected, update the state
     socket.on('connected', () => {
       // Another User has connected
       // Need to increment the audience store
-      // OLD CODE (REFACTOR): this.setState({audience: ++this.state.audience});
+      this.setState({audience: ++this.state.audience});
     });
 
     // If an audience member has disconnected, update the state
     socket.on('disconnected', () => {
       // A user has left the lecture
       // Need to decrement the audience store (but not past 0)
-    /* OLD CODE (REFACTOR):
-        if (this.state.audience > 0) {
-          this.setState({audience: --this.state.audience});
-        }
-    */
+      if (this.state.audience > 0) {
+        this.setState({audience: --this.state.audience});
+      }
     });
   }
 
@@ -66,4 +63,10 @@ class PresenterView extends Component {
   }
 };
 
-export default connect(state => state)(PresenterView);
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture
+  };
+};
+
+export default connect(mapStateToProps)(PresenterView);

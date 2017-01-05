@@ -4,7 +4,6 @@
 const usersClicks = (state = {}, action) => {
   switch (action.type) {
     case 'ADDCLICKTOUSER':
-
       if (action.time === undefined || action.user === undefined) {
         return state;
       } else if (state[action.user] === undefined) {
