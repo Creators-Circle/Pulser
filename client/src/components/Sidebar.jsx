@@ -11,7 +11,7 @@ class Sidebar extends Component {
     let socket = this.props.activeLecture.socket;
     // When ComponentToggle is clicked:
       // ToggleFade the Component out of the PresenterView
-      // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component 
+      // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
 
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
@@ -25,7 +25,6 @@ class Sidebar extends Component {
     $('#pulseToggle').on('click', function () {
       $('#PulseBox').fadeToggle('slow');
     });
-    
   }
 
   render () {
