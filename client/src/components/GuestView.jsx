@@ -14,7 +14,10 @@ class GuestView extends Component {
 
   render () {
     return (
-      <JoinPresBox/>
+      <div>
+        <LogoutButton/>
+        <JoinPresBox/>
+      </div>
     );
   }
 };

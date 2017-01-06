@@ -100,8 +100,21 @@ app.get('/', function (req, res) {
   }
 });
 
+// A route to handle guest 'logins'
 app.get('/guest', function (req, res) {
-  createSession(req, res, 'guestToken');
+  // Generate a random 21 character token for the guest and route them back to '/'
+  let guestToken = (Math.random().toString(36) + '00000000000000000').slice(2, 23);
+  // Create an entry in the user table for the guest
+  let userInfo = {};
+  userInfo.id = guestToken;
+  userInfo.name = 'guest';
+  userInfo.avatar = 'http://www.doctormacro.com/Images/Chaney%20Jr.,%20Lon/Annex/Annex%20-%20Chaney%20Jr.,%20Lon%20(Wolf%20Man,%20The)_07.jpg';
+  userInfo.email = 'guest@guest.com';
+  controllers.saveUser(userInfo)
+    .then(function () {
+      // Create a session for the guest
+      createSession(req, res, guestToken);
+    });
 });
 
 app.get('/logout', function (req, res) {
