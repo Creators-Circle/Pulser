@@ -181,6 +181,11 @@ app.post('/newRoom', function (req, res) {
       controllers.saveClick(click);
     });
 
+    //Listen for toggle events from the presenter and bounce them to the audience
+    socket.on('questionToggle', () => {
+      nsp.emit('questionToggle');
+    });
+
     socket.on('disconnect', function (socket) {
       console.log('a user disconnected from ', nsp.name);
       // Alert the presenter that an audience member has disconnected
