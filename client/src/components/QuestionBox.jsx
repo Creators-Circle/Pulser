@@ -26,4 +26,10 @@ class QuestionBox extends Component {
   };
 };
 
-export default QuestionBox;
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture
+  };
+};
+
+export default connect(mapStateToProps)(QuestionBox);
