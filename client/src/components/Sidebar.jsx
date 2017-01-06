@@ -15,7 +15,7 @@ class Sidebar extends Component {
 
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
-      $('#QuestionBox').fadeToggle('slow');
+      $('#QuestionBox').fadeToggle('slow'); 
     });
 
     $('#timerToggle').on('click', function () {
