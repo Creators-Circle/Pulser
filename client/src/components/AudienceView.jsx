@@ -1,7 +1,8 @@
 // Contains the elements for the Audience, including:
-  //  FeedbackBox.jsx
-    // Slides.jsx
-    // FeedbackButton.jsx
+  // Logout Button
+  // FeedbackBox
+  // Slides
+  // FeedbackButton
 
 import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';

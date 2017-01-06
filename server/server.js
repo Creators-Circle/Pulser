@@ -100,6 +100,10 @@ app.get('/', function (req, res) {
   }
 });
 
+app.get('/guest', function(req, res){
+  createSession(req,res,"guestToken");
+});
+
 app.get('/logout', function (req, res) {
   console.log('goodbye');
   req.session.destroy(function () {
