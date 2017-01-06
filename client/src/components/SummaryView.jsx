@@ -5,6 +5,7 @@ import SummaryMainPane from './SummaryMainPane';
 import getLectureSummary from '../util/getLectureSummary';
 import { connect } from 'react-redux';
 import LogoutButton from './LogoutButton';
+import SummaryComment from './SummaryComment';
 
 // View to display summary data about the presentation and users
 class SummaryView extends Component {
@@ -28,6 +29,7 @@ class SummaryView extends Component {
         <h1>Summary</h1>
         <SummaryLeftPane/>
         <SummaryMainPane/>
+        <SummaryComment/>
       </div>
       </div>
     );
