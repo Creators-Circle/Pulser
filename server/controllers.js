@@ -134,6 +134,13 @@ module.exports = {
       return db.select('*').from('questions').where('lecture_id', lectureId);
     }).then(function (questions) {
       summary.questions = questions;
+    }).then(function () {
+      // get all the upvotes
+      return db.select('*').from('questions')
+      .join('upvotes', 'questions.id', 'upvotes.question_id')
+      .where('lecture_id', lectureId);
+    }).then(function (upvotes) {
+      summary.upvotes = upvotes;
       res.send(summary);
     });
   },

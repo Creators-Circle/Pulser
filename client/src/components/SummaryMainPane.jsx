@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
+    console.log(this.props.summary);
     let clickedUser = this.props.userId || '';
     let filterClickedUser = (data) => { data.user_id === clickedUser; };
     // store all the users
