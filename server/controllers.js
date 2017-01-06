@@ -94,10 +94,9 @@ module.exports = {
     var userId = req.params.user_id;
     var comment = req.body.comment;
     return db('user_lectures').where({lecture_id: lectureId, user_id: userId})
-    .update({comment: comment })
+    .update({comment: comment})
     .then(function (data) {
-      console.log(data);
-      res.send("succes");
-    })
+      res.send('succes');
+    });
   }
 };

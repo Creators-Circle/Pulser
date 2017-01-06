@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import postComment from '../util/postComment.js';
 
 class SummaryComment extends Component {
   constructor () {
@@ -11,6 +12,9 @@ class SummaryComment extends Component {
 
   toggleView (toggle) {
     this.setState({toggleComment: toggle});
+  }
+  saveComment (lectureId, userid) {
+    postComment('cc0001', 'ea2f59c19983', 'testComment');
   }
 
   render () {
@@ -27,7 +31,7 @@ class SummaryComment extends Component {
           : <div>
             <input type = 'text' placeholder='Enter comment'/>
             <button onClick={() => { this.toggleView(false); }} >Cancel</button>
-            <button onClick={() => { this.toggleView(false); }} >Save</button>
+            <button onClick={() => { this.saveComment(); }} >Save</button>
           </div>
         }
       </div>
