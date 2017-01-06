@@ -43,7 +43,6 @@ class JoinPresBox extends Component {
 
     // Emit request to server (and then to presenter) for presention URL
     socket.emit('presentationInfoRequest');
-
   }
 
   render () {
