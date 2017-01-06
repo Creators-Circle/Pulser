@@ -156,7 +156,6 @@ app.post('/newRoom', function (req, res) {
       // console.log('userClick event: ', action, currTime, name, userId, lectureId);
       // Broadcast to presenter (technically also everyone else)
       nsp.emit('userClicked', action, currTime, name);
-      console.log('u, l, d', userId, lectureId, currTime);
       let click = {
         userId: userId,
         lectureId: lectureId,

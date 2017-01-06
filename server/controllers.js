@@ -52,7 +52,9 @@ module.exports = {
       user_id: click.userId,
       date: click.date
     })
-      .then((data) => { console.log('successfully inserted'); });
+      .then((data) => { 
+        // console.log('successfully inserted'); 
+      });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {
