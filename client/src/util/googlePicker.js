@@ -100,10 +100,11 @@ function pickerSlideCallback(data) {
       id: lectureId,
       name: name,
       presentationId: selectedPresentation,
-      userId: userId
+      userId: userId,
+      role: 'presenter'
     };
     let socket = store.getState().activeLecture.socket;
-    socket.emit('newLecture', lecture);
+    socket.emit('saveLecture', lecture);
     
     // Redirect user to <PresenterView/>
     browserHistory.push('/presenter');

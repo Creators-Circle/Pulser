@@ -25,17 +25,27 @@ module.exports = {
   },
   // save lecture info to the database then return a promise
   saveLecture: function (lecture) {
+    console.log('saveLecture was fired.')
     return db('lectures').insert({
       id: lecture.id,
       name: lecture.name,
       presentation_id: lecture.presentationId
     })
-      .then(() => {
-        return db('user_lectures').insert({
-          user_id: lecture.userId,
-          lecture_id: lecture.id,
-          role: 'presenter'
-        });
+      .then(() => { 
+        module.exports.userLecture(lecture);
+        console.log('successfully inserted a lecture in to the DB' );
+      });
+  },
+  // Associate a lecture and a user in the user_lectures table
+  userLecture: function (lecture) {
+    console.log('userLecture was fired.')
+    return db('user_lectures').insert({
+      user_id: lecture.userId,
+      lecture_id: lecture.id,
+      role: lecture.role
+    })
+      .then( () => {
+        console.log('successfully associated a lecture to a user' );
       });
   },
   // save a click to the database then return a promise

@@ -126,17 +126,23 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('presentationUrlRequest');
     });
 
-    // Listen for new lecture event
-    socket.on('newLecture', function (lecture) {
+    // Listen for presenter's response with presesntation URL
+    socket.on('presentationUrlResponse', function (presentationUrl, presentationName, presentationId) {
+      // console.log('Lecturer responding with presentationUrl');
+      // Send response to audience member
+      nsp.emit('presentationUrlResponse', presentationUrl, presentationName, presentationId);
+    });
+  
+    // Listen for user_lecture event
+    socket.on('saveLecture', function (lecture) {
       // console.log('Presenter selected a presentation');
       controllers.saveLecture(lecture);
     });
 
-    // Listen for presenter's response with presesntation URL
-    socket.on('presentationUrlResponse', function (presentationUrl) {
-      // console.log('Lecturer responding with presentationUrl');
-      // Send response to audience member
-      nsp.emit('presentationUrlResponse', presentationUrl);
+    // Listen for user_lecture event
+    socket.on('userLecture', function (lecture) {
+      // console.log('Presenter selected a presentation');
+      controllers.userLecture(lecture);
     });
 
     // Listen for Audience button clicks
