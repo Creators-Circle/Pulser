@@ -12,9 +12,8 @@ class SummaryComment extends Component {
   }
 
   componentWillMount () {
-    // set a default comment when the component loads
-    currentUser = this.props.users.filter(user => user.role === 'presenter')[0];
-    this.setState({comment: currentUser[0].comment});
+    // set a default comment when the component loads, need to refactor later for user summary
+    this.setState({comment: this.props.users.filter(user => user.role === 'presenter')[0].comment});
   }
 
   // changing ui state for editing comment
