@@ -120,23 +120,29 @@ app.post('/newRoom', function (req, res) {
     nsp.emit('connected');
 
     // Listen for audience request for presentation URL
-    socket.on('presentationUrlRequest', function () {
+    socket.on('presentationInfoRequest', function () {
       // console.log('User requesting presentationUrl');
       // Send request to presenter (technically also everyone else)
-      nsp.emit('presentationUrlRequest');
+      nsp.emit('presentationInfoRequest');
     });
 
-    // Listen for new lecture event
-    socket.on('newLecture', function (lecture) {
+    // Listen for presenter's response with presesntation URL
+    socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId) {
+      // console.log('Lecturer responding with presentationUrl');
+      // Send response to audience member
+      nsp.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId);
+    });
+
+    // Listen for user_lecture event
+    socket.on('saveLecture', function (lecture) {
       // console.log('Presenter selected a presentation');
       controllers.saveLecture(lecture);
     });
 
-    // Listen for presenter's response with presesntation URL
-    socket.on('presentationUrlResponse', function (presentationUrl) {
-      // console.log('Lecturer responding with presentationUrl');
-      // Send response to audience member
-      nsp.emit('presentationUrlResponse', presentationUrl);
+    // Listen for user_lecture event
+    socket.on('userLecture', function (lecture) {
+      // console.log('Presenter selected a presentation');
+      controllers.userLecture(lecture);
     });
 
     // Listen for Audience button clicks
@@ -150,7 +156,6 @@ app.post('/newRoom', function (req, res) {
       // console.log('userClick event: ', action, currTime, name, userId, lectureId);
       // Broadcast to presenter (technically also everyone else)
       nsp.emit('userClicked', action, currTime, name);
-      console.log('u, l, d', userId, lectureId, currTime);
       let click = {
         userId: userId,
         lectureId: lectureId,

@@ -16,23 +16,33 @@ class JoinPresBox extends Component {
 
     // Preserve the context of "this"
     let dispatch = this.props.dispatch;
-
+    let userId = this.props.user.id;
     // Listen for presentation URL response from presenter
-    socket.on('presentationUrlResponse', function (presentationUrl) {
+    socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId) {
       // Update store with presentation data and store socket reference
       dispatch({
         type: 'ASSIGN_LECTURE_ID',
         lectureId: lectureId,
         embedUrl: presentationUrl,
-        socket: socket
+        socket: socket,
+        name: presentationName,
+        presentationId: presentationId
       });
+      let lecture = {
+        id: lectureId,
+        name: presentationName,
+        presentationId: presentationId,
+        userId: userId,
+        role: 'audience'
+      };
+      socket.emit('userLecture', lecture);
 
       // Redirect user to <AudienceView/>
       browserHistory.push('/audience');
     });
 
     // Emit request to server (and then to presenter) for presention URL
-    socket.emit('presentationUrlRequest');
+    socket.emit('presentationInfoRequest');
   }
 
   render () {

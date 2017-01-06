@@ -31,11 +31,18 @@ module.exports = {
       presentation_id: lecture.presentationId
     })
       .then(() => {
-        return db('user_lectures').insert({
-          user_id: lecture.userId,
-          lecture_id: lecture.id,
-          role: 'presenter'
-        });
+        module.exports.userLecture(lecture);
+      });
+  },
+  // Associate a lecture and a user in the user_lectures table
+  userLecture: function (lecture) {
+    return db('user_lectures').insert({
+      user_id: lecture.userId,
+      lecture_id: lecture.id,
+      role: lecture.role
+    })
+      .then(() => {
+        // console.log('successfully associated a lecture to a user' );
       });
   },
   // save a click to the database then return a promise
@@ -45,7 +52,9 @@ module.exports = {
       user_id: click.userId,
       date: click.date
     })
-      .then((data) => { console.log('successfully inserted'); });
+      .then((data) => {
+        // console.log('successfully inserted');
+      });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {

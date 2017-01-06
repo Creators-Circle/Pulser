@@ -32,11 +32,12 @@ class PresenterView extends Component {
   componentDidMount () {
     let presentationUrl = this.props.activeLecture.embedUrl;
     let socket = this.props.activeLecture.socket;
-
+    let presentationName = this.props.activeLecture.name;
+    let presentationId = this.props.activeLecture.presentationId;
     // Listen for audience request for presentation URL
-    socket.on('presentationUrlRequest', function () {
+    socket.on('presentationInfoRequest', function () {
       // response with presentation URL
-      socket.emit('presentationUrlResponse', presentationUrl);
+      socket.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId);
     });
 
     socket.on('connected', () => {
