@@ -45,7 +45,7 @@ class QuestionBox extends Component {
 
     // });
 
-    // // Emit request to server (and then to presenter) for presention URL
+    // Emit request to server (and then to presenter) for presention URL
     // socket.emit('presentationInfoRequest');
   }
 
@@ -54,7 +54,7 @@ class QuestionBox extends Component {
     return (
       <div id="QuestionBox">
         <input type="text"></input>
-        <button id="submitQuestion" onClick={this.sendQuestion.bin(this)}>Submit</button>
+        <button id="submitQuestion" onClick={this.sendQuestion.bind(this)}>Submit</button>
         {this.state.questions.map(question =>
           <Question id={question.questionId} text={question.questionText}/>
         )}
