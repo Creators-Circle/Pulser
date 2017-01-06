@@ -19,6 +19,7 @@ import Timer from './Timer';
 import Sidebar from './Sidebar';
 import LogoutButton from './LogoutButton';
 import TitleBar from './TitleBar';
+import QuestionBox from './QuestionBox'; 
 
 class PresenterView extends Component {
   constructor () {
@@ -66,6 +67,7 @@ class PresenterView extends Component {
         <Sidebar />
         <Timer/>
         <PulseBox startTime={this.date} audience={this.state.audience}/>
+        <QuestionBox/>
       </div>
       </div>
     );

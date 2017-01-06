@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// Input to search database for specific presentation
+// This renders each individual question text with an upvote button - need to add handler for upvote button
 class Question extends Component {
 
   render () {
