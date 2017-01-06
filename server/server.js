@@ -181,7 +181,7 @@ app.post('/newRoom', function (req, res) {
       controllers.saveClick(click);
     });
 
-    //Listen for toggle events from the presenter and bounce them to the audience
+    // Listen for toggle events from the presenter and bounce them to the audience
     socket.on('questionToggle', () => {
       nsp.emit('questionToggle');
     });

@@ -9,7 +9,7 @@ class Sidebar extends Component {
   componentDidMount () {
     // when questionToggle is clicked, emit a questionToggle event to tell the AudienceView to toggleFade the QuestionBox
     let socket = this.props.activeLecture.socket;
-    $('#questionToggle').on('click', function(){
+    $('#questionToggle').on('click', function () {
       console.log('this click event was fired.');
       socket.emit('questionToggle');
     });
