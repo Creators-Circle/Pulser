@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import SummaryUser from './SummaryUser.jsx';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
+  constructor () {
+    super();
+    this.state = {
+      showUserSummary: null
+    };
+  }
 
   displayUserSummary (id) {
     // test for clicking the user's name or picture, replace with userSummary component
-    console.log('display user');
+    console.log('display user', id);
+    this.setState({showUserSummary: id});
   }
 
   render () {
@@ -34,6 +42,9 @@ class TotalClicksTable extends Component {
           }
         </tbody>
         </table>
+        {
+          this.state.showUserSummary ? <SummaryUser /> : null
+        }
       </div>
     );
   }
