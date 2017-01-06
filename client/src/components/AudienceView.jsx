@@ -8,7 +8,7 @@ import Slides from './Slides';
 import React, { Component } from 'react';
 import LogoutButton from './LogoutButton';
 import $ from 'jquery';
-import QuestionBox from './QuestionBox';
+import QuestionBox from './QuestionBox'; //also renders to presenter view
 
 class AudienceView extends Component {
 
