@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Question from './Question';
 
 class QuestionBox extends Component {
-//t his component lets users enter questions; it also displays each individual question component
+// This component lets users enter questions; it also displays each individual question component
   constructor () {
     super();
     this.state = {

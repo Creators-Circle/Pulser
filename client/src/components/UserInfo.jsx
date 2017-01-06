@@ -1,28 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import getUserData from '../util/getUserData';
 
 // component to display basic user data (profile pic + name)
 class UserInfo extends Component {
-
-  constructor (props) {
-    super();
-  }
-
-  componentWillMount () {
-    // store user data when App loads.
-    // Note that by this point the user will have logged in.
-    // Their user information comes from the auth
-    getUserData((user) => {
-      this.props.dispatch({
-        type: 'STORE_USER',
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        id: user.id
-      });
-    });
-  }
 
   render () {
     return (

@@ -48,13 +48,40 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import DashboardView from './DashboardView';
+import getUserData from '../util/getUserData';
+import { connect } from 'react-redux';
+import GuestView from './GuestView';
 
 class App extends Component {
+  componentWillMount () {
+    // store user data when App loads.
+    getUserData((user) => {
+      this.props.dispatch({
+        type: 'STORE_USER',
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        id: user.id
+      });
+    });
+  }
+
   render () {
-    return (
-      <DashboardView/>
-    );
+    console.log(this.props);
+    if (this.props.user.name === 'guest') {
+      return (
+        <GuestView/>
+      );
+    } else {
+      return (
+        <DashboardView/>
+      );
+    }
   };
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { dispatch: state.dispatch, user: state.user };
+};
+
+export default connect(mapStateToProps)(App);
