@@ -87,5 +87,17 @@ module.exports = {
       summary.questions = questions;
       res.send(summary);
     });
+  },
+  // inserting comment in the database
+  addComment: function (req, res) {
+    var lectureId = req.params.lecture_id;
+    var userId = req.params.user_id;
+    var comment = req.body.comment;
+    return db('user_lectures').where({lecture_id: lectureId, user_id: userId})
+    .update({comment: comment })
+    .then(function (data) {
+      console.log(data);
+      res.send("succes");
+    })
   }
 };
