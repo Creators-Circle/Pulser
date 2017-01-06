@@ -18,7 +18,7 @@ class JoinPresBox extends Component {
     let dispatch = this.props.dispatch;
     let userId = this.props.user.id;
     // Listen for presentation URL response from presenter
-    socket.on('presentationUrlResponse', function (presentationUrl, presentationName, presentationId) {
+    socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId) {
       // Update store with presentation data and store socket reference
       dispatch({
         type: 'ASSIGN_LECTURE_ID',
@@ -42,7 +42,7 @@ class JoinPresBox extends Component {
     });
 
     // Emit request to server (and then to presenter) for presention URL
-    socket.emit('presentationUrlRequest');
+    socket.emit('presentationInfoRequest');
 
   }
 

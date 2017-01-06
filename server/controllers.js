@@ -30,7 +30,7 @@ module.exports = {
       name: lecture.name,
       presentation_id: lecture.presentationId
     })
-      .then(() => { 
+      .then(() => {
         module.exports.userLecture(lecture);
       });
   },
@@ -41,7 +41,7 @@ module.exports = {
       lecture_id: lecture.id,
       role: lecture.role
     })
-      .then( () => {
+      .then(() => {
         // console.log('successfully associated a lecture to a user' );
       });
   },
