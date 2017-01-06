@@ -6,15 +6,29 @@ class SummaryComment extends Component {
   constructor () {
     super();
     this.state = {
+      comment: '', // tempory state for comment to prevent summary view from re-rendering
       toggleComment: false // ui state for showing comment or textbox
     };
   }
 
+  componentWillMount () {
+    // set a default comment when the component loads
+    currentUser = this.props.users.filter(user => user.role === 'presenter')[0];
+    this.setState({comment: currentUser[0].comment});
+  }
+
+  // changing ui state for editing comment
   toggleView (toggle) {
     this.setState({toggleComment: toggle});
   }
+  // sending a post request to the server
   saveComment (lectureId, userid) {
-    postComment('cc0001', 'ea2f59c19983', 'testComment');
+    postComment(lectureId, userid, this.state.comment);
+    this.setState({toggleComment: false});
+  }
+
+  handleChange (event) {
+    this.setState({comment: event.target.value});
   }
 
   render () {
@@ -25,13 +39,12 @@ class SummaryComment extends Component {
         <p>Comment:</p>
         {
           !this.state.toggleComment ? <div>
-            <p>{user.comment}</p>
+            <p>{this.state.comment}</p>
             <button onClick={() => { this.toggleView(true); }} >Edit</button>
           </div>
           : <div>
-            <input type = 'text' placeholder='Enter comment'/>
-            <button onClick={() => { this.toggleView(false); }} >Cancel</button>
-            <button onClick={() => { this.saveComment(); }} >Save</button>
+            <input type = 'text' value={this.state.comment} onChange={this.handleChange.bind(this)}/>
+            <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} >Save</button>
           </div>
         }
       </div>
