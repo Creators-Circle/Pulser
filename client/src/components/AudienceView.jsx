@@ -8,6 +8,7 @@ import Slides from './Slides';
 import React, { Component } from 'react';
 import LogoutButton from './LogoutButton';
 import $ from 'jquery';
+import QuestionBox from './QuestionBox';
 
 class AudienceView extends Component {
 
@@ -18,6 +19,7 @@ class AudienceView extends Component {
       <div>
         <Slides id="audienceSlides" class="slides" role="audience"/>
         <FeedbackBox/>
+        <QuestionBox/>
       </div>
       </div>
     );
