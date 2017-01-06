@@ -9,6 +9,7 @@ class Sidebar extends Component {
   componentDidMount () {
     // Capture the this context
     let socket = this.props.activeLecture.socket;
+    let lectureId = this.props.activeLecture.lectureId;
     // When ComponentToggle is clicked:
       // ToggleFade the Component out of the PresenterView
       // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
@@ -25,6 +26,16 @@ class Sidebar extends Component {
     $('#pulseToggle').on('click', function () {
       $('#PulseBox').fadeToggle('slow');
     });
+    
+    // Events that end the presentation should alert the audience and server
+    $('#stopPresentation', '#summary').on('click', function () {
+      let  endTime = new Date();
+      let endLecture = {
+        id: lectureId,
+        endTime: endTime
+      };
+      socket.emit('stopPresentation', endLecture);
+    });
   }
 
   render () {
@@ -37,7 +48,7 @@ class Sidebar extends Component {
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='pulseToggle'>Pulse</button>
-        <Link id="stopPresentation" to="/summary"><button>Summary</button></Link>
+        <Link id="summary" to="/summary"><button>Summary</button></Link>
         <Link id="stopPresentation" to="/summary"><button>Stop Presentation</button></Link>
       </div>
     );

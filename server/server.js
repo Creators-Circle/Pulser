@@ -186,6 +186,13 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('questionToggle');
     });
 
+    // Listen for stopPresentation event and let the audience know it's over
+    socket.on('stopPresentation', (endLecture) => {
+      nsp.emit('stopPresentation');
+      console.log(endLecture);
+      controllers.saveEndTime(endLecture);
+    });    
+
     socket.on('disconnect', function (socket) {
       console.log('a user disconnected from ', nsp.name);
       // Alert the presenter that an audience member has disconnected

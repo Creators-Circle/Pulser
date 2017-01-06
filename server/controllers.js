@@ -23,6 +23,12 @@ module.exports = {
         }
       });
   },
+  saveEndTime: function (endLecture) {
+    return db('lectures').where('id', endLecture.id).update({
+      end_time: endLecture.endTime
+    })
+      .then(console.log('successfully updated endLecture'));
+  },
   // save lecture info to the database then return a promise
   saveLecture: function (lecture) {
     return db('lectures').insert({
