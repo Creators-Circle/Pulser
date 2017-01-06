@@ -10,7 +10,7 @@ class SummaryMainPane extends Component {
 
     // store all the users
     let users = this.props.summary.users;
-    console.log('users', users);
+    console.log('users', this.props.summary);
 
     let userClicks = this.props.summary.clicks.filter(click => click.user_id === clickedUser);
     let totalClicks = !clickedUser ? this.props.summary.clicks.length : userClicks.length;
@@ -49,15 +49,18 @@ class SummaryMainPane extends Component {
 
     let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser).length;
     console.log('user_id', this.props.userId);
+    let thumbsCount = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser).length;
 
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
         {
           !clickedUser ? <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
-          : <SummaryInfoBox title={'Upvotes'} value={userUpvotes}/>
+          : <div>
+              <SummaryInfoBox title={'Upvotes'} value={userUpvotes}/>
+              <SummaryInfoBox title={'Thumbs'} value={thumbsCount}/>
+            </div>
         }
-
         <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
         <SummaryInfoBox title={'Questions'} value={questions}/>
