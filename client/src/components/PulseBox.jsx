@@ -46,7 +46,7 @@ class PulseBox extends Component {
 
     // Render "stock ticker" style line graph
     return (
-      <div className = "pulse-box">
+      <div id='PulseBox' className = "pulse-box">
         <LineChart
           className = 'pulsedata-linechart'
           data={lineData}

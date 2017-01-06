@@ -7,20 +7,34 @@ import $ from 'jquery';
 class Sidebar extends Component {
 
   componentDidMount () {
-    // when questionToggle is clicked, emit a questionToggle event to tell the AudienceView to toggleFade the QuestionBox
+    // Capture the this context
     let socket = this.props.activeLecture.socket;
+    // When ComponentToggle is clicked:
+      // ToggleFade the Component out of the PresenterView
+      // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component 
+
     $('#questionToggle').on('click', function () {
-      console.log('this click event was fired.');
       socket.emit('questionToggle');
+      $('#QuestionBox').fadeToggle('slow');
     });
+
+    $('#timerToggle').on('click', function () {
+      $('#Timer').fadeToggle('slow');
+    });
+
+    $('#pulseToggle').on('click', function () {
+      $('#PulseBox').fadeToggle('slow');
+    });
+    
   }
+
   render () {
     // console.log('this.props in Sidebar: ', this.props)
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div>
         <button>X</button>
-        <button><a href={embedUrl} target="_blank">Projector</a></button>
+        <a href={embedUrl} target="_blank"><button>Projector</button></a>
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='pulseToggle'>Pulse</button>
