@@ -13,8 +13,9 @@ class QuestionBox extends Component {
   }
 
   render () {
+    // Assign an id to the main component div so that it can be targeted on toggle events
     return (
-      <div>
+      <div id="QuestionBox">
         <input type="text"></input>
         <button id="submitQuestion">Submit</button>
         {this.state.questions.map(question =>
