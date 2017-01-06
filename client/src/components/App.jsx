@@ -50,14 +50,12 @@ import $ from 'jquery';
 import DashboardView from './DashboardView';
 import getUserData from '../util/getUserData';
 import { connect } from 'react-redux';
+import GuestView from './GuestView';
 
 class App extends Component {
   componentWillMount () {
     // store user data when App loads.
-    // Note that by this point the user will have logged in.
-    // Their user information comes from the auth
     getUserData((user) => {
-      console.log(user);
       this.props.dispatch({
         type: 'STORE_USER',
         name: user.name,
@@ -69,13 +67,20 @@ class App extends Component {
   }
   
   render () {
-    return (
-      <DashboardView/>
-    );
+    console.log(this.props);
+    if(this.props.user.name === 'guest'){
+      return (
+        <GuestView/>
+      );
+    } else {
+      return (
+        <DashboardView/>
+      );
+    }
   };
 };
 
 const mapStateToProps = (state) => {
-    return {dispatch:state.dispatch};
+    return {dispatch:state.dispatch, user: state.user};
 }
 export default connect(mapStateToProps)(App);

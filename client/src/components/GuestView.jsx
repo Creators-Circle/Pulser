@@ -12,8 +12,12 @@ import $ from 'jquery';
 class GuestView extends Component {
 
   render () {
+
     return (
-      <joinPresBox/>
+      <div>
+        <p>GuestView</p>
+        <joinPresBox/>
+      </div>
     );
   }
 };
