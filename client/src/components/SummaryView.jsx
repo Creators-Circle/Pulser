@@ -9,6 +9,7 @@ import SummaryComment from './SummaryComment';
 
 // View to display summary data about the presentation and users
 class SummaryView extends Component {
+
   componentWillMount () {
     let lectureId = 'cc0001';// temporary lectureId TODO: HOOK UP TO ACTIVELECTURE STORE
 

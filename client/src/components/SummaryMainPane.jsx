@@ -6,20 +6,27 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
+    let clickedUser = this.props.userId || '';
+    let filterClickedUser = (data) => { data.user_id === clickedUser; };
     // store all the users
-    var users = this.props.summary.users;
-    // compute total number of clicks
-    let totalClicks = users.reduce(function (sum, curr) {
-      return sum + Number(curr.no_of_clicks);
-    }, 0);
+    let users = this.props.summary.users;
+    console.log('users', users);
+
+    let userClicks = this.props.summary.clicks.filter(filterClickedUser);
+    let totalClicks = !clickedUser ? this.props.summary.clicks.length : userClicks.length;
+
+    console.log('user', userClicks);
     // compute the average click per user, remove the presenter from the users
     // round to 1 decimal place
     let avgClickPerUser = Math.round((totalClicks / (users.length - 1) * 10)) / 10;
     // total number of questions asked about the lecture
-    let questions = this.props.summary.questions.length;
+    let questions = !clickedUser ? this.props.summary.questions.length
+      : this.props.summary.questions.filter(filterClickedUser).length;
     // store count of clicks per minute
     let clickPerTime = {};
-    this.props.summary.clicks.forEach(click => {
+    let clicks = !this.props.userId ? this.props.summary.clicks : userClicks;
+
+    clicks.forEach(click => {
       let time = click.date.split('T')[1].slice(0, 5);
       clickPerTime[time] = clickPerTime[time] ? clickPerTime[time] += 1 : 1;
     });
@@ -40,6 +47,7 @@ class SummaryMainPane extends Component {
       let difference = Math.abs(minutes[i] - minutes[i + 1]);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
     }
+    console.log('user_id', this.props.userId);
 
     return (
       <div id='mainPane' className='summary'>

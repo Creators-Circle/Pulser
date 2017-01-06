@@ -1,10 +1,16 @@
 // component for display user's summary
 import React, { Component } from 'react';
+import SummaryMainPane from './SummaryMainPane';
+import SummaryComment from './SummaryComment';
 
 class SummaryUser extends Component {
   render () {
     return (
-      <p>Summary User</p>
+
+      <div>
+        <SummaryMainPane userId={this.props.userId}/>
+        <SummaryComment/>
+      </div>
     );
   }
 }
