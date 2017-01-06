@@ -13,7 +13,7 @@ class FeedbackButton extends Component {
 
   // TODO: Move setTimeout reset functionality to back-end
   componentDidMount () {
-    console.log('this.props in FeedbackButton: ', this.props);
+    // console.log('this.props in FeedbackButton: ', this.props);
     let canIncrement = true;
     let resetCode;
     let socket = this.props.activeLecture.socket;
