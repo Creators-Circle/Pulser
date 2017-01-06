@@ -8,16 +8,13 @@ import Slides from './Slides';
 import React, { Component } from 'react';
 import LogoutButton from './LogoutButton';
 import $ from 'jquery';
+import JoinPresBox from './JoinPresBox';
 
 class GuestView extends Component {
 
   render () {
-
     return (
-      <div>
-        <p>GuestView</p>
-        <joinPresBox/>
-      </div>
+      <JoinPresBox/>
     );
   }
 };

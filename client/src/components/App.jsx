@@ -65,10 +65,10 @@ class App extends Component {
       });
     });
   }
-  
+
   render () {
     console.log(this.props);
-    if(this.props.user.name === 'guest'){
+    if (this.props.user.name === 'guest') {
       return (
         <GuestView/>
       );
@@ -81,6 +81,7 @@ class App extends Component {
 };
 
 const mapStateToProps = (state) => {
-    return {dispatch:state.dispatch, user: state.user};
-}
+  return { dispatch: state.dispatch, user: state.user };
+};
+
 export default connect(mapStateToProps)(App);

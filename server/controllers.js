@@ -6,12 +6,12 @@ module.exports = {
   getUser: function (req, res) {
     db('users').where('id', req.session.token)
       .then(function (data) {
-        var user = data[0] || 
-        {name: 'guest', 
-        avatar: 'http://www.doctormacro.com/Images/Chaney%20Jr.,%20Lon/Annex/Annex%20-%20Chaney%20Jr.,%20Lon%20(Wolf%20Man,%20The)_07.jpg',
-        email: 'guest@guest.com',
-        id: req.session.token
-        };
+        var user = data[0] ||
+          {name: 'guest',
+            avatar: 'http://www.doctormacro.com/Images/Chaney%20Jr.,%20Lon/Annex/Annex%20-%20Chaney%20Jr.,%20Lon%20(Wolf%20Man,%20The)_07.jpg',
+            email: 'guest@guest.com',
+            id: req.session.token
+          };
         res.send({name: user.name, avatar: user.avatar, email: user.email, id: user.id});
       });
   },
