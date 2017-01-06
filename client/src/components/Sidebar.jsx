@@ -26,10 +26,10 @@ class Sidebar extends Component {
     $('#pulseToggle').on('click', function () {
       $('#PulseBox').fadeToggle('slow');
     });
-    
+
     // Events that end the presentation should alert the audience and server
     $('#stopPresentation', '#summary').on('click', function () {
-      let  endTime = new Date();
+      let endTime = new Date();
       let endLecture = {
         id: lectureId,
         endTime: endTime

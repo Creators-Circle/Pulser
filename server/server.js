@@ -191,7 +191,7 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('stopPresentation');
       console.log(endLecture);
       controllers.saveEndTime(endLecture);
-    });    
+    });
 
     socket.on('disconnect', function (socket) {
       console.log('a user disconnected from ', nsp.name);

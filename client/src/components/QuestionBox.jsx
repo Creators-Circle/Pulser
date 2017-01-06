@@ -14,7 +14,7 @@ class QuestionBox extends Component {
 
   sendQuestion () {
     // Get lectureId from input box above join button
-    console.log("firing")
+    console.log('firing');
     // let questionBody = $('#sendQuestion').val();
 
     // // Subscribe to custom namespace based on lectureId
@@ -70,4 +70,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(QuestionBox);
-//this.props.socket
+// this.props.socket
