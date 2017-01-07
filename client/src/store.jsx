@@ -9,6 +9,7 @@ import activeLecture from './reducers/activeLecture';
 import searchValue from './reducers/searchValue';
 import summary from './reducers/summary';
 import questions from './reducers/questionReducer.jsx';
+import thumbs from './reducers/thumbsReducer.jsx';
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,
@@ -18,7 +19,8 @@ const combinedReducers = combineReducers({
   activeLecture,
   searchValue,
   summary,
-  questions
+  questions,
+  thumbs
 });
 
 const store = createStore(combinedReducers);
