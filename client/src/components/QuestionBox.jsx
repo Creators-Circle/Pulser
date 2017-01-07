@@ -5,6 +5,35 @@ import $ from 'jquery';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
+  constructor (props) {
+    super();
+    let dispatch = props.dispatch;
+    let render = this.forceUpdate.bind(this);
+    this.socket = props.activeLecture.socket;
+    this.socket.on('upvoteQuestion', function (upvote) {
+      dispatch({
+        type: 'UPVOTE',
+        questionId: upvote.questionId
+      });
+      render();
+    });
+    this.socket.on('downvoteQuestion', function (downvote) {
+      dispatch({
+        type: 'DOWNVOTE',
+        questionId: downvote.questionId
+      });
+      render();
+    });
+    this.socket.on('submitQuestion', function (question) {
+      console.log('question received', question);
+      dispatch({
+        type: 'CREATE_QUESTION',
+        questionText: question.questionText,
+        questionId: question.questionId
+      });
+      render();
+    });
+  }
 
   submitQuestion () {
     console.log('submitQuestion event fired');
@@ -25,27 +54,22 @@ class QuestionBox extends Component {
     };
     socket.emit('submitQuestion', question);
     console.log('submitQuestion sent', question);
-    let render = this.forceUpdate.bind(this);
-    socket.on('submitQuestion', function (question) {
-      console.log('question received', question);
-      dispatch({
-        type: 'CREATE_QUESTION',
-        questionText: question.questionText,
-        questionId: question.questionId
-      });
-      render();
-    });
     console.log('this.props after dispatch in submitQuestion', this.props);
   }
 
   render () {
+    // Capture 'this' context
+    let questions = this.props.questions;
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox">
         <input type="text" id="questionInput"></input>
         <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
-        {Object.keys(this.props.questions).map(questionId =>
-          <Question id={questionId} text={this.props.questions[questionId].questionText}/>
+        {Object.keys(questions).sort(function (a, b) {
+          if (questions[a].votes < questions[b].votes) return 1;
+          return -1;
+        }).map(questionId =>
+          <Question id={questionId} text={questions[questionId].questionText}/>
         )}
       </div>
     );
