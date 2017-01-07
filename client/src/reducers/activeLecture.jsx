@@ -7,7 +7,7 @@ const activeLecture = (state = {}, action) => {
       if (action.lectureId === undefined) {
         return state;
       } else {
-        return Object.assign(state, {
+        return Object.assign({}, state, {
           lectureId: action.lectureId,
           name: action.name,
           presentationId: action.presentationId,

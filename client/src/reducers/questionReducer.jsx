@@ -15,7 +15,7 @@
 const questionReducer = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_QUESTION':
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         [action.questionId]: {
           questionText: action.questionText,
           votes: 1,
@@ -24,16 +24,16 @@ const questionReducer = (state = {}, action) => {
       });
     case 'UPVOTE':
       return Object.assign(state, {
-        [action.questionId]: Object.assign(state[action.questionId],
+        [action.questionId]: Object.assign({}, state[action.questionId],
           {votes: state[action.questionId].votes + 1})
       });
     case 'DOWNVOTE':
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         [action.questionId]: Object.assign(state[action.questionId],
           {votes: state[action.questionId].votes - 1})
       });
     case 'TOGGLE_UPVOTED':
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         [action.questionId]: Object.assign(state[action.questionId],
           {upvoted: !state[action.questionId].upvoted})
       });
