@@ -13,7 +13,7 @@
 const thumbsReducer = (state = {up: 0, down: 0, side: 0}, action) => {
   switch (action.type) {
     case 'THUMB_CLICKED':
-      return Object.assign(state, {
+      return Object.assign({},state, {
         [action.thumbType]: state[action.thumbType] + 1
       });
     case 'CLEAR_THUMBS':

@@ -14,7 +14,7 @@ describe('thumbsReducer', function() {
     side: 0
   }
   
-  // deepFreeze(testState);
+  deepFreeze(testState);
   describe('UNDEFINED ACTION', function(){
     it('should return default state if action is undefined', function () {
       assert.deepEqual(testState, thumbsReducer(testState, {type: 'TEST'}));
