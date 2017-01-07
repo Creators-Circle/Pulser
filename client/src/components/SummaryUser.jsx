@@ -8,7 +8,7 @@ class SummaryUser extends Component {
     return (
       <div>
         <SummaryMainPane userId={this.props.userId}/>
-        <SummaryComment/>
+        <SummaryComment userId={this.props.userId}/>
       </div>
     );
   }

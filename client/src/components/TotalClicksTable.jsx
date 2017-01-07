@@ -15,11 +15,8 @@ class TotalClicksTable extends Component {
   displayUserSummary (id) {
     // test for clicking the user's name or picture, replace with userSummary component
     console.log('display user', id);
+    this.setState({showUserSummary: null});
     this.setState({showUserSummary: id});
-    // this.props.dispatch({
-    //   type: 'UPDATE_USERID' ,
-    //   userId: id
-    // });
   }
 
   render () {
