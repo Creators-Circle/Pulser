@@ -41,10 +41,6 @@ class PresenterView extends Component {
       socket.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId);
     });
 
-    socket.on('upvoteQuestion', (upvote) => {
-      console.log('upvote received', upvote);
-    });
-
     socket.on('connected', () => {
       // Another User has connected
       // Need to increment the audience store

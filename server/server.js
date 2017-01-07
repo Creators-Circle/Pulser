@@ -186,6 +186,13 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('questionToggle');
     });
 
+    // Listen for a question and bounce it out
+    socket.on('submitQuestion', (question) => {
+      console.log('submitQuestion received', question);
+      nsp.emit('submitQuestion', question);
+      controllers.saveQuestion(question);
+    })
+
     // Listen for upvoteQuestions from the audience and bounce them to everyone
     socket.on('upvoteQuestion', (upvote) => {
       console.log('upvote ', upvote);
@@ -196,7 +203,6 @@ app.post('/newRoom', function (req, res) {
     // Listen for stopPresentation event and let the audience know it's over
     socket.on('stopPresentation', (endLecture) => {
       nsp.emit('stopPresentation');
-      console.log(endLecture);
       controllers.saveEndTime(endLecture);
     });
 

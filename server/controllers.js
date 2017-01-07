@@ -67,9 +67,33 @@ module.exports = {
     return db('upvotes').insert({
       user_id: upvote.userId,
       question_id: upvote.questionId
-    }).then(() => {
-    // finish updating the questions table as well
-    });
+    })
+    .then(() => {
+      return db('questions')
+      .where({
+        id: upvote.questionId
+      })
+      .increment('votes', 1)
+    })
+    // .then((votes)=>{
+    //   votes = votes + 1
+    //   return db('questions')
+    //   .where('id', upvote.questionId)
+    //   .update({
+    //   votes: votes
+    //   });  
+    // });
+  },
+  // save a question to the database then return a promise
+  saveQuestion: function (question) {
+    console.log('saveQuestion event fired');
+    return db('questions').insert({
+      id: question.questionId,
+      lecture_id: question.lectureId,
+      user_id: question.userId,
+      question: question.questionText,
+      votes: 1
+    }).then( () => {console.log('successfully saved question')})
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {
