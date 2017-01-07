@@ -1,6 +1,6 @@
 // reducer for creating questions, incrementing votes, and clearing question data
 
-// state = { 
+// state = {
 //   questionId: {votes: #, questionText: 'sample question'},
 //   questionId: {votes: #, questionText: 'sample question'},
 //   questionId: {votes: #, questionText: 'sample question'}
@@ -14,12 +14,12 @@ const questionReducer = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_QUESTION':
       return Object.assign(state, {
-        [action.questionId]:{
+        [action.questionId]: {
           questionText: action.questionText,
           votes: 1
         }
       });
-    case 'UPVOTE': 
+    case 'UPVOTE':
       return Object.assign(state, {
         [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].votes++)
       });
