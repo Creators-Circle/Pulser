@@ -6,9 +6,7 @@ import { connect } from 'react-redux';
 
 //  TODO:  Write functions to emit and receive data.
   // Find graphics.
-  
 class PresThumbs extends Component {
-  
 
   render () {
     return (
