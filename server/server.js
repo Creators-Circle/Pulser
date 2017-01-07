@@ -237,8 +237,8 @@ module.exports.NODEPORT = process.env.PORT || 5000;
 var port = process.env.PORT || 5000;
 
 app.get('*', function(req, res){
-  res.send('what???', 404);
-  res.sendFile(path.join(__dirname, '/../client/public/404.html'));
+  res.status(404).sendFile(path.join(__dirname, '/../client/public/404.html'));
+  //res.status(404).send('404');
 });
 
 // http server listening to port (HTTP needed for Socket.io)
