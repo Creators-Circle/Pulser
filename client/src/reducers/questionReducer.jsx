@@ -16,13 +16,22 @@ const questionReducer = (state = {}, action) => {
       return Object.assign(state, {
         [action.questionId]: {
           questionText: action.questionText,
-          votes: 1
+          votes: 1,
+          upvoted: false
         }
       });
     case 'UPVOTE':
       return Object.assign(state, {
         [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].votes++)
       });
+    case 'DOWNVOTE':
+      return Object.assign(state, {
+        [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].votes--)
+      });
+    case 'TOGGLE_UPVOTED':
+      return Object.assign(state, {
+        [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].upvoted=!state[action.questionId].upvoted)
+      }); 
     case 'CLEAR_QUESTIONS':
       return {};
     default:
