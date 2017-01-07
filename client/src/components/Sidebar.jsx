@@ -27,6 +27,10 @@ class Sidebar extends Component {
       $('#PulseBox').fadeToggle('slow');
     });
 
+    $('#feedbackToggle').on('click', function () {
+      socket.emit('feedbackToggle');
+    });
+
     // Events that end the presentation should alert the audience and server
     $('#stopPresentation', '#summary').on('click', function () {
       let endTime = new Date();
@@ -48,6 +52,7 @@ class Sidebar extends Component {
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='pulseToggle'>Pulse</button>
+        <button id='feedbackToggle'>Feedback</button>
         <Link id='summary' to='/summary'><button>Summary</button></Link>
         <Link id='stopPresentation' to='/summary'><button>Stop Presentation</button></Link>
       </div>
