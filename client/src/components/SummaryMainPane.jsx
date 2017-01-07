@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
+    // store id of the selected user
     let clickedUser = this.props.userId || '';
 
     // store all the users
     let users = this.props.summary.users;
     console.log('users', this.props.summary);
-
+    // compute total number of clicks
     let userClicks = this.props.summary.clicks.filter(click => click.user_id === clickedUser);
     let totalClicks = !clickedUser ? this.props.summary.clicks.length : userClicks.length;
 
@@ -48,7 +49,7 @@ class SummaryMainPane extends Component {
     }
 
     let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser).length;
-    console.log('user_id', this.props.userId);
+
     let thumbsCount = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser).length;
 
     return (

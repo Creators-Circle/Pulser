@@ -15,8 +15,17 @@ class TotalClicksTable extends Component {
   displayUserSummary (id) {
     // test for clicking the user's name or picture, replace with userSummary component
     console.log('display user', id);
-    this.setState({showUserSummary: null});
-    this.setState({showUserSummary: id});
+    console.log("dfd",this.state.showUserSummary===id)
+    if(this.state.showUserSummary===id){
+      this.setState({showUserSummary: null});
+    }else if(!this.state.showUserSummary){
+      this.setState({showUserSummary: id});
+    }else if(this.state.showUserSummary!==null || this.state.showUserSummary!==id ){
+      console.log("fail");
+      this.setState({showUserSummary: null});
+      this.setState({showUserSummary: id});
+    }
+
   }
 
   render () {
