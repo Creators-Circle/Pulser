@@ -5,17 +5,10 @@ import { connect } from 'react-redux';
   // This allows the presenter to see how many people are on board with a given question.
 
 //  TODO:  Write functions to emit and receive data.
-  // Refactor to use Store
   // Find graphics.
+  
 class PresThumbs extends Component {
-  constructor () {
-    super();
-      // Setting up thumbs variables here so they can be passed and rendered later.
-      // Remove from state when necessary.
-    this.thumbsUpTotal = 0;
-    this.thumbsDownTotal = 1;
-    this.thumbsSideTotal = 2;
-  }
+  
 
   render () {
     return (
@@ -26,7 +19,7 @@ class PresThumbs extends Component {
        </form>
        <button onClick={ console.log('Write a function for me!') }>Set Topic</button>
         <div>
-        <div>Thumbs up! {this.thumbsUpTotal}</div><div>Thumbs to the side! {this.thumbsSideTotal}</div><div>Thumbs Down! {this.thumbsDownTotal}</div>
+        <div>Thumbs up! {this.props.thumbs.up}</div><div>Thumbs to the side! {this.props.thumbs.down}</div><div>Thumbs Down! {this.props.thumbs.side}</div>
         </div>
         <h1>  Images go Here!</h1>
       </div>
@@ -35,4 +28,10 @@ class PresThumbs extends Component {
 
 };
 
-export default connect(state => state)(PresThumbs);
+const mapStateToProps = (state) => {
+  return {
+    thumbs: state.thumbs
+  };
+};
+
+export default connect(mapStateToProps)(PresThumbs);
