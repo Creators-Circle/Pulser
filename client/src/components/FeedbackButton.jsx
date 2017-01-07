@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 // button for firing an event to update the pulseData inside redux store
 class FeedbackButton extends Component {
@@ -32,7 +33,9 @@ class FeedbackButton extends Component {
         resetDecrement();
       }
     });
-
+    socket.on('feedbackToggle', () => {
+      $('#updatePulse').fadeToggle('slow');
+    });
     let decrement = () => {
       // In '30' seconds, emit "decrement" event
       // Capture reset code for setTimeout and store in resetCode

@@ -186,6 +186,10 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('questionToggle');
     });
 
+    socket.on('feedbackToggle', () => {
+      nsp.emit('feedbackToggle');
+    });
+
     // Listen for a question and bounce it out
     socket.on('submitQuestion', (question) => {
       console.log('submitQuestion received', question);
