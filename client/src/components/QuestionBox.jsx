@@ -36,13 +36,10 @@ class QuestionBox extends Component {
   }
 
   submitQuestion () {
-    console.log('submitQuestion event fired');
     // dispatch, submission to the db, socket to the presenter
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let questionText = $('#questionInput').val();
-    $('#questionInput').val('');
-    console.log(questionText);
     let lectureId = this.props.activeLecture.lectureId;
     let userId = this.props.user.id;
     let questionId = (Math.random().toString(36) + '00000000000000000').slice(2, 23);
@@ -53,8 +50,7 @@ class QuestionBox extends Component {
       questionText: questionText
     };
     socket.emit('submitQuestion', question);
-    console.log('submitQuestion sent', question);
-    console.log('this.props after dispatch in submitQuestion', this.props);
+    $('#questionInput').val('');
   }
 
   render () {
@@ -62,7 +58,7 @@ class QuestionBox extends Component {
     let questions = this.props.questions;
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
-      <div id="QuestionBox">
+      <div id="QuestionBox" style={{display: 'none'}}>
         <input type="text" id="questionInput"></input>
         <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
         {Object.keys(questions).sort(function (a, b) {
