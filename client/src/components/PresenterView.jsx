@@ -43,7 +43,7 @@ class PresenterView extends Component {
 
     socket.on('upvoteQuestion', (upvote) => {
       console.log('upvote received', upvote);
-    })
+    });
 
     socket.on('connected', () => {
       // Another User has connected

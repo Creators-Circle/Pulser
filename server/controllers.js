@@ -62,13 +62,13 @@ module.exports = {
         // console.log('successfully inserted');
       });
   },
-  // save an upvote to the database then return a promise 
+  // save an upvote to the database then return a promise
   saveUpvote: function (upvote) {
     return db('upvotes').insert({
       user_id: upvote.userId,
       question_id: upvote.questionId
-    }).then( () => {
-      // finish updating the questions table as well
+    }).then(() => {
+    // finish updating the questions table as well
     });
   },
   // function for getting all the lectures connected to the user

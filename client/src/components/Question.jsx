@@ -14,9 +14,9 @@ class Question extends Component {
     };
     // Emit an event that a question was upvoted
     socket.emit('upvoteQuestion', upvote);
-    console.log('upvote sent ', upvote)
+    console.log('upvote sent ', upvote);
     // Listen for upvotes and dispatch them to the store
-    socket.on('upvoteQuestion', function(upvote){
+    socket.on('upvoteQuestion', function (upvote) {
       console.log('upvote received ', upvote);
       dispatch({
         type: 'UPVOTE',
@@ -26,7 +26,7 @@ class Question extends Component {
   }
 
   submitQuestion () {
-  	// dispatch, submission to the db, socket to the presenter
+    // dispatch, submission to the db, socket to the presenter
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let question = this.props.text;
@@ -50,6 +50,5 @@ const mapStateToProps = (state) => {
     user: state.user
   };
 };
-
 
 export default connect(mapStateToProps)(Question);
