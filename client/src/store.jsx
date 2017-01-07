@@ -19,7 +19,6 @@ const combinedReducers = combineReducers({
   searchValue,
   summary,
   questions,
-  userIdSummary
 });
 
 const store = createStore(combinedReducers);
