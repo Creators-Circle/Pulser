@@ -18,7 +18,7 @@ const combinedReducers = combineReducers({
   activeLecture,
   searchValue,
   summary,
-  questions,
+  questions
 });
 
 const store = createStore(combinedReducers);
