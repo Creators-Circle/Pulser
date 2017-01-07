@@ -148,12 +148,12 @@ module.exports = {
     })
     .then(function (thumbs) { summary.thumbs = thumbs; })
     .then(function () {
-      return db.select('*').from('lectures').where('id', lectureId)
+      return db.select('*').from('lectures').where('id', lectureId);
     })
     .then(function (lecture) {
       summary.lecture = lecture;
       res.send(summary);
-    })
+    });
   },
   // inserting comment in the database
   addComment: function (req, res) {
@@ -174,6 +174,6 @@ module.exports = {
     .where({lecture_id: lectureId, user_id: userId})
     .then(function (data) {
       res.send(data);
-    })
+    });
   }
 };

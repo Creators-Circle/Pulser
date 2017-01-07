@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import SummaryUser from './SummaryUser.jsx';
+import SummaryRightPane from './SummaryRightPane.jsx';
 import getComment from '../util/getComment.js';
 
 // table to display total number of clicks per user during the presentation
@@ -58,7 +58,7 @@ class TotalClicksTable extends Component {
         </table>
         {
           this.state.showUserSummary
-          ? <SummaryUser
+          ? <SummaryRightPane
             userId={this.state.showUserSummary}
             comment = {this.state.comment}
             upDateComment = {this.upDateComment.bind(this)}

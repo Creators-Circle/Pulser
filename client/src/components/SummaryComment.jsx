@@ -1,3 +1,4 @@
+// component for lecture's summary
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import postComment from '../util/postComment.js';
@@ -20,14 +21,13 @@ class SummaryComment extends Component {
     postComment(lectureId, userId, this.state.newComment)
     .done(() => {
       this.setState({toggleComment: false});
-      this.props.upDateComment(userId);
+      this.props.upDateComment(userId, this.state.newComment);
     });
   }
   handleChange (event) {
     this.setState({newComment: event.target.value});
   }
   render () {
-    console.log('props in summary comment', this.props);
     // filter user by the either presenter or selected user
     let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
       : this.props.users.filter(user => user.user_id === this.props.userId)[0];
