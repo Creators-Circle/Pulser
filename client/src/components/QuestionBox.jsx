@@ -39,14 +39,13 @@ class QuestionBox extends Component {
   }
 
   render () {
-    // console.log('Object.keys(this.props.questions)', Object.keys(this.props.questions));
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox">
         <input type="text" id="questionInput"></input>
         <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
-        {Object.keys(this.props.questions).map(question =>
-          <Question id={question} text={this.props.questions[question].questionText}/>
+        {Object.keys(this.props.questions).map(questionId =>
+          <Question id={questionId} text={this.props.questions[questionId].questionText}/>
         )}
       </div>
     );

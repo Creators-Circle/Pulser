@@ -8,6 +8,8 @@
 
 // action = {type: 'CREATE_QUESTION', questionId: string, questionText: string}
 // action = {type: 'UPVOTE', questionId: string}
+// action = {type: 'DOWNVOTE', questionId: string}
+// action = {type: 'TOGGLE_UPVOTED', questionId: string}
 // action = {type: 'CLEAR_QUESTIONS'}
 
 const questionReducer = (state = {}, action) => {
@@ -30,8 +32,8 @@ const questionReducer = (state = {}, action) => {
       });
     case 'TOGGLE_UPVOTED':
       return Object.assign(state, {
-        [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].upvoted=!state[action.questionId].upvoted)
-      }); 
+        [action.questionId]: Object.assign(state[action.questionId], state[action.questionId].upvoted = !state[action.questionId].upvoted)
+      });
     case 'CLEAR_QUESTIONS':
       return {};
     default:
