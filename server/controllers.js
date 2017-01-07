@@ -73,16 +73,8 @@ module.exports = {
       .where({
         id: upvote.questionId
       })
-      .increment('votes', 1)
-    })
-    // .then((votes)=>{
-    //   votes = votes + 1
-    //   return db('questions')
-    //   .where('id', upvote.questionId)
-    //   .update({
-    //   votes: votes
-    //   });  
-    // });
+      .increment('votes', 1);
+    });
   },
   // save a question to the database then return a promise
   saveQuestion: function (question) {
@@ -93,7 +85,10 @@ module.exports = {
       user_id: question.userId,
       question: question.questionText,
       votes: 1
-    }).then( () => {console.log('successfully saved question')})
+    })
+    .then(() => {
+      console.log('successfully saved question');
+    });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {

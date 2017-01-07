@@ -32,10 +32,10 @@ class QuestionBox extends Component {
       questionText: questionText
     };
     socket.emit('submitQuestion', question);
-    console.log('submitQuestion sent', question)
+    console.log('submitQuestion sent', question);
     // let setState = this.setState.bind(this);
     // let state = this.state;
-    socket.on('submitQuestion', function(question){
+    socket.on('submitQuestion', function (question) {
       console.log('question received', question);
       dispatch({
         type: 'CREATE_QUESTION',
@@ -49,14 +49,14 @@ class QuestionBox extends Component {
   }
 
   render () {
-    console.log('Object.keys(this.props.questions)',Object.keys(this.props.questions));
+    // console.log('Object.keys(this.props.questions)', Object.keys(this.props.questions));
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox">
         <input type="text" id="questionInput"></input>
         <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
         {Object.keys(this.props.questions).map(question =>
-          <Question id={question} text={questions[question].questionText}/>
+          <Question id={question} text={this.props.questions[question].questionText}/>
         )}
       </div>
     );

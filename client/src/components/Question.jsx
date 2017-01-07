@@ -25,7 +25,7 @@ class Question extends Component {
   }
 
   render () {
-  	console.log("this.props in question");
+    console.log('this.props in question');
     return (
       <div>
        <button id="upvote" onClick={this.upvoteQuestion.bind(this)}>Upvote</button>

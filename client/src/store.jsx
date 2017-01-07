@@ -8,7 +8,7 @@ import userLectures from './reducers/userLectures';
 import activeLecture from './reducers/activeLecture';
 import searchValue from './reducers/searchValue';
 import summary from './reducers/summary';
-import questions from './reducers/questionReducer.jsx'
+import questions from './reducers/questionReducer.jsx';
 // store all reducers in one variable
 const combinedReducers = combineReducers({
   pulseData,

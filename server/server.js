@@ -191,7 +191,7 @@ app.post('/newRoom', function (req, res) {
       console.log('submitQuestion received', question);
       nsp.emit('submitQuestion', question);
       controllers.saveQuestion(question);
-    })
+    });
 
     // Listen for upvoteQuestions from the audience and bounce them to everyone
     socket.on('upvoteQuestion', (upvote) => {
