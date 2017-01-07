@@ -21,14 +21,6 @@ describe('thumbsReducer', function() {
     });
   });
 
-  // describe('CREATE_THUMBS', function () {
-  //   it('it should add a new thumb to the store', function () {
-  //     assert.deepEqual(testState,
-  //       thumbsReducer({324234:{votes: 3, questionText: 'sample question', upvoted: false}},
-  //         {type: 'CREATE_THUMBS', questionId: 435353, questionText: 'Who am I?'}));
-  //   });
-  // });
-
   describe('THUMB_CLICKED', function () {
     it('it should increment the specific thumbType included in the action', function() {
       assert.deepEqual({up: 1, down: 0, side: 0},
