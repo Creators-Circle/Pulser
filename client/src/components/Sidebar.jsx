@@ -48,8 +48,8 @@ class Sidebar extends Component {
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='pulseToggle'>Pulse</button>
-        <Link id="summary" to="/summary"><button>Summary</button></Link>
-        <Link id="stopPresentation" to="/summary"><button>Stop Presentation</button></Link>
+        <Link id='summary' to='/summary'><button>Summary</button></Link>
+        <Link id='stopPresentation' to='/summary'><button>Stop Presentation</button></Link>
       </div>
     );
   }
