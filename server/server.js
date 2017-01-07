@@ -193,11 +193,17 @@ app.post('/newRoom', function (req, res) {
       controllers.saveQuestion(question);
     });
 
-    // Listen for upvoteQuestions from the audience and bounce them to everyone
+    // Listen for upvote / downvote Questions from the audience and bounce them to everyone
     socket.on('upvoteQuestion', (upvote) => {
       console.log('upvote ', upvote);
       nsp.emit('upvoteQuestion', upvote);
       controllers.saveUpvote(upvote);
+    });
+
+    socket.on('downvoteQuestion', (downvote) => {
+      console.log('downvote ', downvote);
+      nsp.emit('downvoteQuestion', downvote);
+      controllers.saveDownvote(downvote);
     });
 
     // Listen for stopPresentation event and let the audience know it's over

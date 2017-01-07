@@ -64,7 +64,8 @@ module.exports = {
   },
   // save an upvote to the database then return a promise
   saveUpvote: function (upvote) {
-    return db('upvotes').insert({
+    return db('upvotes')
+    .insert({
       user_id: upvote.userId,
       question_id: upvote.questionId
     })
@@ -74,6 +75,20 @@ module.exports = {
         id: upvote.questionId
       })
       .increment('votes', 1);
+    });
+  },
+  saveDownvote: function (downvote) {
+    return db('upvotes')
+    .where({
+      question_id: downvote.questionId
+    })
+    .del()
+    .then(() => {
+      return db('questions')
+      .where({
+        id: downvote.questionId
+      })
+      .decrement('votes', 1);
     });
   },
   // save a question to the database then return a promise
