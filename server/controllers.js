@@ -23,6 +23,12 @@ module.exports = {
         }
       });
   },
+  saveEndTime: function (endLecture) {
+    return db('lectures').where('id', endLecture.id).update({
+      end_time: endLecture.endTime
+    })
+      .then(console.log('successfully updated endLecture'));
+  },
   // save lecture info to the database then return a promise
   saveLecture: function (lecture) {
     return db('lectures').insert({
@@ -55,6 +61,34 @@ module.exports = {
       .then((data) => {
         // console.log('successfully inserted');
       });
+  },
+  // save an upvote to the database then return a promise
+  saveUpvote: function (upvote) {
+    return db('upvotes').insert({
+      user_id: upvote.userId,
+      question_id: upvote.questionId
+    })
+    .then(() => {
+      return db('questions')
+      .where({
+        id: upvote.questionId
+      })
+      .increment('votes', 1);
+    });
+  },
+  // save a question to the database then return a promise
+  saveQuestion: function (question) {
+    console.log('saveQuestion event fired');
+    return db('questions').insert({
+      id: question.questionId,
+      lecture_id: question.lectureId,
+      user_id: question.userId,
+      question: question.questionText,
+      votes: 1
+    })
+    .then(() => {
+      console.log('successfully saved question');
+    });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {

@@ -186,6 +186,26 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('questionToggle');
     });
 
+    // Listen for a question and bounce it out
+    socket.on('submitQuestion', (question) => {
+      console.log('submitQuestion received', question);
+      nsp.emit('submitQuestion', question);
+      controllers.saveQuestion(question);
+    });
+
+    // Listen for upvoteQuestions from the audience and bounce them to everyone
+    socket.on('upvoteQuestion', (upvote) => {
+      console.log('upvote ', upvote);
+      nsp.emit('upvoteQuestion', upvote);
+      controllers.saveUpvote(upvote);
+    });
+
+    // Listen for stopPresentation event and let the audience know it's over
+    socket.on('stopPresentation', (endLecture) => {
+      nsp.emit('stopPresentation');
+      controllers.saveEndTime(endLecture);
+    });
+
     socket.on('disconnect', function (socket) {
       console.log('a user disconnected from ', nsp.name);
       // Alert the presenter that an audience member has disconnected
