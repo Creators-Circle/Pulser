@@ -6,20 +6,27 @@ import { connect } from 'react-redux';
 class SummaryMainPane extends Component {
 
   render () {
+    // store id of the selected user
+    let clickedUser = this.props.userId || '';
+
     // store all the users
-    var users = this.props.summary.users;
+    let users = this.props.summary.users;
+    console.log('users', this.props.summary);
     // compute total number of clicks
-    let totalClicks = users.reduce(function (sum, curr) {
-      return sum + Number(curr.no_of_clicks);
-    }, 0);
+    let userClicks = this.props.summary.clicks.filter(click => click.user_id === clickedUser);
+    let totalClicks = !clickedUser ? this.props.summary.clicks.length : userClicks.length;
+
     // compute the average click per user, remove the presenter from the users
     // round to 1 decimal place
     let avgClickPerUser = Math.round((totalClicks / (users.length - 1) * 10)) / 10;
     // total number of questions asked about the lecture
-    let questions = this.props.summary.questions.length;
+    let questions = !clickedUser ? this.props.summary.questions.length
+      : this.props.summary.questions.filter(question => question.user_id === clickedUser).length;
     // store count of clicks per minute
     let clickPerTime = {};
-    this.props.summary.clicks.forEach(click => {
+    let clicks = !this.props.userId ? this.props.summary.clicks : userClicks;
+
+    clicks.forEach(click => {
       let time = click.date.split('T')[1].slice(0, 5);
       clickPerTime[time] = clickPerTime[time] ? clickPerTime[time] += 1 : 1;
     });
@@ -41,10 +48,20 @@ class SummaryMainPane extends Component {
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
     }
 
+    let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser).length;
+
+    let thumbsCount = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser).length;
+
     return (
       <div id='mainPane' className='summary'>
-        <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
         <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
+        {
+          !clickedUser ? <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
+          : <div>
+              <SummaryInfoBox title={'Upvotes'} value={userUpvotes}/>
+              <SummaryInfoBox title={'Thumbs'} value={thumbsCount}/>
+            </div>
+        }
         <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
         <SummaryInfoBox title={'Questions'} value={questions}/>

@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import SummaryRightPane from './SummaryRightPane.jsx';
+import getComment from '../util/getComment.js';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
+  constructor () {
+    super();
+    this.state = {
+      showUserSummary: null,
+      comment: ''
+    };
+  }
 
   displayUserSummary (id) {
-    // test for clicking the user's name or picture, replace with userSummary component
-    console.log('display user');
+    // show user's summary
+    if (!this.state.showUserSummary || this.state.showUserSummary !== id) {
+      this.setState({showUserSummary: id});
+      this.upDateComment(id);
+    } else {
+      // if the selected user was selected again, close user's summary
+      this.setState({showUserSummary: null});
+    }
+  }
+
+  upDateComment (id) {
+    getComment(this.props.summary.lecture[0].id, id, (data) => {
+      let comment = data[0].comment;
+      this.setState({comment: comment});
+    });
   }
 
   render () {
@@ -34,6 +56,14 @@ class TotalClicksTable extends Component {
           }
         </tbody>
         </table>
+        {
+          this.state.showUserSummary
+          ? <SummaryRightPane
+            userId={this.state.showUserSummary}
+            comment = {this.state.comment}
+            upDateComment = {this.upDateComment.bind(this)}
+          /> : null
+        }
       </div>
     );
   }

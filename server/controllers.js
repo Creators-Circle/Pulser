@@ -132,8 +132,26 @@ module.exports = {
     .then(function () {
       // get all the questions for the lecture
       return db.select('*').from('questions').where('lecture_id', lectureId);
-    }).then(function (questions) {
-      summary.questions = questions;
+    })
+    .then(function (questions) { summary.questions = questions; })
+    .then(function () {
+      // get all the upvotes
+      return db.select('*').from('questions')
+      .join('upvotes', 'questions.id', 'upvotes.question_id')
+      .where('lecture_id', lectureId);
+    })
+    .then(function (upvotes) { summary.upvotes = upvotes; })
+    .then(function () {
+      return db.select('user_id', 'lecture_id', 'thumb', 'name')
+      .from('thumbs').join('lectures', 'thumbs.lecture_id', 'lectures.id')
+      .where('lecture_id', lectureId);
+    })
+    .then(function (thumbs) { summary.thumbs = thumbs; })
+    .then(function () {
+      return db.select('*').from('lectures').where('id', lectureId);
+    })
+    .then(function (lecture) {
+      summary.lecture = lecture;
       res.send(summary);
     });
   },
@@ -146,6 +164,16 @@ module.exports = {
     .update({comment: comment})
     .then(function (data) {
       res.send('succes');
+    });
+  },
+  // fetching a specific comment
+  getComment: function (req, res) {
+    var lectureId = req.params.lecture_id;
+    var userId = req.params.user_id;
+    return db.select('*').from('user_lectures')
+    .where({lecture_id: lectureId, user_id: userId})
+    .then(function (data) {
+      res.send(data);
     });
   }
 };
