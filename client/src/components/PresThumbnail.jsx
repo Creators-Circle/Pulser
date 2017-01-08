@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // These are thumbnails of previous presentations w/ a title and date it was presented/viewed
-class PresThumb extends Component {
+class PresThumbnail extends Component {
 
   render () {
     return (
@@ -14,4 +14,4 @@ class PresThumb extends Component {
   };
 };
 
-export default PresThumb;
+export default PresThumbnail;

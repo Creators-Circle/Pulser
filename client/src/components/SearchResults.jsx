@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PresThumb from './PresThumb';
+import PresThumbnail from './PresThumbnail';
 import { connect } from 'react-redux';
 
 // panel to display search results from querying DB for specific presentation data
@@ -14,7 +14,7 @@ class SearchResults extends Component {
       <div>
         { searchLectures.length === 0 ? <p>No results found</p>
           : searchLectures.map(lecture =>
-          <PresThumb key = {lecture.id} date = {lecture.date} name = {lecture.name} />
+          <PresThumbnail key = {lecture.id} date = {lecture.date} name = {lecture.name} />
         )}
       </div>
     );
