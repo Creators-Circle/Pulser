@@ -22,6 +22,7 @@ class SummaryView extends Component {
   }
 
   render () {
+    console.log('rendering test');
     return (
       <div>
       <LogoutButton/>
