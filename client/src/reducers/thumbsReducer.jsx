@@ -6,7 +6,6 @@
 //   side: 0
 // }
 
-// action = {type: 'CREATE_THUMBS'}
 // action = {type: 'CLICK_THUMB', thumbType: 'thumbsup'}
 // action = {type: 'CLEAR_THUMBS'}
 

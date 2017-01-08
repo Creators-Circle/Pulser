@@ -210,6 +210,18 @@ app.post('/newRoom', function (req, res) {
       controllers.saveDownvote(downvote);
     });
 
+    // -------------------------- SOCKETS FOR 'THUMBS' --------------------------
+
+    socket.on('submit thumbTopic', (topicId, topic, lectureId) => {
+      console.log('topic submit: ', topic);
+      nsp.emit('open thumbs', topic);
+      controllers.saveThumb(topicId, topic, lectureId);
+    });
+
+
+
+
+
     // Listen for stopPresentation event and let the audience know it's over
     socket.on('stopPresentation', (endLecture) => {
       nsp.emit('stopPresentation');
