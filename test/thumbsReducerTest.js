@@ -1,4 +1,4 @@
-// tests for question reducer
+// tests for thumbs reducer
 const assert = require('assert');
 const deepFreeze = require('deep-freeze');
 import  thumbsReducer  from '../client/src/reducers/thumbsReducer.jsx';
