@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
+import uuid from 'uuid/v1';
 import $ from 'jquery';
 
 // PresThumbs requests feedback from audience members and renders the results of that data.
