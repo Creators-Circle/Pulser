@@ -8,6 +8,7 @@ import { browserHistory } from 'react-router';
 class JoinPresBox extends Component {
 
   componentDidMount () {
+    // handles enter key being pressed while join input field is selected
     $('#join').keypress(function (e) {
       if (e.which === 13) {
         $('#joinButton').click();

@@ -22,6 +22,7 @@ class PresThumbs extends Component {
       render();
     });
 
+    // handles enter key being pressed while topic input field is selected
     $('#topic').keypress(function (e) {
       if (e.which === 13) {
         $('#setTopic').click();
