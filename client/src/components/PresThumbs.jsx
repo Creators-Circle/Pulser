@@ -11,9 +11,8 @@ import $ from 'jquery';
 class PresThumbs extends Component {
 
   componentDidMount () {
+    let newThumbs = false; // not sure if this is gonna work???
     // hide thumbs component on load
-    $('#Thumbs').toggle();
-
     // retain 'this' context
     let dispatch = this.props.dispatch;
     let render = this.forceUpdate.bind(this);
@@ -38,16 +37,19 @@ class PresThumbs extends Component {
     let topic = $('#topic').val();
     let lectureId = this.props.lectureId;
     socket.emit('submit thumbTopic', topicId, topic, lectureId);
+    // add thumb title, remove thumb form
+    $('#topicTitle:first-child').append($('#topic').val());
+    $('#topic, #setTopic').fadeOut();
   }
 
   render () {
     return (
       <div id='Thumbs'>
-        <h1> Topic: </h1>
+        <h1 id='topicTitle'> Topic: </h1>
         <form>
           <input id='topic' type='text' name='topic' /><br/>
         </form>
-        <button onClick={this.submitTopic.bind(this)}>Set Topic</button>
+        <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
         <div>
           <div>Thumbs up!<br/>{this.props.thumbs.up}</div>
           <div>Thumbs to the side!<br/>{this.props.thumbs.down}</div>

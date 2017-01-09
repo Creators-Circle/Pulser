@@ -27,10 +27,12 @@ class Sidebar extends Component {
     // If thumbs component isn't toggled, then toggle it in
       if (!thumbsToggle) {
         $('#Thumbs').fadeToggle('slow');
-      } else { // if already visible, toggle it out
-        $('#Thumbs').fadeToggle('slow');
+      } else { // if already visible, toggle it out and reset it
+        $('#Thumbs').fadeToggle('fast');
+        $('#topicTitle').text('Topic: ');
+        $('#topic').val('');
+        $('#topic, #setTopic').fadeIn();
         socket.emit('close thumbs'); // emit event to close all audience thumbs components
-        $('#topic').val();
         dispatch({type: 'CLEAR_TOPIC'}); // dispatch action to clear store of thumb data
       }
       thumbsToggle = !thumbsToggle; // toggle boolean value of thumbsToggle
@@ -64,15 +66,15 @@ class Sidebar extends Component {
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div>
-        <Link id='exit' to='/summary'><button id="exit">X</button></Link>
+        <Link to='/summary'><button id="exit">X</button></Link>
         <a href={embedUrl} target="_blank"><button>Projector</button></a>
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='thumbsToggle'>Thumbs</button>
         <button id='pulseToggle'>Pulse</button>
         <button id='feedbackToggle'>Feedback</button>
-        <Link id='summary' to='/summary'><button>Summary</button></Link>
-        <Link id='stopPresentation' to='/summary'><button>Stop Presentation</button></Link>
+        <Link to='/summary'><button>Summary</button></Link>
+        <Link to='/summary'><button>Stop Presentation</button></Link>
       </div>
     );
   }

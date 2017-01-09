@@ -17,6 +17,7 @@ import AudThumbs from './AudThumbs';
 class AudienceView extends Component {
 
   componentDidMount () {
+    let thumbsDisplayed = false;
     let thumbs = this.props.thumbs;
     let dispatch = this.props.dispatch;
     // Socket event listener to trigger fade out
@@ -31,19 +32,19 @@ class AudienceView extends Component {
     socket.on('open thumbs', function (topicId, topic) {
       $('#thumbTopic').text(topic);
       $('#Thumbs').fadeToggle('slow');
-      console.log('before toggle on', thumbs.displayed);
       dispatch({type: 'SET_TOPIC_ID', topicId: topicId});
       dispatch({type: 'TOGGLE_DISPLAY'});
-      console.log('after toggle on', thumbs.displayed);
+      thumbsDisplayed = !thumbsDisplayed;
     });
+
     // Trugger thumbs box to close if still open
       // CURRENTLY NOT WORKING
     socket.on('close thumbs', function () {
-      console.log('should close, but currently isn\'t');
-      if (thumbs.displayed) {
+      if (thumbsDisplayed) {
         $('#Thumbs').fadeToggle('slow');
         dispatch({type: 'TOGGLE_THUMBS_BOX'});
       }
+      thumbsDisplayed = !thumbsDisplayed;
     });
 
     socket.on('stopPresentation', function () {
@@ -52,6 +53,7 @@ class AudienceView extends Component {
   }
 
   render () {
+    // console.log('after toggle on', this.props.thumbs.displayed);
     return (
       <div id="AudienceView">
       <LogoutButton/>
