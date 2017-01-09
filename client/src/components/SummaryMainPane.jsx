@@ -8,7 +8,7 @@ class SummaryMainPane extends Component {
   render () {
     // store id of the selected user
     let clickedUser = this.props.userId || '';
-
+    // --------------- will move to other files after this pull request----------- //
     // store all the users
     let users = this.props.summary.users;
     let lecture = this.props.summary.lecture[0];
@@ -63,9 +63,7 @@ class SummaryMainPane extends Component {
 
     let longestMinutesWithOutClicks = 0;
     [startMinutes, ...minutes, endMinutes].sort().forEach((minute, i, totalMinutes) => {
-      console.log("minutes",totalMinutes);
       let difference = Math.abs(totalMinutes[i] - totalMinutes[i + 1]);
-      console.log("difference", difference);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
     });
 
@@ -103,7 +101,7 @@ class SummaryMainPane extends Component {
       let topicSummary = topicsSummary[topic];
       return `${topic}: up: ${topicSummary[1]}, side: ${topicSummary[2]}, down: ${topicSummary[3]}`;
     });
-
+    // ------------------------------------------------------------------------------- //
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>

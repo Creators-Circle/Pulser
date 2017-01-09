@@ -10,7 +10,7 @@ const routes = (
   <Route>
     <Route path='/' component={App} />
     <Route path='/presenter' component={PresenterView} />
-    <Route path='/summary' component={SummaryView} />
+    <Route path='/summary/:lectureId' component={SummaryView} />
     <Route path='/audience' component={AudienceView} />
     <Route path='/guest' component={GuestView} />
   </Route>

@@ -1,3 +1,4 @@
+// component for displaying the summary detail
 import React from 'react';
 
 const SummaryInfoBoxDetail = (props) => {

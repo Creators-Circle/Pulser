@@ -1,3 +1,4 @@
+// component for displaying each row in the TotalClicksTable
 import React, { Component } from 'react';
 
 const TotalClicksRow = (props) => {

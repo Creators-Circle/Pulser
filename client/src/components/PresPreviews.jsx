@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PresThumbnail from './PresThumbnail';
 import getUserLectures from '../util/getUserLectures';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 // Panel that displays list of presentations
 class PresPreviews extends Component {
@@ -27,8 +28,10 @@ class PresPreviews extends Component {
       <div>
         {
           recentLectures.length > 0
-            ? recentLectures.map(lecture =>
-              <PresThumbnail key = {lecture.id} date = {lecture.date} name = {lecture.name} />
+            ? recentLectures.map((lecture, i) =>
+              <Link key={i} to={`/summary/${lecture.lecture_id}`}>
+                <PresThumb date = {lecture.date} name = {lecture.name} />
+              </Link>
             ) : <p>No recent activites</p>
         }
       </div>

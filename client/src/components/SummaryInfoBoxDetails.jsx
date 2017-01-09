@@ -1,3 +1,4 @@
+// component for displaying the a list of data about the Summary Info box
 import React, { Component } from 'react';
 import SummaryInfoBoxDetail from './SummaryInfoBoxDetail.jsx';
 
