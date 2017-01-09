@@ -277,7 +277,7 @@ var createSession = function (req, res, id) {
 
 var createAccessToken = function () {
   return _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuv00123456789', 36).join('');
-}
+};
 
 // HEROKU OR DOTENV VAR OR LOCALHOST:5000
 // Check to see if there is a port environment variable or just use port 5000 instead

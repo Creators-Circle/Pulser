@@ -4,7 +4,6 @@ var db = require('./db.js');
 module.exports = {
   // getting user information from the users table
   getUser: function (req, res) {
-    console.log("client session",req.session);
     db('users').where('id', req.session.userId)
       .then(function (data) {
         var user = data[0];
