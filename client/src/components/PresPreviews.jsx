@@ -21,8 +21,8 @@ class PresPreviews extends Component {
 
   render () {
     // filter the most recent lectures and filter depending on the role given
-    let recentLectures = this.props.userLectures.slice(0, 6)
-      .filter(lecture => lecture.role === this.props.role);
+    let recentLectures = this.props.userLectures
+      .filter(lecture => lecture.role === this.props.role).slice(0, 8);
     return (
       <div>
         {
