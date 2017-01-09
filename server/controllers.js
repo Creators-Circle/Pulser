@@ -4,7 +4,8 @@ var db = require('./db.js');
 module.exports = {
   // getting user information from the users table
   getUser: function (req, res) {
-    db('users').where('id', req.session.token)
+    console.log("client session",req.session);
+    db('users').where('id', req.session.userId)
       .then(function (data) {
         var user = data[0];
         res.send({name: user.name, avatar: user.avatar, email: user.email, id: user.id});
@@ -147,7 +148,7 @@ module.exports = {
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {
-    var user = req.session.token;
+    var user = req.session.userId;
     db.select('*').from('lectures')
     .join('user_lectures', 'lectures.id', 'user_lectures.lecture_id')
     .where({user_id: user}).orderBy('date', 'desc')
