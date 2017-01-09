@@ -2,7 +2,7 @@
 exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.table('lectures', function (table) {
-      table.boolean('guest').defaultTo(true);
+      table.boolean('guest').defaultTo(false);
     })
   ]);
 };
