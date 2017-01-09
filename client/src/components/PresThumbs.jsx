@@ -21,6 +21,14 @@ class PresThumbs extends Component {
       // trigger a re-render
       render();
     });
+
+    // handles enter key being pressed while topic input field is selected
+    $('#topic').keypress(function (e) {
+      if (e.which === 13) {
+        $('#setTopic').click();
+        return false;
+      }
+    });
   }
 
   submitTopic () {
