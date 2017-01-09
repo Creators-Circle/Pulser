@@ -275,6 +275,7 @@ var createSession = function (req, res, id) {
   });
 };
 
+// creating random alphanumeric 36 character code
 var createAccessToken = function () {
   return _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuv00123456789', 36).join('');
 };
