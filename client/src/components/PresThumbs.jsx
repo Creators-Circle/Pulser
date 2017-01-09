@@ -16,7 +16,6 @@ class PresThumbs extends Component {
     // retain 'this' context
     let dispatch = this.props.dispatch;
     let render = this.forceUpdate.bind(this);
-
     // socket listener for when an audience member clicks on a thumb
     this.props.socket.on('thumb clicked', function (thumbChoice) {
       // increment the total tally in the store for the thumb chosen
@@ -42,11 +41,9 @@ class PresThumbs extends Component {
 
   render () {
     return (
-      <div id='Thumbs'>
+      <div id='Thumbs' style={{display: 'none'}}>
         <h1 id='topicTitle'> Topic: </h1>
-        <form>
-          <input id='topic' type='text' name='topic' /><br/>
-        </form>
+        <input id='topic' type='text' name='topic' /><br/>
         <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
         <div>
           <div>Thumbs up!<br/>{this.props.thumbs.up}</div>
