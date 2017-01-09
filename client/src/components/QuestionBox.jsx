@@ -64,7 +64,7 @@ class QuestionBox extends Component {
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
-        }).map( (questionId, i) =>
+        }).map((questionId, i) =>
           <Question key={i} id={questionId} text={questions[questionId].questionText}/>
         )}
       </div>
