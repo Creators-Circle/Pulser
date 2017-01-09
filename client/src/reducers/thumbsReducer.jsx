@@ -14,9 +14,6 @@
 const thumbsReducer = (state = {topicId: 0, displayed: false, up: 0, down: 0, side: 0}, action) => {
   switch (action.type) {
     case 'TOGGLE_DISPLAY':
-      console.log('FIREEEEE');
-      console.log(state.displayed);
-      console.log(!state.displayed);
       return Object.assign({}, state, {
         displayed: !state.displayed
       });

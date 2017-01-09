@@ -21,10 +21,8 @@ class PresThumbs extends Component {
     this.props.socket.on('thumb clicked', function (thumbChoice) {
       // increment the total tally in the store for the thumb chosen
       dispatch({type: 'THUMB_CLICKED', thumbChoice: thumbChoice});
-
-      // TO DO: trigger re-render
+      // trigger a re-render
       render();
-      console.log('thumb clicked!');
     });
   }
 
@@ -52,8 +50,8 @@ class PresThumbs extends Component {
         <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
         <div>
           <div>Thumbs up!<br/>{this.props.thumbs.up}</div>
-          <div>Thumbs to the side!<br/>{this.props.thumbs.down}</div>
-          <div>Thumbs Down!<br/>{this.props.thumbs.side}</div>
+          <div>Thumbs to the side!<br/>{this.props.thumbs.side}</div>
+          <div>Thumbs Down!<br/>{this.props.thumbs.down}</div>
         </div>
       </div>
     );

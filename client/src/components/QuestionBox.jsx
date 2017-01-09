@@ -25,7 +25,6 @@ class QuestionBox extends Component {
       render();
     });
     this.socket.on('submitQuestion', function (question) {
-      console.log('question received', question);
       dispatch({
         type: 'CREATE_QUESTION',
         questionText: question.questionText,

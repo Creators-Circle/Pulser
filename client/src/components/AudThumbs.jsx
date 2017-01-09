@@ -24,15 +24,10 @@ class AudThumbs extends Component {
       socket.emit('thumb clicked', topicId, userId, thumbChoice);
       // fade out component and set 'displayed' property to false in the store
       $('#Thumbs').fadeToggle('slow');
+      // dispatch 
       dispatch({type: 'TOGGLE_THUMBS_BOX'});
     });
   }
-
-  // chooseThumb () {
-  //   console.log('this thumb button', this)
-  //   this.props.socket.emit('click thumb', this.props.topicId, this.props.userId, this.props.thumbChoice)
-  //   dispatch({type:'TOGGLE_THUMBS_BOX'});
-  // }
 
   render () {
     return (

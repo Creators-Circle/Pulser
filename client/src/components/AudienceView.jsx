@@ -37,8 +37,7 @@ class AudienceView extends Component {
       thumbsDisplayed = !thumbsDisplayed;
     });
 
-    // Trugger thumbs box to close if still open
-      // CURRENTLY NOT WORKING
+    // Trigger thumbs box to close if still open
     socket.on('close thumbs', function () {
       if (thumbsDisplayed) {
         $('#Thumbs').fadeToggle('slow');
