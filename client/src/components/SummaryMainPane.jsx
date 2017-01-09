@@ -20,9 +20,15 @@ class SummaryMainPane extends Component {
     // compute the average click per user, remove the presenter from the users
     // round to 1 decimal place
     let avgClickPerUser = Math.round((totalClicks / (users.length - 1) * 10)) / 10;
+
     // total number of questions asked about the lecture
-    let questions = !clickedUser ? this.props.summary.questions.length
-      : this.props.summary.questions.filter(question => question.user_id === clickedUser).length;
+    let questions = !clickedUser ? this.props.summary.questions
+      : this.props.summary.questions.filter(question => question.user_id === clickedUser);
+
+    let formattedQuestions = questions.sort((a, b) => b.votes - a.votes)
+      .map(data => `${data.question}: ${data.votes}`);
+    let noOfQuestions = questions.length;
+
     // store count of clicks per minute
     let clickPerTime = {};
     let clicks = !this.props.userId ? this.props.summary.clicks : userClicks;
@@ -57,8 +63,10 @@ class SummaryMainPane extends Component {
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
     });
 
-    let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser).length;
+    let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser)
+      .map(upvote => upvote.question);
 
+    let noOfUpvotes = userUpvotes.length;
     let thumbsCount = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser).length;
 
     return (
@@ -67,13 +75,13 @@ class SummaryMainPane extends Component {
         {
           !clickedUser ? <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
           : <div>
-              <SummaryInfoBox title={'Upvotes'} value={userUpvotes}/>
+              <SummaryInfoBox title={'Upvotes'} value={noOfUpvotes} viewDetails={userUpvotes}/>
               <SummaryInfoBox title={'Thumbs'} value={thumbsCount}/>
             </div>
         }
         <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
-        <SummaryInfoBox title={'Questions'} value={questions} />
+        <SummaryInfoBox title={'Questions'} value={noOfQuestions} viewDetails={formattedQuestions}/>
       </div>
     );
   };
