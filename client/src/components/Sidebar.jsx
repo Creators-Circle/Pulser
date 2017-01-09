@@ -66,15 +66,15 @@ class Sidebar extends Component {
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div>
-        <Link to='/summary'><button id='exit'>X</button></Link>
+        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='exit'>X</button></Link>
         <a href={embedUrl} target="_blank"><button>Projector</button></a>
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
         <button id='thumbsToggle'>Thumbs</button>
         <button id='pulseToggle'>Pulse</button>
         <button id='feedbackToggle'>Feedback</button>
-        <Link to='/summary'><button id='summary'>Summary</button></Link>
-        <Link to='/summary'><button id='stopPresentation'>Stop Presentation</button></Link>
+        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='summary'>Summary</button></Link>
+        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='stopPresentation'>Stop Presentation</button></Link>
       </div>
     );
   }
