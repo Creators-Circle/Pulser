@@ -11,8 +11,6 @@ import $ from 'jquery';
 class PresThumbs extends Component {
 
   componentDidMount () {
-    let newThumbs = false; // not sure if this is gonna work???
-    // hide thumbs component on load
     // retain 'this' context
     let dispatch = this.props.dispatch;
     let render = this.forceUpdate.bind(this);
@@ -25,9 +23,6 @@ class PresThumbs extends Component {
     });
   }
 
-  // function to submit a topic (as the presenter)
-  // TO DO: re-render or hide the input box and submit button after submitting
-      // user need sto know that it was successful and disable submit capability
   submitTopic () {
     let socket = this.props.socket;
     let topicId = uuid();

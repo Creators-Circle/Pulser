@@ -18,7 +18,6 @@ class AudienceView extends Component {
 
   componentDidMount () {
     let thumbsDisplayed = false;
-    let thumbs = this.props.thumbs;
     let dispatch = this.props.dispatch;
     // Socket event listener to trigger fade out
     let socket = this.props.activeLecture.socket;
@@ -52,7 +51,6 @@ class AudienceView extends Component {
   }
 
   render () {
-    // console.log('after toggle on', this.props.thumbs.displayed);
     return (
       <div id="AudienceView">
       <LogoutButton/>
@@ -70,7 +68,6 @@ class AudienceView extends Component {
 const mapStateToProps = (state) => {
   return {
     activeLecture: state.activeLecture,
-    thumbs: state.thumbs,
     dispatch: state.dispatch
   };
 };
