@@ -10,8 +10,7 @@ import SummaryRightPane from './SummaryRightPane';
 class SummaryView extends Component {
 
   componentWillMount () {
-    let lectureId = 'cc0001'; // temporary lectureId TODO: HOOK UP TO ACTIVELECTURE STORE
-
+    let lectureId = this.props.params.lectureId;
     // once this component loads, it gets the summary from the server and store it to the store
     getLectureSummary(lectureId, (summary) => {
       this.props.dispatch({
@@ -22,16 +21,22 @@ class SummaryView extends Component {
   }
 
   render () {
-    return (
-      <div>
-      <LogoutButton/>
-      <div>
-        <h1>Summary</h1>
-        <SummaryLeftPane/>
-        <SummaryRightPane/>
-      </div>
-      </div>
-    );
+    if (this.props.summary) {
+      return (
+        <div>
+        <LogoutButton/>
+        <div>
+          <h1>Summary</h1>
+          <SummaryLeftPane/>
+          <SummaryRightPane/>
+        </div>
+        </div>
+      );
+    } else {
+      return (
+        <p>rendering</p>
+      );
+    }
   }
 }
 

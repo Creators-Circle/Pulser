@@ -16,7 +16,7 @@ class DashboardView extends Component {
         <LogoutButton/>
         <div>
           <NewPresButton/>
-          <Link to={'/summary'}>Summary</Link>
+          <Link to={'/summary/cc0001'}>Summary</Link>
           <Searchbar/>
           <UserInfo/>
         </div>

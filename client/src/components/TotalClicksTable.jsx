@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import SummaryRightPane from './SummaryRightPane.jsx';
 import getComment from '../util/getComment.js';
+import TotalClicksRow from './TotalClicksRow.jsx';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
@@ -46,12 +47,14 @@ class TotalClicksTable extends Component {
           </tr>
           {
             usersClicks.map(user =>
-            <tr>
-              <td onClick = { () => { this.displayUserSummary(user.user_id); } }>
-                <img id='profilePic' src={user.avatar} /><span>{user.name}</span>
-              </td>
-              <td>{user.no_of_clicks}</td>
-            </tr>
+            <TotalClicksRow
+              key={Math.random()}
+              userId={user.user_id}
+              displayUserSummary={this.displayUserSummary.bind(this)}
+              avatar={user.avatar}
+              name={user.name}
+              noOfClicks={user.no_of_clicks}
+            />
             )
           }
         </tbody>

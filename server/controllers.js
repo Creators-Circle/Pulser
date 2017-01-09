@@ -166,8 +166,7 @@ module.exports = {
     })
     .then(function (upvotes) { summary.upvotes = upvotes; })
     .then(function () {
-      return db.select('user_id', 'lecture_id', 'thumb', 'name')
-      .from('thumbs').join('lectures', 'thumbs.lecture_id', 'lectures.id')
+      return db.select('*').from('topics').join('thumbs', 'thumbs.topic_id', 'topics.id')
       .where('lecture_id', lectureId);
     })
     .then(function (thumbs) { summary.thumbs = thumbs; })
