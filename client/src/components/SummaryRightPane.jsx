@@ -16,11 +16,6 @@ class SummaryRightPane extends Component {
     };
   }
 
-  componentWillMount () {
-    const comment = this.props.summary.users.filter(user => user.role === 'presenter')[0].comment;
-    this.setState({lectureComment: comment});
-  }
-
   upDateComment (id, comment) {
     this.setState({lectureComment: comment});
   }
@@ -28,15 +23,22 @@ class SummaryRightPane extends Component {
   render () {
     // if userId is undefined display the lecture summary
     if (!this.props.userId) {
-      return (
-        <div>
-          <SummaryMainPane/>
-          <SummaryComment
-            comment={this.state.lectureComment}
-            upDateComment={this.upDateComment.bind(this)}
-          />
-        </div>
-      );
+      // check if the summary is not empty
+      const users = this.props.summary.users;
+      if (users) {
+        const comment = users.filter(user => user.role === 'presenter')[0].comment;
+        return (
+          <div>
+            <SummaryMainPane/>
+            <SummaryComment
+              comment={this.state.lectureComment || comment}
+              upDateComment={this.upDateComment.bind(this)}
+            />
+          </div>
+        );
+      } else {
+        return null;
+      }
     } else {
       // else display user's summary
       const userId = this.props.userId;

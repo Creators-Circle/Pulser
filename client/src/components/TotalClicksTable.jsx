@@ -35,40 +35,45 @@ class TotalClicksTable extends Component {
 
   render () {
     // pull out the users from the store and filter by audience
-    let usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
-    return (
-      <div>
-        <Link to="/">Home</Link>
-        <table id="usersClicks">
-        <tbody>
-          <tr>
-            <th>User</th>
-            <th>Clicks</th>
-          </tr>
+    let usersClicks;
+    if (this.props.summary.users) {
+      usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
+      return (
+        <div>
+          <Link to="/">Home</Link>
+          <table id="usersClicks">
+          <tbody>
+            <tr>
+              <th>User</th>
+              <th>Clicks</th>
+            </tr>
+            {
+              usersClicks.map(user =>
+              <TotalClicksRow
+                key={Math.random()}
+                userId={user.user_id}
+                displayUserSummary={this.displayUserSummary.bind(this)}
+                avatar={user.avatar}
+                name={user.name}
+                noOfClicks={user.no_of_clicks}
+              />
+              )
+            }
+          </tbody>
+          </table>
           {
-            usersClicks.map(user =>
-            <TotalClicksRow
-              key={Math.random()}
-              userId={user.user_id}
-              displayUserSummary={this.displayUserSummary.bind(this)}
-              avatar={user.avatar}
-              name={user.name}
-              noOfClicks={user.no_of_clicks}
-            />
-            )
+            this.state.showUserSummary
+            ? <SummaryRightPane
+              userId={this.state.showUserSummary}
+              comment = {this.state.comment}
+              upDateComment = {this.upDateComment.bind(this)}
+            /> : null
           }
-        </tbody>
-        </table>
-        {
-          this.state.showUserSummary
-          ? <SummaryRightPane
-            userId={this.state.showUserSummary}
-            comment = {this.state.comment}
-            upDateComment = {this.upDateComment.bind(this)}
-          /> : null
-        }
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

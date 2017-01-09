@@ -29,24 +29,28 @@ class SummaryComment extends Component {
   }
   render () {
     // filter user by the either presenter or selected user
-    let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
-      : this.props.users.filter(user => user.user_id === this.props.userId)[0];
-    return (
-      <div>
-        <p>Comment:</p>
-          {
-            !this.state.toggleComment ? <div>
-              <p>{this.props.comment}</p>
-              <button onClick={() => { this.toggleView(true); }} >Edit</button>
-            </div>
-            : <div>
-              <input type = 'text' defaultValue={this.props.comment} onChange={this.handleChange.bind(this)}/>
-              <button onClick={() => { this.toggleView(false); }} >Cancel</button>
-              <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} >Save</button>
-            </div>
-          }
-      </div>
-    );
+    if (this.props.users) {
+      let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
+        : this.props.users.filter(user => user.user_id === this.props.userId)[0];
+      return (
+        <div>
+          <p>Comment:</p>
+            {
+              !this.state.toggleComment ? <div>
+                <p>{this.props.comment}</p>
+                <button onClick={() => { this.toggleView(true); }} >Edit</button>
+              </div>
+              : <div>
+                <input type = 'text' defaultValue={this.props.comment} onChange={this.handleChange.bind(this)}/>
+                <button onClick={() => { this.toggleView(false); }} >Cancel</button>
+                <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} >Save</button>
+              </div>
+            }
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

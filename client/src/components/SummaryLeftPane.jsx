@@ -8,16 +8,9 @@ import TotalClicksTable from './TotalClicksTable';
 class SummaryLeftPane extends Component {
 
   render () {
-    let userview = false; // Temporary variable to be replaved with state value
-    if (!userview) {
-      return (
-        <TotalClicksTable />
-      );
-    } else {
-      return (
-        <UserClicksTimeline />
-      );
-    }
+    return (
+      <TotalClicksTable />
+    );
   };
 };
 

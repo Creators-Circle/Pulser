@@ -24,18 +24,32 @@ class PresPreviews extends Component {
     // filter the most recent lectures and filter depending on the role given
     let recentLectures = this.props.userLectures
       .filter(lecture => lecture.role === this.props.role).slice(0, 8);
-    return (
-      <div>
-        {
-          recentLectures.length > 0
-            ? recentLectures.map((lecture, i) =>
-              <Link key={i} to={`/summary/${lecture.lecture_id}`}>
-                <PresThumbnail date = {lecture.date} name = {lecture.name} />
-              </Link>
-            ) : <p>No recent activites</p>
-        }
-      </div>
-    );
+    // only the presenter can view the summary of his lecture
+    if (this.props.role === 'presenter') {
+      return (
+        <div>
+          {
+            recentLectures.length > 0
+              ? recentLectures.map((lecture, i) =>
+                <Link key={i} to={`/summary/${lecture.lecture_id}`}>
+                  <PresThumbnail date = {lecture.date} name = {lecture.name} />
+                </Link>
+              ) : <p>No recent activites</p>
+          }
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {
+            recentLectures.length > 0
+              ? recentLectures.map((lecture, i) =>
+                  <PresThumbnail key={i} date = {lecture.date} name = {lecture.name} />
+              ) : <p>No recent activites</p>
+          }
+        </div>
+      );
+    }
   };
 };
 
