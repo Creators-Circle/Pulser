@@ -32,9 +32,13 @@ class SummaryMainPane extends Component {
     // store count of clicks per minute
     let clickPerTime = {};
     let clicks = !this.props.userId ? this.props.summary.clicks : userClicks;
-
+    // function to format hours and minutes
+    const hourMinutes = (time, increment) => {
+      return increment ? `${time.getHours()}:${time.getMinutes() + 1}`
+        : `${time.getHours()}:${time.getMinutes()}`;
+    };
     clicks.forEach(click => {
-      let time = click.date.split('T')[1].slice(0, 5);
+      let time = hourMinutes(new Date(click.date), true);
       clickPerTime[time] = clickPerTime[time] ? clickPerTime[time] += 1 : 1;
     });
     // copy time of click to an array
@@ -44,6 +48,7 @@ class SummaryMainPane extends Component {
     // sort by the highest number of clicks then get the first element
     let maxPeak = time.sort((a, b) => clickPerTime[b] - clickPerTime[a])[0];
     let maxPeakDetail = maxPeak ? `${clickPerTime[maxPeak]} at ${maxPeak}` : 0;
+
     // function for converting minutes, needs to move to a separate file
     const convertToMinutes = (t) => {
       time = t.split(':');
@@ -53,11 +58,10 @@ class SummaryMainPane extends Component {
     let minutes = time.map(convertToMinutes);
 
     // compute the longest time the users didn't click the feedback button
-    let startMinutes = convertToMinutes(lecture.date.split('T')[1].slice(0, 5));
-    let endMinutes = convertToMinutes(lecture.end_time.split('T')[1].slice(0, 5));
+    let startMinutes = convertToMinutes(hourMinutes(new Date(lecture.date)));
+    let endMinutes = convertToMinutes(hourMinutes(new Date(lecture.end_time)));
 
     let longestMinutesWithOutClicks = 0;
-
     [startMinutes, ...minutes, endMinutes].forEach((minute, i, totalMinutes) => {
       let difference = Math.abs(totalMinutes[i] - totalMinutes[i + 1]);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;

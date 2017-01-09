@@ -54,7 +54,8 @@ class SummaryRightPane extends Component {
           clicksPerMin[min + 1] ? clicksPerMin[min + 1] += 1 : clicksPerMin[min + 1] = 1;
         });
       // add the time difference of start and end time of the presentation
-      clicksPerMin[(timeDiffToMinutes(start, end)) + 2] = 0;
+      let startToEnd = timeDiffToMinutes(start, end);
+      if (!clicksPerMin.hasOwnProperty((startToEnd) + 1)) clicksPerMin[(startToEnd) + 1] = 0;
 
       let clicksTimeline = [{x: 0, y: 0}];
       let maxClick = 0;
@@ -63,7 +64,7 @@ class SummaryRightPane extends Component {
         if (clicksPerMin[min] > maxClick) maxClick = clicksPerMin[min];
         clicksTimeline.push({x: Number(min), y: clicksPerMin[min]});
       }
-
+      // set the maximum value of y and x axis of the line chart
       const maxAxisX = clicksTimeline[clicksTimeline.length - 1].x;
       const maxAxisY = maxClick < 8 ? 8 : maxClick + 1;
 
