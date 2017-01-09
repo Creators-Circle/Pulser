@@ -23,7 +23,7 @@ class PresThumbs extends Component {
     });
 
     $('#topic').keypress(function (e) {
-      if (e.which == 13) {
+      if (e.which === 13) {
         $('#setTopic').click();
         return false;
       }

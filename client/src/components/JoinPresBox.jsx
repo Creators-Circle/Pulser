@@ -9,7 +9,7 @@ class JoinPresBox extends Component {
 
   componentDidMount () {
     $('#join').keypress(function (e) {
-      if (e.which == 13) {
+      if (e.which === 13) {
         $('#joinButton').click();
         return false;
       }
