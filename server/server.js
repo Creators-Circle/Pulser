@@ -137,10 +137,20 @@ app.post('/newRoom', function (req, res) {
     nsp.emit('connected');
 
     // Listen for audience request for presentation URL
-    socket.on('presentationInfoRequest', function () {
-      // console.log('User requesting presentationUrl');
-      // Send request to presenter (technically also everyone else)
-      nsp.emit('presentationInfoRequest');
+    socket.on('presentationInfoRequest', function (request) {
+      // console.log('User requesting presentationUrl', request);
+      if (request.name === 'guest') {
+        // check if this lecture permits guests
+        controllers.checkGuestsPermitted(request.lectureId).then((guestsPermitted) => {
+          // if so, pass along the request for info to the presenter
+          if (guestsPermitted === true) nsp.emit('presentationInfoRequest');
+          // if not, let the guest know
+          else nsp.emit('notAllowed');
+        });
+      } else {
+        // Send request to presenter (technically also everyone else)
+        nsp.emit('presentationInfoRequest');
+      }
     });
 
     // Listen for presenter's response with presesntation URL
@@ -150,10 +160,16 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId);
     });
 
-    // Listen for user_lecture event
+    // Listen for saveLecture event
     socket.on('saveLecture', function (lecture) {
       // console.log('Presenter selected a presentation');
       controllers.saveLecture(lecture);
+    });
+
+    // Listen for guestsToggle event
+    socket.on('guestsToggle', function (lecture) {
+      // console.log('socket: guestsToggle', 'lecture', lecture);
+      controllers.guestsToggle(lecture);
     });
 
     // Listen for user_lecture event
