@@ -7,6 +7,15 @@ import { browserHistory } from 'react-router';
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
 
+  componentDidMount () {
+    $('#join').keypress(function (e) {
+      if (e.which == 13) {
+        $('#joinButton').click();
+        return false;
+      }
+    });
+  }
+
   joinPresentation () {
     // Get lectureId from input box above join button
     let lectureId = $('#join').val();
@@ -49,7 +58,7 @@ class JoinPresBox extends Component {
     return (
       <div id='joinBox'>
         <input id='join' type='text' /><br/>
-        <button onClick={this.joinPresentation.bind(this)}>Join a presentation</button>
+        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Join a presentation</button>
       </div>
     );
   };

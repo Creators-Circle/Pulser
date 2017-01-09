@@ -21,6 +21,13 @@ class PresThumbs extends Component {
       // trigger a re-render
       render();
     });
+
+    $('#topic').keypress(function (e) {
+      if (e.which == 13) {
+        $('#setTopic').click();
+        return false;
+      }
+    });
   }
 
   submitTopic () {
