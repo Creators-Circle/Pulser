@@ -22,17 +22,22 @@ class SummaryView extends Component {
   }
 
   render () {
-    console.log('rendering test');
-    return (
-      <div>
-      <LogoutButton/>
-      <div>
-        <h1>Summary</h1>
-        <SummaryLeftPane/>
-        <SummaryRightPane/>
-      </div>
-      </div>
-    );
+    if (this.props.summary) {
+      return (
+        <div>
+        <LogoutButton/>
+        <div>
+          <h1>Summary</h1>
+          <SummaryLeftPane/>
+          <SummaryRightPane/>
+        </div>
+        </div>
+      );
+    } else {
+      return (
+        <p>rendering</p>
+      );
+    }
   }
 }
 
