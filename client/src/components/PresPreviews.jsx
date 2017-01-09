@@ -24,7 +24,7 @@ class PresPreviews extends Component {
     // filter the most recent lectures and filter depending on the role given
     let recentLectures = this.props.userLectures
       .filter(lecture => lecture.role === this.props.role).slice(0, 8);
-    // only the presenter can the summary of his lecture
+    // only the presenter can view the summary of his lecture
     if (this.props.role === 'presenter') {
       return (
         <div>
