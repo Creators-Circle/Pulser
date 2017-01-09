@@ -31,11 +31,21 @@ describe('thumbsReducer', function() {
     });
   });
 
-  xdescribe('THUMB_CLICKED', function () {
-    it('it should increment the specific thumbType included in the action', function() {
+  describe('THUMB_CLICKED', function () {
+    it('it should increment the specific thumbType included in the action - up', function() {
       assert.deepEqual({topicId: '', displayed: false, up: 1, down: 0, side: 0},
         thumbsReducer(testState,
-        {type: 'THUMB_CLICKED', thumbType: 'up'}));
+        {type: 'THUMB_CLICKED', thumbChoice: 'up'}));
+    });
+    it('it should increment the specific thumbType included in the action - down', function() {
+      assert.deepEqual({topicId: '', displayed: false, up: 0, down: 1, side: 0},
+        thumbsReducer(testState,
+        {type: 'THUMB_CLICKED', thumbChoice: 'down'}));
+    });
+    it('it should increment the specific thumbType included in the action - side', function() {
+      assert.deepEqual({topicId: '', displayed: false, up: 0, down: 0, side: 1},
+        thumbsReducer(testState,
+        {type: 'THUMB_CLICKED', thumbChoice: 'side'}));
     });
   });
 
