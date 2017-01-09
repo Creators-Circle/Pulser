@@ -42,6 +42,20 @@ module.exports = {
         module.exports.userLecture(lecture);
       });
   },
+  // Toggle guest permission to attend lecture
+  guestsToggle: function (lecture) {
+    return db('lectures')
+    .where({'id': lecture.lectureId})
+    .update({
+      guest: lecture.guestsPermitted
+    })
+    .then(/*console.log(`successfully updated guest permissions for ${lecture.lectureId}`)*/);
+  },
+  checkGuestsPermitted: function (lectureId) {
+    return db.select('guest').from('lectures')
+    .where('id', lectureId)
+    .then((guestsPermitted) => guestsPermitted[0].guest);
+  },
   // Associate a lecture and a user in the user_lectures table
   userLecture: function (lecture) {
     return db('user_lectures').insert({

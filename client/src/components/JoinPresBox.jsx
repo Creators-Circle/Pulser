@@ -27,6 +27,18 @@ class JoinPresBox extends Component {
     // Preserve the context of "this"
     let dispatch = this.props.dispatch;
     let userId = this.props.user.id;
+    let request = {
+      // userId will not be used, yet, but may play a role later
+      // with more advanced permissions
+      userId: this.props.user.id,
+      name: this.props.user.name,
+      lectureId: lectureId
+    };
+    // Alert the guest that they aren't allowed to join a given presentation
+    socket.on('notAllowed', function () {
+      $('#joinBox').append(`<h1>Guests not permitted to join ${lectureId}</h1>`);
+    });
+
     // Listen for presentation URL response from presenter
     socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId) {
       // Update store with presentation data and store socket reference
@@ -52,7 +64,7 @@ class JoinPresBox extends Component {
     });
 
     // Emit request to server (and then to presenter) for presention URL
-    socket.emit('presentationInfoRequest');
+    socket.emit('presentationInfoRequest', request);
   }
 
   render () {

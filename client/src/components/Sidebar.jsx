@@ -12,6 +12,7 @@ class Sidebar extends Component {
     let lectureId = this.props.activeLecture.lectureId;
     let thumbsToggle = false; // not sure if this is gonna work???
     let dispatch = this.props.dispatch;
+    let guestsPermitted = false;
 
     // When ComponentToggle is clicked:
       // ToggleFade the Component out of the PresenterView
@@ -50,6 +51,15 @@ class Sidebar extends Component {
       socket.emit('feedbackToggle');
     });
 
+    $('#guestsToggle').on('click', function () {
+      let lecture = {
+        lectureId: lectureId,
+        guestsPermitted: !guestsPermitted
+      };
+      socket.emit('guestsToggle', lecture);
+      guestsPermitted = true;
+    });
+
     // Events that end the presentation should alert the audience and server
     $('#stopPresentation, #exit').on('click', function () {
       let endTime = new Date();
@@ -73,6 +83,7 @@ class Sidebar extends Component {
         <button id='thumbsToggle'>Thumbs</button>
         <button id='pulseToggle'>Pulse</button>
         <button id='feedbackToggle'>Feedback</button>
+        <span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span>
         <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='summary'>Summary</button></Link>
         <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='stopPresentation'>Stop Presentation</button></Link>
       </div>
