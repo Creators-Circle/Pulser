@@ -1,23 +1,35 @@
 // reducer for creating thumbs, incrementing tally for each thumbType, and clearing thumbs data
 
 // state = {
+//   topicId: 0,
+//   displayed: false,
 //   up: 0,
 //   down: 0,
 //   side: 0
 // }
 
-// action = {type: 'CREATE_THUMBS'}
-// action = {type: 'CLICK_THUMB', thumbType: 'thumbsup'}
-// action = {type: 'CLEAR_THUMBS'}
+// action = {type: 'THUMB_CLICKED', thumbChoice: 'up'}
+// action = {type: 'CLEAR_TOPIC'}
 
-const thumbsReducer = (state = {up: 0, down: 0, side: 0}, action) => {
+const thumbsReducer = (state = {topicId: 0, displayed: false, up: 0, down: 0, side: 0}, action) => {
   switch (action.type) {
+    case 'TOGGLE_DISPLAY':
+      console.log('FIREEEEE');
+      console.log(state.displayed);
+      console.log(!state.displayed);
+      return Object.assign({}, state, {
+        displayed: !state.displayed
+      });
+    case 'SET_TOPIC_ID':
+      return Object.assign({}, state, {
+        topicId: action.topicId
+      });
     case 'THUMB_CLICKED':
       return Object.assign({}, state, {
-        [action.thumbType]: state[action.thumbType] + 1
+        [action.thumbChoice]: state[action.thumbChoice] + 1
       });
-    case 'CLEAR_THUMBS':
-      return {up: 0, down: 0, side: 0};
+    case 'CLEAR_TOPIC':
+      return {topicId: 0, displayed: false, up: 0, down: 0, side: 0};
     default:
       return state;
   }

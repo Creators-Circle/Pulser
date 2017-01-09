@@ -62,6 +62,20 @@ module.exports = {
         // console.log('successfully inserted');
       });
   },
+  // save a question to the database then return a promise
+  saveQuestion: function (question) {
+    console.log('saveQuestion event fired');
+    return db('questions').insert({
+      id: question.questionId,
+      lecture_id: question.lectureId,
+      user_id: question.userId,
+      question: question.questionText,
+      votes: 1
+    })
+    .then(() => {
+      console.log('successfully saved question');
+    });
+  },
   // save an upvote to the database then return a promise
   saveUpvote: function (upvote) {
     return db('upvotes')
@@ -91,18 +105,28 @@ module.exports = {
       .decrement('votes', 1);
     });
   },
-  // save a question to the database then return a promise
-  saveQuestion: function (question) {
-    console.log('saveQuestion event fired');
-    return db('questions').insert({
-      id: question.questionId,
-      lecture_id: question.lectureId,
-      user_id: question.userId,
-      question: question.questionText,
-      votes: 1
+  // save a 'thumbs' topic to the database then return a promise
+  saveTopic: function (topicId, topic, lectureId) {
+    console.log('saveThumb event fired');
+    return db('topics').insert({
+      id: topicId,
+      lecture_id: lectureId,
+      topic: topic
     })
     .then(() => {
-      console.log('successfully saved question');
+      console.log('successfully saved thumb entry');
+    });
+  },
+  // save a thumb choice to the database then return a promise
+  saveThumbChoice: function (topicId, userId, thumbChoice) {
+    console.log('saveThumb event fired');
+    return db('thumbs').insert({
+      topicId: topicId,
+      userId: userId,
+      type: thumbChoice
+    })
+    .then(() => {
+      console.log('successfully saved user\'s thumb choice');
     });
   },
   // function for getting all the lectures connected to the user

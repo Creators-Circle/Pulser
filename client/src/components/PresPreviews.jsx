@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PresThumb from './PresThumb';
+import PresThumbnail from './PresThumbnail';
 import getUserLectures from '../util/getUserLectures';
 import { connect } from 'react-redux';
 
 // Panel that displays list of presentations
 class PresPreviews extends Component {
-// Currently loading multiple copies of PresThumb for testing.  Will refactor eventually with a forEach.
+// Currently loading multiple copies of PresThumbnail for testing.  Will refactor eventually with a forEach.
   constructor (props) {
     super();
   }
@@ -28,7 +28,7 @@ class PresPreviews extends Component {
         {
           recentLectures.length > 0
             ? recentLectures.map(lecture =>
-              <PresThumb key = {lecture.id} date = {lecture.date} name = {lecture.name} />
+              <PresThumbnail key = {lecture.id} date = {lecture.date} name = {lecture.name} />
             ) : <p>No recent activites</p>
         }
       </div>

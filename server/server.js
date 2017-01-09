@@ -210,6 +210,28 @@ app.post('/newRoom', function (req, res) {
       controllers.saveDownvote(downvote);
     });
 
+    // -------------------------- SOCKETS FOR 'THUMBS' --------------------------
+
+    socket.on('submit thumbTopic', (topicId, topic, lectureId) => {
+      console.log('topic submit: ', topic);
+      nsp.emit('open thumbs', topicId, topic);
+      // RE-ENABLE LINE BELOW WHEN DB IS SETUP
+      // controllers.saveThumb(topicId, topic, lectureId);
+    });
+
+    socket.on('thumb clicked', (topicId, userId, thumbChoice) => {
+      console.log('thumb clicked by user ', userId, ': ', thumbChoice);
+      nsp.emit('thumb clicked', thumbChoice);
+      // RE-ENABLE LINE BELOW WHEN DB IS SETUP
+      // controllers.saveThumbChoice(topicId, userId, thumbChoice);
+    });
+
+    socket.on('close thumbs', () => {
+      nsp.emit('close thumbs');
+    });
+
+    // ------------------- SOCKETS FOR 'STOP PRESENTATION' -------------------
+
     // Listen for stopPresentation event and let the audience know it's over
     socket.on('stopPresentation', (endLecture) => {
       nsp.emit('stopPresentation');

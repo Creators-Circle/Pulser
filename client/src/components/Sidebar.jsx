@@ -10,6 +10,9 @@ class Sidebar extends Component {
     // Capture the this context
     let socket = this.props.activeLecture.socket;
     let lectureId = this.props.activeLecture.lectureId;
+    let thumbsToggle = false; // not sure if this is gonna work???
+    let dispatch = this.props.dispatch;
+
     // When ComponentToggle is clicked:
       // ToggleFade the Component out of the PresenterView
       // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
@@ -17,6 +20,20 @@ class Sidebar extends Component {
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
       $('#QuestionBox').fadeToggle('slow');
+    });
+
+    // Toggle in/out 'Thumbs' component
+    $('#thumbsToggle').on('click', function () {
+    // If thumbs component isn't toggled, then toggle it in
+      if (!thumbsToggle) {
+        $('#Thumbs').fadeToggle('slow');
+      } else { // if already visible, toggle it out
+        $('#Thumbs').fadeToggle('slow');
+        socket.emit('close thumbs'); // emit event to close all audience thumbs components
+        $('#topic').val();
+        dispatch({type: 'CLEAR_TOPIC'}); // dispatch action to clear store of thumb data
+      }
+      thumbsToggle = !thumbsToggle; // toggle boolean value of thumbsToggle
     });
 
     $('#timerToggle').on('click', function () {
@@ -51,6 +68,7 @@ class Sidebar extends Component {
         <a href={embedUrl} target="_blank"><button>Projector</button></a>
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
+        <button id='thumbsToggle'>Thumbs</button>
         <button id='pulseToggle'>Pulse</button>
         <button id='feedbackToggle'>Feedback</button>
         <Link id='summary' to='/summary'><button>Summary</button></Link>
@@ -61,7 +79,10 @@ class Sidebar extends Component {
 };
 
 const mapStatetoProps = (state) => {
-  return {activeLecture: state.activeLecture}; // CHANGE THIS TO WHAT IS NEEDED TO RESET TOKEN/SESSION
+  return {
+    activeLecture: state.activeLecture,
+    dispatch: state.dispatch
+  };
 };
 
 export default connect(mapStatetoProps)(Sidebar);

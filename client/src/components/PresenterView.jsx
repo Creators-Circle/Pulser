@@ -20,6 +20,7 @@ import Sidebar from './Sidebar';
 import LogoutButton from './LogoutButton';
 import TitleBar from './TitleBar';
 import QuestionBox from './QuestionBox';
+import PresThumbs from './PresThumbs';
 
 class PresenterView extends Component {
   constructor () {
@@ -60,15 +61,16 @@ class PresenterView extends Component {
   render () {
     return (
       <div>
-      <LogoutButton/>
-      <div className='presenter-view'>
-        <TitleBar className='title-bar'/>
-        <Slides id="presenterSlides" role="presenter"/>
-        <Sidebar />
-        <Timer/>
-        <PulseBox startTime={this.date} audience={this.state.audience}/>
-        <QuestionBox/>
-      </div>
+        <LogoutButton/>
+        <div className='presenter-view'>
+          <TitleBar className='title-bar'/>
+          <Slides id="presenterSlides" role="presenter"/>
+          <Sidebar />
+          <Timer/>
+          <PulseBox startTime={this.date} audience={this.state.audience}/>
+          <QuestionBox/>
+          <PresThumbs/>
+        </div>
       </div>
     );
   }
