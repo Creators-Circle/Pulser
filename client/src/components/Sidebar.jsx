@@ -57,7 +57,6 @@ class Sidebar extends Component {
       };
       socket.emit('stopPresentation', endLecture);
     });
-
   }
 
   render () {
