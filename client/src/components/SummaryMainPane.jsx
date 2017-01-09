@@ -11,7 +11,8 @@ class SummaryMainPane extends Component {
 
     // store all the users
     let users = this.props.summary.users;
-    console.log('users', this.props.summary);
+    let lecture = this.props.summary.lecture[0];
+
     // compute total number of clicks
     let userClicks = this.props.summary.clicks.filter(click => click.user_id === clickedUser);
     let totalClicks = !clickedUser ? this.props.summary.clicks.length : userClicks.length;
@@ -36,17 +37,25 @@ class SummaryMainPane extends Component {
     let avgClickPerMinute = Math.round((totalClicks / time.length) * 10) / 10;
     // sort by the highest number of clicks then get the first element
     let maxPeak = time.sort((a, b) => clickPerTime[b] - clickPerTime[a])[0];
-    // convert time to minutes
-    let minutes = time.map(t => {
+
+    // function for converting minutes, needs to move to a separate file
+    const convertToMinutes = (t) => {
       time = t.split(':');
       return Number(time[0]) * 60 + Number(time[1]);
-    });
+    };
+    // convert time to minutes
+    let minutes = time.map(convertToMinutes);
+
     // compute the longest time the users didn't click the feedback button
+    let startMinutes = convertToMinutes(lecture.date.split('T')[1].slice(0, 5));
+    let endMinutes = convertToMinutes(lecture.end_time.split('T')[1].slice(0, 5));
+
     let longestMinutesWithOutClicks = 0;
-    for (var i = 0; i < minutes.length - 1; i++) {
-      let difference = Math.abs(minutes[i] - minutes[i + 1]);
+
+    [startMinutes, ...minutes, endMinutes].forEach((minute, i, totalMinutes) => {
+      let difference = Math.abs(totalMinutes[i] - totalMinutes[i + 1]);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
-    }
+    });
 
     let userUpvotes = this.props.summary.upvotes.filter(vote => vote.user_id === clickedUser).length;
 
@@ -64,7 +73,7 @@ class SummaryMainPane extends Component {
         }
         <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
-        <SummaryInfoBox title={'Questions'} value={questions}/>
+        <SummaryInfoBox title={'Questions'} value={questions} />
       </div>
     );
   };
