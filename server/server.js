@@ -13,7 +13,7 @@ var MP = require('node-makerpass');
 var db = require('./db.js');
 var router = require('./routes.js');
 var controllers = require('./controllers.js');
-var _ = require('lodash');
+var uuid = require('uuid/v1');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -277,7 +277,7 @@ var createSession = function (req, res, id) {
 
 // creating random alphanumeric 36 character code
 var createAccessToken = function () {
-  return _.sampleSize('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuv00123456789', 36).join('');
+  return uuid();
 };
 
 // HEROKU OR DOTENV VAR OR LOCALHOST:5000
