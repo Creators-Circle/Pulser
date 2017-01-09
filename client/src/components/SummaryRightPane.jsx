@@ -46,6 +46,7 @@ class SummaryRightPane extends Component {
       // filter clicks by selected user
       let clicks = this.props.summary.clicks.filter(click => click.user_id === userId);
       let clicksPerMin = {};
+
       // compute the time difference and clicks per min
       clicks.map(click => timeDiffToMinutes(start, new Date(click.date)))
         .forEach((time) => {
@@ -53,7 +54,7 @@ class SummaryRightPane extends Component {
           clicksPerMin[min + 1] ? clicksPerMin[min + 1] += 1 : clicksPerMin[min + 1] = 1;
         });
       // add the time difference of start and end time of the presentation
-      clicksPerMin[(timeDiffToMinutes(start, end)) + 1] = 0;
+      clicksPerMin[(timeDiffToMinutes(start, end)) + 2] = 0;
 
       let clicksTimeline = [{x: 0, y: 0}];
       let maxClick = 0;
