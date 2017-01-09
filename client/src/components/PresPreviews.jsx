@@ -30,7 +30,7 @@ class PresPreviews extends Component {
           recentLectures.length > 0
             ? recentLectures.map((lecture, i) =>
               <Link key={i} to={`/summary/${lecture.lecture_id}`}>
-                <PresThumb date = {lecture.date} name = {lecture.name} />
+                <PresThumbnail date = {lecture.date} name = {lecture.name} />
               </Link>
             ) : <p>No recent activites</p>
         }
