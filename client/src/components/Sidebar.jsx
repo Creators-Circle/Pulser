@@ -49,7 +49,7 @@ class Sidebar extends Component {
     });
 
     // Events that end the presentation should alert the audience and server
-    $('#stopPresentation', '#summary').on('click', function () {
+    $('#stopPresentation, #exit').on('click', function () {
       let endTime = new Date();
       let endLecture = {
         id: lectureId,
@@ -57,6 +57,7 @@ class Sidebar extends Component {
       };
       socket.emit('stopPresentation', endLecture);
     });
+
   }
 
   render () {
@@ -64,7 +65,7 @@ class Sidebar extends Component {
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div>
-        <button>X</button>
+        <Link id='exit' to='/summary'><button id="exit">X</button></Link>
         <a href={embedUrl} target="_blank"><button>Projector</button></a>
         <button id='timerToggle'>Timer</button>
         <button id='questionToggle'>Question</button>
