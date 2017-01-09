@@ -59,11 +59,13 @@ class SummaryMainPane extends Component {
 
     // compute the longest time the users didn't click the feedback button
     let startMinutes = convertToMinutes(hourMinutes(new Date(lecture.date)));
-    let endMinutes = convertToMinutes(hourMinutes(new Date(lecture.end_time)));
+    let endMinutes = convertToMinutes(hourMinutes(new Date(lecture.end_time), true));
 
     let longestMinutesWithOutClicks = 0;
-    [startMinutes, ...minutes, endMinutes].forEach((minute, i, totalMinutes) => {
+    [startMinutes, ...minutes, endMinutes].sort().forEach((minute, i, totalMinutes) => {
+      console.log("minutes",totalMinutes);
       let difference = Math.abs(totalMinutes[i] - totalMinutes[i + 1]);
+      console.log("difference", difference);
       if (difference > longestMinutesWithOutClicks) longestMinutesWithOutClicks = difference;
     });
 
