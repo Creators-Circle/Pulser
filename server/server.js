@@ -278,7 +278,7 @@ var createSession = function (req, res, token) {
 module.exports.NODEPORT = process.env.PORT || 5000;
 var port = process.env.PORT || 5000;
 
-app.get('*', function (req, res) { // Wildcard route - if nothing else matches, serves up html page with 404
+app.get('*', function (req, res) { // Wildcard route - redirects to landing if loggedin, login page if not logged in.
   res.redirect('/');
 });
 
