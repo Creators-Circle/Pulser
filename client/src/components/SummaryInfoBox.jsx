@@ -18,10 +18,21 @@ class SummaryInfoBox extends Component {
     return (
       <div className='summaryInfoBox'>
         <img src='http://png.clipart.me/graphics/thumbs/103/presentation-template-with-six-colored-text-box_103671569.jpg' />
-        <span><strong>{this.props.title}</strong></span>:
-        <span>{this.props.value}</span>
         {
-          !this.props.viewDetails ? null
+          this.props.thumbs
+          ? <div><p>{this.props.title}</p>
+            {Object.keys(this.props.thumbs).map((thumb, i) =>
+                <p key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
+              )
+            }
+          </div>
+
+          : <div>
+            <p><strong>{this.props.title}</strong><span>: {this.props.value || 0}</span></p>
+          </div>
+        }
+        {
+          !this.props.viewDetails || !this.props.viewDetails.length ? null
           : <button onClick={() => { this.toggleView(true); }}>View</button>
         }
         {

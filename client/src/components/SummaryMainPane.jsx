@@ -43,7 +43,7 @@ class SummaryMainPane extends Component {
     let avgClickPerMinute = Math.round((totalClicks / time.length) * 10) / 10;
     // sort by the highest number of clicks then get the first element
     let maxPeak = time.sort((a, b) => clickPerTime[b] - clickPerTime[a])[0];
-
+    let maxPeakDetail = maxPeak ? `${clickPerTime[maxPeak]} at ${maxPeak}` : 0;
     // function for converting minutes, needs to move to a separate file
     const convertToMinutes = (t) => {
       time = t.split(':');
@@ -67,19 +67,52 @@ class SummaryMainPane extends Component {
       .map(upvote => upvote.question);
 
     let noOfUpvotes = userUpvotes.length;
-    let thumbsCount = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser).length;
+
+    let thumbs = this.props.summary.thumbs.filter(thumb => thumb.user_id === clickedUser);
+    let thumbsCount = {
+      1: 0,
+      2: 0,
+      3: 0
+    };
+    thumbs.forEach(thumb => {
+      thumbsCount[thumb.type]++;
+    });
+    let formattedThumbs = thumbs.map(thumb => `${thumb.topic}: ${thumb.type}`);
+
+    let topicsSummary = {};
+    let topics = this.props.summary.thumbs;
+    topics.forEach(topic => {
+      if (!topicsSummary.hasOwnProperty(topic.topic)) {
+        topicsSummary[topic.topic] = { 1: 0, 2: 0, 3: 0 };
+      }
+    });
+
+    topics.forEach(topic => {
+      topicsSummary[topic.topic][topic.type]++;
+    });
+
+    let noOfTopics = Object.keys(topicsSummary);
+
+    let formattedTopics = noOfTopics.map(topic => {
+      let topicSummary = topicsSummary[topic];
+      return `${topic}: up: ${topicSummary[1]}, side: ${topicSummary[2]}, down: ${topicSummary[3]}`;
+    });
 
     return (
       <div id='mainPane' className='summary'>
         <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
         {
-          !clickedUser ? <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
+          !clickedUser
+          ? <div>
+            <SummaryInfoBox title={'Average click per user'} value={avgClickPerUser}/>
+            <SummaryInfoBox title={'Topics'} value={noOfTopics.length} viewDetails={formattedTopics} />
+          </div>
           : <div>
               <SummaryInfoBox title={'Upvotes'} value={noOfUpvotes} viewDetails={userUpvotes}/>
-              <SummaryInfoBox title={'Thumbs'} value={thumbsCount}/>
+              <SummaryInfoBox title={'Thumbs'} value={thumbs.length} thumbs = {thumbsCount} viewDetails={formattedThumbs}/>
             </div>
         }
-        <SummaryInfoBox title={'Max click peak'} value={`${clickPerTime[maxPeak]} at ${maxPeak}`}/>
+        <SummaryInfoBox title={'Max click peak'} value={maxPeakDetail}/>
         <SummaryInfoBox title={'Number of minutes w/o clicks'} value={`${longestMinutesWithOutClicks} minutes`}/>
         <SummaryInfoBox title={'Questions'} value={noOfQuestions} viewDetails={formattedQuestions}/>
       </div>
