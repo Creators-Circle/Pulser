@@ -25,9 +25,11 @@ module.exports = {
   },
   saveEndTime: function (endLecture) {
     return db('lectures').where('id', endLecture.id).update({
-      end_time: endLecture.endTime
+      // use db.fn.now() to capture the current time on the server side
+      // so that both start and end time are serverside
+      end_time: db.fn.now()
     })
-      .then(console.log('successfully updated endLecture'));
+      .then(/*console.log('successfully updated endLecture')*/);
   },
   // save lecture info to the database then return a promise
   saveLecture: function (lecture) {
