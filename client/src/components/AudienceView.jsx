@@ -24,14 +24,8 @@ class AudienceView extends Component {
     // Socket event listener to trigger fade out
     let socket = this.props.activeLecture.socket;
 
-    // Trigger questions box toggle
-    socket.on('questionToggle', function () {
-      $('#QuestionBox').fadeToggle('slow');
-    });
-
     // open up 'thumbs' box
     socket.on('open thumbs', function (topicId, topic) {
-      console.log('open thumbs tId, t', topicId, topic);
       $('#thumbTopic').text(topic);
       $('#Thumbs').fadeToggle('slow');
       // this is not being used ... curently
