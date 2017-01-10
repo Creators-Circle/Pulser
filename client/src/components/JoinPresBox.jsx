@@ -44,9 +44,6 @@ class JoinPresBox extends Component {
     // Subscribe to custom namespace based on lectureId
     let socket = io(`/${lectureId}`);
 
-    // Test what socket is when the login fails.
-    console.log('Socket test', socket);
-
     // Preserve the context of "this"
     let dispatch = this.props.dispatch;
     let userId = this.props.user.id;
