@@ -71,6 +71,7 @@ class QuestionBox extends Component {
     socket.emit('submitQuestion', question);
     $('#questionInput').val('');
     console.log("submitted...")
+    e.preventDefault()
   }
 
   render () {
