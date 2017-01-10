@@ -18,7 +18,7 @@ class PulseBox extends Component {
     // compare the time to 1 minute for testing
     var filteredPulse = this.props.pulseData.filter(pulse => {
       return Math.abs(timeDiff - pulse.x) <= 0.5;
-    });
+    }).sort((pulse1, pulse2) => pulse1.x - pulse2.x);
     // if filteredPulse is empty, populate it with a default 0,0 data point
     if (!filteredPulse.length) {
       filteredPulse = [{x: 0, y: 0}];
