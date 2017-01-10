@@ -14,19 +14,19 @@ class QuestionBox extends Component {
     let role = props.role;
     console.log('role is: ', role);
     this.socket.on('upvoteQuestion', function (upvote, userId) {
-      console.log('upvoteQuestion happened');
       dispatch({
         type: 'UPVOTE',
         questionId: upvote.questionId
       });
+      console.log('upvoteQuestion happened', props);
       if (role === 'presenter') render();
     });
     this.socket.on('downvoteQuestion', function (downvote, userId) {
-      console.log('downvoteQuestion happened');
       dispatch({
         type: 'DOWNVOTE',
         questionId: downvote.questionId
       });
+      console.log('downvoteQuestion happened', props);
       if (role === 'presenter' || role === 'audience' && userId === props.user.id) render();
     });
     this.socket.on('submitQuestion', function (question) {
@@ -48,8 +48,8 @@ class QuestionBox extends Component {
         $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
       }
+      clearQuestions = !clearQuestions;
     });
-    clearQuestions = !clearQuestions;
   }
 
   submitQuestion () {
