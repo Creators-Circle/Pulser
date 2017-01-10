@@ -11,19 +11,23 @@ class QuestionBox extends Component {
     let dispatch = props.dispatch;
     let render = this.forceUpdate.bind(this);
     this.socket = props.activeLecture.socket;
-    this.socket.on('upvoteQuestion', function (upvote) {
+    let role = props.role;
+    console.log('role is: ', role);
+    this.socket.on('upvoteQuestion', function (upvote, userId) {
       dispatch({
         type: 'UPVOTE',
         questionId: upvote.questionId
       });
-      render();
+      console.log('upvoteQuestion happened', props);
+      if (role === 'presenter') render();
     });
-    this.socket.on('downvoteQuestion', function (downvote) {
+    this.socket.on('downvoteQuestion', function (downvote, userId) {
       dispatch({
         type: 'DOWNVOTE',
         questionId: downvote.questionId
       });
-      render();
+      console.log('downvoteQuestion happened', props);
+      if (role === 'presenter' || role === 'audience' && userId === props.user.id) render();
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -33,7 +37,7 @@ class QuestionBox extends Component {
       });
       render();
     });
-  }
+  };
 
   componentDidMount () {
     let dispatch = this.props.dispatch;
@@ -41,11 +45,11 @@ class QuestionBox extends Component {
     this.socket.on('questionToggle', function () {
       $('#QuestionBox').fadeToggle('slow');
       if (clearQuestions) {
-        $('.upvoteDownvote, questionText').remove();
+        $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
       }
+      clearQuestions = !clearQuestions;
     });
-    clearQuestions = !clearQuestions;
   }
 
   submitQuestion () {
@@ -72,13 +76,13 @@ class QuestionBox extends Component {
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox" style={{display: 'none'}}>
-        <input type="text" id="questionInput"></input>
-        <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+        <input key={1} type="text" id="questionInput"></input>
+        <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
         }).map((questionId, i) =>
-          <Question key={i} id={questionId} text={questions[questionId].questionText}/>
+          <Question key={i + 3} id={questionId} votes={questions[questionId].votes} text={questions[questionId].questionText}/>
         )}
       </div>
     );
