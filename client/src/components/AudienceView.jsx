@@ -20,11 +20,6 @@ class AudienceView extends Component {
     let socket = this.props.activeLecture.socket;
     this.props.dispatch({type: 'CHANGE_ROLE', role: 'audience'});
 
-    // Trigger questions box toggle
-    socket.on('questionToggle', function () {
-      $('#QuestionBox').fadeToggle('slow');
-    });
-
     socket.on('stopPresentation', function () {
       browserHistory.push('/');
     });
