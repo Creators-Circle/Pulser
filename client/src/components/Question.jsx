@@ -12,16 +12,18 @@ class Question extends Component {
   // }
 
   toggleUpvote () {
+    let userId = this.props.user.id;
+    let questionId = this.props.id;
     let socket = this.props.activeLecture.socket;
     // toggle the upvoted property in store for this question
     let upvoteDownvote = this.props.questions[this.props.id].upvoted ? 'downvoteQuestion' : 'upvoteQuestion';
     // Build an upvote object to pass to the database
     let question = {
-      userId: this.props.user.id,
-      questionId: this.props.id
+      userId: userId,
+      questionId: questionId
     };
     // Emit an event that a question was upvoted or downvoted
-    socket.emit(upvoteDownvote, question);
+    socket.emit(upvoteDownvote, question, userId);
     // Update the store to reflect that an upvote/downvote has been fired
     this.props.dispatch({
       type: 'TOGGLE_UPVOTED',

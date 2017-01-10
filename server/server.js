@@ -220,15 +220,15 @@ app.post('/newRoom', function (req, res) {
     });
 
     // Listen for upvote / downvote Questions from the audience and bounce them to everyone
-    socket.on('upvoteQuestion', (upvote) => {
-      console.log('upvote ', upvote);
-      nsp.emit('upvoteQuestion', upvote);
+    socket.on('upvoteQuestion', (upvote, userId) => {
+      console.log('upvote ', upvote, userId);
+      nsp.emit('upvoteQuestion', upvote, userId);
       controllers.saveUpvote(upvote);
     });
 
-    socket.on('downvoteQuestion', (downvote) => {
-      console.log('downvote ', downvote);
-      nsp.emit('downvoteQuestion', downvote);
+    socket.on('downvoteQuestion', (downvote, userId) => {
+      console.log('downvote ', downvote, userId);
+      nsp.emit('downvoteQuestion', downvote, userId);
       controllers.saveDownvote(downvote);
     });
 
