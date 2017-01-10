@@ -13,17 +13,68 @@ class TitleBar extends Component {
     // Date set-up here so it only calculates once.
     this.d = new Date();
     this.now = this.d.getHours() + ':' + this.d.getMinutes() + '  ' + this.d.getDate() + '-' + (this.d.getMonth() + 1) + '-' + this.d.getFullYear();
+    // ui state
+    this.state = {
+      toggleView: false,
+      title: undefined // for accessing the text inside the input field
+    };
+  }
+  // show/hide textbox field
+  changeView (toggle) {
+    this.setState({toggleView: toggle});
+  }
+
+  changeTitle () {
+    // update the activeLecture ducer
+    this.props.dispatch(
+      {
+        type: 'UPDATE_TITLE',
+        lecture:
+        {
+          lectureId: this.props.activeLecture.lectureId,
+          name: this.state.title,
+          presentationId: this.props.activeLecture.presentationId,
+          embedUrl: this.props.activeLecture.embedUrl,
+          socket: this.props.activeLecture.socket
+        }
+      }
+    );
+    // hide the textfield
+    this.setState({'toggleView': false});
+  }
+
+  handleChange (event) {
+    this.setState({title: event.target.value});
   }
 
   render () {
     return (
       <div>
-       <h1> Lecture Title {this.props.activeLecture.name + '  ' + this.now} </h1>
+        {
+          !this.state.toggleView
+          ? <div>
+              <h1> Lecture Title {this.state.newTitle || this.props.activeLecture.name}
+                <span>{this.now}</span>
+              </h1>
+              <button onClick={() => { this.changeView(true); }}>Edit</button>
+            </div>
+          : <div>
+            <input type='text' defaultValue={this.props.activeLecture.name}
+             onChange={this.handleChange.bind(this)}/>
+            <button onClick={() => { this.changeView(false); }}>Cancel</button>
+            <button onClick={this.changeTitle.bind(this)}>Save</button>
+          </div>
+        }
        <h2> Join Code {this.props.activeLecture.lectureId} </h2>
       </div>
     );
   };
 
 };
+const mapStateToProps = (state) => {
+  return {
+    activeLecture: state.activeLecture
+  };
+};
 
-export default connect(state => state)(TitleBar);
+export default connect(mapStateToProps)(TitleBar);
