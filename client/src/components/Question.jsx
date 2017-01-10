@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 // This renders each question in the store with an upvote button
 // each question receives its text and ID as props from QuestionBox
 class Question extends Component {
-
   // componentDidMount () {
   //   $('.upvoteDownvote').on('click', function () {
   //     // console.log('we clicked upvoteDownvote');

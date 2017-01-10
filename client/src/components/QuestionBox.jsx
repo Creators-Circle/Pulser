@@ -50,9 +50,16 @@ class QuestionBox extends Component {
       }
       clearQuestions = !clearQuestions;
     });
+
+    $('#questionInput').keypress(function (e) {
+      if (e.which === 13) {
+        $('#submitQuestion').click();
+        return false;
+      }
+    });
   }
 
-  submitQuestion () {
+  submitQuestion (e) {
     // dispatch, submission to the db, socket to the presenter
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
