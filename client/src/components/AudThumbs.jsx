@@ -10,18 +10,16 @@ import store from '../store.jsx';
 class AudThumbs extends Component {
 
   componentDidMount () {
+    $('#Thumbs').toggle();
     let socket = this.props.socket;
     let userId = this.props.userId;
-    let currentTopicId = store.getState().topicId;
-    let thumbsDisplayed = store.getState().thumbs.displayed;
-    // render Thumbs box for the given topic when event 'open thumbs' is fired
-    socket.on('open thumbs', function (topicId, topic) {
-      currentTopicId = topicId;
-      $('#AudThumbTopic').text(topic); // set h1 to current topic
-      $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
-      thumbsDisplayed = true;
-    });
-
+    // set currentTopicId from store, but it's not updating as expected
+    // leaving it commented for now in case we use store later on.
+    let currentTopicId; /* = this.props.topicId; */
+    // let dispatch = this.props.dispatch;
+    // We have redundant socket listeners here.
+    // This is a patch until store is working
+    socket.on('open thumbs', (topicId, topic) => currentTopicId = topicId);
     $('.thumbButton').click(function (e) {
       // get direction of thumb that was chosen
       let thumbChoice = $(this)[0].id;

@@ -145,7 +145,7 @@ module.exports = {
       lecture_id: lectureId,
       topic: topic
     })
-    .then(() => { /* for knex */ });
+    .then(() => { /* console.log('successfully saved topic entry'); */ });
   },
   // save a thumb choice to the database then return a promise
   saveThumbChoice: function (topicId, userId, thumbChoice) {
@@ -156,7 +156,7 @@ module.exports = {
       user_id: userId,
       type: thumbChoice
     })
-    .then(() => { /* for knex */ });
+    .then(() => { /* console.log('successfully saved user\'s thumb choice'); */ });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {
