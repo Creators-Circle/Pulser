@@ -10,7 +10,6 @@ class Question extends Component {
   //   });
   // }
 
-
   toggleUpvote () {
     let userId = this.props.user.id;
     let questionId = this.props.id;

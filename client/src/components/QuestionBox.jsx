@@ -51,7 +51,6 @@ class QuestionBox extends Component {
       clearQuestions = !clearQuestions;
     });
 
-
     $('#questionInput').keypress(function (e) {
       if (e.which === 13) {
         $('#submitQuestion').click();
@@ -84,13 +83,8 @@ class QuestionBox extends Component {
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox" style={{display: 'none'}}>
-<<<<<<< HEAD
         <input key={1} type="text" id="questionInput"></input>
         <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
-=======
-        <input type="text" id="questionInput" ></input>
-        <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
->>>>>>> finalized code, pulling changes
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
