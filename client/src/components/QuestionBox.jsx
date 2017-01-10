@@ -11,19 +11,23 @@ class QuestionBox extends Component {
     let dispatch = props.dispatch;
     let render = this.forceUpdate.bind(this);
     this.socket = props.activeLecture.socket;
+    let role = props.role;
+    console.log('role is: ', role);
     this.socket.on('upvoteQuestion', function (upvote) {
+      console.log('upvoteQuestion happened');
       dispatch({
         type: 'UPVOTE',
         questionId: upvote.questionId
       });
-      render();
+      if (role === 'presenter') render();
     });
     this.socket.on('downvoteQuestion', function (downvote) {
+      console.log('downvoteQuestion happened');
       dispatch({
         type: 'DOWNVOTE',
         questionId: downvote.questionId
       });
-      render();
+      if (role === 'presenter') render();
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -32,8 +36,11 @@ class QuestionBox extends Component {
         questionId: question.questionId
       });
       render();
+      $('.upvoteDownvote').on('click', function () {
+        console.log('we clicked upvoteDownvote');
+      });
     });
-  }
+  };
 
   componentDidMount () {
     let dispatch = this.props.dispatch;
@@ -41,7 +48,7 @@ class QuestionBox extends Component {
     this.socket.on('questionToggle', function () {
       $('#QuestionBox').fadeToggle('slow');
       if (clearQuestions) {
-        $('.upvoteDownvote, questionText').remove();
+        $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
       }
     });
@@ -72,13 +79,13 @@ class QuestionBox extends Component {
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox" style={{display: 'none'}}>
-        <input type="text" id="questionInput"></input>
-        <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+        <input key={1} type="text" id="questionInput"></input>
+        <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
         }).map((questionId, i) =>
-          <Question key={i} id={questionId} text={questions[questionId].questionText}/>
+          <Question key={i + 3} id={questionId} text={questions[questionId].questionText}/>
         )}
       </div>
     );

@@ -5,8 +5,13 @@ import { connect } from 'react-redux';
 // each question receives its text and ID as props from QuestionBox
 class Question extends Component {
 
+  // componentDidMount () {
+  //   $('.upvoteDownvote').on('click', function () {
+  //     // console.log('we clicked upvoteDownvote');
+  //   });
+  // }
+
   toggleUpvote () {
-    let render = this.forceUpdate.bind(this);
     let socket = this.props.activeLecture.socket;
     // toggle the upvoted property in store for this question
     let upvoteDownvote = this.props.questions[this.props.id].upvoted ? 'downvoteQuestion' : 'upvoteQuestion';
@@ -22,17 +27,16 @@ class Question extends Component {
       type: 'TOGGLE_UPVOTED',
       questionId: this.props.id
     });
-    render();
-  }
+  };
 
   render () {
     let buttonText = this.props.questions[this.props.id].upvoted ? 'Downvote' : 'Upvote';
     // console.log('this.props in question', this.props);
     return (
       <div className='question'>
-       <button className='upvoteDownvote' id={this.props.text} onClick={this.toggleUpvote.bind(this)}>{buttonText}</button>
-       <span className='questionText'>{this.props.text}</span>
-     </div>
+        <button className='upvoteDownvote' id={this.props.text} onClick={this.toggleUpvote.bind(this)}>{buttonText}</button>
+        <span className='questionText'>{this.props.text}</span>
+      </div>
     );
   };
 };

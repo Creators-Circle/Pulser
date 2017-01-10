@@ -68,7 +68,7 @@ class PresenterView extends Component {
           <Sidebar />
           <Timer/>
           <PulseBox startTime={this.date} audience={this.state.audience}/>
-          <QuestionBox/>
+          <QuestionBox role={'presenter'}/>
           <PresThumbs/>
         </div>
       </div>
@@ -78,7 +78,8 @@ class PresenterView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeLecture: state.activeLecture
+    activeLecture: state.activeLecture,
+    dispatch: state.dispatch
   };
 };
 

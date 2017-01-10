@@ -18,6 +18,7 @@ class AudienceView extends Component {
 
   componentDidMount () {
     let socket = this.props.activeLecture.socket;
+    this.props.dispatch({type: 'CHANGE_ROLE', role: 'audience'});
 
     // Trigger questions box toggle
     socket.on('questionToggle', function () {
@@ -36,7 +37,7 @@ class AudienceView extends Component {
       <div>
         <Slides id="audienceSlides" class="slides" role="audience"/>
         <FeedbackBox/>
-        <QuestionBox/>
+        <QuestionBox role={'audience'}/>
         <AudThumbs/>
       </div>
       </div>
