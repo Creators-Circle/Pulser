@@ -52,9 +52,10 @@ class QuestionBox extends Component {
     });
   }
 
-  submitQuestion () {
+  submitQuestion (e) {
     // dispatch, submission to the db, socket to the presenter
     console.log("submitting...")
+    e.preventDefault()
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let questionText = $('#questionInput').val();
@@ -86,7 +87,7 @@ class QuestionBox extends Component {
         }).map((questionId, i) =>
           <Question key={i + 3} id={questionId} votes={questions[questionId].votes} text={questions[questionId].questionText}/>
         )}
-      
+      </form>
       </div>
     );
   };
