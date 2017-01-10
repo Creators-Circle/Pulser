@@ -15,6 +15,8 @@ const activeLecture = (state = {}, action) => {
           socket: action.socket
         });
       }
+    case 'UPDATE_TITLE':
+      return action.lecture;
     default:
       return state;
   }
