@@ -62,7 +62,6 @@ class QuestionBox extends Component {
 
   submitQuestion (e) {
     // dispatch, submission to the db, socket to the presenter
-    console.log("submitting...")
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let questionText = $('#questionInput').val();
@@ -77,8 +76,6 @@ class QuestionBox extends Component {
     };
     socket.emit('submitQuestion', question);
     $('#questionInput').val('');
-    console.log("submitted...")
-    //e.preventDefault()
   }
 
   render () {
