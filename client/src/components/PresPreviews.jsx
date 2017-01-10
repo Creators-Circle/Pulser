@@ -44,7 +44,12 @@ class PresPreviews extends Component {
           {
             recentLectures.length > 0
               ? recentLectures.map((lecture, i) =>
-                  <PresThumbnail key={i} date = {lecture.date} name = {lecture.name} />
+                  <PresThumbnail
+                    key={i}
+                    id = {lecture.id}
+                    date = {lecture.date}
+                    name = {lecture.name}
+                  />
               ) : <p>No recent activites</p>
           }
         </div>

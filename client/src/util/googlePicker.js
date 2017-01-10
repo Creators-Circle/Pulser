@@ -1,5 +1,5 @@
 // Google Picker window to choose presentation from user's Google Drive files
-// Assign a lectureId to the chosen presentation. Load this information to the store 
+// Assign a lectureId to the chosen presentation. Load this information to the store
 // TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 import $ from 'jquery';
 import setLectureId from './setLectureId';
@@ -105,7 +105,7 @@ function pickerSlideCallback(data) {
     };
     let socket = store.getState().activeLecture.socket;
     socket.emit('saveLecture', lecture);
-    
+
     // Redirect user to <PresenterView/>
     browserHistory.push('/presenter');
   }
