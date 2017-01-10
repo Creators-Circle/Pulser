@@ -8,13 +8,16 @@ import { Link } from 'react-router';
 class SearchResults extends Component {
 
   render () {
-    let search = this.props.search;
-    // filter the lectures by the input given by the user
-    let searchLectures = this.props.userLectures.filter(lecture => lecture.name.includes(search));
+    let search = this.props.search.toLowerCase();
+    // filter the lectures by user input
+    let searchLectures = this.props.userLectures.filter(lecture =>
+      lecture.name.toLowerCase().includes(search)
+    );
     return (
       <div>
         { searchLectures.length === 0 ? <p>No results found</p>
           : searchLectures.map((lecture, i) =>
+          // restrict click functionality for viewed lectures
             lecture.role === 'audience'
             ? <PresThumbnail key = {lecture.id} date = {lecture.date} name = {lecture.name} />
             : <Link key={i} to={`/summary/${lecture.lecture_id}`}>
