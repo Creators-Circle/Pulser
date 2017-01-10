@@ -96,7 +96,7 @@ class SummaryMainPane extends Component {
       // ------------------------------------------------------------------------------- //
       return (
         <div id='mainPane' className='summary'>
-          <SummaryInfoBox title={'Average click per minutes'} value={avgClickPerMinute}/>
+          <SummaryInfoBox title={'Average click per minute'} value={avgClickPerMinute}/>
           {
             !clickedUser
             ? <div>
