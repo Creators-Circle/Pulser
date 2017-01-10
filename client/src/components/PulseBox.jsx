@@ -14,11 +14,11 @@ class PulseBox extends Component {
     var currTime = new Date();
     var timeDiff = timeDiffToMinutes(this.props.startTime, currTime);
 
-    // filter every data with less than (n)minutes time
     // compare the time to 1 minute for testing
+    // sort values to prevent backwards movement bug
     var filteredPulse = this.props.pulseData.filter(pulse => {
       return Math.abs(timeDiff - pulse.x) <= 0.5;
-    });
+    }).sort((pulse1, pulse2) => pulse1.x - pulse2.x);
     // if filteredPulse is empty, populate it with a default 0,0 data point
     if (!filteredPulse.length) {
       filteredPulse = [{x: 0, y: 0}];
