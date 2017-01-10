@@ -11,23 +11,22 @@ import $ from 'jquery';
 class AudThumbs extends Component {
 
   componentDidMount () {
-    // console.log('this.props in AudThumbs', this.props);
-    $('#Thumbs').toggle();
     let socket = this.props.socket;
     let userId = this.props.userId;
     let currentTopicId;
     let thumbsDisplayed = false;
 
-    socket.on('open thumbs', (topicId, topic) => currentTopicId = topicId);
-
-    $('#thumbTopic').text(topic);
-    $('#Thumbs').toggle();
-    thumbsDisplayed = true;
+    // render Thumbs box for the given topic when event 'open thumbs' is fired
+    socket.on('open thumbs', function (topicId, topic) {
+      currentTopicId = topicId;
+      $('#thumbTopic').text(topic); // set h1 to current topic
+      $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
+      thumbsDisplayed = true; // store that Thumbs are being displayed
+    });
 
     $('.thumbButton').click(function (e) {
       // get direction of thumb that was chosen
       let thumbChoice = $(this)[0].id;
-
       // emit choice to the server / presenter / database
       socket.emit('thumb clicked', currentTopicId, userId, thumbChoice);
       // fade out component and set 'displayed' property to false in the store
@@ -36,16 +35,14 @@ class AudThumbs extends Component {
 
     // Trigger thumbs box to close if still open
     socket.on('close thumbs', function () {
-      if (thumbsDisplayed) {
-        $('#Thumbs').fadeOut('fast');
-      }
-      thumbsDisplayed = false;
+      if (thumbsDisplayed) $('#Thumbs').fadeOut('fast');
+      thumbsDisplayed = false; // store that thumbs box has been closed
     });
   }
 
   render () {
     return (
-      <div id="Thumbs">
+      <div id="Thumbs" style={{display: 'none'}}>
         <h1 id="thumbTopic"></h1>
         <button className='thumbButton' id='up'>Thumbs up!</button>
         <button className='thumbButton' id='side'>Thumbs to the side!</button>
@@ -58,9 +55,7 @@ class AudThumbs extends Component {
 const mapStateToProps = (state) => {
   return {
     socket: state.activeLecture.socket,
-    userId: state.user.id,
-    topicId: state.thumbs.topicId,
-    dispatch: state.dispatch
+    userId: state.user.id
   };
 };
 
