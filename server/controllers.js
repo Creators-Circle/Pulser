@@ -221,5 +221,13 @@ module.exports = {
     .then(function (data) {
       res.send(data);
     });
+  },
+  lectureCheck: function (req, res) {
+    let lectureId = req.params.lecture_id;
+    return db.select('*').from('lectures').where('id', lectureId)
+    .then( function(data) {
+      console.log('Route hit');
+      res.send(lecture);
+    });
   }
 };

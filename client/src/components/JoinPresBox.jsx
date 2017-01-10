@@ -6,6 +6,11 @@ import { browserHistory } from 'react-router';
 
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
+  constructor() {
+    super()
+    //  For preventing bruteforce upon login.
+    this.failedLoginCount = 0;
+  }
 
   componentDidMount () {
     // handles enter key being pressed while join input field is selected
@@ -23,6 +28,9 @@ class JoinPresBox extends Component {
 
     // Subscribe to custom namespace based on lectureId
     let socket = io(`/${lectureId}`);
+
+    // Test what socket is when the login fails.
+    console.log('Socket test', socket);
 
     // Preserve the context of "this"
     let dispatch = this.props.dispatch;
