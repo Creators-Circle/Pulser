@@ -1,4 +1,4 @@
-// reducer for creating thumbs, incrementing tally for each thumbType, and clearing thumbs data
+// reducer for creating thumbs, incrementing tally for each thumbChoice, and clearing thumbs data
 
 // state = {
 //   topicId: 0,
