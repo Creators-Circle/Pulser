@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import $ from 'jquery';
+import lectureCheck from '../util/lectureCheck';
 import { browserHistory } from 'react-router';
 
 // takes a unique id as input and renders AudienceView for specific presentation
@@ -25,6 +26,20 @@ class JoinPresBox extends Component {
   joinPresentation () {
     // Get lectureId from input box above join button
     let lectureId = $('#join').val();
+
+    // check if lectureId exists and increment failcount if it fails.
+      // Will logout on 10 failed login.
+    lectureCheck(lectureId, (data) => {
+      if (data.length === 0) {
+        alert('Login failed.');
+        $('#join').val('');
+        this.failedLoginCount ++;
+        if (this.failedLoginCount === 10) {
+          this.failedLoginCount = 0;
+          window.location.href = '/logout';
+        }
+      }
+    });
 
     // Subscribe to custom namespace based on lectureId
     let socket = io(`/${lectureId}`);

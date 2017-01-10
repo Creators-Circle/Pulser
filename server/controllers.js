@@ -222,11 +222,11 @@ module.exports = {
       res.send(data);
     });
   },
+  // Checks if a given lecture_id exists.
   lectureCheck: function (req, res) {
     let lectureId = req.params.lecture_id;
     return db.select('*').from('lectures').where('id', lectureId)
     .then(function (data) {
-      console.log('Route hit');
       res.send(data);
     });
   }
