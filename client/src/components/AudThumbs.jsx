@@ -11,17 +11,19 @@ import $ from 'jquery';
 class AudThumbs extends Component {
 
   componentDidMount () {
-    // console.log('this.props in AudThumbs', this.props);
-    $('#Thumbs').toggle();
     let socket = this.props.socket;
     let userId = this.props.userId;
-    // set currentTopicId from store, but it's not updating as expected
-    // leaving it commented for now in case we use store later on.
-    let currentTopicId; /* = this.props.topicId; */
-    // let dispatch = this.props.dispatch;
-    // We have redundant socket listeners here.
-    // This is a patch until store is working
-    socket.on('open thumbs', (topicId, topic) => currentTopicId = topicId);
+    let currentTopicId;
+    let thumbsDisplayed = false;
+
+    // render Thumbs box for the given topic when event 'open thumbs' is fired
+    socket.on('open thumbs', function (topicId, topic) {
+      currentTopicId = topicId;
+      $('#thumbTopic').text(topic); // set h1 to current topic
+      $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
+      thumbsDisplayed = true; // store that Thumbs are being displayed
+    });
+
     $('.thumbButton').click(function (e) {
       // get direction of thumb that was chosen
       let thumbChoice = $(this)[0].id;
@@ -29,14 +31,18 @@ class AudThumbs extends Component {
       socket.emit('thumb clicked', currentTopicId, userId, thumbChoice);
       // fade out component and set 'displayed' property to false in the store
       $('#Thumbs').fadeOut(1);
-      // dispatch toggle_thumbs_box . This is not being used ... currently
-      // dispatch({type: 'TOGGLE_DISPLAY'});
+    });
+
+    // Trigger thumbs box to close if still open
+    socket.on('close thumbs', function () {
+      if (thumbsDisplayed) $('#Thumbs').fadeOut('fast');
+      thumbsDisplayed = false; // store that thumbs box has been closed
     });
   }
 
   render () {
     return (
-      <div id="Thumbs">
+      <div id="Thumbs" style={{display: 'none'}}>
         <h1 id="thumbTopic"></h1>
         <button className='thumbButton' id='up'>Thumbs up!</button>
         <button className='thumbButton' id='side'>Thumbs to the side!</button>
@@ -49,9 +55,7 @@ class AudThumbs extends Component {
 const mapStateToProps = (state) => {
   return {
     socket: state.activeLecture.socket,
-    userId: state.user.id,
-    topicId: state.thumbs.topicId,
-    dispatch: state.dispatch
+    userId: state.user.id
   };
 };
 
