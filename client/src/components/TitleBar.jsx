@@ -66,7 +66,6 @@ class TitleBar extends Component {
             <button onClick={this.changeTitle.bind(this)}>Save</button>
           </div>
         }
-      <h2>Date: <span>{this.now}</span></h2>
        <h2> Join Code {this.props.activeLecture.lectureId} </h2>
       </div>
     );
