@@ -50,12 +50,19 @@ class QuestionBox extends Component {
       }
       clearQuestions = !clearQuestions;
     });
+
+
+    $('#questionInput').keypress(function (e) {
+      if (e.which === 13) {
+        $('#submitQuestion').click();
+        return false;
+      }
+    });
   }
 
   submitQuestion (e) {
     // dispatch, submission to the db, socket to the presenter
     console.log("submitting...")
-    //e.preventDefault()
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let questionText = $('#questionInput').val();
@@ -71,7 +78,7 @@ class QuestionBox extends Component {
     socket.emit('submitQuestion', question);
     $('#questionInput').val('');
     console.log("submitted...")
-    e.preventDefault()
+    //e.preventDefault()
   }
 
   render () {
@@ -80,8 +87,13 @@ class QuestionBox extends Component {
     // Assign an id to the main component div so that it can be targeted on toggle events
     return (
       <div id="QuestionBox" style={{display: 'none'}}>
+<<<<<<< HEAD
         <input key={1} type="text" id="questionInput"></input>
         <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+=======
+        <input type="text" id="questionInput" ></input>
+        <button id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+>>>>>>> finalized code, pulling changes
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
