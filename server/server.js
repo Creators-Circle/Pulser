@@ -250,7 +250,6 @@ app.post('/newRoom', function (req, res) {
       nsp.emit('close thumbs');
     });
 
-
     // ------------------- SOCKETS FOR 'STOP PRESENTATION' -------------------
 
     // Listen for stopPresentation event and let the audience know it's over
