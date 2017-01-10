@@ -82,7 +82,7 @@ class QuestionBox extends Component {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
         }).map((questionId, i) =>
-          <Question key={i + 3} id={questionId} text={questions[questionId].questionText}/>
+          <Question key={i + 3} id={questionId} votes={questions[questionId].votes} text={questions[questionId].questionText}/>
         )}
       </div>
     );

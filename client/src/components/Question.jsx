@@ -37,7 +37,7 @@ class Question extends Component {
     return (
       <div className='question'>
         <button className='upvoteDownvote' id={this.props.text} onClick={this.toggleUpvote.bind(this)}>{buttonText}</button>
-        <span className='questionText'>{this.props.text}</span>
+        <span className='questionText'>{this.props.text} {this.props.votes}</span>
       </div>
     );
   };
