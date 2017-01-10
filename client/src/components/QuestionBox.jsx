@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
 import $ from 'jquery';
+import uuid from 'uuid/v1';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
@@ -41,7 +42,7 @@ class QuestionBox extends Component {
     let questionText = $('#questionInput').val();
     let lectureId = this.props.activeLecture.lectureId;
     let userId = this.props.user.id;
-    let questionId = (Math.random().toString(36) + '00000000000000000').slice(2, 23);
+    let questionId = uuid();
     let question = {
       questionId: questionId,
       lectureId: lectureId,
@@ -63,8 +64,8 @@ class QuestionBox extends Component {
         {Object.keys(questions).sort(function (a, b) {
           if (questions[a].votes < questions[b].votes) return 1;
           return -1;
-        }).map(questionId =>
-          <Question id={questionId} text={questions[questionId].questionText}/>
+        }).map((questionId, i) =>
+          <Question key={i} id={questionId} text={questions[questionId].questionText}/>
         )}
       </div>
     );
