@@ -6,8 +6,8 @@ import { browserHistory } from 'react-router';
 
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
-  constructor() {
-    super()
+  constructor () {
+    super();
     //  For preventing bruteforce upon login.
     this.failedLoginCount = 0;
   }

@@ -225,9 +225,9 @@ module.exports = {
   lectureCheck: function (req, res) {
     let lectureId = req.params.lecture_id;
     return db.select('*').from('lectures').where('id', lectureId)
-    .then( function(data) {
+    .then(function (data) {
       console.log('Route hit');
-      res.send(lecture);
+      res.send(data);
     });
   }
 };
