@@ -26,19 +26,22 @@ class TitleBar extends Component {
 
   changeTitle () {
     // update the activeLecture ducer
+    let lecture = {
+      lectureId: this.props.activeLecture.lectureId,
+      name: this.state.title,
+      presentationId: this.props.activeLecture.presentationId,
+      embedUrl: this.props.activeLecture.embedUrl,
+      socket: this.props.activeLecture.socket
+    };
+
     this.props.dispatch(
       {
         type: 'UPDATE_TITLE',
-        lecture:
-        {
-          lectureId: this.props.activeLecture.lectureId,
-          name: this.state.title,
-          presentationId: this.props.activeLecture.presentationId,
-          embedUrl: this.props.activeLecture.embedUrl,
-          socket: this.props.activeLecture.socket
-        }
+        lecture: lecture
       }
     );
+    // send a socket event to the server to update the database
+    lecture.socket.emit('udpateTitle', lecture.lectureId, lecture.name);
     // hide the textfield
     this.setState({'toggleView': false});
   }
@@ -53,9 +56,7 @@ class TitleBar extends Component {
         {
           !this.state.toggleView
           ? <div>
-              <h1> Lecture Title {this.state.newTitle || this.props.activeLecture.name}
-                <span>{this.now}</span>
-              </h1>
+              <h1> Lecture Title: {this.state.newTitle || this.props.activeLecture.name}</h1>
               <button onClick={() => { this.changeView(true); }}>Edit</button>
             </div>
           : <div>
@@ -65,6 +66,7 @@ class TitleBar extends Component {
             <button onClick={this.changeTitle.bind(this)}>Save</button>
           </div>
         }
+      <h2>Date: <span>{this.now}</span></h2>
        <h2> Join Code {this.props.activeLecture.lectureId} </h2>
       </div>
     );

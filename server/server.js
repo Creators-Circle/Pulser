@@ -167,6 +167,11 @@ app.post('/newRoom', function (req, res) {
       controllers.saveLecture(lecture);
     });
 
+    // Listen for updateTitle and update the database
+    socket.on('udpateTitle', (lectureId, title) => {
+      controllers.updateLectureTitle(title, lectureId);
+    });
+
     // Listen for guestsToggle event
     socket.on('guestsToggle', function (lecture) {
       // console.log('socket: guestsToggle', 'lecture', lecture);
@@ -244,6 +249,7 @@ app.post('/newRoom', function (req, res) {
     socket.on('close thumbs', () => {
       nsp.emit('close thumbs');
     });
+
 
     // ------------------- SOCKETS FOR 'STOP PRESENTATION' -------------------
 

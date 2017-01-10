@@ -42,6 +42,13 @@ module.exports = {
         module.exports.userLecture(lecture);
       });
   },
+  // update the title of lecture to the database
+  updateLectureTitle: function (title, lectureId) {
+    return db('lectures').update({name: title})
+    .where('id', lectureId).then(() => {
+      console.log('updated');
+    });
+  },
   // Toggle guest permission to attend lecture
   guestsToggle: function (lecture) {
     return db('lectures')
