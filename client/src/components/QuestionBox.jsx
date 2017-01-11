@@ -78,19 +78,25 @@ class QuestionBox extends Component {
   }
 
   render () {
+    // console.log(this.props);
     let questions = store.getState().questions;
     let displayQuestions = questions.enabled ? 'block' : 'none';
-    // Assign an id to the main component div so that it can be targeted on toggle events
+    let questionsObj = {};
+    Object.keys(questions).forEach((questionKey) => {
+      if (questionKey !== 'enabled') questionsObj[questionKey] = questions[questionKey];
+    });
+    delete questionsObj.enabled;
     if (this.props.role === 'presenter') {
       return (
         <div id="QuestionBox" style={{display: 'none'}}>
+          <button onClick={console.log(store.getState())}>store</button>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
-          {Object.keys(questions).slice(1).sort(function (a, b) {
-            if (questions[a].votes < questions[b].votes) return 1;
+          {Object.keys(questionsObj).sort(function (a, b) {
+            if (questionsObj[a].votes < questionsObj[b].votes) return 1;
             return -1;
           }).map((questionId, i) =>
-            <Question key={i + 3} id={questionId} votes={questions[questionId].votes} text={questions[questionId].questionText}/>
+            <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
           )}
         </div>
       );
@@ -99,8 +105,8 @@ class QuestionBox extends Component {
         <div id="QuestionBox" style={{display: displayQuestions}}>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
-          {Object.keys(questions).slice(1).map((questionId, i) =>
-            <Question key={i + 3} id={questionId} votes={questions[questionId].votes} text={questions[questionId].questionText}/>
+          {Object.keys(questionsObj).map((questionId, i) =>
+            <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
           )}
         </div>
       );

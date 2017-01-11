@@ -49,7 +49,7 @@ class PresenterView extends Component {
       socket.emit('presentationInfoResponse',
         presentationUrl, presentationName, presentationId,
         questions, thumbs, feedbackEnabled
-        );
+      );
     });
 
     socket.on('connected', () => {

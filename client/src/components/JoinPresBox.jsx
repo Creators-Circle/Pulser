@@ -81,7 +81,9 @@ class JoinPresBox extends Component {
       socket.emit('userLecture', lecture);
       console.log('questions: ', questions);
       // Dispatch all of the questions and displayed boolean into the store
-      Object.keys(questions).slice(1).forEach((questionId) => {
+      // Enabled key:value will also be dispatched as a question but will not
+      // effect the store
+      Object.keys(questions).forEach((questionId) => {
         dispatch({
           type: 'CREATE_QUESTION',
           questionId: questionId,
@@ -90,7 +92,7 @@ class JoinPresBox extends Component {
         });
       });
 
-      if (questions.enabled) {
+      if (!questions.enabled) {
         dispatch({
           type: 'TOGGLE_ENABLED'
         });
