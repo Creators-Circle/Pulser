@@ -14,11 +14,14 @@ class AudThumbs extends Component {
     let socket = this.props.socket;
     let userId = this.props.userId;
     let currentTopicId = store.getState().topicId;
+    let thumbsDisplayed = store.getState().thumbs.displayed;
+    console.log(thumbsDisplayed);
     // render Thumbs box for the given topic when event 'open thumbs' is fired
     socket.on('open thumbs', function (topicId, topic) {
       currentTopicId = topicId;
       $('#thumbTopic').text(topic); // set h1 to current topic
       $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
+      thumbsDisplayed = true;
     });
 
     $('.thumbButton').click(function (e) {
@@ -28,11 +31,13 @@ class AudThumbs extends Component {
       socket.emit('thumb clicked', currentTopicId, userId, thumbChoice);
       // fade out component and set 'displayed' property to false in the store
       $('#Thumbs').fadeOut(1);
+      thumbsDisplayed = false;
     });
 
     // Trigger thumbs box to close if still open
     socket.on('close thumbs', function () {
       if (thumbsDisplayed) $('#Thumbs').fadeOut('fast');
+      thumbsDisplayed = false;
     });
   };
 
