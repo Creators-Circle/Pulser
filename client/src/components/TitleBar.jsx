@@ -6,7 +6,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 class TitleBar extends Component {
   constructor () {
     super();
