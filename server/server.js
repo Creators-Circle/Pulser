@@ -236,18 +236,19 @@ app.post('/newRoom', function (req, res) {
     // -------------------------- SOCKETS FOR 'THUMBS' --------------------------
 
     socket.on('submit thumbTopic', (topicId, topic, lectureId) => {
-      console.log('topic submit: ', topic);
+      // console.log('topic submit: ', topic);
       nsp.emit('open thumbs', topicId, topic);
       controllers.saveTopic(topicId, topic, lectureId);
     });
 
     socket.on('thumb clicked', (topicId, userId, thumbChoice) => {
-      console.log('thumb clicked by user ', userId, ': ', thumbChoice, topicId);
+      // console.log('thumb clicked by user ', userId, ': ', thumbChoice, topicId);
       nsp.emit('thumb clicked', thumbChoice);
       controllers.saveThumbChoice(topicId, userId, thumbChoice);
     });
 
     socket.on('close thumbs', () => {
+      // console.log('closeThumbs caught on server');
       nsp.emit('close thumbs');
     });
 

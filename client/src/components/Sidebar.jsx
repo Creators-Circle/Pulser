@@ -34,8 +34,10 @@ class Sidebar extends Component {
       });
     // If thumbs component isn't toggled, then toggle it in
       if (!thumbsToggle) {
+        console.log('!thumbsToggle');
         $('#Thumbs').fadeToggle('slow');
       } else { // if already visible, toggle it out and reset it
+        console.log('thumbsToggle');
         $('#Thumbs').fadeToggle('fast');
         $('#topicTitle').text('Topic: ');
         $('#topic').val('');
