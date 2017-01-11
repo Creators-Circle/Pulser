@@ -24,7 +24,7 @@ class SummaryView extends Component {
     if (this.props.summary) {
       return (
         <div>
-        <LogoutButton/>
+          <LogoutButton/>
         <div>
           <h1><i className="fa fa-line-chart"></i>  Summary</h1>
           <SummaryLeftPane/>
