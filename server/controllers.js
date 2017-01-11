@@ -65,13 +65,24 @@ module.exports = {
   },
   // Associate a lecture and a user in the user_lectures table
   userLecture: function (lecture) {
-    return db('user_lectures').insert({
+    // check whether this user has already been added to this lecture
+    return db.select().from('user_lectures')
+    .where({
       user_id: lecture.userId,
-      lecture_id: lecture.id,
-      role: lecture.role
+      lecture_id: lecture.id
     })
-      .then(() => {
-        // console.log('successfully associated a lecture to a user' );
+      .then((data) => {
+        // Data returns an array with length 0 if no entry is found
+        if (!data.length) {
+          // Add them if they haven't
+          return db('user_lectures')
+          .insert({
+            user_id: lecture.userId,
+            lecture_id: lecture.id,
+            role: lecture.role
+          })
+          .then(() => { /* console.log('successfully added user_lecture') */ });
+        }
       });
   },
   // save a click to the database then return a promise
