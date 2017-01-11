@@ -11,7 +11,8 @@ class PresenterViewContainer extends Component {
     this.startTime = new Date();
     this.state = {
       time: undefined,
-      duration: undefined
+      duration: undefined,
+      intervalId:''
     };
   }
 
@@ -47,17 +48,21 @@ class PresenterViewContainer extends Component {
 
   componentDidMount () {
     this.timer();
-    setInterval(this.timer.bind(this), 1000);
+    this.setState({intervalId:setInterval(this.timer.bind(this), 1000)});
+  }
+
+  stopTimer () {
+    clearInterval(this.state.intervalId);
   }
 
   render () {
     return (
       <div className = 'presenter'>
-        <div className='timer-bug'>
+        <div className='timer'>
           <h1 className='clock'>Time: {this.state.time}</h1>
           <h2>Duration: {this.state.duration}</h2>
         </div>
-        <PresenterView />
+        <PresenterView stopTimer={this.stopTimer.bind(this)}/>
       </div>
     );
   }

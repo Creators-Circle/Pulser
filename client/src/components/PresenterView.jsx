@@ -23,8 +23,8 @@ import PresThumbs from './PresThumbs';
 import store from '../store.jsx';
 
 class PresenterView extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.date = new Date();
     this.state = {
       audience: 0
@@ -79,7 +79,7 @@ class PresenterView extends Component {
         <div className='presenter-view'>
           <TitleBar className='title-bar'/>
           <Slides id="presenterSlides" role="presenter"/>
-          <Sidebar />
+          <Sidebar stopTimer={this.props.stopTimer}/>
           <PulseBox startTime={this.date} audience={this.state.audience}/>
           <QuestionBox role={'presenter'}/>
           <PresThumbs/>
