@@ -26,7 +26,7 @@ class SummaryView extends Component {
         <div>
         <LogoutButton/>
         <div>
-          <h1>Summary</h1>
+          <h1><i className="fa fa-line-chart"></i>  Summary</h1>
           <SummaryLeftPane/>
           <SummaryRightPane/>
         </div>
