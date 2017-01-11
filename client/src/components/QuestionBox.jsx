@@ -61,7 +61,7 @@ class QuestionBox extends Component {
     });
   }
 
-  submitQuestion (e) {
+  submitQuestion () {
     // dispatch, submission to the db, socket to the presenter
     let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
