@@ -12,7 +12,7 @@ class PresenterViewContainer extends Component {
     this.state = {
       time: undefined,
       duration: undefined,
-      intervalId:''
+      intervalId: ''
     };
   }
 
@@ -48,7 +48,7 @@ class PresenterViewContainer extends Component {
 
   componentDidMount () {
     this.timer();
-    this.setState({intervalId:setInterval(this.timer.bind(this), 1000)});
+    this.setState({intervalId: setInterval(this.timer.bind(this), 1000)});
   }
 
   stopTimer () {

@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 // sidebar menu for presenter to toggle modules and use additional functionality
 class Sidebar extends Component {
-  constructor (props) {
-    super(props);
-  }
 
   componentDidMount () {
     // Capture the this context
@@ -74,7 +71,7 @@ class Sidebar extends Component {
     });
 
     // Events that end the presentation should alert the audience and server
-    $('#stopPresentation, #exit').on('click',  () => {
+    $('#stopPresentation, #exit').on('click', () => {
       this.props.stopTimer();
       let endTime = new Date();
       let endLecture = {
