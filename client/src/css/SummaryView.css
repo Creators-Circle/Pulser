@@ -1,18 +1,27 @@
-#mainPane {
+/*#mainPane {
   float:left;
   width:78vw;
   margin: 0 2vw;
   background:lightblue;
-}
+}*/
 
-#leftPane {
+/*#leftPane {
   float:left;
   width:18vw;
   margin-left:2vw;
   background:lightblue;
-}
+}*/
 
-.summaryInfoBox {
+/*.summaryInfoBox {
   width:45%;
   margin:2.5%;
+}*/
+
+.audience-table {
+  font-size: 25px;
+}
+
+.user-summary {
+  position: absolute;
+  left: 100%;
 }

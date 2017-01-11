@@ -15,7 +15,6 @@ import Slides from './Slides';
 import $ from 'jquery';
 import '../css/Presentation.css';
 import SummaryView from './SummaryView';
-import Timer from './Timer';
 import Sidebar from './Sidebar';
 import LogoutButton from './LogoutButton';
 import TitleBar from './TitleBar';
@@ -24,8 +23,8 @@ import PresThumbs from './PresThumbs';
 import store from '../store.jsx';
 
 class PresenterView extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.date = new Date();
     this.state = {
       audience: 0
@@ -75,13 +74,12 @@ class PresenterView extends Component {
   render () {
     // <button onClick={this.showStore.bind(this)}></button>
     return (
-      <div>
+      <div className = 'presenter-view'>
         <LogoutButton/>
         <div className='presenter-view'>
           <TitleBar className='title-bar'/>
           <Slides id="presenterSlides" role="presenter"/>
-          <Sidebar />
-          <Timer/>
+          <Sidebar stopTimer={this.props.stopTimer}/>
           <PulseBox startTime={this.date} audience={this.state.audience}/>
           <QuestionBox role={'presenter'}/>
           <PresThumbs/>

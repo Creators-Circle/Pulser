@@ -39,28 +39,30 @@ class TotalClicksTable extends Component {
     if (this.props.summary.users) {
       usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
       return (
-        <div>
+        <div className='col-md-4'>
           <Link to="/">Home</Link>
-          <table id="usersClicks">
-          <tbody>
-            <tr>
-              <th>User</th>
-              <th>Clicks</th>
-            </tr>
-            {
-              usersClicks.map(user =>
-              <TotalClicksRow
-                key={Math.random()}
-                userId={user.user_id}
-                displayUserSummary={this.displayUserSummary.bind(this)}
-                avatar={user.avatar}
-                name={user.name}
-                noOfClicks={user.no_of_clicks}
-              />
-              )
-            }
-          </tbody>
-          </table>
+          <div className='table-responsive audience-table'>
+            <table id="usersClicks">
+            <tbody>
+              <tr>
+                <th>User</th>
+                <th>Clicks</th>
+              </tr>
+              {
+                usersClicks.map(user =>
+                <TotalClicksRow
+                  key={Math.random()}
+                  userId={user.user_id}
+                  displayUserSummary={this.displayUserSummary.bind(this)}
+                  avatar={user.avatar}
+                  name={user.name}
+                  noOfClicks={user.no_of_clicks}
+                />
+                )
+              }
+            </tbody>
+            </table>
+          </div>
           {
             this.state.showUserSummary
             ? <SummaryRightPane

@@ -38,12 +38,12 @@ class SummaryComment extends Component {
             {
               !this.state.toggleComment ? <div>
                 <p>{this.props.comment}</p>
-                <button onClick={() => { this.toggleView(true); }} >Edit</button>
+                <button onClick={() => { this.toggleView(true); }} ><i className="fa fa-pencil"></i> Edit</button>
               </div>
               : <div>
                 <input type = 'text' defaultValue={this.props.comment} onChange={this.handleChange.bind(this)}/>
-                <button onClick={() => { this.toggleView(false); }} >Cancel</button>
-                <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} >Save</button>
+                <button onClick={() => { this.toggleView(false); }} ><i className="fa fa-undo"></i> Cancel</button>
+                <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} ><i className="fa fa-check"></i> Save</button>
               </div>
             }
         </div>
