@@ -68,11 +68,12 @@ class PresenterView extends Component {
     });
   }
 
-  showStore () {
-    console.log(store.getState());
-  }
+  // showStore () {
+  //   console.log(store.getState());
+  // }
 
   render () {
+    // <button onClick={this.showStore.bind(this)}></button>
     return (
       <div>
         <LogoutButton/>
@@ -84,7 +85,6 @@ class PresenterView extends Component {
           <PulseBox startTime={this.date} audience={this.state.audience}/>
           <QuestionBox role={'presenter'}/>
           <PresThumbs/>
-          <button onClick={this.showStore.bind(this)}></button>
         </div>
       </div>
     );

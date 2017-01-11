@@ -26,16 +26,16 @@ class AudienceView extends Component {
     });
   }
 
-  showStore () {
-    console.log(store.getState());
-  }
+  // showStore () {
+  //   console.log(store.getState());
+  // }
 
   render () {
+    // <button onClick={this.showStore.bind(this)}>store</button>
     return (
       <div id="AudienceView">
       <LogoutButton/>
       <div>
-        <button onClick={this.showStore.bind(this)}>store</button>
         <Slides id="audienceSlides" class="slides" role="audience" title={store.getState().activeLecture.name}/>
         <FeedbackBox />
         <QuestionBox role={'audience'}/>
