@@ -1,27 +1,27 @@
 // Google Picker window to choose presentation from user's Google Drive files
 // Assign a lectureId to the chosen presentation. Load this information to the store
-// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 import $ from 'jquery';
 import setLectureId from './setLectureId';
 import store from '../store.jsx';
 import { browserHistory } from 'react-router';
+
 // The Browser API key obtained from the Google Developers Console.
-var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
+const developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
 
 // The Client ID obtained from the Google Developers Console.
-var clientId = '472492304712-1omf26gq2el8ovmleturcihefs6o8463.apps.googleusercontent.com';
+const clientId = '472492304712-1omf26gq2el8ovmleturcihefs6o8463.apps.googleusercontent.com';
 
 // App ID (first number in the Client ID)
-var appId = '472492304712';
+const appId = '472492304712';
 
 // Scope to use to access user's Drive items:
   // Google Drive (read-only)
   // Google Slides (read-only)
-var scope = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/presentations.readonly'];
+const scope = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/presentations.readonly'];
 
-var pickerApiLoaded = false;
-var oauthToken;
-var selectedPresentation;
+const pickerApiLoaded = false;
+const oauthToken;
+const selectedPresentation;
 
 // Use the Google API Loader script to load the google.picker script.
 function loadPicker() {
@@ -55,9 +55,9 @@ function handleAuthResult(authResult) {
   // checks to see that both Picker API and Auth API have loaded
 function createPicker() {
   if (pickerApiLoaded && oauthToken) {
-    var view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+    let view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
     view.setMimeTypes('application/vnd.google-apps.presentation');
-    var picker = new google.picker.PickerBuilder()
+    let picker = new google.picker.PickerBuilder()
         .enableFeature(google.picker.Feature.NAV_HIDDEN)
         .setAppId(appId)
         .setOAuthToken(oauthToken)
@@ -111,4 +111,5 @@ function pickerSlideCallback(data) {
   }
 }
 
-export default loadPicker
+export default loadPicker;
+

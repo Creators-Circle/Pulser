@@ -1,6 +1,6 @@
-//helper function for retrieving user data the from the server;
 import $ from 'jquery';
 
+//Retrieves user data from the server;
 const getUserData = (callback) => {
   $.get('/api/user')
     .done((data) => {
@@ -8,7 +8,7 @@ const getUserData = (callback) => {
     })
     .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err)
+      console.error(err);
     );
   });
 }
