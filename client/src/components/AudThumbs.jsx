@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v1';
 import $ from 'jquery';
 import store from '../store.jsx';
-// AudThumbs allows audience members to give feedback when the presenter enables to 'thumbs' poll component.
-  // This allows the presenter to see how each audience member feels about a specific topic/question.
 
-//  TODO:  Find graphics
-
+// AudThumbs allows audience members to indicate their feelings about a subject when the presenter desires.
+// Contains
+  // --
 class AudThumbs extends Component {
 
   componentDidMount () {
@@ -15,7 +14,6 @@ class AudThumbs extends Component {
     let userId = this.props.userId;
     let currentTopicId = store.getState().topicId;
     let thumbsDisplayed = store.getState().thumbs.displayed;
-    console.log(thumbsDisplayed);
     // render Thumbs box for the given topic when event 'open thumbs' is fired
     socket.on('open thumbs', function (topicId, topic) {
       currentTopicId = topicId;
