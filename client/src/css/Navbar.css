@@ -11,13 +11,26 @@
 	height: 10vh;
 	width: 100vw;
 	display: inline-block;
-	background: #505050;
-    box-shadow: 0 2px 1px 0 rgba(0,0,0,0.16);
+	background: linear-gradient(#474747, #8c8c8c);
+	background: -webkit-linear-gradient(#474747, #8c8c8c);
+	background: -o-linear-gradient(#474747, #8c8c8c);
+	background: -moz-linear-gradient(#474747, #8c8c8c);
+  box-shadow: 0 0 10px #000000;
+	color: #FFFFFF;
 }
 
 #BrandContainer {
 	display: inline-block;
 	margin-left: 15px;
+}
+#BrandContainer a{
+	margin: 10px;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#BrandContainer a:hover, a:focus{
+	text-decoration: none;
+	color: #6292BD;
 }
 
 #logo {

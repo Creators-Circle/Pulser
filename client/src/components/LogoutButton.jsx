@@ -7,7 +7,7 @@ class LogoutButton extends Component {
 
   render () {
     return (
-      <input id='LogoutButton' type="button" onClick={ function () { window.location.href = '/logout'; } } value="Logout" />
+      <input id='LogoutButton' className='btn btn-blue' type="button" onClick={ function () { window.location.href = '/logout'; } } value="Logout" />
     );
   }
 };
