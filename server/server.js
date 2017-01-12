@@ -92,7 +92,7 @@ Authport.on('error', function (req, res, data) {
 
 app.get('/auth/:service', Authport.app);
 
-//End Auth
+// End Auth
 
 app.get('/', function (req, res) {
   // check if the user is logged in by checking his session,
@@ -135,7 +135,6 @@ app.post('/newRoom', function (req, res) {
   // ------------------------------------
   // Socket.io listeners / emitters for the presentation 'room'
   nsp.on('connection', function (socket) {
-
     // Emits connection message when user connects to specific namespace
     nsp.emit('connected');
 
