@@ -40,7 +40,7 @@ class TitleBar extends Component {
       }
     );
     // send a socket event to the server to update the database
-    lecture.socket.emit('udpateTitle', lecture.lectureId, lecture.name);
+    lecture.socket.emit('updateTitle', lecture.lectureId, lecture.name);
     // hide the textfield
     this.setState({'toggleView': false});
   }

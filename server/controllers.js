@@ -19,7 +19,6 @@ module.exports = {
           // if user exists in the database update user info
           return db('users').where('id', user.id).update(user);
         } else {
-          console.log("didn't exist");
           // save user info to the database then return a promise
           return db('users').insert(user);
         }
@@ -48,9 +47,7 @@ module.exports = {
   // update the title of lecture to the database
   updateLectureTitle: function (title, lectureId) {
     return db('lectures').update({name: title})
-    .where('id', lectureId).then(() => {
-      console.log('updated');
-    });
+    .where('id', lectureId).then(/*.then for knex*/);
   },
   // Toggle guest permission to attend lecture
   guestsToggle: function (lecture) {
