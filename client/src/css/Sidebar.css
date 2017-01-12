@@ -9,18 +9,22 @@ hr {
 }
 
 #Sidebar{
-	float:right;
-	width: 22.5vw;
+	/*float:right;*/
+	/*width: 22.5vw;*/
 	background-color: #FFFFFF;
-	margin-right: 2.5vw;
+	/*margin-right: 2.5vw;*/
 	border-radius: 5px;
-	height: 100vh;
+	position: relative;
 }
 
 #Sidebar ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 2px;
+}
+.container {
+	margin: 0;
+	padding: 0;
 }
 
 /*-------------------title---------------------*/
@@ -111,6 +115,6 @@ hr {
 }
 
 #stopPresentation {
-	margin: 2%;
+	margin: 2% auto 20%;
 	width: 66%;
 }

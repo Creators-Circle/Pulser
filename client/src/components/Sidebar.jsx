@@ -128,8 +128,8 @@ class Sidebar extends Component {
 
           <div className='row tools-row '>
             <Link to={`/summary/${this.props.activeLecture.lectureId}`}>
-              <button id='stopPresentation' className='btn btn-red' >Stop Presentation
-                <i className="fa fa-times"></i>
+              <button id='stopPresentation' className='btn btn-red' >
+                <i className="fa fa-times"></i> Stop Presentation
               </button>
             </Link>
           </div>
