@@ -27,6 +27,12 @@ tr:hover {
   background-color: #6292BD;
   color: #FFFFFF;
 }
+.audience-pic {
+  border-radius: 50%;
+  height:8vh;
+  width: 8vh;
+  margin: 5px;
+}
 
 /*-------------Summary-----------------*/
 .summary {
