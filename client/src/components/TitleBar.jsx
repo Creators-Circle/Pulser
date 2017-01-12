@@ -55,7 +55,7 @@ class TitleBar extends Component {
         {
           !this.state.toggleView
           ? <div>
-              <h1> Lecture Title: {this.state.newTitle || this.props.activeLecture.name}</h1>
+              <div id="LectureTitle"> Lecture Title: {this.state.newTitle || this.props.activeLecture.name}</div>
               <button onClick={() => { this.changeView(true); }}>Edit</button>
             </div>
           : <div>
@@ -65,7 +65,7 @@ class TitleBar extends Component {
             <button onClick={this.changeTitle.bind(this)}>Save</button>
           </div>
         }
-        <h2> Join Code {this.props.activeLecture.lectureId} </h2>
+        <div id="JoinCode"> Join Code {this.props.activeLecture.lectureId} </div>
       </div>
     );
   };

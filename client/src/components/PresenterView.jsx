@@ -78,12 +78,12 @@ class PresenterView extends Component {
       <div className = 'presenter-view'>
         <Navbar/>
         <div className='presenter-view'>
-          <TitleBar className='title-bar'/>
-          <Slides id="presenterSlides" role="presenter"/>
           <Sidebar stopTimer={this.props.stopTimer}/>
           <PulseBox startTime={this.date} audience={this.state.audience}/>
-          <QuestionBox role={'presenter'}/>
-          <PresThumbs/>
+          <div id="QuestionBoxPresenter">
+            <QuestionBox role={'presenter'}/>
+          </div>
+            <PresThumbs/>
         </div>
       </div>
     );

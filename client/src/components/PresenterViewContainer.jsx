@@ -58,7 +58,7 @@ class PresenterViewContainer extends Component {
   render () {
     return (
       <div className = 'presenter'>
-        <div className='timer'>
+        <div className='timer' style={{display: 'none'}}>
           <h1 className='clock'>Time: {this.state.time}</h1>
           <h2>Duration: {this.state.duration}</h2>
         </div>

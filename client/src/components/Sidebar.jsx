@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
+import TitleBar from './TitleBar';
+import '../css/Sidebar.css';
+
 // sidebar menu for presenter to toggle modules and use additional functionality
 class Sidebar extends Component {
 
@@ -36,10 +39,10 @@ class Sidebar extends Component {
     // If thumbs component isn't toggled, then toggle it in
       if (!thumbsToggle) {
         console.log('!thumbsToggle');
-        $('#Thumbs').fadeToggle('slow');
+        $('#PresThumbs').fadeToggle('slow');
       } else { // if already visible, toggle it out and reset it
         console.log('thumbsToggle');
-        $('#Thumbs').fadeToggle('fast');
+        $('#PresThumbs').fadeToggle('fast');
         $('#topicTitle').text('Topic: ');
         $('#topic').val('');
         $('#topic, #setTopic').fadeIn();
@@ -87,17 +90,19 @@ class Sidebar extends Component {
     // console.log('this.props in Sidebar: ', this.props)
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
-      <div>
-        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='exit'>X</button></Link>
-        <a href={embedUrl} target="_blank"><button>Projector</button></a>
-        <button id='timerToggle'>Timer</button>
-        <button id='questionToggle'>Question</button>
-        <button id='thumbsToggle'>Thumbs</button>
-        <button id='pulseToggle'>Pulse</button>
-        <button id='feedbackToggle'>Feedback</button>
-        <span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span>
-        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='summary'>Summary</button></Link>
-        <Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='stopPresentation'>Stop Presentation</button></Link>
+      <div id="Sidebar">
+        <ul id="SidebarElements">
+          <li><TitleBar className='title-bar'/></li>
+          <li><Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='exit'>X</button></Link></li>
+          <li><a href={embedUrl} target="_blank"><button>Projector</button></a></li>
+          <li><button id='timerToggle'>Timer</button></li>
+          <li><button id='questionToggle'>Question</button></li>
+          <li><button id='thumbsToggle'>Thumbs</button></li>
+          <li><button id='pulseToggle'>Pulse</button></li>
+          <li><button id='feedbackToggle'>Feedback</button></li>
+          <li><span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span></li>
+          <li><Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='stopPresentation'>Stop Presentation</button></Link></li>
+        </ul>
       </div>
     );
   }

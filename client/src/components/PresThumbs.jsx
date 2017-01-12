@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v1';
 import $ from 'jquery';
+import '../css/PresThumbs.css';
 
 // PresThumbs requests feedback from audience members and renders the results of that data.
   // Audience members are prompted for feedback with the AudThumbs component.
@@ -45,7 +46,7 @@ class PresThumbs extends Component {
 
   render () {
     return (
-      <div id='Thumbs' style={{display: 'none'}}>
+      <div id='PresThumbs' style={{display: 'none'}}>
         <h1 id='topicTitle'> Topic: </h1>
         <input id='topic' type='text' name='topic' /><br/>
         <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>

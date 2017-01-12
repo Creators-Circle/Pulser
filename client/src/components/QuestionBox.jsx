@@ -4,6 +4,7 @@ import Question from './Question';
 import $ from 'jquery';
 import uuid from 'uuid/v1';
 import store from '../store.jsx';
+import '../css/QuestionBox.css';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
