@@ -28,7 +28,7 @@ class SummaryRightPane extends Component {
       if (users) {
         const comment = users.filter(user => user.role === 'presenter')[0].comment;
         return (
-          <div className = 'col-md-7 offset-md-1'>
+          <div className = 'lecture-summary col-md-7 offset-md-1'>
             <SummaryMainPane/>
             <SummaryComment
               comment={this.state.lectureComment || comment}
@@ -77,25 +77,29 @@ class SummaryRightPane extends Component {
         }
       ];
       return (
-        <div className = 'user-summary col-md-6 offset-md-4"'>
-          <SummaryMainPane userId={userId}/>
-          <SummaryComment
-            userId={userId}
-            comment = {this.props.comment}
-            upDateComment = {this.props.upDateComment}
-          />
-          <LineChart
-            className = 'user-pulsedata'
-            data={lineData}
-            width='80%'
-            height='20%'
-            viewBoxObject={{x: 0, y: 0, width: 1200, height: 200}}
-            circleRadius = {0}
-            domain={{x: [0, maxAxisX], y: [0, maxAxisY]}}
-            yAxisLabel="No. of Clicks"
-            xAxisLabel="Elapsed Time (minutes)"
-            gridHorizontal={true}
-          />
+        <div className ='user-summary-container container col-md-7 offset-md-1'>
+          <div className = 'user-summary'>
+            <SummaryMainPane userId={userId}/>
+            <SummaryComment
+              userId={userId}
+              comment = {this.props.comment}
+              upDateComment = {this.props.upDateComment}
+            />
+            <div className = 'user-pulse'>
+              <LineChart
+                className = 'user-pulsedata'
+                data={lineData}
+                width='80%'
+                height='20%'
+                viewBoxObject={{x: 0, y: 0, width: 1200, height: 200}}
+                circleRadius = {0}
+                domain={{x: [0, maxAxisX], y: [0, maxAxisY]}}
+                yAxisLabel="No. of Clicks"
+                xAxisLabel="Elapsed Time (minutes)"
+                gridHorizontal={true}
+              />
+            </div>
+          </div>
         </div>
       );
     }

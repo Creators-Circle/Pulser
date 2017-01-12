@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import SummaryRightPane from './SummaryRightPane.jsx';
 import getComment from '../util/getComment.js';
 import TotalClicksRow from './TotalClicksRow.jsx';
+import $ from 'jquery';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
