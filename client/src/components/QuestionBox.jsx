@@ -94,7 +94,6 @@ class QuestionBox extends Component {
           <div id="QuestionBoxTitle"></div>
           <h2>Questions</h2>
           <hr/>
-          <button onClick={console.log(store.getState())}>store</button>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
           {Object.keys(questionsObj).sort(function (a, b) {
