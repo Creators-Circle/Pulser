@@ -27,7 +27,11 @@ class SummaryView extends Component {
         <div>
           <Navbar/>
           <div className='container-fluid summary-main'>
-            <h1><i className="fa fa-line-chart"></i>  Summary</h1>
+            <h1 className='summary-title'>
+              <i className="fa fa-line-chart"></i>
+              Summary: <span>{ this.props.summary.lecture === undefined
+                ? '' : this.props.summary.lecture[0].name }</span>
+            </h1>
             <div className='row'>
               <SummaryLeftPane/>
               <SummaryRightPane/>
