@@ -4,7 +4,6 @@ import store from '../store.jsx';
 // button to select Google Slides presentation from user's Google Drive to present
 const NewPresButton = () => {
   return (
-    <div>
     <button onClick={() => {
       // if picker has already been created, make it visible again
       // otherwise, create a new picker
@@ -14,8 +13,6 @@ const NewPresButton = () => {
         picker();
       }
     }}>New Presentation</button>
-    <button onClick={() => store.getState().picker.setVisible(true)}>Picker True</button>
-    </div>
   );
 };
 
