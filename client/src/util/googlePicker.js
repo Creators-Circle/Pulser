@@ -112,4 +112,3 @@ function pickerSlideCallback(data) {
 }
 
 export default loadPicker;
-

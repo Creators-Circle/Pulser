@@ -1,10 +1,76 @@
-#SidebarElements{
-	list-style-type: none;
+hr {
+	color:#CECECE;
+	background-color: #CECECE;
+	text-align: center;
+	width:96%;
+	height: 1px;
+	border: none;
 }
 
 #Sidebar{
 	float:right;
 	width: 22.5vw;
-	background-color: orange;
+	background-color: #FFFFFF;
 	margin-right: 2.5vw;
+	border-radius: 5px;
+	height: 80vh;
+}
+
+#Sidebar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 2px;
+}
+
+/*-------------------title---------------------*/
+
+.lecture-title h1 {
+	margin: 10px 2px 0 2px;
+	text-align: center;
+	color: #333333;
+}
+
+.lecture-title span {
+	color: #6292BD;
+}
+
+.title-form {
+	margin: 10px auto;
+	width: 100%;
+}
+
+.title-buttons {
+	text-align: center;
+}
+
+.side-btn {
+	width:90%;
+	margin:2px 5%;
+}
+/*--------------------share code-------------*/
+
+.sidebar-header h2{
+	font-size: 1.5em;
+	text-align: left;
+	margin: 2% 10%;
+	color: #CECECE;
+}
+
+.sidebar-header p {
+	width: 80%;
+	margin: 2% auto;
+	background: white;
+	padding: 5px;
+	text-align: center;
+	border-radius: 3px;
+	font-size: 1.5em;
+	border: 1px solid #CECECE;
+	color: #666666;
+}
+
+/*-------------------clock--------------------*/
+.clock {
+	font-size: 4em;
+	font-weight: bold;
+	text-align: center;
 }

@@ -8,6 +8,14 @@
   animation: blind-red 1s ease 0s infinite normal;
 }
 
+.presentation-view {
+	background-color: #EBEBEB;
+}
+.presenter-view-container {
+	background-color: #EBEBEB;
+}
+
+
 @keyframes blind-red {
   from{background-color: red}
   to{background-color: transparent};

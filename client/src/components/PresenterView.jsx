@@ -79,7 +79,7 @@ class PresenterView extends Component {
   render () {
     // <button onClick={this.showStore.bind(this)}></button>
     return (
-      <div className = 'presenter-view'>
+      <div className = 'presenter-view-container'>
         <Navbar/>
         <div className='presenter-view'>
           <Sidebar time={this.props.time} duration={this.props.duration} stopTimer={this.props.stopTimer}/>
