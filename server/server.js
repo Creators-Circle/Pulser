@@ -1,4 +1,3 @@
-// TODO: FILTRATION BEFORE SENDING BACK EVENTS
 var express = require('express');
 var path = require('path');
 var app = express();

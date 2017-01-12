@@ -143,13 +143,12 @@ module.exports = {
   },
   // save a 'thumbs' topic to the database then return a promise
   saveTopic: function (topicId, topic, lectureId) {
-    console.log('savetopic event fired, topicId, topic, lectureId', topicId, topic, lectureId);
     return db('topics').insert({
       id: topicId,
       lecture_id: lectureId,
       topic: topic
     })
-    .then(() => { /* console.log('successfully saved topic entry'); */ });
+    .then(() => { /* for knex */ });
   },
   // save a thumb choice to the database then return a promise
   saveThumbChoice: function (topicId, userId, thumbChoice) {
@@ -160,11 +159,11 @@ module.exports = {
       user_id: userId,
       type: thumbChoice
     })
-    .then(() => { /* console.log('successfully saved user\'s thumb choice'); */ });
+    .then(() => { /* for knex */ });
   },
   // function for getting all the lectures connected to the user
   getUserLectures: function (req, res) {
-    var user = req.session.userId;
+    let user = req.session.userId;
     db.select('*').from('lectures')
     .join('user_lectures', 'lectures.id', 'user_lectures.lecture_id')
     .where({user_id: user}).orderBy('date', 'desc')
@@ -172,10 +171,10 @@ module.exports = {
       res.send(data);
     });
   },
-  // getting the summary for lectures
+  // getting info for Summary View
   getSummary: function (req, res) {
-    var lectureId = req.params.lecture_id;
-    var summary = {};
+    let lectureId = req.params.lecture_id;
+    let summary = {};
     // get all the users connected to the lecture
     db.select('*').from('users')
     .join('user_lectures', 'users.id', 'user_lectures.user_id')
@@ -213,19 +212,19 @@ module.exports = {
   },
   // inserting comment in the database
   addComment: function (req, res) {
-    var lectureId = req.params.lecture_id;
-    var userId = req.params.user_id;
-    var comment = req.body.comment;
+    let lectureId = req.params.lecture_id;
+    let userId = req.params.user_id;
+    let comment = req.body.comment;
     return db('user_lectures').where({lecture_id: lectureId, user_id: userId})
     .update({comment: comment})
     .then(function (data) {
-      res.send('succes');
+      res.send('success');
     });
   },
   // fetching a specific comment
   getComment: function (req, res) {
-    var lectureId = req.params.lecture_id;
-    var userId = req.params.user_id;
+    let lectureId = req.params.lecture_id;
+    let userId = req.params.user_id;
     return db.select('*').from('user_lectures')
     .where({lecture_id: lectureId, user_id: userId})
     .then(function (data) {
