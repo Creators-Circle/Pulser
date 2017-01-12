@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import SummaryLeftPane from './SummaryLeftPane';
 import LogoutButton from './LogoutButton';
 import SummaryRightPane from './SummaryRightPane';
+import Navbar from './Navbar';
 
 // View to display summary data about the presentation and users
 class SummaryView extends Component {
