@@ -9,9 +9,9 @@ class FeedbackButton extends Component {
   render () {
     console.log('store ', store.getState());
     return store.getState().feedbackButton.displayed ? (
-      <button id="updatePulse">Feedback</button>
+      <div id="updatePulse"><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     ) : (
-      <button id="updatePulse" style={{display: 'none'}}>Feedback</button>
+      <div id="updatePulse" style={{display: 'none'}}>><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     );
   }
 

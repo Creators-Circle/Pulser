@@ -13,7 +13,7 @@ class FeedbackBox extends Component {
     console.log('title: ', title);
     return (
       <div id="FeedbackBox">
-        <div id="LectureTitle">{title}</div>
+        <div className="lecture-title"><h1>{title}</h1></div>
         <div id="FeedbackButtonContainer">
           <FeedbackButton />
         </div>

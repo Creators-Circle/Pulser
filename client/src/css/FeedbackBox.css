@@ -1,16 +1,41 @@
 #FeedbackBoxContainer {
 	padding: 20px;
-	background-color: blue;
 	height: 90vh;
 	width: 25vw;
 	float: right;
+	background-color: white;
 }
 
 #FeedbackBox{
 	text-align: center;
 }
 
-#LectureTitle{
-	font-size: 21;
+#FeedbackBox .lecture-title{
+  font-size: 21;
+  margin-bottom: 3.5vh;
+}
+
+#updatePulse{
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.14);
+    border-radius: 5%;
+	width: 100%;
+	height: 15vh;
+	text-align: center;
+	background-color: #7CCA71;
+	padding: 3vh;
+}
+
+#FeedbackButtonContainer{
+	text-align: center;
+}
+
+#question {
+	height: 4vh;
+	width: auto;
+}
+
+#FeedbackButtonText{
+	color: white;
+	margin-top: 2vh;
 }
 
