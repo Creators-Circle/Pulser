@@ -3,7 +3,6 @@ import picker from '../util/googlePicker'; // import Google Picker function
 import store from '../store.jsx';
 // button to select Google Slides presentation from user's Google Drive to present
 const NewPresButton = () => {
-
   return (
     <div>
     <button onClick={() => {
