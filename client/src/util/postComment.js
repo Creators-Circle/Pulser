@@ -10,7 +10,7 @@ const postComment = (lectureId, userId, comment) => {
   })
   .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err);
+      console.error(err)
     );
   });
 }

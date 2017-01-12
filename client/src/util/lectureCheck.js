@@ -8,7 +8,7 @@ const lectureCheck = (lecture_id, callback) => {
   })
   .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err);
+      console.error(err)
     );
   });
 }
