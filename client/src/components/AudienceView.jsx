@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import AudThumbs from './AudThumbs';
 import store from '../store.jsx';
+import Navbar from './Navbar';
 
 class AudienceView extends Component {
 
@@ -34,13 +35,19 @@ class AudienceView extends Component {
     // <button onClick={this.showStore.bind(this)}>store</button>
     return (
       <div id="AudienceView">
-      <LogoutButton/>
-      <div>
-        <Slides id="audienceSlides" class="slides" role="audience" title={store.getState().activeLecture.name}/>
-        <FeedbackBox />
-        <QuestionBox role={'audience'}/>
-        <AudThumbs/>
-      </div>
+        <Navbar/>
+        <div id="SlidesContainer">
+          <Slides id="audienceSlides" class="slides" role="audience" title={store.getState().activeLecture.name}/>
+        </div>
+        <div id="FeedbackBoxContainer">
+          <FeedbackBox />
+        </div>
+        <div id="QuestionBoxContainer">
+          <QuestionBox role={'audience'}/>
+        </div>
+        <div id="AudThumbsContainer">
+          <AudThumbs/>
+        </div>
       </div>
     );
   }
