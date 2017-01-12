@@ -93,6 +93,10 @@ class Sidebar extends Component {
       <div id="Sidebar">
         <ul id="SidebarElements">
           <li><TitleBar className='title-bar'/></li>
+          <div className='timer' style={{display: 'none'}}>
+            <div className='clock'>Time: {this.props.time}</div>
+            <div>Duration: {this.props.duration}</div>
+          </div>
           <li><Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='exit'>X</button></Link></li>
           <li><a href={embedUrl} target="_blank"><button>Projector</button></a></li>
           <li><button id='timerToggle'>Timer</button></li>

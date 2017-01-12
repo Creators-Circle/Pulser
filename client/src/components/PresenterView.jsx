@@ -78,7 +78,7 @@ class PresenterView extends Component {
       <div className = 'presenter-view'>
         <Navbar/>
         <div className='presenter-view'>
-          <Sidebar stopTimer={this.props.stopTimer}/>
+          <Sidebar time={this.props.time} duration={this.props.duration} stopTimer={this.props.stopTimer}/>
           <PulseBox startTime={this.date} audience={this.state.audience}/>
           <div id="QuestionBoxPresenter">
             <QuestionBox role={'presenter'}/>

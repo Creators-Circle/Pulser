@@ -58,11 +58,7 @@ class PresenterViewContainer extends Component {
   render () {
     return (
       <div className = 'presenter'>
-        <div className='timer' style={{display: 'none'}}>
-          <div className='clock'>Time: {this.state.time}</div>
-          <div>Duration: {this.state.duration}</div>
-        </div>
-        <PresenterView stopTimer={this.stopTimer.bind(this)}/>
+        <PresenterView time={this.state.time} duration={this.state.duration} stopTimer={this.stopTimer.bind(this)}/>
       </div>
     );
   }
