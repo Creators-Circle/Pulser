@@ -8,7 +8,7 @@ const getComment = (lectureId, userId, callback) => {
     })
     .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err);
+      console.error(err)
       );
     });
 }

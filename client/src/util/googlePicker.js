@@ -19,9 +19,9 @@ const appId = '472492304712';
   // Google Slides (read-only)
 const scope = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/presentations.readonly'];
 
-const pickerApiLoaded = false;
-const oauthToken;
-const selectedPresentation;
+let pickerApiLoaded = false;
+let oauthToken;
+let selectedPresentation;
 
 // Use the Google API Loader script to load the google.picker script.
 function loadPicker() {

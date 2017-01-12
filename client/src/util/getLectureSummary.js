@@ -8,7 +8,7 @@ const getLectureSummary = (lectureId, callback) => {
     })
     .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err);
+      console.error(err)
     );
   });
 }
