@@ -1,27 +1,28 @@
 // Google Picker window to choose presentation from user's Google Drive files
 // Assign a lectureId to the chosen presentation. Load this information to the store
+// TODO: MOVE THE DISPATCH LOGIC ELSEWHERE (TO NEW PRES BUTTON)
 import $ from 'jquery';
 import setLectureId from './setLectureId';
 import store from '../store.jsx';
 import { browserHistory } from 'react-router';
 
 // The Browser API key obtained from the Google Developers Console.
-const developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
+var developerKey = 'AIzaSyDqyarNe48JyUUU36b32iblZ7A3HbHXNF4';
 
 // The Client ID obtained from the Google Developers Console.
-const clientId = '472492304712-1omf26gq2el8ovmleturcihefs6o8463.apps.googleusercontent.com';
+var clientId = '472492304712-1omf26gq2el8ovmleturcihefs6o8463.apps.googleusercontent.com';
 
 // App ID (first number in the Client ID)
-const appId = '472492304712';
+var appId = '472492304712';
 
 // Scope to use to access user's Drive items:
   // Google Drive (read-only)
   // Google Slides (read-only)
-const scope = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/presentations.readonly'];
+var scope = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/presentations.readonly'];
 
-let pickerApiLoaded = false;
-let oauthToken;
-let selectedPresentation;
+var pickerApiLoaded = false;
+var oauthToken;
+var selectedPresentation;
 
 // Use the Google API Loader script to load the google.picker script.
 function loadPicker() {
@@ -51,26 +52,38 @@ function handleAuthResult(authResult) {
   }
 }
 
+// get picker from the store
+let picker = store.getState().picker
+console.log('picker?', picker)
+console.log('store', store.getState())
+
 // Create and render a Picker object for searching Google Slides presentations.
   // checks to see that both Picker API and Auth API have loaded
 function createPicker() {
   if (pickerApiLoaded && oauthToken) {
-    let view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+    var view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
     view.setMimeTypes('application/vnd.google-apps.presentation');
-    let picker = new google.picker.PickerBuilder()
-        .enableFeature(google.picker.Feature.NAV_HIDDEN)
-        .setAppId(appId)
-        .setOAuthToken(oauthToken)
-        .addView(view)
-        .setDeveloperKey(developerKey)
-        .setCallback(pickerSlideCallback)
-        .build();
+    // if picker is not already set, create it
+    if (!picker) {
+      picker = new google.picker.PickerBuilder()
+          .enableFeature(google.picker.Feature.NAV_HIDDEN)
+          .setAppId(appId)
+          .setOAuthToken(oauthToken)
+          .addView(view)
+          .setDeveloperKey(developerKey)
+          .setCallback(pickerSlideCallback)
+          .build();
+      // set picker in the store
+      store.dispatch({type:'SET_PICKER', picker: picker})
+    }
+    // set picker to visible
     picker.setVisible(true);
   }
 }
 
 // CALLBACK THAT HAPPENS WHEN PRESENTATION IS SELECTED
 function pickerSlideCallback(data) {
+  console.log("GP - data:", data);
   if (data.action == google.picker.Action.PICKED) {
     let selectedPresentation = data.docs[0].id;
     let name = data.docs[0].name;
@@ -78,6 +91,7 @@ function pickerSlideCallback(data) {
     let lectureId = setLectureId();
     let userId = store.getState().user.id;
     // Send POST request to initiate custom namespace on server
+    console.log("GP - lectureId", lectureId);
     $.ajax({
       type: 'POST',
       url: '/newRoom',
@@ -103,12 +117,13 @@ function pickerSlideCallback(data) {
       userId: userId,
       role: 'presenter'
     };
-    let socket = store.getState().activeLecture.socket;
+    let socket = store.getState().activeLecture.socket
     socket.emit('saveLecture', lecture);
 
     // Redirect user to <PresenterView/>
     browserHistory.push('/presenter');
   }
 }
+
 
 export default loadPicker;
