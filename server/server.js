@@ -259,6 +259,7 @@ app.post('/newRoom', function (req, res) {
     socket.on('stopPresentation', (endLecture) => {
       nsp.emit('stopPresentation');
       controllers.saveEndTime(endLecture);
+      delete io.nsps[`/${req.body.room}`];
     });
 
     socket.on('disconnect', function (socket) {
