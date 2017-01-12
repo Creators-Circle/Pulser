@@ -1,27 +1,199 @@
-/*#mainPane {
-  float:left;
-  width:78vw;
-  margin: 0 2vw;
-  background:lightblue;
-}*/
-
-/*#leftPane {
-  float:left;
-  width:18vw;
-  margin-left:2vw;
-  background:lightblue;
-}*/
-
-/*.summaryInfoBox {
-  width:45%;
-  margin:2.5%;
-}*/
-
-.audience-table {
-  font-size: 25px;
+html {
+  background-color: #EBEBEB;
+}
+/*---------------Main Summary---------------*/
+.summary-main {
+  background-color: #EBEBEB;
 }
 
-.user-summary {
+/*--------------Audience Table-----------------*/
+.audience-table {
+  font-size: 25px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.usersClicks {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+
+th{
+  background-color: #343234;
+  color: #FFFFFF;
+}
+
+tr:hover {
+  background-color: #6292BD;
+  color: #FFFFFF;
+}
+.audience-pic {
+  border-radius: 50%;
+  height:8vh;
+  width: 8vh;
+  margin: 5px;
+}
+
+/*-------------Summary-----------------*/
+.summary {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  position: relative;
+}
+.summary-title {
+  color: #6292BD;
+}
+.summary-title span{
+  color: #333333;
+}
+
+/*-------------Comment------------------*/
+.summary-comment{
+  margin-top: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+.summary-comment p {
+  padding:10px;
+  font-size: 20px;
+}
+.summary-comment .btn {
+  margin-top: 2px;
+}
+.comment {
+  margin-bottom: 0px;
+}
+.comment-form {
+  font-size: 20px;
+  margin:0 2px 10px ;
+  animation: show-textbox 2s ease 0s normal;
+}
+.form-container {
+  padding: 5px;
+}
+
+@keyframes show-textbox {
+  from{width: 0%}
+  to{width: 97%};
+}
+/*-----------Summary info box ------------*/
+
+.summary-info-box {
+  margin: auto;
+  border-radius: 3px;
+  background-color: #6292BD;
+  margin: 10% 5% ;
+  width: 90%;
+  height: 250px;
+  color: #FFFFFF;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  margin: 2%;
+}
+
+.output {
+  margin:20% 0 5%;
+  font-size: 120px;
+  text-align: center;
+}
+.output-md{
+  margin:20% 0 5%;
+  font-size: 60px;
+  text-align: center;
+}
+.output-sm{
+  margin:20% 0 5%;
+  font-size: 120px;
+  text-align: center;
+}
+.output-sm span{
+  margin:20% 0 5%;
+  font-size: 20px;
+}
+.view-btn {
+  font-size: 15px;
+  margin: 0;
+  margin-top: 0;
+}
+
+/*-------------user summary----------*/
+.user-summary-container {
+  height: 180vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
   position: absolute;
-  left: 100%;
+  width: 140%;
+  z-index: 20;
+  left:100%;
+  background-color: #EBEBEB;
+}
+.user-summary {
+  position: relative;
+}
+
+.hide {
+  display: none
+}
+
+/*---------------user-pulse--------------*/
+.user-pulse-container {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0 10px ;
+}
+
+.user-pulse {
+  font-size: 20px;
+}
+
+/*---------------summary info box------------*/
+.summary-info-box-details-container {
+  left: 0;
+  top: 0;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  z-index: 10;
+  background-color: black;
+  height: 120vh;
+  background-color: rgba(0,0,0,.9);
+}
+
+.summary-info-box-details {
+  margin: 20% auto 0;
+  border-radius: 5px;
+  width: 40%;
+  background-color: black;
+  background-color: #EBEBEB;
+  color: #333333;
+  text-align: center;
+}
+.summary-info-box-details ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+.summary-info-box-details li {
+  margin: 10px 20px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+}
+.close-btn {
+  margin-bottom:10px;
+}
+.thumbs {
+  margin:20% 0 5%;
+}
+.thumbs:first-child  {
+  background-color: black;
+}
+.thumb {
+  margin:20% 0 0 0;
+  font-size: 30px;
 }

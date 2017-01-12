@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import SummaryRightPane from './SummaryRightPane.jsx';
 import getComment from '../util/getComment.js';
 import TotalClicksRow from './TotalClicksRow.jsx';
+import $ from 'jquery';
 
 // table to display total number of clicks per user during the presentation
 class TotalClicksTable extends Component {
@@ -39,13 +40,12 @@ class TotalClicksTable extends Component {
     if (this.props.summary.users) {
       usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
       return (
-        <div className='col-md-4'>
-          <Link to="/">Home</Link>
-          <div className='table-responsive audience-table'>
-            <table id="usersClicks">
+        <div className='col-md-5'>
+          <div className='table-responsive audience-table '>
+            <table className="usersClicks table">
             <tbody>
               <tr>
-                <th>User</th>
+                <th>Audience</th>
                 <th>Clicks</th>
               </tr>
               {

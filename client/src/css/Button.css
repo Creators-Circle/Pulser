@@ -1,0 +1,23 @@
+/*----------------buttons-------------------*/
+button {
+  color: white;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+  outline: 0;
+  outline-offset: 0;
+  color: white;
+}
+
+.btn-blue {
+  background-color: #6292BD;
+}
+.btn-red {
+  background-color: #D13233;
+}
+.btn-green {
+  background-color: #76C97C;
+}
+.btn-white {
+  background-color: #FFFFFF;
+  color: #6292BD;
+}

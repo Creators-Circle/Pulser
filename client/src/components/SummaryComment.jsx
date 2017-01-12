@@ -33,19 +33,25 @@ class SummaryComment extends Component {
       let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
         : this.props.users.filter(user => user.user_id === this.props.userId)[0];
       return (
-        <div>
-          <p>Comment:</p>
-            {
-              !this.state.toggleComment ? <div>
-                <p>{this.props.comment}</p>
-                <button onClick={() => { this.toggleView(true); }} ><i className="fa fa-pencil"></i> Edit</button>
+        <div className='summary-comment'>
+          {
+            !this.state.toggleComment
+            ? <div>
+              <p className='comment'>Comment:
+                <button className='btn btn-blue' onClick={() => { this.toggleView(true); }} ><i className="fa fa-pencil"></i> Edit</button>
+              </p>
+              <p>{this.props.comment}</p>
+            </div>
+            : <div>
+              <p className='comment'>Comment:
+                <button className='btn btn-red' onClick={() => { this.toggleView(false); }} ><i className="fa fa-undo"></i> Cancel</button>
+                <button className='btn btn-green' onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} ><i className="fa fa-check"></i> Save</button>
+              </p>
+              <div className='form-container'>
+                <input className='form-control comment-form' type = 'text' defaultValue={this.props.comment} onChange={this.handleChange.bind(this)}/>
               </div>
-              : <div>
-                <input type = 'text' defaultValue={this.props.comment} onChange={this.handleChange.bind(this)}/>
-                <button onClick={() => { this.toggleView(false); }} ><i className="fa fa-undo"></i> Cancel</button>
-                <button onClick={() => { this.saveComment(user.lecture_id, user.user_id); }} ><i className="fa fa-check"></i> Save</button>
-              </div>
-            }
+            </div>
+          }
         </div>
       );
     } else {

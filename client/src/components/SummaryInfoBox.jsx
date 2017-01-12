@@ -16,28 +16,34 @@ class SummaryInfoBox extends Component {
 
   render () {
     return (
-      <div className='summaryInfoBox'>
-        <img src='http://png.clipart.me/graphics/thumbs/103/presentation-template-with-six-colored-text-box_103671569.jpg' />
+      <div className='summary-info-box'>
         {
           this.props.thumbs
-          ? <div><p>{this.props.title}</p>
-            {Object.keys(this.props.thumbs).map((thumb, i) =>
-                <p key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
-              )
-            }
-          </div>
-
+          ? <div className='thumbs'>
+              {Object.keys(this.props.thumbs).map((thumb, i) =>
+                  <p className='thumb'key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
+                )
+              }
+            </div>
           : <div>
-            <p><strong>{this.props.title}</strong><span>: {this.props.value || 0}</span></p>
+            {
+              this.props.title === 'Max click peak'
+              ? <p className='output-md'>{this.props.value || 0}</p>
+              : this.props.title === 'Longest time w/o clicks'
+              ? <p className='output-sm'>{this.props.value.slice(0, -8)}<span>{this.props.value.slice(-7)}</span></p>
+              : <p className='output'>{this.props.value || 0}</p>
+            }
+            <p className='title'><strong>{this.props.title + '  '}</strong>
+            {
+              !this.props.viewDetails || !this.props.viewDetails.length ? null
+              : <button type="button" className='btn btn-white view-btn' onClick={() => { this.toggleView(true); }}><i className="fa fa-search-plus"></i>View</button>
+            }</p>
           </div>
         }
-        {
-          !this.props.viewDetails || !this.props.viewDetails.length ? null
-          : <button onClick={() => { this.toggleView(true); }}>View</button>
-        }
+
         {
           !this.state.showDetails ? null
-          : <SummaryInfoBoxDetails details={this.props.viewDetails} toggleView={this.toggleView.bind(this)} />
+          : <SummaryInfoBoxDetails title={this.props.title} details={this.props.viewDetails} toggleView={this.toggleView.bind(this)} />
         }
       </div>
     );

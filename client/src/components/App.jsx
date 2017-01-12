@@ -51,6 +51,7 @@ import DashboardView from './DashboardView';
 import getUserData from '../util/getUserData';
 import { connect } from 'react-redux';
 import GuestView from './GuestView';
+import '../css/Button.css';
 
 class App extends Component {
   componentWillMount () {
