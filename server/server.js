@@ -1,18 +1,19 @@
-var express = require('express');
-var path = require('path');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var bodyParser = require('body-parser');
-var Authport = require('authport');
-var MakerpassService = require('authport-makerpass');
-var session = require('express-session');
+
+let express = require('express');
+let path = require('path');
+let app = express();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
+let bodyParser = require('body-parser');
+let Authport = require('authport');
+let MakerpassService = require('authport-makerpass');
+let session = require('express-session');
 require('dotenv').config({silent: true});
-var MP = require('node-makerpass');
-var db = require('./db.js');
-var router = require('./routes.js');
-var controllers = require('./controllers.js');
-var uuid = require('uuid/v1');
+let MP = require('node-makerpass');
+let db = require('./db.js');
+let router = require('./routes.js');
+let controllers = require('./controllers.js');
+let uuid = require('uuid/v1');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
@@ -29,11 +30,11 @@ app.use('/api', router);
 Authport.registerService('makerpass', MakerpassService);
 
 // callback urls for MakerPass Authentication
-var localCallbackUrl = 'http://localhost:5000/auth/makerpass/callback';
-var deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/auth/makerpass/callback';
+let localCallbackUrl = 'http://localhost:5000/auth/makerpass/callback';
+let deployedCallbackUrl = 'https://present-me-beta.herokuapp.com/auth/makerpass/callback';
 
 // provide credentials for making an Authport server
-// These references to process.env will look for environment variables
+// These references to process.env will look for environment letiables
   // Deployment: set these in Heroku
   // Local: save them in a .env file in the root directory - see dotenv npm for docs
     // .gitignore includes the .env - this is advisable
@@ -44,14 +45,14 @@ Authport.createServer({
   callbackURL: deployedCallbackUrl || localCallbackUrl
 });
 
-var google = Authport.createServer({
+let google = Authport.createServer({
   service: 'google',
   id: process.env.GOOGLE_ID,
   secret: process.env.GOOGLE_SECRET,
   scope: ''
 });
 
-var audienceOnly = false; // switch variable for whether or not there is a presenter already
+let audienceOnly = false; // switch letiable for whether or not there is a presenter already
 
 // if login is successful, create a session for the user
 Authport.on('auth', function (req, res, data) {
@@ -273,7 +274,7 @@ app.post('/newRoom', function (req, res) {
 // --------------------------------------
 
 // helper function for creating a session
-var createSession = function (req, res, id) {
+let createSession = function (req, res, id) {
   return req.session.regenerate(function () {
     // set user id as an access token for now, need to refactor later
     req.session.token = createAccessToken();
@@ -283,14 +284,14 @@ var createSession = function (req, res, id) {
 };
 
 // creating random alphanumeric 36 character code
-var createAccessToken = function () {
+let createAccessToken = function () {
   return uuid();
 };
 
-// HEROKU OR DOTENV VAR OR LOCALHOST:5000
-// Check to see if there is a port environment variable or just use port 5000 instead
+// HEROKU OR DOTENV let OR LOCALHOST:5000
+// Check to see if there is a port environment letiable or just use port 5000 instead
 module.exports.NODEPORT = process.env.PORT || 5000;
-var port = process.env.PORT || 5000;
+let port = process.env.PORT || 5000;
 
 app.get('*', function (req, res) { // Wildcard route - redirects to landing if loggedin, login page if not logged in.
   res.redirect('/');
