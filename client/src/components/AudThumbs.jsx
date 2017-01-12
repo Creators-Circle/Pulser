@@ -42,10 +42,11 @@ class AudThumbs extends Component {
   };
 
   render () {
+    console.log(store.getState().thumbs.topicName);
     let thumbDisplay = store.getState().thumbs.displayed ? 'block' : 'none';
     return (
       <div id="Thumbs" style={{display: thumbDisplay}}>
-        <span className="sidebar-header"><h2>{store.getState().thumbs.topicName}</h2></span>
+        <span className="sidebar-header"><h2 id="AudThumbTopic">{store.getState().thumbs.topicName}</h2></span>
         <img src='./img/1-thumb.png' className='thumbButton' id='up'/>
         <img src='./img/2-thumb.png' className='thumbButton' id='side'/>
         <img src='./img/3-thumb.png' className='thumbButton' id='down'/>
