@@ -5,6 +5,7 @@ hr {
 	width:96%;
 	height: 1px;
 	border: none;
+	margin:10px;
 }
 
 #Sidebar{
@@ -13,7 +14,7 @@ hr {
 	background-color: #FFFFFF;
 	margin-right: 2.5vw;
 	border-radius: 5px;
-	height: 80vh;
+	height: 100vh;
 }
 
 #Sidebar ul {
@@ -25,6 +26,7 @@ hr {
 /*-------------------title---------------------*/
 
 .lecture-title h1 {
+	font-size: 1.8em;
 	margin: 10px 2px 0 2px;
 	text-align: center;
 	color: #333333;
@@ -50,7 +52,7 @@ hr {
 /*--------------------share code-------------*/
 
 .sidebar-header h2{
-	font-size: 1.5em;
+	font-size: 1em;
 	text-align: left;
 	margin: 2% 10%;
 	color: #CECECE;
@@ -71,7 +73,44 @@ hr {
 
 /*-------------------clock--------------------*/
 .clock {
-	font-size: 4em;
+	font-size: 3em;
 	font-weight: bold;
 	text-align: center;
+}
+/*-------------------tools----------------------*/
+
+.tools-row {
+	margin: auto;
+  text-align: center;
+}
+.tool-btn {
+	background-color: #EFF2F6;
+	color:#6292BD;
+	margin: 3%;
+	width: 30%;
+	height: 8vh;
+	border: 1px solid #CECECE;
+}
+.tool-btn:hover, .tool-btn:focus {
+	background-color: #6292BD;
+	color: #FFFFFF;
+}
+.tool-btn span {
+	display: block;
+	margin: 5%;
+}
+.allow-guest {
+	text-align: left;
+	font-size: 1em;
+	margin: 0 10%;
+	color: #666666;
+}
+#guestsToggle {
+	margin:2px;
+	width: 50px;
+}
+
+#stopPresentation {
+	margin: 2%;
+	width: 66%;
 }
