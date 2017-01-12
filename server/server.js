@@ -1,13 +1,12 @@
-
-let express = require('express');
-let path = require('path');
-let app = express();
-let http = require('http').Server(app);
-let io = require('socket.io')(http);
-let bodyParser = require('body-parser');
-let Authport = require('authport');
-let MakerpassService = require('authport-makerpass');
-let session = require('express-session');
+var express = require('express');
+var path = require('path');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var bodyParser = require('body-parser');
+var Authport = require('authport');
+var MakerpassService = require('authport-makerpass');
+var session = require('express-session');
 require('dotenv').config({silent: true});
 let MP = require('node-makerpass');
 let db = require('./db.js');

@@ -5,3 +5,33 @@
 	text-align: center;
 	background-color: purple;
 }
+
+.upvoteDownvote{
+	margin-top: 1vh;
+	height: 7.5vh;
+	width: auto;
+	display: inline-block;
+}
+
+.questionVotes{
+	display: inline-block;
+	float:left;
+}
+
+#QuestionBoxTitle{
+	color: #CECECE;
+	font-size: 21px;
+}
+
+#questionInput{
+	width: 85%;
+	margin-bottom: 1vh;
+}
+
+#submitQuestion{
+	width: 15%;
+}
+
+.question{
+	font-size: 16px;
+}

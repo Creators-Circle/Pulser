@@ -19,7 +19,7 @@ class AudThumbs extends Component {
     // render Thumbs box for the given topic when event 'open thumbs' is fired
     socket.on('open thumbs', function (topicId, topic) {
       currentTopicId = topicId;
-      $('#thumbTopic').text(topic); // set h1 to current topic
+      $('#AudThumbTopic').text(topic); // set h1 to current topic
       $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
       thumbsDisplayed = true;
     });
@@ -45,10 +45,11 @@ class AudThumbs extends Component {
     let thumbDisplay = store.getState().thumbs.displayed ? 'block' : 'none';
     return (
       <div id="Thumbs" style={{display: thumbDisplay}}>
-        <h1 id="thumbTopic">{store.getState().thumbs.topicName}</h1>
-        <button className='thumbButton' id='up'>Thumbs up!</button>
-        <button className='thumbButton' id='side'>Thumbs to the side!</button>
-        <button className='thumbButton' id='down'>Thumbs Down!</button>
+        <span className="sidebar-header"><h2>{store.getState().thumbs.topicName}</h2></span>
+        <img src='./img/1-thumb.png' className='thumbButton' id='up'/>
+        <img src='./img/2-thumb.png' className='thumbButton' id='side'/>
+        <img src='./img/3-thumb.png' className='thumbButton' id='down'/>
+        <hr/>
       </div>
     );
   };

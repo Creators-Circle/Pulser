@@ -10,8 +10,8 @@
 	text-align: center;
 }
 
-#FeedbackBox .lecture-title{
-  font-size: 21;
+#FeedbackBox .lecture-title h1{
+  font-size: 24px;
   margin-bottom: 3.5vh;
 }
 
@@ -29,13 +29,22 @@
 	text-align: center;
 }
 
-#question {
-	height: 4vh;
+.question {
+	height: 7.5vh;
 	width: auto;
+	overflow: scroll;
 }
 
 #FeedbackButtonText{
 	color: white;
 	margin-top: 2vh;
+}
+
+.thumbButton{
+	cursor: pointer;
+}
+
+#AudThumbTopic{
+	font-size: 24px;
 }
 
