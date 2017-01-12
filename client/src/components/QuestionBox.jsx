@@ -91,7 +91,10 @@ class QuestionBox extends Component {
     if (this.props.role === 'presenter') {
       return (
         <div id={'QuestionBox'} style={{display: 'none'}}>
-          <div id="QuestionBoxTitle">Questions</div>
+          <div id="QuestionBoxTitle"></div>
+          <h2>Questions</h2>
+          <hr/>
+          <button onClick={console.log(store.getState())}>store</button>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
           {Object.keys(questionsObj).sort(function (a, b) {

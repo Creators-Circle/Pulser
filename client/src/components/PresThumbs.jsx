@@ -47,13 +47,25 @@ class PresThumbs extends Component {
   render () {
     return (
       <div id='PresThumbs' style={{display: 'none'}}>
-        <h1 id='topicTitle'> Topic: </h1>
-        <input id='topic' type='text' name='topic' /><br/>
+        <h2 id='topicTitle'>Topic: </h2>
+        <input id='topic' type='text' name='topic' />
         <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
-        <div>
-          <div>Thumbs up!<br/>{this.props.thumbs.up}</div>
-          <div>Thumbs to the side!<br/>{this.props.thumbs.side}</div>
-          <div>Thumbs Down!<br/>{this.props.thumbs.down}</div>
+        <hr />
+        <div className='thumbs-list'>
+          <ul>
+            <li>
+              <p>{this.props.thumbs.up}</p>
+              <img src='../img/1-thumbs.png' alt='thumbs-up'/>
+            </li>
+            <li>
+              <p>{this.props.thumbs.side}</p>
+              <img src='../img/2-thumbs.png' alt='thumbs-side'/>
+            </li>
+            <li>
+              <p>{this.props.thumbs.down}</p>
+              <img src='../img/3-thumbs.png' alt='thumbs-down'/>
+            </li>
+          </ul>
         </div>
       </div>
     );

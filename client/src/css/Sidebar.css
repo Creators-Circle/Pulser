@@ -22,6 +22,9 @@ hr {
 	margin: 0;
 	padding: 2px;
 }
+.sidebar-row {
+	padding: 0;
+}
 .container {
 	margin: 0;
 	padding: 0;

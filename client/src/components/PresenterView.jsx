@@ -83,14 +83,14 @@ class PresenterView extends Component {
         <Navbar/>
         <div className='container presentation-view'>
           <div className='row'>
-            <div className='col-md-9 col-lg-9'>
+            <div className='col-md-9 col-lg-9 pulse-row'>
                 <PulseBox startTime={this.date} audience={this.state.audience}/>
                 <div id="QuestionBoxPresenter">
                   <QuestionBox role={'presenter'}/>
                 </div>
                   <PresThumbs/>
             </div>
-            <div className='col-md-3 col-lg-3'>
+            <div className='col-md-3 col-lg-3 sidebar-row'>
               <Sidebar time={this.props.time} duration={this.props.duration} stopTimer={this.props.stopTimer}/>
             </div>
           </div>
