@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import '../css/LogoutButton.css';
 
 // Button to log you out of app
 class LogoutButton extends Component {
 
   render () {
     return (
-      <input id='logoutButton' type="button" onClick={ function () { window.location.href = '/logout'; } } value="Logout" />
+      <input id='LogoutButton' type="button" onClick={ function () { window.location.href = '/logout'; } } value="Logout" />
     );
   }
 };

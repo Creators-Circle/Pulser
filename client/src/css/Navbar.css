@@ -1,0 +1,29 @@
+#profilePic {
+	border-radius: 50%;
+	height: 5vh;
+	width: auto;
+	float: right;
+	margin-right: 15px;
+}
+
+#NavbarContainer {
+	padding-top: 2.5vh;
+	height: 10vh;
+	width: 100vw;
+	display: inline-block;
+	background: #505050;
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,0.16);
+}
+
+#BrandContainer {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#logo {
+	height: 5vh;
+}
+
+#LogoutButton {
+	height: 5vh;
+}

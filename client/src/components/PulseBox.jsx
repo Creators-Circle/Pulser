@@ -4,6 +4,8 @@ import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 import React, { Component } from 'react';
 import $ from 'jquery';
+import '../css/PulseBox.css';
+
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
@@ -56,7 +58,7 @@ class PulseBox extends Component {
             x: 0,
             y: 0,
             width: 1200,
-            height: 200
+            height: 250
           }
           }
           circleRadius = {0}

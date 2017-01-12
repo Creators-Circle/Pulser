@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import LogoutButton from './LogoutButton';
+import '../css/UserInfo.css';
 // component to display basic user data (profile pic + name)
 class UserInfo extends Component {
 
   render () {
     return (
-      <div id='userInfo'>
+      <span id='userInfo'>
         <img id='profilePic' src={this.props.user.avatar} />
-        <p>{this.props.user.name}</p>
-      </div>
+      </span>
     );
   };
 };

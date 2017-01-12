@@ -4,6 +4,7 @@ import Question from './Question';
 import $ from 'jquery';
 import uuid from 'uuid/v1';
 import store from '../store.jsx';
+import '../css/QuestionBox.css';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
@@ -27,6 +28,7 @@ class QuestionBox extends Component {
         questionId: downvote.questionId
       });
       render();
+      console.log('downvote received');
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -36,14 +38,13 @@ class QuestionBox extends Component {
       });
       render();
     });
-    console.log('questions: ', store.getState().questions);
   };
 
   componentDidMount () {
     let dispatch = this.props.dispatch;
     let clearQuestions = false;
     this.socket.on('questionToggle', function () {
-      $('#QuestionBox').fadeToggle('slow');
+      $('#QuestionBox, #QuestionBoxAudience').fadeToggle('slow');
       if (clearQuestions) {
         $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
@@ -75,6 +76,7 @@ class QuestionBox extends Component {
     };
     socket.emit('submitQuestion', question);
     $('#questionInput').val('');
+    console.log('question fired off', question);
   }
 
   render () {
@@ -88,7 +90,7 @@ class QuestionBox extends Component {
     delete questionsObj.enabled;
     if (this.props.role === 'presenter') {
       return (
-        <div id="QuestionBox" style={{display: 'none'}}>
+        <div id={'QuestionBox'} style={{display: 'none'}}>
           <button onClick={console.log(store.getState())}>store</button>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
@@ -102,7 +104,7 @@ class QuestionBox extends Component {
       );
     } else {
       return (
-        <div id="QuestionBox" style={{display: displayQuestions}}>
+        <div id="QuestionBoxAudience" style={{display: displayQuestions}}>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
           {Object.keys(questionsObj).map((questionId, i) =>

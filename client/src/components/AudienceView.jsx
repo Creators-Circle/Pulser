@@ -21,7 +21,6 @@ class AudienceView extends Component {
   componentDidMount () {
     let socket = this.props.activeLecture.socket;
     this.props.dispatch({type: 'CHANGE_ROLE', role: 'audience'});
-
     socket.on('stopPresentation', function () {
       browserHistory.push('/');
     });
@@ -33,6 +32,7 @@ class AudienceView extends Component {
 
   render () {
     // <button onClick={this.showStore.bind(this)}>store</button>
+
     return (
       <div id="AudienceView">
         <Navbar/>
@@ -40,13 +40,7 @@ class AudienceView extends Component {
           <Slides id="audienceSlides" class="slides" role="audience" title={store.getState().activeLecture.name}/>
         </div>
         <div id="FeedbackBoxContainer">
-          <FeedbackBox />
-        </div>
-        <div id="QuestionBoxContainer">
-          <QuestionBox role={'audience'}/>
-        </div>
-        <div id="AudThumbsContainer">
-          <AudThumbs/>
+          <FeedbackBox/>
         </div>
       </div>
     );
