@@ -58,7 +58,7 @@ class PulseBox extends Component {
             x: 0,
             y: 0,
             width: 1200,
-            height: 200
+            height: 250
           }
           }
           circleRadius = {0}
