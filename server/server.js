@@ -126,9 +126,11 @@ app.get('/logout', function (req, res) {
 });
 // a route to create a new socket namespace
 app.post('/newRoom', function (req, res) {
-  // console.log('room in post request', req.body.room);
+  console.log('room in post request', req.body.room);
   // launch a custom namespace called 'nsp' for the presentation 'room'
   let nsp = io.of(`/${req.body.room}`);
+  // console.log('Server: io', io)
+  // console.log('Server: NSP', nsp)
   // ------------------------------------
   // Socket.io listeners / emitters for the presentation 'room'
   nsp.on('connection', function (socket) {
@@ -259,6 +261,7 @@ app.post('/newRoom', function (req, res) {
     socket.on('stopPresentation', (endLecture) => {
       nsp.emit('stopPresentation');
       controllers.saveEndTime(endLecture);
+      delete io.nsps[`/${req.body.room}`];
     });
 
     socket.on('disconnect', function (socket) {
