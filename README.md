@@ -66,4 +66,7 @@ presentationId:  The ID provided by Google Slides API for slides.
 
 ## Contributing
 
+### Other Documentation
+Database schema at databaseschema.png, located in the root directory of this repo.
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
