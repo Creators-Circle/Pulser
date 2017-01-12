@@ -39,10 +39,9 @@ class TotalClicksTable extends Component {
     if (this.props.summary.users) {
       usersClicks = this.props.summary.users.filter(user => user.role === 'audience');
       return (
-        <div className='col-md-4'>
-          <Link to="/">Home</Link>
-          <div className='table-responsive audience-table'>
-            <table id="usersClicks">
+        <div className='col-md-5'>
+          <div className='table-responsive audience-table '>
+            <table className="usersClicks table table-hover">
             <tbody>
               <tr>
                 <th>User</th>

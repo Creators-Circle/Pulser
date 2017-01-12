@@ -25,12 +25,14 @@ class SummaryView extends Component {
     if (this.props.summary) {
       return (
         <div>
-        <Navbar/>
-        <div>
-          <h1><i className="fa fa-line-chart"></i>  Summary</h1>
-          <SummaryLeftPane/>
-          <SummaryRightPane/>
-        </div>
+          <Navbar/>
+          <div className='container-fluid summary-main'>
+            <h1><i className="fa fa-line-chart"></i>  Summary</h1>
+            <div className='row'>
+              <SummaryLeftPane/>
+              <SummaryRightPane/>
+            </div>
+          </div>
         </div>
       );
     } else {

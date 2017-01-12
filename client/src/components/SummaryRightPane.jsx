@@ -28,7 +28,7 @@ class SummaryRightPane extends Component {
       if (users) {
         const comment = users.filter(user => user.role === 'presenter')[0].comment;
         return (
-          <div className = 'col-md-6'>
+          <div className = 'col-md-7 offset-md-1'>
             <SummaryMainPane/>
             <SummaryComment
               comment={this.state.lectureComment || comment}

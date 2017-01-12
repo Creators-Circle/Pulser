@@ -7,7 +7,7 @@ const TotalClicksRow = (props) => {
       <td onClick = { () => { props.displayUserSummary(props.userId); } }>
         <img id='profilePic' src={props.avatar} /><span>{props.name}</span>
         </td>
-      <td>{props.noOfClicks}</td>
+      <td className='text-center'>{props.noOfClicks}</td>
     </tr>
   );
 };

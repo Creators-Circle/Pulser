@@ -33,7 +33,7 @@ class SummaryComment extends Component {
       let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
         : this.props.users.filter(user => user.user_id === this.props.userId)[0];
       return (
-        <div>
+        <div className='summary-comment'>
           <p>Comment:</p>
             {
               !this.state.toggleComment ? <div>
