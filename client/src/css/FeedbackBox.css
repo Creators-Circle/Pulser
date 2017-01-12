@@ -10,8 +10,9 @@
 	text-align: center;
 }
 
-#LectureTitle{
-	font-size: 21;
+#FeedbackBox .lecture-title{
+  font-size: 21;
+  margin-bottom: 3.5vh;
 }
 
 #updatePulse{
