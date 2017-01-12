@@ -86,11 +86,13 @@ Authport.on('auth', function (req, res, data) {
 });
 
 Authport.on('error', function (req, res, data) {
-  console.log('Failed');
+  console.error('Authport Failed');
   res.status(500).send({error: 'failed'});
 });
 
 app.get('/auth/:service', Authport.app);
+
+//End Auth
 
 app.get('/', function (req, res) {
   // check if the user is logged in by checking his session,
@@ -119,28 +121,26 @@ app.get('/guest', function (req, res) {
     });
 });
 
+// Logout route
 app.get('/logout', function (req, res) {
-  console.log('goodbye');
   req.session.destroy(function () {
     res.redirect('/');
   });
 });
+
 // a route to create a new socket namespace
 app.post('/newRoom', function (req, res) {
-  // console.log('room in post request', req.body.room);
   // launch a custom namespace called 'nsp' for the presentation 'room'
   let nsp = io.of(`/${req.body.room}`);
   // ------------------------------------
   // Socket.io listeners / emitters for the presentation 'room'
   nsp.on('connection', function (socket) {
-    console.log('a user connected to ', nsp.name);
 
     // Emits connection message when user connects to specific namespace
     nsp.emit('connected');
 
     // Listen for audience request for presentation URL
     socket.on('presentationInfoRequest', function (request) {
-      // console.log('User requesting presentationUrl', request);
       if (request.name === 'guest') {
         // check if this lecture permits guests
         controllers.checkGuestsPermitted(request.lectureId).then((guestsPermitted) => {
@@ -155,36 +155,37 @@ app.post('/newRoom', function (req, res) {
       }
     });
 
+   // -----Presentation and Lecture Setup Sockets-----
+
     // Listen for presenter's response with presesntation URL
     socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled) {
-      // console.log('Lecturer responding with presentationUrl');
       // Send response to audience member
-      console.log('presentationInfoResponse', presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled);
       nsp.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled);
     });
 
     // Listen for saveLecture event
     socket.on('saveLecture', function (lecture) {
-      // console.log('Presenter selected a presentation');
       controllers.saveLecture(lecture);
     });
 
     // Listen for updateTitle and update the database
-    socket.on('udpateTitle', (lectureId, title) => {
+    socket.on('updateTitle', (lectureId, title) => {
       controllers.updateLectureTitle(title, lectureId);
     });
 
+//  Guests and Users Sockets
+
     // Listen for guestsToggle event
     socket.on('guestsToggle', function (lecture) {
-      // console.log('socket: guestsToggle', 'lecture', lecture);
       controllers.guestsToggle(lecture);
     });
 
     // Listen for user_lecture event
     socket.on('userLecture', function (lecture) {
-      // console.log('Presenter selected a presentation');
       controllers.userLecture(lecture);
     });
+
+//  Sockets for Pulse
 
     // Listen for Audience button clicks
     socket.on('updatePulse', function (action, currTime) {
@@ -205,10 +206,11 @@ app.post('/newRoom', function (req, res) {
       controllers.saveClick(click);
     });
 
+//  Sockets for Questions
+
     // Listen for toggle events from the presenter and bounce them to the audience
     socket.on('questionToggle', () => {
       nsp.emit('questionToggle');
-      console.log('questionToggle was heard by server');
     });
 
     socket.on('feedbackToggle', () => {
@@ -217,20 +219,17 @@ app.post('/newRoom', function (req, res) {
 
     // Listen for a question and bounce it out
     socket.on('submitQuestion', (question) => {
-      console.log('submitQuestion received', question);
       nsp.emit('submitQuestion', question);
       controllers.saveQuestion(question);
     });
 
     // Listen for upvote / downvote Questions from the audience and bounce them to everyone
     socket.on('upvoteQuestion', (upvote, userId) => {
-      console.log('upvote ', upvote, userId);
       nsp.emit('upvoteQuestion', upvote, userId);
       controllers.saveUpvote(upvote);
     });
 
     socket.on('downvoteQuestion', (downvote, userId) => {
-      console.log('downvote ', downvote, userId);
       nsp.emit('downvoteQuestion', downvote, userId);
       controllers.saveDownvote(downvote);
     });
@@ -238,19 +237,16 @@ app.post('/newRoom', function (req, res) {
     // -------------------------- SOCKETS FOR 'THUMBS' --------------------------
 
     socket.on('submit thumbTopic', (topicId, topic, lectureId) => {
-      // console.log('topic submit: ', topic);
       nsp.emit('open thumbs', topicId, topic);
       controllers.saveTopic(topicId, topic, lectureId);
     });
 
     socket.on('thumb clicked', (topicId, userId, thumbChoice) => {
-      // console.log('thumb clicked by user ', userId, ': ', thumbChoice, topicId);
       nsp.emit('thumb clicked', thumbChoice);
       controllers.saveThumbChoice(topicId, userId, thumbChoice);
     });
 
     socket.on('close thumbs', () => {
-      // console.log('closeThumbs caught on server');
       nsp.emit('close thumbs');
     });
 
@@ -264,8 +260,6 @@ app.post('/newRoom', function (req, res) {
     });
 
     socket.on('disconnect', function (socket) {
-      console.log('a user disconnected from ', nsp.name);
-      // Alert the presenter that an audience member has disconnected
       nsp.emit('disconnected');
     });
   });
