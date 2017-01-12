@@ -20,6 +20,7 @@ class Sidebar extends Component {
 
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
+      console.log('questionToggle was clicked');
       // update the store as well
       dispatch({
         type: 'TOGGLE_ENABLED'
@@ -49,7 +50,7 @@ class Sidebar extends Component {
     });
 
     $('#timerToggle').on('click', function () {
-      $('#Timer').fadeToggle('slow');
+      $('.timer').fadeToggle('slow');
     });
 
     $('#pulseToggle').on('click', function () {

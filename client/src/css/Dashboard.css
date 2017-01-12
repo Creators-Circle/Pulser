@@ -1,20 +1,8 @@
 
 /* --------------------------------------- DASHBOARD VIEW -------------------------------- */
 
-#userInfo, #userInfo p, #userInfo img {
-  float:right;
-}
-
 button {
   margin:10px;
-}
-
-#profilePic {
-  width: 10%;
-}
-
-#logoutButton {
-  float:right;
 }
 
 #recentMenu {

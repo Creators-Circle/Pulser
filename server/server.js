@@ -17,6 +17,7 @@ var uuid = require('uuid/v1');
 
 // code from the express.static docs
 app.use('/static', express.static(path.join(__dirname, '/../client/public/static')));
+app.use('/img', express.static(path.join(__dirname, '/../client/public/img')));
 app.use(bodyParser.json());
 app.use(session({
   secret: 'this is secret',
@@ -207,6 +208,7 @@ app.post('/newRoom', function (req, res) {
     // Listen for toggle events from the presenter and bounce them to the audience
     socket.on('questionToggle', () => {
       nsp.emit('questionToggle');
+      console.log('questionToggle was heard by server');
     });
 
     socket.on('feedbackToggle', () => {

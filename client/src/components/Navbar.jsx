@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import LogoutButton from './LogoutButton';
 import UserInfo from './UserInfo';
+import '../css/Navbar.css';
 
 class Navbar extends Component {
   render () {
     return (
       <div id="NavbarContainer">
-        <span id="brandContainer">
-          <span><img id="logo" src='../../public/img/logo.png'/>FollowMe</span>
-        </span>
-        <span id="UserInfoContainer">
-          <UserInfo/>
-        </span>
-        <span id="LogoutButtonContainer">
-          <LogoutButton/>
-        </span>
+        <div id="BrandContainer"><img id="logo" className="navbarElement" src='./img/logo.png'/>FollowMe</div>
+        <LogoutButton/>
+        <UserInfo/>
       </div>
     );
   };

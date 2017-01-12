@@ -1,0 +1,16 @@
+#FeedbackBoxContainer {
+	padding: 20px;
+	background-color: blue;
+	height: 90vh;
+	width: 25vw;
+	float: right;
+}
+
+#FeedbackBox{
+	text-align: center;
+}
+
+#LectureTitle{
+	font-size: 21;
+}
+
