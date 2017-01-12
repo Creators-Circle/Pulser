@@ -41,10 +41,10 @@ class TotalClicksTable extends Component {
       return (
         <div className='col-md-5'>
           <div className='table-responsive audience-table '>
-            <table className="usersClicks table table-hover">
+            <table className="usersClicks table">
             <tbody>
               <tr>
-                <th>User</th>
+                <th>Audience</th>
                 <th>Clicks</th>
               </tr>
               {
