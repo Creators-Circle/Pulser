@@ -66,7 +66,11 @@ class PresenterView extends Component {
         this.setState({audience: --this.state.audience});
       }
     });
-  }
+
+    socket.on('stopPresentation', function () {
+      socket.disconnect();
+    });
+  };
 
   // showStore () {
   //   console.log(store.getState());
