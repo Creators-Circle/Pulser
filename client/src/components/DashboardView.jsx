@@ -19,9 +19,9 @@ class DashboardView extends Component {
           <NewPresButton/>
           <Link to={'/summary/cc0001'}>Summary</Link>
           <Searchbar/>
+          <JoinPresBox/>
         </div>
         <DashMainContent/>
-        <JoinPresBox />
       </div>
     );
   };
