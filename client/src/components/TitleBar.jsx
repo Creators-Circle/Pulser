@@ -54,18 +54,26 @@ class TitleBar extends Component {
       <div>
         {
           !this.state.toggleView
-          ? <div>
-              <div id="LectureTitle"> Lecture Title: {this.state.newTitle || this.props.activeLecture.name}</div>
-              <button onClick={() => { this.changeView(true); }}>Edit</button>
+          ? <div className='lecture-title'>
+              <h1>Title: <span>{this.state.newTitle || this.props.activeLecture.name} </span>
+                <i className="fa fa-pencil" onClick={() => { this.changeView(true); }}></i>
+              </h1>
             </div>
           : <div>
-            <input type='text' defaultValue={this.props.activeLecture.name}
+            <input className='form-container comment-form title-form ' type='text' defaultValue={this.props.activeLecture.name}
              onChange={this.handleChange.bind(this)}/>
-            <button onClick={() => { this.changeView(false); }}>Cancel</button>
-            <button onClick={this.changeTitle.bind(this)}>Save</button>
+            <div className='title-buttons'>
+              <button className='btn btn-red'onClick={() => { this.changeView(false); }}>Cancel</button>
+              <button className='btn btn-green' onClick={this.changeTitle.bind(this)}>Save</button>
+            </div>
           </div>
         }
-        <div id="JoinCode"> Join Code {this.props.activeLecture.lectureId} </div>
+        <hr/>
+        <div className='sidebar-header'>
+          <h2>SHARE CODE</h2>
+          <p>{this.props.activeLecture.lectureId}</p>
+         </div>
+        <hr/>
       </div>
     );
   };
