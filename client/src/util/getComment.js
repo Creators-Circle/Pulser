@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+// Pulls existing comments on a user into the User Summary.
 const getComment = (lectureId, userId, callback) => {
   $.get(`/api/${lectureId}/comment/${userId}`)
     .done(function(data){
@@ -7,7 +8,7 @@ const getComment = (lectureId, userId, callback) => {
     })
     .fail(({responseJSON})=>{
     responseJSON.error.errors.forEach((err) =>
-      console.error(err)
+      console.error(err);
       );
     });
 }

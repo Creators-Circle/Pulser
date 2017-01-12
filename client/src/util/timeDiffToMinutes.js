@@ -1,4 +1,4 @@
-// This is a helper function for computing the difference of time and convert it to minutes
+// Computes the difference of time and convert it to minutes.
 const timeDiffToMinutes = (startTime, currTime) => {
   let time1 = startTime.getTime()
   let time2 = new Date(currTime).getTime();
