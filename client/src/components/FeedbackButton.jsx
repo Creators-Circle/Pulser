@@ -11,7 +11,7 @@ class FeedbackButton extends Component {
     return store.getState().feedbackButton.displayed ? (
       <div id="updatePulse"><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     ) : (
-      <div id="updatePulse" style={{display:'none'}}>><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
+      <div id="updatePulse" style={{display: 'none'}}>><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     );
   }
 
