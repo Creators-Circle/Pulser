@@ -4,6 +4,7 @@
 
 #Sidebar{
 	float:right;
-	width: 25vw;
+	width: 22.5vw;
 	background-color: orange;
+	margin-right: 2.5vw;
 }
