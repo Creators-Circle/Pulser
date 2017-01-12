@@ -1,0 +1,25 @@
+#Howdy{
+	height: 50vh;
+	margin-top: 15vh;
+	margin-left: 25vw;
+	width: 50vw;
+	background-color: pink;
+}
+
+#Howdy{
+	text-align: center;
+}
+
+#HowdyHeader{
+	
+}
+
+#Subhowdy{
+	text-align: center;
+	margin: 2vh 0;
+}
+
+.LoginButton{
+	width: 100%;
+	margin: 1vh 0;
+}

@@ -3,11 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>Follow Me</title>
+    <link rel="stylesheet" href="./static/main.css">
   </head>
 
   <body>
-  <a href="/auth/google"><button>Google</button></a>
-  <a href="/auth/makerpass"><button>GitHub</button></a>
-  <a href="/guest"><button>Guest</button></a>
+  <div id="NavbarContainer">
+    <div id="BrandContainer"><img id="logo" className="navbarElement" src='./img/logo.png'/>FollowMe</div>        
+  </div>
+  <div id="Howdy">
+  <div id="HowdyTitle">Howdy!</div>
+  <div id="Subhowdy">Login to Present</div>
+  <div id="LoginButtonsContainer">
+    <div class="LoginButton"><a href="/auth/google"><button class="btn btn-blue">Google</button></a></div>
+    <div class="LoginButton"><a href="/auth/makerpass"><button class="btn btn-blue">GitHub</button></a></div>
+    <div class="LoginButton"><a href="/guest"><button class="btn btn-blue">Guest (audience only)</button></a></div>
+  </div>
+  </div>
   </body>
 </html

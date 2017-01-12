@@ -22,9 +22,10 @@ class AudienceView extends Component {
     let socket = this.props.activeLecture.socket;
     this.props.dispatch({type: 'CHANGE_ROLE', role: 'audience'});
     socket.on('stopPresentation', function () {
+      socket.disconnect();
       browserHistory.push('/');
     });
-  }
+  };
 
   // showStore () {
   //   console.log(store.getState());

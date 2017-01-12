@@ -52,6 +52,8 @@ import getUserData from '../util/getUserData';
 import { connect } from 'react-redux';
 import GuestView from './GuestView';
 import '../css/Button.css';
+import '../css/Auth.css';
+import '../css/body.css';
 
 class App extends Component {
   componentWillMount () {
