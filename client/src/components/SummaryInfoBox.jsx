@@ -19,12 +19,13 @@ class SummaryInfoBox extends Component {
       <div className='summary-info-box'>
         {
           this.props.thumbs
-          ? <div><p>{this.props.title}</p>
-            {Object.keys(this.props.thumbs).map((thumb, i) =>
-                <p key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
-              )
-            }
-          </div>
+          ? <div class='thumbs'>
+              {Object.keys(this.props.thumbs).map((thumb, i) =>
+                  <p className='thumb'key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
+                )
+              }
+              <p className='title'><strong>{this.props.title}</strong></p>
+            </div>
           : <div>
             {
               this.props.title === 'Max click peak'
@@ -43,7 +44,7 @@ class SummaryInfoBox extends Component {
 
         {
           !this.state.showDetails ? null
-          : <SummaryInfoBoxDetails details={this.props.viewDetails} toggleView={this.toggleView.bind(this)} />
+          : <SummaryInfoBoxDetails title={this.props.title} details={this.props.viewDetails} toggleView={this.toggleView.bind(this)} />
         }
       </div>
     );
