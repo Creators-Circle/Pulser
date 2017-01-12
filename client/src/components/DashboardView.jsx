@@ -6,6 +6,7 @@ import UserInfo from './UserInfo';
 import JoinPresBox from './JoinPresBox';
 import DashMainContent from './DashMainContent';
 import { Link } from 'react-router';
+import Navbar from './Navbar';
 
 // view that every user sees after logging in
 class DashboardView extends Component {
@@ -13,12 +14,11 @@ class DashboardView extends Component {
   render () {
     return (
       <div>
-        <LogoutButton/>
+        <Navbar/>
         <div>
           <NewPresButton/>
           <Link to={'/summary/cc0001'}>Summary</Link>
           <Searchbar/>
-          <UserInfo/>
         </div>
         <DashMainContent/>
         <JoinPresBox />

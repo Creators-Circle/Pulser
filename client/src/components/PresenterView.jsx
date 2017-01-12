@@ -21,6 +21,7 @@ import TitleBar from './TitleBar';
 import QuestionBox from './QuestionBox';
 import PresThumbs from './PresThumbs';
 import store from '../store.jsx';
+import Navbar from './Navbar';
 
 class PresenterView extends Component {
   constructor (props) {
@@ -75,7 +76,7 @@ class PresenterView extends Component {
     // <button onClick={this.showStore.bind(this)}></button>
     return (
       <div className = 'presenter-view'>
-        <LogoutButton/>
+        <Navbar/>
         <div className='presenter-view'>
           <TitleBar className='title-bar'/>
           <Slides id="presenterSlides" role="presenter"/>
