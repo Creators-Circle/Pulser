@@ -36,7 +36,7 @@ class SummaryInfoBox extends Component {
             <p className='title'><strong>{this.props.title + '  '}</strong>
             {
               !this.props.viewDetails || !this.props.viewDetails.length ? null
-              : <span type="button" className='btn btn-default fa fa-search-plus view-btn' onClick={() => { this.toggleView(true); }}>View</span>
+              : <button type="button" className='btn btn-white view-btn' onClick={() => { this.toggleView(true); }}><i className="fa fa-search-plus"></i>View</button>
             }</p>
           </div>
         }

@@ -25,6 +25,10 @@ button {
 .btn-green {
   background-color: #76C97C;
 }
+.btn-white {
+  background-color: #FFFFFF;
+  color: #6292BD;
+}
 /*--------------Audience Table-----------------*/
 .audience-table {
   font-size: 25px;
@@ -56,7 +60,7 @@ tr:hover {
 
 /*-------------Comment------------------*/
 .summary-comment{
-  margin-top: 30px;
+  margin-top: 20px;
   background-color: #FFFFFF;
   border-radius: 5px;
 }
@@ -123,6 +127,7 @@ tr:hover {
 .view-btn {
   font-size: 15px;
   margin: 0;
+  margin-top: 0; 
 }
 
 /*-------------user summary----------*/
@@ -146,3 +151,13 @@ tr:hover {
 }
 
 /*---------------user-pulse--------------*/
+.user-pulse-container {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0 10px ;
+}
+
+.user-pulse {
+  font-size: 20px;
+}

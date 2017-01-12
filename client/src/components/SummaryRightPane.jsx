@@ -85,14 +85,14 @@ class SummaryRightPane extends Component {
               comment = {this.props.comment}
               upDateComment = {this.props.upDateComment}
             />
-            <div className = 'user-pulse'>
+            <div className = 'user-pulse-container'>
               <LineChart
-                className = 'user-pulsedata'
+                className = 'user-pulse'
                 data={lineData}
-                width='80%'
+                width='100%'
                 height='20%'
-                viewBoxObject={{x: 0, y: 0, width: 1200, height: 200}}
-                circleRadius = {0}
+                viewBoxObject={{x: 0, y: 0, width: 800, height: 300}}
+                circleRadius = {5}
                 domain={{x: [0, maxAxisX], y: [0, maxAxisY]}}
                 yAxisLabel="No. of Clicks"
                 xAxisLabel="Elapsed Time (minutes)"
