@@ -13,13 +13,13 @@ class DashboardView extends Component {
 
   render () {
     return (
-      <div className='container'>
+      <div>
         <Navbar/>
-        <div className='row'>
-          <NewPresButton className='col' />
-          <Link to={'/summary/cc0001'} className='row'>Summary</Link>
-          <Searchbar className='row'/>
-          <JoinPresBox className='row'/>
+        <div>
+          <NewPresButton/>
+          <Link to={'/summary/cc0001'}>Summary</Link>
+          <Searchbar/>
+          <JoinPresBox/>
         </div>
         <DashMainContent/>
       </div>
