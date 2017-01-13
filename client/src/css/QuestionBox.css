@@ -11,12 +11,28 @@
 	margin-top: 1vh;
 	height: 7.5vh;
 	width: auto;
-	display: inline-block;
+	display: inherit;
+	margin-left: 5px;
+}
+
+.questionText {
+	margin: 2vh 1vw;
+	display: -webkit-inline-box;
+	width: 76%;
+  padding: 2%;
+  font-size: .9em;
+}
+
+.voteContainer {
+	width: 3vw;
+	float:left;
+	width:10%;
 }
 
 .questionVotes{
 	display: inline-block;
 	float:left;
+	margin-left: 19px;
 }
 
 #QuestionBoxTitle{
@@ -36,8 +52,9 @@
 
 .question{
 	font-size: 16px;
-	height: 9vh;
-	margin-bottom: 1vh;
+	min-height: 76px;
+  margin: 1%;
+  background: #eee;
 }
 
 .question .circled{
