@@ -8,6 +8,7 @@
   padding: 0;
 }
 .recent-menu-options {
+  overflow: hidden;
   width: 100%;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -15,7 +16,7 @@
 
 .highlight {
   background-color: #D64937;
-  color:white;
+  color:white !important;
   border-radius: 3px;
 }
 
@@ -25,6 +26,7 @@
   padding: 1%;
   margin: 5%;
 }
+
 .main-dash {
   padding-right: 0;
 }
