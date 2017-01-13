@@ -10,7 +10,7 @@ import  questionReducer  from '../client/src/reducers/questionReducer.jsx';
 describe('questionReducer', function() {
   var testState = {
     324234:{votes: 3, questionText: 'sample question', upvoted: false},
-    435353:{votes: 1, questionText: 'Who am I?', upvoted: false}
+    435353:{votes: 0, questionText: 'Who am I?', upvoted: false}
   }
   
   deepFreeze(testState);

@@ -14,14 +14,16 @@ class FeedbackBox extends Component {
     return (
       <div id="FeedbackBox">
         <div className="lecture-title"><h1>{title}</h1></div>
+        <hr/>
         <div id="FeedbackButtonContainer">
           <FeedbackButton />
-        </div>
-        <div id="QuestionBoxContainer">
-          <QuestionBox role={'audience'}/>
+          <hr/>
         </div>
         <div id="AudThumbsContainer">
           <AudThumbs />
+        </div>
+        <div id="QuestionBoxContainer">
+          <QuestionBox role={'audience'}/>
         </div>
       </div>
     );

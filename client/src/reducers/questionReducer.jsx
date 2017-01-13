@@ -18,7 +18,7 @@ const questionReducer = (state = {enabled: false}, action) => {
       return Object.assign({}, state, {
         [action.questionId]: {
           questionText: action.questionText,
-          votes: action.votes || 1,
+          votes: action.votes || 0,
           upvoted: false
         }
       });

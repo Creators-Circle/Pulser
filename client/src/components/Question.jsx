@@ -31,12 +31,11 @@ class Question extends Component {
   };
 
   render () {
-    let buttonText = this.props.questions[this.props.id].upvoted ? 'Downvote' : 'Upvote';
-    // console.log('this.props in question', this.props);
+    let thumbType = this.props.questions[this.props.id].upvoted ? '3-thumb' : '1-thumb';
     return (
       <div className='question'>
-        <button className='upvoteDownvote' id={this.props.text} onClick={this.toggleUpvote.bind(this)}>{buttonText}</button>
-        <span className='questionText'>{this.props.text} {this.props.votes}</span>
+        <span className='questionVotes'>{this.props.votes}<img src={`./img/${thumbType}.png`} className='upvoteDownvote' id={thumbType} onClick={this.toggleUpvote.bind(this)}/></span>
+        <span className='questionText'>{this.props.text}</span>
       </div>
     );
   };

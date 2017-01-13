@@ -105,7 +105,7 @@ module.exports = {
       lecture_id: question.lectureId,
       user_id: question.userId,
       question: question.questionText,
-      votes: 1
+      votes: 0
     })
     .then(/*for knex*/);
   },

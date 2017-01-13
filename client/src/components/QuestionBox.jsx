@@ -91,25 +91,28 @@ class QuestionBox extends Component {
     if (this.props.role === 'presenter') {
       return (
         <div id={'QuestionBox'} style={{display: 'none'}}>
-          <button onClick={console.log(store.getState())}>store</button>
+          <div id="QuestionBoxTitle">Questions</div>
           <input key={1} type="text" id="questionInput"></input>
           <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
           {Object.keys(questionsObj).sort(function (a, b) {
             if (questionsObj[a].votes < questionsObj[b].votes) return 1;
             return -1;
           }).map((questionId, i) =>
-            <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
+            <Question key={i + 3} id={questionId} display={'block'} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
           )}
         </div>
       );
     } else {
       return (
         <div id="QuestionBoxAudience" style={{display: displayQuestions}}>
-          <input key={1} type="text" id="questionInput"></input>
-          <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+          <span className="sidebar-header"><h2>QUESTIONS</h2></span>
+          <div><input key={1} type="text" id="questionInput"/>
+            <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Ask</button>
+          </div>
           {Object.keys(questionsObj).map((questionId, i) =>
-            <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
+            <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} display='none' text={questionsObj[questionId].questionText}/>
           )}
+          <hr/>
         </div>
       );
     }
