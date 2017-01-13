@@ -30,16 +30,24 @@ class DashMainContent extends Component {
       return (
         <div>
           <div id='recentMenu'>
-            <div id='recentlyPresented' onClick = { () => { this.changeView('presenter'); } }>Recently Presented</div>
-            <div id='recentlyViewed' onClick = { () => { this.changeView('audience'); } }>Recently Viewed</div>
+            <div className='recent-menu-options'>
+              <a href='#' className={this.state.role === 'presenter' ? 'highlight' : ''}
+                id='recentlyPresented'
+                onClick = { () => { this.changeView('presenter'); }
+              }>Recently Presented</a>
+              <a href='#' className={this.state.role === 'audience' ? 'highlight' : ''}
+                id='recentlyViewed' onClick = { () => { this.changeView('audience'); }
+              }>Recently Viewed</a>
+            </div>
             <PresPreviews role = {this.state.role} />
           </div>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className='search-results'>
           <h1>Search Results</h1>
+          <hr/>
           <SearchResults search={this.props.search}/>
         </div>
       );

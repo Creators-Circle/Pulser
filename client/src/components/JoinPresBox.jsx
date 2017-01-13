@@ -128,8 +128,8 @@ class JoinPresBox extends Component {
       </div>
     ) : (
       <div id='joinBox'>
-        <input id='join' type='text' /><br/>
-        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Submit</button>
+        <input className='form-control input-form join-form' id='join' type='text' placeholder='Enter Code'/><br/>
+        <button className='btn side-presentation-btn submit-btn' id='joinButton' onClick={this.joinPresentation.bind(this)}>Join a presentation</button>
       </div>
     );
   };

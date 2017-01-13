@@ -1,3 +1,7 @@
+html {
+  background-color: #EBEBEB;
+}
+
 /*---------------Main Summary---------------*/
 .summary-main {
   background-color: #EBEBEB;
@@ -24,6 +28,7 @@ tr:hover {
   background-color: #6292BD;
   color: #FFFFFF;
 }
+
 .audience-pic {
   border-radius: 50%;
   height:8vh;
@@ -59,6 +64,9 @@ tr:hover {
 }
 .comment {
   margin-bottom: 0px;
+}
+.comment button{
+  margin: 5px;
 }
 .comment-form {
   font-size: 20px;
@@ -135,6 +143,16 @@ tr:hover {
 .hide {
   display: none
 }
+.audience {
+  text-align: center;
+  color: #6292BD;
+}
+.audience span {
+  color: #6292BD;
+}
+.audience span:hover, span:focus {
+  color: #D64937;
+}
 
 /*---------------user-pulse--------------*/
 .user-pulse-container {
@@ -187,10 +205,15 @@ tr:hover {
 .thumbs {
   margin:20% 0 5%;
 }
-.thumbs:first-child  {
-  background-color: black;
+.thumbs span{
+  font-size: 3em;
 }
+.thumbs img{
+  position: relative;
+  width: 15%;
+  height: auto;
+}
+
 .thumb {
-  margin:20% 0 0 0;
-  font-size: 30px;
+  text-align: center;
 }

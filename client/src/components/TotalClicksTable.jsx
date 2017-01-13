@@ -70,6 +70,7 @@ class TotalClicksTable extends Component {
             ? <SummaryRightPane
               userId={this.state.showUserSummary}
               comment = {this.state.comment}
+              displayUserSummary={this.displayUserSummary.bind(this)}
               upDateComment = {this.upDateComment.bind(this)}
             /> : null
           }

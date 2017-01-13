@@ -45,6 +45,7 @@ class SummaryRightPane extends Component {
     } else {
       // else display user's summary
       const userId = this.props.userId;
+      const name = this.props.summary.users.filter(user => user.user_id === userId)[0].name;
       const lecture = this.props.summary.lecture[0];
       const start = new Date(lecture.date);
       const end = new Date(lecture.end_time);
@@ -82,6 +83,9 @@ class SummaryRightPane extends Component {
       return (
         <div className ='user-summary-container container col-md-7 offset-md-1'>
           <div className = 'user-summary'>
+            <h2 className='audience'>{name} <span onClick={ () => { this.props.displayUserSummary(); } }>
+              <i className='fa fa-times-circle'></i>
+            </span></h2>
             <SummaryMainPane userId={userId}/>
             <SummaryComment
               userId={userId}

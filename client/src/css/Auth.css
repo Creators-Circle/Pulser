@@ -26,6 +26,9 @@
 #BrandContainer{
     font-size: 20px;
 }
+#BrandContainer span{
+	margin:5px;
+}
 
 .login-btn,
 .login-btn:active,
