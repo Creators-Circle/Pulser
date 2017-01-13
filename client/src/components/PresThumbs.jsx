@@ -48,8 +48,8 @@ class PresThumbs extends Component {
     return (
       <div id='PresThumbs' style={{display: 'none'}}>
         <h2 id='topicTitle'>Topic: </h2>
-        <input id='topic' type='text' name='topic' />
-        <button id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
+        <input className='form-control presenter-input' id='topic' type='text' name='topic' />
+        <button className='btn submit-btn' id='setTopic' onClick={this.submitTopic.bind(this)}>Set Topic</button>
         <hr />
         <div className='thumbs-list'>
           <ul>

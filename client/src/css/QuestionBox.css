@@ -47,3 +47,17 @@
 #QuestionBoxPresenter h2{
 	color: #6292BD;
 }
+.submit-btn {
+	background-color: #EFF2F6;
+	color: #6292BD;
+}
+.submit-btn:hover ,.submit-btn:focus, .submit-btn:active{
+	background-color: #6292BD;
+	color: #FFFFFF;
+}
+
+.presenter-input {
+	width: 70%;
+	display: inline;
+	margin: 2%;
+}
