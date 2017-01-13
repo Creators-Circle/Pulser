@@ -12,8 +12,8 @@ class Navbar extends Component {
   render () {
     return (
       <div id="NavbarContainer">
-        <div id="BrandContainer"><img id="logo" className="navbarElement" src='/../img/logo.png'/>
-          <Link to={'/'}><span>FollowMe</span></Link>
+        <div id="BrandContainer">
+          <Link to={'/'}><img id="logo" className="navbarElement" src='/../img/logo.png'/><span>FOLLOWME</span></Link>
         </div>
         <LogoutButton/>
         <UserInfo/>

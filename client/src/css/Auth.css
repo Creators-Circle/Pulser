@@ -1,25 +1,66 @@
-#Howdy{
+#AuthBody{
+	background-color: #262426;
+	height: 100vh;
+}
+
+ #Howdy{
 	height: 50vh;
 	margin-top: 15vh;
 	margin-left: 25vw;
 	width: 50vw;
-	background-color: pink;
-}
-
-#Howdy{
 	text-align: center;
 }
 
-#HowdyHeader{
-	
+#HowdyTitle{
+	color: #EFF2F6;
+	font-size: 55px;
 }
 
 #Subhowdy{
 	text-align: center;
 	margin: 2vh 0;
+	font-size: 18px;
+	color: #EFF2F6;
 }
 
-.LoginButton{
-	width: 100%;
-	margin: 1vh 0;
+#BrandContainer{
+    font-size: 20px;
+}
+
+.login-btn,
+.login-btn:active,
+.login-btn:hover,
+.login-btn:visited{
+	color: #EFF2F6;
+	background-color:#6292BD;
+	width: 30%;
+	height: 8vh;
+	margin: .5vh 0;
+}
+
+.login-btn span{
+	display: block;
+	margin: 5%;
+}
+
+.login-google,
+.login-google:active,
+.login-google:hover,
+.login-google:visited{
+	background-color: #D64937;
+	border: 1px solid #D64937;
+	color: #FFFFFF;
+}
+
+.login-github,
+.login-github:active,
+.login-github:hover,
+.login-github:visited{
+	background-color: #4E4944;
+	border: 1px solid #4E4944;
+	color: #FFFFFF;
+}
+
+#View {
+	font-size: 8px;
 }

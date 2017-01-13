@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <title>Follow Me</title>
-    <link rel="stylesheet" href="./static/main.css">
+    <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'/>
+    <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>
+    <link rel="stylesheet" href='./static/main.css'/>
   </head>
 
   <body>
-  <div id="NavbarContainer">
-    <div id="BrandContainer"><img id="logo" className="navbarElement" src='./img/logo.png'/>FollowMe</div>        
-  </div>
-  <div id="Howdy">
-  <div id="HowdyTitle">Howdy!</div>
-  <div id="Subhowdy">Login to Present</div>
-  <div id="LoginButtonsContainer">
-    <div class="LoginButton"><a href="/auth/google"><button class="btn btn-blue">Google</button></a></div>
-    <div class="LoginButton"><a href="/auth/makerpass"><button class="btn btn-blue">GitHub</button></a></div>
-    <div class="LoginButton"><a href="/guest"><button class="btn btn-blue">Guest (audience only)</button></a></div>
-  </div>
+  <div id="AuthBody">
+    <div id="NavbarContainer">
+      <div id="BrandContainer"><img id="logo" className="navbarElement" src='./img/logo.png'/><span>FollowMe</span></div>        
+    </div>
+    <div id="Howdy">
+    <div id="HowdyTitle">Howdy!</div>
+    <div id="Subhowdy">Login to get started</div>
+    <div id="LoginButtonsContainer">
+      <div><a href="/auth/google"><button class="btn login-btn login-google">Google<span class="fa fa-google"></span></button></a></div>
+      <div><a href="/auth/makerpass"><button class="btn login-btn login-github">Makerpass<span class="fa fa-github"></span></button></a></div>
+      <div><a href="/guest"><button class="btn login-btn login-guest">Guest <span id="View">VIEW ONLY</span></button></a></div>
+    </div>
+    </div>
   </div>
   </body>
 </html
