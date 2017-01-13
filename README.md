@@ -90,6 +90,9 @@ presentationId:  The ID provided by Google Slides API for slides.
   - __Scrum Master__: Johnny McDuff
   - __Development Team Members__: Christian Aquino, Ari L. Frankel, Sheel Bedi
 
+###  Usage and Bugs
+Google presentation must be shareable with an URL.  Set this up in Google Drive.
+
 ### Contributing and Other Documentation
 Database schema at databaseschema.png, located in the root directory of this repo.
 
