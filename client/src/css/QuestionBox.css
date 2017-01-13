@@ -9,30 +9,28 @@
 
 .upvoteDownvote{
 	margin-top: 1vh;
-	height: 7.5vh;
-	width: auto;
+	width: 95%;
 	display: inherit;
-	margin-left: 5px;
+	margin-left: 2.5%;
 }
 
 .questionText {
 	margin: 2vh 1vw;
 	display: -webkit-inline-box;
 	width: 76%;
-  padding: 2%;
-  font-size: .9em;
+    padding: 2%;
+    font-size: .9em;
 }
 
 .voteContainer {
-	width: 3vw;
 	float:left;
 	width:10%;
 }
 
 .questionVotes{
-	display: inline-block;
-	float:left;
-	margin-left: 19px;
+	font-size: .8em;
+	text-align: center;
+	margin-top: -20%;
 }
 
 #QuestionBoxTitle{
@@ -53,8 +51,9 @@
 .question{
 	font-size: 16px;
 	min-height: 76px;
-  margin: 1%;
-  background: #eee;
+    margin: 1%;
+    padding-left: 2%;
+    border: 1px #6292BD solid;
 }
 
 .question .circled{
@@ -79,14 +78,9 @@
 	display: inline;
 	margin: 2%;
 }
-/*
+
 #questionInput {
 	width: 70%;
 	display: inline;
 	margin: 2%;
 }
-
-#submitQuestion{
-	background-color: #EFF2F6;
-	color: #6292BD;
-}*/

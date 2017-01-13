@@ -1,0 +1,32 @@
+#GuestJoin{
+	height: 50vh;
+	margin-top: 15vh;
+	margin-left: 12.5vw;
+	width: 75vw;
+	text-align: center;
+	text-align: center;
+}
+#GuestTitle{
+    color: #EFF2F6;
+	font-size: 55px;
+}
+
+#GuestViewBody{
+	background-color: #262426;
+	height: 100vh;
+}
+
+#GuestSubtitle{
+	text-align: center;
+	margin: 2vh 0;
+	font-size: 18px;
+	color: #EFF2F6;
+}
+
+#JoinPresBoxGuest{
+	width: 100%;
+}
+
+#joinInputGuest{
+	width: 60%;
+}

@@ -16,6 +16,9 @@
 	background-color: #EBEBEB;
 }
 
+.pulsedata-linechart{
+
+}
 
 @keyframes blind-red {
   from{background-color: red}

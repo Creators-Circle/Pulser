@@ -31,7 +31,7 @@ class Question extends Component {
     return (
       <div className='question' onClick={this.toggleUpvote.bind(this)}>
         <div className='voteContainer'>
-          <img src={upvoteImg} className={`upvoteDownvote`} onClick={this.toggleUpvote.bind(this)}/>
+          <img src={upvoteImg} className='upvoteDownvote'/>
           <div className='questionVotes'>{this.props.votes}</div>
           </div>
         <span className='questionText'>{this.props.text}</span>

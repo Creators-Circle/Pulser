@@ -7,7 +7,6 @@ import '../css/PulseBox.css';
 
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
-
 // this component is for displaying the live visualization of users' feedback
 class PulseBox extends Component {
 
@@ -44,7 +43,6 @@ class PulseBox extends Component {
         strokeWidth: 2
       }
     ];
-
     // Render "stock ticker" style line graph
     return (
       <div id='PulseBox' className = "pulse-box">
@@ -58,16 +56,16 @@ class PulseBox extends Component {
             y: 0,
             width: 1200,
             height: 280
-          }
-          }
+          }}
           circleRadius = {0}
           domain={
             // set the maximum value of x to the estimated time of presentation
             // set the maximum value of y to the number of audience members
             { x: [xMin, xMax], y: [0, audience] }
           }
-          xAxisLabel="Elapsed Time (minutes)"
+          xAxisLabel={'min'}
           gridHorizontal={true}
+          gridVertical={true}
         />
       </div>
     );

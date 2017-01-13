@@ -25,7 +25,7 @@ class TitleBar extends Component {
     // update the activeLecture
     let lecture = {
       lectureId: this.props.activeLecture.lectureId,
-      name: this.state.title,
+      name: this.state.title || 'untitled',
       presentationId: this.props.activeLecture.presentationId,
       embedUrl: this.props.activeLecture.embedUrl,
       socket: this.props.activeLecture.socket
@@ -44,7 +44,7 @@ class TitleBar extends Component {
   }
 
   handleChange (event) {
-    this.setState({title: event.target.value});
+    this.setState({title: event.target.value || 'untitled'});
   }
 
   render () {
@@ -53,7 +53,7 @@ class TitleBar extends Component {
         {
           !this.state.toggleView
           ? <div className='lecture-title'>
-              <h1>Title: <span>{this.state.newTitle || this.props.activeLecture.name} </span>
+              <h1><span>{this.state.newTitle || this.props.activeLecture.name} </span>
                 <i className="fa fa-pencil" onClick={() => { this.changeView(true); }}></i>
               </h1>
             </div>

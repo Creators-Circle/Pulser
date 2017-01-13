@@ -121,10 +121,15 @@ class JoinPresBox extends Component {
   }
 
   render () {
-    return (
+    return this.props.role === 'guest'
+    ? (
+      <div id='joinInputGuestContainer'>
+        <input id='joinInputGuest' type='text' />
+      </div>
+    ) : (
       <div id='joinBox'>
         <input id='join' type='text' /><br/>
-        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Join a presentation</button>
+        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Submit</button>
       </div>
     );
   };
