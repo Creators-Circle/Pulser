@@ -27,10 +27,13 @@ class Question extends Component {
   };
 
   render () {
-    let thumbType = this.props.questions[this.props.id].upvoted ? 'circled' : '';
+    let upvoteImg = this.props.questions[this.props.id].upvoted ? './img/arrows_up-green.svg' : './img/arrows_up.svg';
     return (
-      <div className='question'>
-        <span className='questionVotes'>{this.props.votes}<img src={'./img/1-thumb.png'} className={`upvoteDownvote ${thumbType}`} id={thumbType} onClick={this.toggleUpvote.bind(this)}/></span>
+      <div className='question' onClick={this.toggleUpvote.bind(this)}>
+        <div className='voteContainer'>
+          <img src={upvoteImg} className={`upvoteDownvote`} onClick={this.toggleUpvote.bind(this)}/>
+          <div className='questionVotes'>{this.props.votes}</div>
+          </div>
         <span className='questionText'>{this.props.text}</span>
       </div>
     );
