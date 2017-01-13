@@ -30,8 +30,10 @@ class DashMainContent extends Component {
       return (
         <div>
           <div id='recentMenu'>
-            <div id='recentlyPresented' onClick = { () => { this.changeView('presenter'); } }>Recently Presented</div>
-            <div id='recentlyViewed' onClick = { () => { this.changeView('audience'); } }>Recently Viewed</div>
+            <div className='recent-menu-options'>
+              <h1 id='recentlyPresented' onClick = { () => { this.changeView('presenter'); } }>Recently Presented</h1>
+              <h1 id='recentlyViewed' onClick = { () => { this.changeView('audience'); } }>Recently Viewed</h1>
+            </div>
             <PresPreviews role = {this.state.role} />
           </div>
         </div>

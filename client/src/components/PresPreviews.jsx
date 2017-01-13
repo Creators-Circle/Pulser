@@ -27,33 +27,42 @@ class PresPreviews extends Component {
     // only the presenter can view the summary of his lecture
     if (this.props.role === 'presenter') {
       return (
-        <div>
+        <div className='recent-lectures'>
+          <ul>
           {
             recentLectures.length > 0
               ? recentLectures.map((lecture, i) =>
+              <li className='slideThumb'>
                 <Link key={i} to={`/summary/${lecture.lecture_id}`}>
                   <PresThumbnail date = {lecture.date} name = {lecture.name} />
                 </Link>
+              </li>
               ) : <p>No recent activites</p>
           }
+          </ul>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className='recent-lectures'>
+          <ul>
           {
             recentLectures.length > 0
               ? recentLectures.map((lecture, i) =>
-                <a key={i} href={`https://docs.google.com/presentation/d/${lecture.presentation_id}/preview`} target='_blank'>
-                  <PresThumbnail
-                    key={i}
-                    id = {lecture.id}
-                    date = {lecture.date}
-                    name = {lecture.name}
-                  />
-                </a>
+                <li className='slideThumb'>
+                  <a key={i} href={`https://docs.google.com/presentation/d/${lecture.presentation_id}/preview`} target='_blank'>
+                    <PresThumbnail
+                      key={i}
+                      id = {lecture.id}
+                      date = {lecture.date}
+                      name = {lecture.name}
+                      viewed = {true}
+                    />
+                  </a>
+                </li>
               ) : <p>No recent activites</p>
           }
+          </ul>
         </div>
       );
     }

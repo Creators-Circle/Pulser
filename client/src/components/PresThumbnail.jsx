@@ -12,11 +12,14 @@ class PresThumbnail extends Component {
     let formatDate = Math.abs(timeDiffToMinutes(currDate, lectureDate)) > 10080
       ? moment(lectureDate).format('llll') : moment(lectureDate).calendar();
     return (
-      <div className='slideThumb'>
-        <img src='http://png.clipart.me/graphics/thumbs/103/presentation-template-with-six-colored-text-box_103671569.jpg' />
-        <span><strong>{this.props.name}</strong></span><br/>
-        <span>{formatDate}</span>
-      </div>
+        <div className='thumbnails'>
+          {
+            this.props.viewed ? <i className="fa fa-desktop"></i>
+              : <i className="fa fa-line-chart"></i>
+          }
+          <p>{formatDate}</p>
+          <p className='recent-presentation-title'><strong>{this.props.name}</strong></p>
+        </div>
     );
   };
 };
