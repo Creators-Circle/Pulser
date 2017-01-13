@@ -13,7 +13,7 @@ class Navbar extends Component {
     return (
       <div id="NavbarContainer">
         <div id="BrandContainer">
-          <Link to={'/'}><img id="logo" className="navbarElement" src='/../img/logo.png'/><span>FOLLOWME</span></Link>
+          <Link to={'/'}><img id="logo" className="navbarElement" src='/../img/logo.png'/><span>FollowMe</span></Link>
         </div>
         <LogoutButton/>
         <UserInfo/>

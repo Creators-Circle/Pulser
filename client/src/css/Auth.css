@@ -70,4 +70,7 @@
     .fa{
  		display: none !important;
 	}
+	.fa-pencil {
+		display: inline-block !important;
+	}
 }
