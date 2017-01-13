@@ -1,21 +1,17 @@
-// Contains the elements for the Audience, including:
-  // Logout Button
-  // FeedbackBox
-  // Slides
-  // FeedbackButton
-
 import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import React, { Component } from 'react';
-import LogoutButton from './LogoutButton';
 import $ from 'jquery';
-import QuestionBox from './QuestionBox'; // also renders to presenter view
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import AudThumbs from './AudThumbs';
 import store from '../store.jsx';
 import Navbar from './Navbar';
 
+// Audience presentation view.
+// Contains:
+  // Navbar
+  // Slides
+  // FeedbackBox
 class AudienceView extends Component {
 
   componentDidMount () {
@@ -26,10 +22,6 @@ class AudienceView extends Component {
       browserHistory.push('/');
     });
   };
-
-  // showStore () {
-  //   console.log(store.getState());
-  // }
 
   render () {
     // <button onClick={this.showStore.bind(this)}>store</button>

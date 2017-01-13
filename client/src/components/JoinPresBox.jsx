@@ -79,7 +79,6 @@ class JoinPresBox extends Component {
         role: 'audience'
       };
       socket.emit('userLecture', lecture);
-      console.log('questions: ', questions);
       // Dispatch all of the questions and displayed boolean into the store
       // Enabled key:value will also be dispatched as a question but will not
       // effect the store
@@ -108,7 +107,6 @@ class JoinPresBox extends Component {
           topicName: thumbs.topicName
         });
       }
-      console.log('feedbackEnabled: ', feedbackEnabled);
       // dispatch feedbackButton display boolean into the store
       if (!feedbackEnabled) {
         dispatch({

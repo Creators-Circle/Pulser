@@ -55,6 +55,7 @@ import '../css/Button.css';
 import '../css/Auth.css';
 import '../css/body.css';
 
+// Primary App component.
 class App extends Component {
   componentWillMount () {
     // store user data when App loads.
@@ -70,7 +71,6 @@ class App extends Component {
   }
 
   render () {
-    // console.log(this.props);
     if (this.props.user.name === 'guest') {
       return (
         <GuestView/>

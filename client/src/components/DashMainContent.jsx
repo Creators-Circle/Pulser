@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 // main content panel in the DashboardView
   // by default it renders Recently Presented Slideshows / Recently Viewed Presentations
   // if a specific presentation is searched for, the results will appear in this area
+// Contains
+ // PresPreviews
+ // SearchResults
 class DashMainContent extends Component {
 
   constructor () {
@@ -16,6 +19,7 @@ class DashMainContent extends Component {
     };
   }
 
+// Changes view based on role selected.
   changeView (view) {
     this.setState({role: view});
   }
@@ -48,4 +52,5 @@ const mapStateToProps = (state) => {
     search: state.searchValue
   };
 };
+
 export default connect(mapStateToProps)(DashMainContent);
