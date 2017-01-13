@@ -14,7 +14,7 @@ class JoinPresBox extends Component {
 
   componentDidMount () {
     // handles enter key being pressed while join input field is selected
-    $('#join').keypress(function (e) {
+    $('#join, #joinInputGuest').keypress(function (e) {
       if (e.which === 13) {
         $('#joinButton').click();
         return false;
@@ -24,14 +24,13 @@ class JoinPresBox extends Component {
 
   joinPresentation () {
     // Get lectureId from input box above join button
-    let lectureId = $('#join').val();
+    let lectureId = this.props.role === 'guest' ? $('#joinInputGuest').val() : $('#join').val();
 
     // check if lectureId exists and increment failcount if it fails.
       // Will logout on 10 failed login.
     lectureCheck(lectureId, (data) => {
       if (data.length === 0) {
         alert('Login failed.');
-        $('#join').val('');
         this.failedLoginCount ++;
         if (this.failedLoginCount === 10) {
           this.failedLoginCount = 0;
@@ -55,7 +54,7 @@ class JoinPresBox extends Component {
     };
     // Alert the guest that they aren't allowed to join a given presentation
     socket.on('notAllowed', function () {
-      $('#joinBox').append(`<h1>Guests not permitted to join ${lectureId}</h1>`);
+      $('#joinBox, #joinInputGuestContainer').append(`<h1>Guests not permitted to join ${lectureId}</h1>`);
       socket.disconnect();
     });
 
@@ -125,6 +124,7 @@ class JoinPresBox extends Component {
     ? (
       <div id='joinInputGuestContainer'>
         <input id='joinInputGuest' type='text' />
+        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Submit</button>
       </div>
     ) : (
       <div id='joinBox'>
