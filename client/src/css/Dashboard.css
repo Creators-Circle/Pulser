@@ -7,23 +7,28 @@
 .dash-board {
   padding: 0;
 }
-.recent-menu-options h1{
-  display: inline;
+.recent-menu-options {
+  width: 100%;
   text-align: center;
-  margin: 30% auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.highlight {
+  background-color: #D64937;
+  color:white;
+  border-radius: 3px;
+}
+
 #recentlyPresented, #recentlyViewed {
-  margin: 10%;
+  margin: 0;
   font-size: 2em;
+  padding: 1%;
+  margin: 5%;
 }
 .main-dash {
   padding-right: 0;
 }
-.side-main-view {
-  background-color: white;
-  height: 150vh;
-  padding: 0;
-}
+
 .row {
   margin: 0;
 }
@@ -84,6 +89,13 @@
 }
 
 /*----------------dash-side--------------------*/
+
+.side-main-view {
+  background-color: white;
+  padding: 0;
+  height: 100vh;
+  max-height: 300vh;
+}
 
 .input-form {
   margin: 5% 10%;
