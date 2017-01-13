@@ -55,15 +55,15 @@ class PresThumbs extends Component {
           <ul>
             <li>
               <p>{this.props.thumbs.up}</p>
-              <img src='../img/1-thumbs.png' alt='thumbs-up'/>
+              <img src='../img/1-thumb.png' alt='thumbs-up'/>
             </li>
             <li>
               <p>{this.props.thumbs.side}</p>
-              <img src='../img/2-thumbs.png' alt='thumbs-side'/>
+              <img src='../img/2-thumb.png' alt='thumbs-side'/>
             </li>
             <li>
               <p>{this.props.thumbs.down}</p>
-              <img src='../img/3-thumbs.png' alt='thumbs-down'/>
+              <img src='../img/3-thumb.png' alt='thumbs-down'/>
             </li>
           </ul>
         </div>

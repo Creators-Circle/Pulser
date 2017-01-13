@@ -25,12 +25,12 @@
 }
 
 #questionInput{
-	width: 85%;
+	width: 75%;
 	margin-bottom: 1vh;
 }
 
 #submitQuestion{
-	width: 15%;
+	width: 20%;
 }
 
 .question{
@@ -61,3 +61,14 @@
 	display: inline;
 	margin: 2%;
 }
+/*
+#questionInput {
+	width: 70%;
+	display: inline;
+	margin: 2%;
+}
+
+#submitQuestion{
+	background-color: #EFF2F6;
+	color: #6292BD;
+}*/

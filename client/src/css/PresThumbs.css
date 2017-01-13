@@ -21,9 +21,9 @@
 }
 
 .thumbs-list li{
-	margin:4px;
+	margin:10px;
 	display: inline-block;
 }
-.thumbs-list p{
+.thumbs-list p {
 	font-size: 3.5em;
 }
