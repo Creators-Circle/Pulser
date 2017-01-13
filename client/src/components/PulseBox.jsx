@@ -66,7 +66,7 @@ class PulseBox extends Component {
             // set the maximum value of y to the number of audience members
             { x: [xMin, xMax], y: [0, audience] }
           }
-          xAxisLabel="Elapsed Time (minutes)"
+          xAxisLabel="minutes"
           gridHorizontal={true}
         />
       </div>
