@@ -12,7 +12,7 @@
 }
 
 #GuestViewBody{
-	background-color: #262426;
+	background-color: #343234;
 	height: 100vh;
 }
 
@@ -29,4 +29,11 @@
 
 #joinInputGuest{
 	width: 60%;
+}
+#joinInputGuestContainer input {
+	display: inline;
+	margin: 2vh;
+}
+#joinInputGuestContainer h1 {
+	color: #D64937;
 }

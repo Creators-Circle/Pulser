@@ -12,14 +12,25 @@ button {
 .btn-blue {
   background-color: #6292BD;
 }
+.btn-blue:hover {
+  background-color: #1e5abc;
+}
 .btn-red {
   background-color: #D13233;
   margin-right: 3%;
+}
+.btn-red:hover {
+  background-color: #720307;
+
 }
 .btn-green {
   background-color: #76C97C;
   margin-left: 3%;
 }
+.btn-green:hover {
+  background-color: #137022
+}
+
 .btn-white {
   background-color: #FFFFFF;
   color: #6292BD;

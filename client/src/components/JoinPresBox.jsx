@@ -123,8 +123,8 @@ class JoinPresBox extends Component {
     return this.props.role === 'guest'
     ? (
       <div id='joinInputGuestContainer'>
-        <input id='joinInputGuest' type='text' />
-        <button id='joinButton' onClick={this.joinPresentation.bind(this)}>Submit</button>
+        <input className='form-control' id='joinInputGuest' type='text' />
+        <button className='btn btn-blue' id='joinButton' onClick={this.joinPresentation.bind(this)}>Submit</button>
       </div>
     ) : (
       <div id='joinBox'>
