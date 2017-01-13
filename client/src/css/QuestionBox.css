@@ -34,4 +34,11 @@
 
 .question{
 	font-size: 16px;
+	height: 9vh;
+	margin-bottom: 1vh;
+}
+
+.question .circled{
+	border: 2px solid #7CCA71;
+	border-radius: 50%;
 }
