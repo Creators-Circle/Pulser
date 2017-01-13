@@ -26,9 +26,9 @@ class Sidebar extends Component {
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
       // update the store as well
-      dispatch({
-        type: 'TOGGLE_ENABLED'
-      });
+      // dispatch({
+      //   type: 'TOGGLE_ENABLED'
+      // });
     });
 
     // Toggle in/out 'Thumbs' component

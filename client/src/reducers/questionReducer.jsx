@@ -38,7 +38,7 @@ const questionReducer = (state = {enabled: false}, action) => {
           {upvoted: !state[action.questionId].upvoted})
       });
     case 'CLEAR_QUESTIONS':
-      return {};
+      return {enabled: state.enabled};
     case 'TOGGLE_ENABLED':
       return Object.assign({}, state, {
         enabled: !state.enabled

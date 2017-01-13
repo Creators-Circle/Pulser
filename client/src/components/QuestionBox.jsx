@@ -42,10 +42,14 @@ class QuestionBox extends Component {
   };
 
   componentDidMount () {
+    let gottenPresentationInformation = true;
     let dispatch = this.props.dispatch;
     let clearQuestions = false;
     this.socket.on('questionToggle', function () {
       $('#QuestionBox, #QuestionBoxAudience').fadeToggle('slow');
+      dispatch({
+        type: 'TOGGLE_ENABLED'
+      });
       if (clearQuestions) {
         $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
@@ -85,15 +89,14 @@ class QuestionBox extends Component {
 
   render () {
     let questions = store.getState().questions;
-    let displayQuestions = questions.enabled ? 'block' : 'none';
     let questionsObj = {};
+    let displayQuestions = questions.enabled ? 'block' : 'none';
     Object.keys(questions).forEach((questionKey) => {
       if (questionKey !== 'enabled') questionsObj[questionKey] = questions[questionKey];
     });
-    delete questionsObj.enabled;
     if (this.props.role === 'presenter') {
       return (
-        <div id={'QuestionBox'} style={{display: 'none'}}>
+        <div id='QuestionBox' style={{display: displayQuestions}}>
           <div id="QuestionBoxTitle"></div>
           <h2>Questions</h2>
           <hr/>
@@ -103,7 +106,7 @@ class QuestionBox extends Component {
             if (questionsObj[a].votes < questionsObj[b].votes) return 1;
             return -1;
           }).map((questionId, i) =>
-            <Question key={i + 3} id={questionId} display={'block'} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
+            <Question key={questionId} id={questionId} display={'block'} votes={questionsObj[questionId].votes} text={questionsObj[questionId].questionText}/>
           )}
         </div>
       );
