@@ -58,8 +58,7 @@ class PulseBox extends Component {
             y: 0,
             width: 1200,
             height: 280
-          }
-          }
+          }}
           circleRadius = {0}
           domain={
             // set the maximum value of x to the estimated time of presentation
