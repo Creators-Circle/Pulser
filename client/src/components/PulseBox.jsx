@@ -26,8 +26,8 @@ class PulseBox extends Component {
     }
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
-    let xMin = filteredPulse[0].x * 60;
-    let xMax = filteredPulse[0].x * 60 + 5;
+    let xMin = filteredPulse[0].x;
+    let xMax = filteredPulse[0].x + 0.5;
     let audience = this.props.audience > 4 ? this.props.audience : 4;
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
