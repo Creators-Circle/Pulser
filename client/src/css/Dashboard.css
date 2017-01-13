@@ -42,6 +42,16 @@
 }
 
 .recent-lectures ul{
+  margin: 0;
+  padding: 0;
+}
+
+.recent-menu-options a:focus {
+  color: white;
+}
+.recent-menu-options a:hover {
+  text-decoration: none;
+  color: #D64937;
 }
 
 .slideThumb {
@@ -49,6 +59,10 @@
   width: 34%;
   float: left;
   width: 25%;
+  text-decoration: none;
+}
+.slideThumb a:hover{
+  text-decoration: none;
 }
 
 .thumbnails {
@@ -62,6 +76,9 @@
   display: block;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   overflow-y: scroll;
+}
+.thumbnails:hover {
+  color:#1e5abc;
 }
 .recent-presentation-title {
   margin: 2%;
@@ -86,6 +103,11 @@
 .search-results hr {
   color: #FFFFFF;
   background-color: #FFFFFF;
+
+}
+.search-results ul {
+  margin: 0;
+  padding: 0;
 }
 
 /*----------------dash-side--------------------*/
