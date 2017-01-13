@@ -3,6 +3,27 @@
 	margin-right: 2.5vw;
 	width: 33.75vw;
 	text-align: center;
-	background-color: pink
+	background-color: #FFFFFF;
+	border-radius:5px;
+}
+#PresThumbs h2{
+	color: #6292BD;
+}
+.thumbs-list {
+	display: inline;
+	text-align: center;
 }
 
+.thumbs-list ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.thumbs-list li{
+	margin:10px;
+	display: inline-block;
+}
+.thumbs-list p {
+	font-size: 3.5em;
+}

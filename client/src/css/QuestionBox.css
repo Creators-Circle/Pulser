@@ -3,7 +3,8 @@
 	margin-left: 2.5vw;
 	width: 33.75vw;
 	text-align: center;
-	background-color: purple;
+	background-color: #FFFFFF;
+	border-radius: 5px;
 }
 
 .upvoteDownvote{
@@ -24,12 +25,12 @@
 }
 
 #questionInput{
-	width: 85%;
+	width: 75%;
 	margin-bottom: 1vh;
 }
 
 #submitQuestion{
-	width: 15%;
+	width: 20%;
 }
 
 .question{
@@ -42,3 +43,32 @@
 	border: 2px solid #7CCA71;
 	border-radius: 50%;
 }
+
+#QuestionBoxPresenter h2{
+	color: #6292BD;
+}
+.submit-btn {
+	background-color: #EFF2F6;
+	color: #6292BD;
+}
+.submit-btn:hover ,.submit-btn:focus, .submit-btn:active{
+	background-color: #6292BD;
+	color: #FFFFFF;
+}
+
+.presenter-input {
+	width: 70%;
+	display: inline;
+	margin: 2%;
+}
+/*
+#questionInput {
+	width: 70%;
+	display: inline;
+	margin: 2%;
+}
+
+#submitQuestion{
+	background-color: #EFF2F6;
+	color: #6292BD;
+}*/

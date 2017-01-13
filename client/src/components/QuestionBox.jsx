@@ -91,9 +91,11 @@ class QuestionBox extends Component {
     if (this.props.role === 'presenter') {
       return (
         <div id={'QuestionBox'} style={{display: 'none'}}>
-          <div id="QuestionBoxTitle">Questions</div>
-          <input key={1} type="text" id="questionInput"></input>
-          <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
+          <div id="QuestionBoxTitle"></div>
+          <h2>Questions</h2>
+          <hr/>
+          <input className='form-control presenter-input' key={1} type="text" id="questionInput"></input>
+          <button className='btn submit-btn' key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Submit</button>
           {Object.keys(questionsObj).sort(function (a, b) {
             if (questionsObj[a].votes < questionsObj[b].votes) return 1;
             return -1;

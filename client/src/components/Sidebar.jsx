@@ -101,15 +101,39 @@ class Sidebar extends Component {
             </div>
             <hr/>
           </div>
-          <li><a href={embedUrl} target="_blank"><button>Projector</button></a></li>
-          <li><button id='timerToggle'>Timer</button></li>
-          <li><button id='questionToggle'>Question</button></li>
-          <li><button id='thumbsToggle'>Thumbs</button></li>
-          <li><button id='pulseToggle'>Pulse</button></li>
-          <li><button id='feedbackToggle'>Feedback</button></li>
-          <li><span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span></li>
-          <li><Link to={`/summary/${this.props.activeLecture.lectureId}`}><button id='stopPresentation'>Stop Presentation</button></Link></li>
         </ul>
+        <div className='container'/>
+
+          <div className='row tools-row allow-guest'>
+            <span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span>
+          </div>
+          <hr/>
+
+          <div className='row tools-row '>
+            <div className='offset-md-1'>
+              <a href={embedUrl} target="_blank"><button className='btn tool-btn btn'><span>Projector</span><i className="fa fa-desktop"></i></button></a>
+              <button id='timerToggle' className='tool-btn btn'><span>Timer</span><i className="fa fa-clock-o"></i></button>
+            </div>
+          </div>
+
+          <div className='row tools-row '>
+            <button id='questionToggle' className='tool-btn btn'><span>Question</span><i className="fa fa-question-circle-o"></i></button>
+            <button id='thumbsToggle' className='tool-btn btn'><span>Thumbs</span><i className="fa fa-thumbs-up"></i></button>
+          </div>
+
+          <div className='row tools-row '>
+            <button id='pulseToggle' className='tool-btn btn'><span>Pulse</span><i className="fa fa-line-chart"></i></button>
+            <button id='feedbackToggle' className='tool-btn btn'><span>Feedback</span><i className="fa fa-exclamation"></i></button>
+          </div>
+
+          <div className='row tools-row '>
+            <Link to={`/summary/${this.props.activeLecture.lectureId}`}>
+              <button id='stopPresentation' className='btn btn-red' >
+                <i className="fa fa-times"></i> Stop Presentation
+              </button>
+            </Link>
+          </div>
+
       </div>
     );
   }

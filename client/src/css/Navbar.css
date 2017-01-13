@@ -17,6 +17,8 @@
 	background: -moz-linear-gradient(#474747, #8c8c8c);
   box-shadow: 0 0 10px #000000;
 	color: #FFFFFF;
+	z-index: 20;
+	position: relative;
 }
 
 #BrandContainer {
