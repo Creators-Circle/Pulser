@@ -4,6 +4,10 @@ import UserInfo from './UserInfo';
 import '../css/Navbar.css';
 import { Link } from 'react-router';
 
+// Holds user info.  Renders on top of most pages.
+// Contains
+  // LogoutButton
+  // UserInfo
 class Navbar extends Component {
   render () {
     return (

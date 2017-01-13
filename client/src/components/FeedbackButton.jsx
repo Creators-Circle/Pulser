@@ -4,10 +4,11 @@ import $ from 'jquery';
 import store from '../store.jsx';
 
 // button for firing an event to update the pulseData inside redux store
+// Contains
+ // --
 class FeedbackButton extends Component {
 
   render () {
-    console.log('store ', store.getState());
     return store.getState().feedbackButton.displayed ? (
       <div id="updatePulse"><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     ) : (
@@ -15,9 +16,7 @@ class FeedbackButton extends Component {
     );
   }
 
-  // TODO: Move setTimeout reset functionality to back-end
   componentDidMount () {
-    // console.log('this.props in FeedbackButton: ', this.props);
     let canIncrement = true;
     let resetCode;
     let socket = this.props.activeLecture.socket;
