@@ -93,7 +93,7 @@ class SummaryMainPane extends Component {
 
       let formattedTopics = noOfTopics.map(topic => {
         let topicSummary = topicsSummary[topic];
-        return `${topic}: up: ${topicSummary[1]}, side: ${topicSummary[2]}, down: ${topicSummary[3]}`;
+        return `${topic}: thumbs up: ${topicSummary[1]}, thumbs side: ${topicSummary[2]}, thumbs down: ${topicSummary[3]}`;
       });
       // ------------------------------------------------------------------------------- //
       return (

@@ -12,8 +12,8 @@ class SummaryInfoBoxDetails extends Component {
           <h1>{this.props.title}</h1>
           <ul>
           {
-            this.props.details.map(detail =>
-              <SummaryInfoBoxDetail key={Math.random()} detail={detail} />
+            this.props.details.map((detail, i) =>
+              <SummaryInfoBoxDetail key={i} detail={detail} />
             )
           }
           </ul>

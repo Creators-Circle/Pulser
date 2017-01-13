@@ -1,3 +1,7 @@
+html {
+  background-color: #EBEBEB;
+}
+
 /*---------------Main Summary---------------*/
 .summary-main {
   background-color: #EBEBEB;
@@ -59,6 +63,9 @@ tr:hover {
 }
 .comment {
   margin-bottom: 0px;
+}
+.comment button{
+  margin: 5px;
 }
 .comment-form {
   font-size: 20px;
@@ -134,6 +141,16 @@ tr:hover {
 
 .hide {
   display: none
+}
+.audience {
+  text-align: center;
+  color: #6292BD;
+}
+.audience span {
+  color: #6292BD;
+}
+.audience span:hover {
+  color: #D64937;
 }
 
 /*---------------user-pulse--------------*/
