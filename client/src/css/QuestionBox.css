@@ -9,9 +9,9 @@
 
 .upvoteDownvote{
 	margin-top: 1vh;
-	width: 95%;
+	width: 120%;
 	display: inherit;
-	margin-left: 2.5%;
+	margin-left: -10%;
 }
 
 .questionText {

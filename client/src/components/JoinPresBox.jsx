@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import $ from 'jquery';
 import lectureCheck from '../util/lectureCheck';
 import { browserHistory } from 'react-router';
+import store from '../store.jsx';
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
   constructor () {
@@ -82,15 +83,17 @@ class JoinPresBox extends Component {
       // Enabled key:value will also be dispatched as a question but will not
       // effect the store
       Object.keys(questions).forEach((questionId) => {
-        dispatch({
-          type: 'CREATE_QUESTION',
-          questionId: questionId,
-          questionText: questions[questionId].questionText,
-          votes: questions[questionId].votes
-        });
+        if (questionId !== 'enabled') {
+          dispatch({
+            type: 'CREATE_QUESTION',
+            questionId: questionId,
+            questionText: questions[questionId].questionText,
+            votes: questions[questionId].votes
+          });
+        };
       });
 
-      if (!questions.enabled) {
+      if (questions.enabled) {
         dispatch({
           type: 'TOGGLE_ENABLED'
         });
@@ -112,6 +115,7 @@ class JoinPresBox extends Component {
           type: 'TOGGLE_DISPLAY_FEEDBACK'
         });
       }
+      socket.removeListener('presentationInfoResponse');
       // Redirect user to <AudienceView/>
       browserHistory.push('/audience');
     });

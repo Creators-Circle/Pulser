@@ -9,6 +9,7 @@ import  questionReducer  from '../client/src/reducers/questionReducer.jsx';
 
 describe('questionReducer', function() {
   var testState = {
+    enabled: false,
     324234:{votes: 3, questionText: 'sample question', upvoted: false},
     435353:{votes: 0, questionText: 'Who am I?', upvoted: false}
   }
@@ -23,30 +24,30 @@ describe('questionReducer', function() {
   describe('CREATE_QUESTION', function () {
     it('it should add a new question to the store', function () {
       assert.deepEqual(testState,
-        questionReducer({324234:{votes: 3, questionText: 'sample question', upvoted: false}},
+        questionReducer({324234:{votes: 3, questionText: 'sample question', upvoted: false}, enabled:false},
           {type: 'CREATE_QUESTION', questionId: 435353, questionText: 'Who am I?'}));
     });
   });
 
   describe('UPVOTE', function () {
     it('it should increment the question matching the questionId', function() {
-      assert.deepEqual({324234:{votes: 3, questionText: 'sample question'}},
-        questionReducer({324234:{votes: 2, questionText: 'sample question'}},
+      assert.deepEqual({324234:{votes: 3, questionText: 'sample question'}, enabled: false},
+        questionReducer({324234:{votes: 2, questionText: 'sample question'}, enabled: false},
         {type: 'UPVOTE', questionId: 324234}));
     });
   });
 
   describe('DOWNVOTE', function () {
     it('it should decrement the question matching the questionId', function() {
-      assert.deepEqual({324234:{votes: 2, questionText: 'sample question'}},
-        questionReducer({324234:{votes: 3, questionText: 'sample question'}},
+      assert.deepEqual({324234:{votes: 2, questionText: 'sample question'}, enabled: false},
+        questionReducer({324234:{votes: 3, questionText: 'sample question'}, enabled: false},
         {type: 'DOWNVOTE', questionId: 324234}));
     });
   });
 
   describe('CLEAR_QUESTIONS', function () {
     it('it should clear the store of all questions', function() {
-      assert.deepEqual({},
+      assert.deepEqual({enabled:false},
         questionReducer(testState,
         {type: 'CLEAR_QUESTIONS'}));
     });
@@ -54,8 +55,8 @@ describe('questionReducer', function() {
 
   describe('TOGGLE_UPVOTED', function () {
     it('it should toggle the upvoted value for a given question', function() {
-      assert.deepEqual({324234:{votes: 3, questionText: 'sample question', upvoted: false}},
-        questionReducer({324234:{votes: 3, questionText: 'sample question', upvoted: true}},
+      assert.deepEqual({324234:{votes: 3, questionText: 'sample question', upvoted: false}, enabled: false},
+        questionReducer({324234:{votes: 3, questionText: 'sample question', upvoted: true}, enabled: false},
         {type: 'TOGGLE_UPVOTED', questionId: 324234}));
     });
   });
