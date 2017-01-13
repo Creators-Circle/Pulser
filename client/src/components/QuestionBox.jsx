@@ -79,7 +79,7 @@ class QuestionBox extends Component {
       socket.emit('submitQuestion', question);
       $('#questionInput').val('');
     } else {
-      console.log("Please enter a question.")
+      console.log('Please enter a question.');
     }
   }
 
