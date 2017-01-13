@@ -75,8 +75,12 @@ class QuestionBox extends Component {
       userId: userId,
       questionText: questionText
     };
-    socket.emit('submitQuestion', question);
-    $('#questionInput').val('');
+    if (questionText.length > 0) {
+      socket.emit('submitQuestion', question);
+      $('#questionInput').val('');
+    } else {
+      console.log('Please enter a question.');
+    }
   }
 
   render () {
