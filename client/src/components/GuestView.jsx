@@ -1,4 +1,5 @@
 // Contains the elements for the GuestView, including:
+  // Navbar
   // FeedbackBox
   // FeedbackButton
 
