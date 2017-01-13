@@ -28,7 +28,7 @@
 }
 
 #joinInputGuest{
-	width: 60%;
+	width: 100px;
 }
 #joinInputGuestContainer input {
 	display: inline;
