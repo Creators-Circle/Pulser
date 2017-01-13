@@ -21,13 +21,13 @@ class DashboardView extends Component {
         <Navbar/>
         <div className='container dash-board'>
           <div className='row'>
-            <div className='main-dash col-md-9 col-md-9'>
+            <div className='main-dash col-sm-9 col-md-9 col-md-9'>
               <DashMainContent/>
             </div>
-            <div className='side-main-view col-md-3 col-lg-3'>
-              <NewPresButton/>
-              <Link to={'/summary/cc0001'}>Summary</Link>
+            <div className='side-main-view col-sm-3 col-md-3 col-lg-3'>
               <Searchbar/>
+              <NewPresButton/>
+              <hr/>
               <JoinPresBox/>
             </div>
           </div>

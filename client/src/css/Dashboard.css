@@ -24,8 +24,11 @@
   height: 150vh;
   padding: 0;
 }
+.row {
+  margin: 0;
+}
 
-/*----------------------thumbnails----------------------------*/
+/*--------------------thumbnails-------------------*/
 #recentMenu {
   width: 90%;
   margin: 5% 3%;
@@ -47,6 +50,7 @@
   margin: 10%;
   text-align: center;
   height: 30vh;
+  max-height: 200px;
   background-color: #6292BD;;
   border-radius: 5px;
   color: white;
@@ -63,7 +67,7 @@
   font-size: 6em;
 }
 
-/*-------------------search----------------*/
+/*-------------------search-------------------*/
 .no-results {
   color: #FFFFFF;
 }
@@ -77,4 +81,18 @@
 .search-results hr {
   color: #FFFFFF;
   background-color: #FFFFFF;
+}
+
+/*----------------dash-side--------------------*/
+
+.input-form {
+  margin: 5% 10%;
+  width: 80%;
+}
+.side-presentation-btn {
+  margin: 2% 10%;
+  width: 80%;
+}
+.join-form {
+  margin-bottom: 0;
 }

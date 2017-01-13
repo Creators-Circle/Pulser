@@ -9,7 +9,7 @@
 #NavbarContainer {
 	padding-top: 1vh;
 	height: 7.5vh;
-	width: 100vw;
+	width: 100%;
 	display: inline-block;
 	background: linear-gradient(#474747, #8c8c8c);
 	background: -webkit-linear-gradient(#474747, #8c8c8c);

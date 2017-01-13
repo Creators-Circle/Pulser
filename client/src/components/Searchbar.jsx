@@ -14,7 +14,11 @@ class Searchbar extends Component {
 
   render () {
     return (
-      <input type='text' onChange = {this.search.bind(this)} placeholder='Search old slides'/>
+      <input
+        className='form-control input-form'
+        type='text' onChange = {this.search.bind(this)}
+        placeholder='Search old slides'
+      />
     );
   };
 };
