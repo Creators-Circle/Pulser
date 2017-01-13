@@ -27,12 +27,6 @@
 	width:10%;
 }
 
-/*.question {
-	height: 7.5vh;
-	width: auto;
-	overflow: scroll;
-}*/
-
 .questionVotes{
 	font-size: .8em;
 	text-align: center;
@@ -90,8 +84,3 @@
 	display: inline;
 	margin: 2%;
 }
-
-/*#submitQuestion{
-	background-color: #EFF2F6;
-	color: #6292BD;
-}*/
