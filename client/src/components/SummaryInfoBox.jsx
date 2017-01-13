@@ -23,7 +23,7 @@ class SummaryInfoBox extends Component {
           this.props.thumbs
           ? <div className='thumbs'>
               {Object.keys(this.props.thumbs).map((thumb, i) =>
-                  <p className='thumb'key={i}>{thumb}<span>: {this.props.thumbs[thumb]}</span></p>
+                  <p className='thumb'key={i}><img src={`../img/${thumb}-thumb.png`} alt='thumbs'/><span>: {this.props.thumbs[thumb]}</span></p>
                 )
               }
             </div>
