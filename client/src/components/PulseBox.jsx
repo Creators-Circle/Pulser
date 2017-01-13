@@ -26,8 +26,8 @@ class PulseBox extends Component {
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
     let xMin = filteredPulse[0].x;
-    let xMax = filteredPulse[0].x + 0.5;
-    let audience = this.props.audience > 4 ? this.props.audience : 4;
+    let xMax = filteredPulse[0].x + 10;
+    let audience = this.props.audience > 4 ? this.props.audience : 8;
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
       $('.pulse-box').addClass('alert-red');
@@ -46,6 +46,8 @@ class PulseBox extends Component {
     // Render "stock ticker" style line graph
     return (
       <div id='PulseBox' className = "pulse-box">
+      <span id="GraphTitle">Pulse
+        <hr/>
         <LineChart
           className = 'pulsedata-linechart'
           data={lineData}
@@ -63,10 +65,10 @@ class PulseBox extends Component {
             // set the maximum value of y to the number of audience members
             { x: [xMin, xMax], y: [0, audience] }
           }
-          xAxisLabel={'min'}
           gridHorizontal={true}
           gridVertical={true}
         />
+      </span>
       </div>
     );
   }
