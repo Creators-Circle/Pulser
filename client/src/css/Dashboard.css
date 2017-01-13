@@ -62,3 +62,19 @@
   margin: 4%;
   font-size: 6em;
 }
+
+/*-------------------search----------------*/
+.no-results {
+  color: #FFFFFF;
+}
+.search-results {
+  color: #FFFFFF;
+}
+.search-results h1{
+  margin-left: 5%
+}
+
+.search-results hr {
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+}

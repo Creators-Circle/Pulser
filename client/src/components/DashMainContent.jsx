@@ -40,8 +40,9 @@ class DashMainContent extends Component {
       );
     } else {
       return (
-        <div>
+        <div className='search-results'>
           <h1>Search Results</h1>
+          <hr/>
           <SearchResults search={this.props.search}/>
         </div>
       );

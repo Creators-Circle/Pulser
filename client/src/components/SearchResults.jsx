@@ -17,15 +17,21 @@ class SearchResults extends Component {
     );
     return (
       <div>
-        { searchLectures.length === 0 ? <p>No results found</p>
+        <ul>
+        { searchLectures.length === 0 ? <p className ='no-results'>No results found</p>
           : searchLectures.map((lecture, i) =>
           // restrict click functionality for viewed lectures
-            lecture.role === 'audience'
-            ? <PresThumbnail key = {lecture.id} date = {lecture.date} name = {lecture.name} />
-            : <Link key={i} to={`/summary/${lecture.lecture_id}`}>
-                <PresThumbnail date = {lecture.date} name = {lecture.name} />
-              </Link>
+            <li className='slideThumb'>
+            {
+              lecture.role === 'audience'
+              ? <PresThumbnail key = {lecture.id} viewed={true} date = {lecture.date} name = {lecture.name} />
+              : <Link key={i} to={`/summary/${lecture.lecture_id}`}>
+                  <PresThumbnail date = {lecture.date} name = {lecture.name} />
+                </Link>
+            }
+            </li>
         )}
+        </ul>
       </div>
     );
   };
