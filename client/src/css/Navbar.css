@@ -7,8 +7,8 @@
 }
 
 #NavbarContainer {
-	padding-top: 2.5vh;
-	height: 10vh;
+	padding-top: 1vh;
+	height: 7.5vh;
 	width: 100vw;
 	display: inline-block;
 	background: linear-gradient(#474747, #8c8c8c);
@@ -26,8 +26,8 @@
 	margin-left: 15px;
 }
 #BrandContainer a{
-	margin: 10px;
-	font-size: 20px;
+	margin: 5px;
+	font-size: 15px;
 	color: #FFFFFF;
 }
 #BrandContainer a:hover, a:focus{
@@ -36,7 +36,7 @@
 }
 
 #logo {
-	height: 5vh;
+	height: 2.5vh;
 }
 
 #LogoutButton {

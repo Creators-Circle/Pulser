@@ -97,6 +97,7 @@ hr {
 	width: 30%;
 	height: 8vh;
 	border: 1px solid #CECECE;
+	overflow: hidden;
 }
 .tool-btn:hover, .tool-btn:focus {
 	background-color: #6292BD;

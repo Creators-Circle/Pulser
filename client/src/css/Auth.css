@@ -64,3 +64,10 @@
 #View {
 	font-size: 8px;
 }
+
+/*Media Queries for hiding glyphicons*/
+@media screen and (max-height: 615px) {
+    .fa{
+ 		display: none !important;
+	}
+}
