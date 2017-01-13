@@ -7,6 +7,8 @@ import TitleBar from './TitleBar';
 import '../css/Sidebar.css';
 
 // sidebar menu for presenter to toggle modules and use additional functionality
+// Contains
+  // FeedbackBox
 class Sidebar extends Component {
 
   componentDidMount () {
@@ -23,7 +25,6 @@ class Sidebar extends Component {
 
     $('#questionToggle').on('click', function () {
       socket.emit('questionToggle');
-      console.log('questionToggle was clicked');
       // update the store as well
       dispatch({
         type: 'TOGGLE_ENABLED'
@@ -38,10 +39,8 @@ class Sidebar extends Component {
       });
     // If thumbs component isn't toggled, then toggle it in
       if (!thumbsToggle) {
-        console.log('!thumbsToggle');
         $('#PresThumbs').fadeToggle('slow');
       } else { // if already visible, toggle it out and reset it
-        console.log('thumbsToggle');
         $('#PresThumbs').fadeToggle('fast');
         $('#topicTitle').text('Topic: ');
         $('#topic').val('');
@@ -87,7 +86,6 @@ class Sidebar extends Component {
   }
 
   render () {
-    // console.log('this.props in Sidebar: ', this.props)
     let embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div id="Sidebar">

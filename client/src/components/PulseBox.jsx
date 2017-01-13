@@ -1,4 +1,3 @@
-// this component is for displaying the live visualization of users' feedback
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
@@ -9,16 +8,16 @@ import '../css/PulseBox.css';
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 
+// this component is for displaying the live visualization of users' feedback
 class PulseBox extends Component {
 
   render () {
-    // console.log('props in pulseBox render: ', this.props);
-    var currTime = new Date();
-    var timeDiff = timeDiffToMinutes(this.props.startTime, currTime);
+    let currTime = new Date();
+    let timeDiff = timeDiffToMinutes(this.props.startTime, currTime);
 
     // compare the time to 1 minute for testing
     // sort values to prevent backwards movement bug
-    var filteredPulse = this.props.pulseData.filter(pulse => {
+    let filteredPulse = this.props.pulseData.filter(pulse => {
       return Math.abs(timeDiff - pulse.x) <= 0.5;
     }).sort((pulse1, pulse2) => pulse1.x - pulse2.x);
     // if filteredPulse is empty, populate it with a default 0,0 data point
@@ -27,8 +26,8 @@ class PulseBox extends Component {
     }
 
     // set the min and max of x axis with the time value of the first element from filteredPulse
-    var xMin = filteredPulse[0].x;
-    var xMax = filteredPulse[0].x + 0.5;
+    let xMin = filteredPulse[0].x;
+    let xMax = filteredPulse[0].x + 0.5;
     let audience = this.props.audience > 4 ? this.props.audience : 4;
     // if the number of clicks reaches 70% of number of audience, display a warning for the presenter
     if (filteredPulse[filteredPulse.length - 1].y > (audience * 0.70)) {
@@ -39,7 +38,7 @@ class PulseBox extends Component {
     }
 
     // need to set lineData prior to return statement to preserve "this" context
-    var lineData = [
+    let lineData = [
       {
         values: filteredPulse,
         strokeWidth: 2

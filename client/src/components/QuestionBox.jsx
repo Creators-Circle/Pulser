@@ -6,6 +6,9 @@ import uuid from 'uuid/v1';
 import store from '../store.jsx';
 import '../css/QuestionBox.css';
 
+// Holds the Question components for the Question feature
+// Contains
+  // Question
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
   constructor (props) {
@@ -14,7 +17,6 @@ class QuestionBox extends Component {
     let render = this.forceUpdate.bind(this);
     this.socket = props.activeLecture.socket;
     let role = props.role;
-    console.log('role is: ', role);
     this.socket.on('upvoteQuestion', function (upvote, userId) {
       dispatch({
         type: 'UPVOTE',
@@ -28,7 +30,6 @@ class QuestionBox extends Component {
         questionId: downvote.questionId
       });
       render();
-      console.log('downvote received');
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -76,11 +77,9 @@ class QuestionBox extends Component {
     };
     socket.emit('submitQuestion', question);
     $('#questionInput').val('');
-    console.log('question fired off', question);
   }
 
   render () {
-    // console.log(this.props);
     let questions = store.getState().questions;
     let displayQuestions = questions.enabled ? 'block' : 'none';
     let questionsObj = {};

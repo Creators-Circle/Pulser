@@ -36,7 +36,6 @@ class PresenterView extends Component {
     let socket = this.props.activeLecture.socket;
     socket.on('presentationInfoRequest', function () {
       let lectureState = store.getState();
-      console.log('presentationInfoRequest', store.getState());
       let presentationUrl = lectureState.activeLecture.embedUrl;
       let presentationName = lectureState.activeLecture.name;
       let presentationId = lectureState.activeLecture.presentationId;
@@ -44,7 +43,6 @@ class PresenterView extends Component {
       let thumbs = lectureState.thumbs;
       let feedbackEnabled = lectureState.feedbackButton.displayed;
     // Listen for audience request for presentation URL
-      console.log('got a request for info');
       // response with presentation URL
       socket.emit('presentationInfoResponse',
         presentationUrl, presentationName, presentationId,
@@ -71,10 +69,6 @@ class PresenterView extends Component {
       socket.disconnect();
     });
   };
-
-  // showStore () {
-  //   console.log(store.getState());
-  // }
 
   render () {
     // <button onClick={this.showStore.bind(this)}></button>

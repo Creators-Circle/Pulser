@@ -3,6 +3,8 @@ import SummaryInfoBoxDetails from './SummaryInfoBoxDetails';
 
 // this component is meant to display different sets of data about each presentation
   // ex: avg clicks/minute, highest amount of clicks at one time, avg clicks per student, etc
+// Contains
+  // SummaryInfoBoxDetails
 class SummaryInfoBox extends Component {
   constructor () {
     super();

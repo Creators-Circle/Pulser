@@ -9,7 +9,6 @@ import $ from 'jquery';
 class UserClicksTimeline extends Component {
 
   render () {
-    console.log('props in UserClicksTimeline: ', this.props);
     // ALL NEEDS TO BE REFACTORED TO CREATE CLICK TIMELINE FOR SPECIFIC USER
 
     // // Render a table of users and their total clicks

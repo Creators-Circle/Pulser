@@ -40,7 +40,6 @@ class AudThumbs extends Component {
   };
 
   render () {
-    console.log(store.getState().thumbs.topicName);
     let thumbDisplay = store.getState().thumbs.displayed ? 'block' : 'none';
     return (
       <div id="Thumbs" style={{display: thumbDisplay}}>

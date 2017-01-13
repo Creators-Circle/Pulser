@@ -1,11 +1,9 @@
-//  TitleBar renders at the top of PresenterView.
-  // Displays the presentation title and the Date as default lectureTitle.
-    //  lectureTitle is editable.
-  // Displays lectureID.
-  // TODO Make Title editable.
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// Shows title and other info at top of PresenterView
+// Contains
+  // --
 class TitleBar extends Component {
   constructor () {
     super();
@@ -24,7 +22,7 @@ class TitleBar extends Component {
   }
 
   changeTitle () {
-    // update the activeLecture ducer
+    // update the activeLecture
     let lecture = {
       lectureId: this.props.activeLecture.lectureId,
       name: this.state.title,
