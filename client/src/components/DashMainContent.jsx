@@ -31,13 +31,13 @@ class DashMainContent extends Component {
         <div>
           <div id='recentMenu'>
             <div className='recent-menu-options'>
-              <a href='#' className={this.state.role === 'presenter' ? 'highlight' : ''}
+              <span className="recentlyPresentedContainer"><a href='#' className={this.state.role === 'presenter' ? 'highlight' : ''}
                 id='recentlyPresented'
                 onClick = { () => { this.changeView('presenter'); }
-              }>Recently Presented</a>
-              <a href='#' className={this.state.role === 'audience' ? 'highlight' : ''}
+              }>Recently Presented</a></span>
+              <span className="recentlyViewedContainer"><a href='#' className={this.state.role === 'audience' ? 'highlight' : ''}
                 id='recentlyViewed' onClick = { () => { this.changeView('audience'); }
-              }>Recently Viewed</a>
+              }>Recently Viewed</a></span>
             </div>
             <PresPreviews role = {this.state.role} />
           </div>
