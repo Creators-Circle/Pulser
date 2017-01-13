@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserClicksTimeline from './UserClicksTimeline';
 import TotalClicksTable from './TotalClicksTable';
 
 // left dislplay box for SummaryView

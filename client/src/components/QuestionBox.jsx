@@ -107,8 +107,8 @@ class QuestionBox extends Component {
       return (
         <div id="QuestionBoxAudience" style={{display: displayQuestions}}>
           <span className="sidebar-header"><h2>QUESTIONS</h2></span>
-          <div><input key={1} type="text" id="questionInput"/>
-            <button key={2} id="submitQuestion" onClick={this.submitQuestion.bind(this)}>Ask</button>
+          <div><input key={1} type="text" id="questionInput" className="form-control"/>
+            <button key={2} id="submitQuestion" className='btn submit-btn' onClick={this.submitQuestion.bind(this)}>Ask</button>
           </div>
           {Object.keys(questionsObj).map((questionId, i) =>
             <Question key={i + 3} id={questionId} votes={questionsObj[questionId].votes} display='none' text={questionsObj[questionId].questionText}/>

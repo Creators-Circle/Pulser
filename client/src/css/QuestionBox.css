@@ -29,6 +29,12 @@
 	width:10%;
 }
 
+.question {
+	height: 7.5vh;
+	width: auto;
+	overflow: scroll;
+}
+
 .questionVotes{
 	display: inline-block;
 	float:left;
@@ -79,14 +85,14 @@
 	display: inline;
 	margin: 2%;
 }
-/*
+
 #questionInput {
 	width: 70%;
 	display: inline;
 	margin: 2%;
 }
 
-#submitQuestion{
+/*#submitQuestion{
 	background-color: #EFF2F6;
 	color: #6292BD;
 }*/
