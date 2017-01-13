@@ -62,7 +62,6 @@ function createPicker() {
     view.setMimeTypes('application/vnd.google-apps.presentation');
     // if picker is not already set, create it
     if (!picker) {
-      console.log('make new picker')
       picker = new google.picker.PickerBuilder()
           .enableFeature(google.picker.Feature.NAV_HIDDEN)
           .setAppId(appId)
