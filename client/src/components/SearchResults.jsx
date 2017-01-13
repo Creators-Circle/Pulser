@@ -24,7 +24,9 @@ class SearchResults extends Component {
             <li className='slideThumb'>
             {
               lecture.role === 'audience'
-              ? <PresThumbnail key = {lecture.id} viewed={true} date = {lecture.date} name = {lecture.name} />
+              ? <a key={i} href={`https://docs.google.com/presentation/d/${lecture.presentation_id}/preview`} target='_blank'>
+                  <PresThumbnail key = {lecture.id} viewed={true} date = {lecture.date} name = {lecture.name} />
+                </a>
               : <Link key={i} to={`/summary/${lecture.lecture_id}`}>
                   <PresThumbnail date = {lecture.date} name = {lecture.name} />
                 </Link>
