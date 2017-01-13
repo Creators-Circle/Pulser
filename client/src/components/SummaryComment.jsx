@@ -1,14 +1,14 @@
-// component for lecture's summary
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import postComment from '../util/postComment.js';
 
+// Shows summary comments.
 class SummaryComment extends Component {
   constructor () {
     super();
     this.state = {
-      newComment: '', // temporary state for saving new comment
-      toggleComment: false // ui state for showing comment or textbox
+      newComment: '',
+      toggleComment: false
     };
   }
 

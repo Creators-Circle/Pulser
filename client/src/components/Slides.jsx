@@ -7,7 +7,6 @@ import '../css/Slides.css';
 class Slides extends Component {
 
   render () {
-    console.log(this.props, 'in slides');
     let embedUrl = this.props.activeLecture.embedUrl;
     let title = this.props.title || this.props.activeLecture.name;
     let id = this.props.activeLecture.presentationId;
@@ -26,9 +25,6 @@ class Slides extends Component {
     );
   }
 
-  componentDidMount () {
-    // TODO: Add in event listeners for slides navigation clicks / key presses
-  }
 }
 
 const mapStateToProps = (state) => {

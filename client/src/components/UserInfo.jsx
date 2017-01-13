@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogoutButton from './LogoutButton';
 import '../css/UserInfo.css';
+
 // component to display basic user data (profile pic + name)
 class UserInfo extends Component {
 

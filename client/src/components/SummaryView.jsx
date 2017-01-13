@@ -3,11 +3,13 @@ import '../css/SummaryView.css';
 import getLectureSummary from '../util/getLectureSummary';
 import { connect } from 'react-redux';
 import SummaryLeftPane from './SummaryLeftPane';
-import LogoutButton from './LogoutButton';
 import SummaryRightPane from './SummaryRightPane';
 import Navbar from './Navbar';
 
-// View to display summary data about the presentation and users
+// Displays summary data about the presentation and users
+// Contains
+  // SummaryLeftPane
+  // SummaryRightPane
 class SummaryView extends Component {
 
   componentWillMount () {

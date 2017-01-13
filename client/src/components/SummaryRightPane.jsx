@@ -1,13 +1,16 @@
-// component for display right side of summary view
-// filtered either by lecture's summary or selected user's summary
 import React, { Component } from 'react';
 import SummaryMainPane from './SummaryMainPane';
 import SummaryComment from './SummaryComment';
 import rd3 from 'rd3';
 import { connect } from 'react-redux';
-const LineChart = rd3.LineChart;
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
+const LineChart = rd3.LineChart;
 
+// Displays right side of summary view
+// filtered either by lecture's summary or selected user's summary
+// Contains
+  // SummaryMainPane
+  // Summary Comment
 class SummaryRightPane extends Component {
   constructor () {
     super();

@@ -1,7 +1,9 @@
-// component for displaying the a list of data about the Summary Info box
 import React, { Component } from 'react';
 import SummaryInfoBoxDetail from './SummaryInfoBoxDetail.jsx';
 
+// component for displaying the a list of data about the Summary Info box
+// Contains
+  // SummaryInfoBoxDetail
 class SummaryInfoBoxDetails extends Component {
   render () {
     return (
