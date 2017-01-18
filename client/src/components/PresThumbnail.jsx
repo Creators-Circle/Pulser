@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import timeDiffToMinutes from '../util/timeDiffToMinutes.js';
 
-// These are thumbnails of previous presentations w/ a title and date it was presented/viewed
 class PresThumbnail extends Component {
 
   render () {

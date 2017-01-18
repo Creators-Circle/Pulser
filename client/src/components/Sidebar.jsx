@@ -6,9 +6,6 @@ import $ from 'jquery';
 import TitleBar from './TitleBar';
 import '../css/Sidebar.css';
 
-// sidebar menu for presenter to toggle modules and use additional functionality
-// Contains
-  // FeedbackBox
 class Sidebar extends Component {
 
   componentDidMount () {

@@ -1,4 +1,3 @@
-// Component to display embedded Goolge Slides presentation
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';

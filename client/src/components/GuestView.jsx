@@ -1,8 +1,3 @@
-// Contains the elements for the GuestView, including:
-  // Navbar
-  // FeedbackBox
-  // FeedbackButton
-
 import FeedbackBox from './FeedbackBox';
 import React, { Component } from 'react';
 import LogoutButton from './LogoutButton';

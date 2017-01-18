@@ -4,7 +4,6 @@ import getUserLectures from '../util/getUserLectures';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-// Panel that displays list of presentations
 class PresPreviews extends Component {
 // Currently loading multiple copies of PresThumbnail for testing.  Will refactor eventually with a forEach.
   constructor (props) {

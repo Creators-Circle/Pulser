@@ -6,9 +6,6 @@ import uuid from 'uuid/v1';
 import store from '../store.jsx';
 import '../css/QuestionBox.css';
 
-// Holds the Question components for the Question feature
-// Contains
-  // Question
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
   constructor (props) {

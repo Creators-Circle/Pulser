@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import postComment from '../util/postComment.js';
 
-// Shows summary comments.
 class SummaryComment extends Component {
   constructor () {
     super();

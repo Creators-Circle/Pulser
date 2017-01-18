@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import SummaryInfoBox from './SummaryInfoBox';
 import { connect } from 'react-redux';
 
-// Holds boxes of data about the presentation
-// Contains
-  // SummaryInfoBox
 class SummaryMainPane extends Component {
 
   render () {

@@ -6,11 +6,6 @@ import { connect } from 'react-redux';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 const LineChart = rd3.LineChart;
 
-// Displays right side of summary view
-// filtered either by lecture's summary or selected user's summary
-// Contains
-  // SummaryMainPane
-  // Summary Comment
 class SummaryRightPane extends Component {
   constructor () {
     super();

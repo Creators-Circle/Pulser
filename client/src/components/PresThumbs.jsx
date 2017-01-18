@@ -4,8 +4,6 @@ import uuid from 'uuid/v1';
 import $ from 'jquery';
 import '../css/PresThumbs.css';
 
-// PresThumbs requests feedback from audience members and renders the results of that data.
-  // Audience members are prompted for feedback with the AudThumbs component.
 class PresThumbs extends Component {
 
   componentDidMount () {

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// Shows title and other info at top of PresenterView
-// Contains
-  // --
 class TitleBar extends Component {
   constructor () {
     super();

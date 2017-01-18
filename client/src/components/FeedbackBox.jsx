@@ -5,11 +5,6 @@ import FeedbackButton from './FeedbackButton';
 import QuestionBox from './QuestionBox';
 import AudThumbs from './AudThumbs';
 
-// Holds the audience interaction components
-// Contains
-  // FeedbackButton
-  // QuestionBox
-  // AudThumbs
 class FeedbackBox extends Component {
   render () {
     let title = this.props.title || this.props.activeLecture.name;

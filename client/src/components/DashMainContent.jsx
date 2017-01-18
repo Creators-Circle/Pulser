@@ -4,12 +4,6 @@ import SearchResults from './SearchResults';
 import '../css/Dashboard.css';
 import { connect } from 'react-redux';
 
-// main content panel in the DashboardView
-  // by default it renders Recently Presented Slideshows / Recently Viewed Presentations
-  // if a specific presentation is searched for, the results will appear in this area
-// Contains
- // PresPreviews
- // SearchResults
 class DashMainContent extends Component {
 
   constructor () {

@@ -3,10 +3,6 @@ import PresThumbnail from './PresThumbnail';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-// panel to display search results from querying DB for specific presentation data
-  // Rendered by loginDashboard.
-// Contains
- // PresThumbnail
 class SearchResults extends Component {
 
   render () {

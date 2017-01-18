@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import '../css/LogoutButton.css';
 
-// Logs out.
 class LogoutButton extends Component {
 
   render () {

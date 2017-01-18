@@ -4,9 +4,6 @@ import uuid from 'uuid/v1';
 import $ from 'jquery';
 import store from '../store.jsx';
 
-// AudThumbs allows audience members to indicate their feelings about a subject when the presenter desires.
-// Contains
-  // --
 class AudThumbs extends Component {
 
   componentDidMount () {

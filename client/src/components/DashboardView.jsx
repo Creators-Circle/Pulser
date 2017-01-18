@@ -6,13 +6,6 @@ import DashMainContent from './DashMainContent';
 import { Link } from 'react-router';
 import Navbar from './Navbar';
 
-// view that every user sees after logging in
-// Contains
- // Navbar
- // NewPreButton
- // Searchbar
- // JoinPresBox
- // DashMainContent
 class DashboardView extends Component {
 
   render () {

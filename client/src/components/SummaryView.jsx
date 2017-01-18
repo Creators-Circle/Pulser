@@ -6,10 +6,6 @@ import SummaryLeftPane from './SummaryLeftPane';
 import SummaryRightPane from './SummaryRightPane';
 import Navbar from './Navbar';
 
-// Displays summary data about the presentation and users
-// Contains
-  // SummaryLeftPane
-  // SummaryRightPane
 class SummaryView extends Component {
 
   componentWillMount () {

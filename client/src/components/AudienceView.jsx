@@ -7,11 +7,6 @@ import { browserHistory } from 'react-router';
 import store from '../store.jsx';
 import Navbar from './Navbar';
 
-// Audience presentation view.
-// Contains:
-  // Navbar
-  // Slides
-  // FeedbackBox
 class AudienceView extends Component {
 
   componentDidMount () {
@@ -24,8 +19,6 @@ class AudienceView extends Component {
   };
 
   render () {
-    // <button onClick={this.showStore.bind(this)}>store</button>
-
     return (
       <div id="AudienceView">
         <Navbar/>

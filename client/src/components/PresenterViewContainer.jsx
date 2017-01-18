@@ -1,4 +1,3 @@
-// container for PresenterView component
 import React, { Component } from 'react';
 import PresenterView from './PresenterView';
 import $ from 'jquery';

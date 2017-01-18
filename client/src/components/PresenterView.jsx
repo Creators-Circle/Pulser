@@ -1,13 +1,3 @@
-// Contains the elements for the Presenter, including:
-  // TitleBar
-    //  Is passed date from PresenterView props, lectureId from props, and
-  // Slides
-  // Timer
-  // Menu of yet to be built modules
-  // PulseBox Component
-    // PulseBox is passed a startTime to represent the time at which the presentation is started,
-    // which is assumed to be the time that the PresenterView renders
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PulseBox from './PulseBox';
@@ -71,7 +61,6 @@ class PresenterView extends Component {
   };
 
   render () {
-    // <button onClick={this.showStore.bind(this)}></button>
     return (
       <div className = 'presenter-view-container'>
         <Navbar/>

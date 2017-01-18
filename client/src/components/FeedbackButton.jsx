@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import store from '../store.jsx';
 
-// button for firing an event to update the pulseData inside redux store
-// Contains
- // --
 class FeedbackButton extends Component {
 
   render () {

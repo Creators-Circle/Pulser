@@ -6,9 +6,6 @@ import getComment from '../util/getComment.js';
 import TotalClicksRow from './TotalClicksRow.jsx';
 import $ from 'jquery';
 
-// table to display total number of clicks per user during the presentation
-// Contains
-  // TotalClicksRow
 class TotalClicksTable extends Component {
   constructor () {
     super();
