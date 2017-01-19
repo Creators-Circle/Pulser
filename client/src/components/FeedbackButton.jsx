@@ -1,15 +1,14 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import $ from 'jquery';
-import store from '../store.jsx';
 
 class FeedbackButton extends Component {
 
   render () {
-    return store.getState().feedbackButton.displayed ? (
-      <div id="updatePulse"><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT UNDERSTAND</div></div>
+    return /* store.getState().feedbackButton.displayed */ this.props.feedbackButton.displayed ? (
+      <div id="updatePulse"><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     ) : (
-      <div id="updatePulse" style={{display: 'none'}}>><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT UNDERSTAND</div></div>
+      <div id="updatePulse" style={{display: 'none'}}><img id="question" className="navbarElement" src='./img/question.png'/><br/><div id="FeedbackButtonText">DID NOT GROK</div></div>
     );
   }
 
@@ -53,7 +52,11 @@ class FeedbackButton extends Component {
 }
 
 const mapStatetoProps = state => {
-  return {user: state.user, activeLecture: state.activeLecture};
+  return {
+    user: state.user,
+    activeLecture: state.activeLecture,
+    feedbackButton: state.feedbackButton
+  };
 };
 
 export default connect(mapStatetoProps)(FeedbackButton);

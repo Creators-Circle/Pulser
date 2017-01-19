@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v1';
 import $ from 'jquery';
-import store from '../store.jsx';
 
 class AudThumbs extends Component {
 
@@ -10,13 +9,15 @@ class AudThumbs extends Component {
     $('#Thumbs').toggle();
     let socket = this.props.socket;
     let userId = this.props.userId;
-    // set currentTopicId from store, but it's not updating as expected
-    // leaving it commented for now in case we use store later on.
-    let currentTopicId; /* = this.props.topicId; */
-    // let dispatch = this.props.dispatch;
-    // We have redundant socket listeners here.
-    // This is a patch until store is working
-    socket.on('open thumbs', (topicId, topic) => currentTopicId = topicId);
+    let currentTopicId = this.props.thumbs.topicId;
+    let thumbsDisplayed = this.props.thumbs.displayed;
+    // render Thumbs box for the given topic when event 'open thumbs' is fired
+    socket.on('open thumbs', function (topicId, topic) {
+      currentTopicId = topicId;
+      $('#AudThumbTopic').text(topic); // set h1 to current topic
+      $('#Thumbs').fadeIn('slow'); // fade in Thumbs feature
+      thumbsDisplayed = true;
+    });
     $('.thumbButton').click(function (e) {
       // get direction of thumb that was chosen
       let thumbChoice = $(this)[0].id;
@@ -35,10 +36,10 @@ class AudThumbs extends Component {
   };
 
   render () {
-    let thumbDisplay = store.getState().thumbs.displayed ? 'block' : 'none';
+    let thumbDisplay = this.props.thumbs.displayed ? 'block' : 'none';
     return (
       <div id="Thumbs" style={{display: thumbDisplay}}>
-        <span className="sidebar-header"><h2 id="AudThumbTopic">{store.getState().thumbs.topicName}</h2></span>
+        <span className="sidebar-header"><h2 id="AudThumbTopic">{this.props.thumbs.topicName}</h2></span>
         <img src='./img/1-thumb.png' className='thumbButton' id='up'/>
         <img src='./img/2-thumb.png' className='thumbButton' id='side'/>
         <img src='./img/3-thumb.png' className='thumbButton' id='down'/>
@@ -51,7 +52,8 @@ class AudThumbs extends Component {
 const mapStateToProps = (state) => {
   return {
     socket: state.activeLecture.socket,
-    userId: state.user.id
+    userId: state.user.id,
+    thumbs: state.thumbs
   };
 };
 

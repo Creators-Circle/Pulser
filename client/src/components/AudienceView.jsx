@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import store from '../store.jsx';
 import Navbar from './Navbar';
 
 class AudienceView extends Component {
@@ -23,7 +22,7 @@ class AudienceView extends Component {
       <div id="AudienceView">
         <Navbar/>
         <div id="SlidesContainer">
-          <Slides id="audienceSlides" class="slides" role="audience" title={store.getState().activeLecture.name}/>
+          <Slides id="audienceSlides" class="slides" role="audience" />
         </div>
         <div id="FeedbackBoxContainer">
           <FeedbackBox/>

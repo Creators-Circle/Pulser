@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import $ from 'jquery';
 import lectureCheck from '../util/lectureCheck';
 import { browserHistory } from 'react-router';
-import store from '../store.jsx';
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
   constructor () {

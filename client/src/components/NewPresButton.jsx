@@ -3,6 +3,7 @@ import picker from '../util/googlePicker'; // import Google Picker function
 import store from '../store.jsx';
 // button to select Google Slides presentation from user's Google Drive to present
 const NewPresButton = () => {
+  console.log('store in NewPresButton', store.getState());
   return (
     <button className='btn btn-blue side-presentation-btn' onClick={() => {
       // if picker has already been created, make it visible again

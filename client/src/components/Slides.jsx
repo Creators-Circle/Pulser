@@ -6,8 +6,9 @@ import '../css/Slides.css';
 class Slides extends Component {
 
   render () {
+    console.log('props in slides', this.props);
     let embedUrl = this.props.activeLecture.embedUrl;
-    let title = this.props.title || this.props.activeLecture.name;
+    let title = this.props.activeLecture.name;
     let id = this.props.activeLecture.presentationId;
     // return <iframe> with embedded google slides presentation
     // current default presentation is "Effective Pairing and Feedback"
