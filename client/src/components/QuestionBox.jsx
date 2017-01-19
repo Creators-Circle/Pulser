@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Question from './Question';
 import $ from 'jquery';
 import uuid from 'uuid/v1';
-import store from '../store.jsx';
 import '../css/QuestionBox.css';
 
 class QuestionBox extends Component {
@@ -14,20 +13,17 @@ class QuestionBox extends Component {
     let render = this.forceUpdate.bind(this);
     this.socket = props.activeLecture.socket;
     let role = props.role;
-    // store.subscribe(render);
     this.socket.on('upvoteQuestion', function (upvote, userId) {
       dispatch({
         type: 'UPVOTE',
         questionId: upvote.questionId
       });
-      // render();
     });
     this.socket.on('downvoteQuestion', function (downvote, userId) {
       dispatch({
         type: 'DOWNVOTE',
         questionId: downvote.questionId
       });
-      // render();
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -35,7 +31,6 @@ class QuestionBox extends Component {
         questionText: question.questionText,
         questionId: question.questionId
       });
-      // render();
     });
   };
 
@@ -84,8 +79,8 @@ class QuestionBox extends Component {
   }
 
   render () {
-    console.log('props in QuestionBox: ', this.props /*, 'state in QuestionBox', store.getState() */);
-    let questions = /* store.getState().questions; */ this.props.questions;
+    console.log('props in QuestionBox: ', this.props);
+    let questions = this.props.questions;
     let questionsObj = {};
     let displayQuestions = questions.enabled ? 'block' : 'none';
     Object.keys(questions).forEach((questionKey) => {
