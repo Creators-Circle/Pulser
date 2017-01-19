@@ -14,19 +14,20 @@ class QuestionBox extends Component {
     let render = this.forceUpdate.bind(this);
     this.socket = props.activeLecture.socket;
     let role = props.role;
+    // store.subscribe(render);
     this.socket.on('upvoteQuestion', function (upvote, userId) {
       dispatch({
         type: 'UPVOTE',
         questionId: upvote.questionId
       });
-      render();
+      // render();
     });
     this.socket.on('downvoteQuestion', function (downvote, userId) {
       dispatch({
         type: 'DOWNVOTE',
         questionId: downvote.questionId
       });
-      render();
+      // render();
     });
     this.socket.on('submitQuestion', function (question) {
       dispatch({
@@ -34,7 +35,7 @@ class QuestionBox extends Component {
         questionText: question.questionText,
         questionId: question.questionId
       });
-      render();
+      // render();
     });
   };
 
@@ -44,9 +45,7 @@ class QuestionBox extends Component {
     let clearQuestions = false;
     this.socket.on('questionToggle', function () {
       $('#QuestionBox, #QuestionBoxAudience').fadeToggle('slow');
-      dispatch({
-        type: 'TOGGLE_ENABLED'
-      });
+      dispatch({ type: 'TOGGLE_ENABLED' });
       if (clearQuestions) {
         $('.upvoteDownvote, questionText').detach();
         dispatch({type: 'CLEAR_QUESTIONS'});
@@ -85,7 +84,8 @@ class QuestionBox extends Component {
   }
 
   render () {
-    let questions = store.getState().questions;
+    console.log('props in QuestionBox: ', this.props /*, 'state in QuestionBox', store.getState() */);
+    let questions = /* store.getState().questions; */ this.props.questions;
     let questionsObj = {};
     let displayQuestions = questions.enabled ? 'block' : 'none';
     Object.keys(questions).forEach((questionKey) => {

@@ -47,8 +47,7 @@ class SummaryView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    summary: state.summary,
-    dispatch: state.dispatch
+    summary: state.summary
   };
 };
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Searchbar extends Component {
-
   // function to update the searchValue reducer whenever a user types in the searchbar
   search (event) {
     this.props.dispatch({

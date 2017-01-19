@@ -72,8 +72,7 @@ const mapStateToProps = (state) => {
   return {
     thumbs: state.thumbs,
     socket: state.activeLecture.socket,
-    lectureId: state.activeLecture.lectureId,
-    dispatch: state.dispatch
+    lectureId: state.activeLecture.lectureId
   };
 };
 

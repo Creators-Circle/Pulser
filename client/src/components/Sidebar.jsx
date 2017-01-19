@@ -132,8 +132,7 @@ class Sidebar extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    activeLecture: state.activeLecture,
-    dispatch: state.dispatch
+    activeLecture: state.activeLecture
   };
 };
 
