@@ -22,10 +22,4 @@ class Searchbar extends Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    dispatch: state.dispatch
-  };
-};
-
-export default connect(mapStateToProps)(Searchbar);
+export default connect()(Searchbar);
