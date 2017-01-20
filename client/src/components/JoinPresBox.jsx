@@ -78,6 +78,7 @@ class JoinPresBox extends Component {
         role: 'audience'
       };
       socket.emit('userLecture', lecture);
+      console.log('questions in presentationInfoResponse', questions);
       // Dispatch all of the questions and displayed boolean into the store
       // Enabled key:value will also be dispatched as a question but will not
       // effect the store
@@ -93,6 +94,7 @@ class JoinPresBox extends Component {
       });
 
       if (questions.enabled) {
+        console.log('TOGGLE_ENABLED fired because questions.enabled');
         dispatch({
           type: 'TOGGLE_ENABLED'
         });

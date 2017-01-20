@@ -24,14 +24,16 @@ class PresenterView extends Component {
 
   componentDidMount () {
     let socket = this.props.activeLecture.socket;
+    let props = this.props;
+    console.log('this.props in presenterView', this.props)
     socket.on('presentationInfoRequest', function () {
-      let lectureState = store.getState();
-      let presentationUrl = lectureState.activeLecture.embedUrl;
-      let presentationName = lectureState.activeLecture.name;
-      let presentationId = lectureState.activeLecture.presentationId;
-      let questions = lectureState.questions;
-      let thumbs = lectureState.thumbs;
-      let feedbackEnabled = lectureState.feedbackButton.displayed;
+      // let lectureState = store.getState();
+      let presentationUrl = props.activeLecture.embedUrl;
+      let presentationName = props.activeLecture.name;
+      let presentationId = props.activeLecture.presentationId;
+      let questions = store.getState().questions;
+      let thumbs = props.thumbs;
+      let feedbackEnabled = props.feedbackButton.displayed;
     // Listen for audience request for presentation URL
       // response with presentation URL
       socket.emit('presentationInfoResponse',
@@ -42,7 +44,7 @@ class PresenterView extends Component {
 
     socket.on('connected', () => {
       // Another User has connected
-      // Need to increment the audience store
+      // Need to increment the audience state
       this.setState({audience: ++this.state.audience});
     });
 
@@ -61,6 +63,7 @@ class PresenterView extends Component {
   };
 
   render () {
+    console.log('props in presenterView', this.props);
     return (
       <div className = 'presenter-view-container'>
         <Navbar/>
