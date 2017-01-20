@@ -10,9 +10,8 @@ class QuestionBox extends Component {
   constructor (props) {
     super();
     let dispatch = props.dispatch;
-    let render = this.forceUpdate.bind(this);
-    this.socket = props.activeLecture.socket;
     let role = props.role;
+    this.socket = props.activeLecture.socket;
     this.socket.on('upvoteQuestion', function (upvote, userId) {
       dispatch({
         type: 'UPVOTE',
@@ -58,7 +57,6 @@ class QuestionBox extends Component {
 
   submitQuestion () {
     // dispatch, submission to the db, socket to the presenter
-    let socket = this.props.activeLecture.socket;
     let dispatch = this.props.dispatch;
     let questionText = $('#questionInput').val();
     let lectureId = this.props.activeLecture.lectureId;
@@ -71,15 +69,13 @@ class QuestionBox extends Component {
       questionText: questionText
     };
     if (questionText.length > 0) {
-      socket.emit('submitQuestion', question);
+      this.socket.emit('submitQuestion', question);
       $('#questionInput').val('');
     } else {
-      console.log('Please enter a question.');
     }
   }
 
   render () {
-    console.log('props in QuestionBox: ', this.props);
     let questions = this.props.questions;
     let questionsObj = {};
     let displayQuestions = questions.enabled ? 'block' : 'none';

@@ -6,7 +6,6 @@ import '../css/Slides.css';
 class Slides extends Component {
 
   render () {
-    console.log('props in slides', this.props);
     let embedUrl = this.props.activeLecture.embedUrl;
     let title = this.props.activeLecture.name;
     let id = this.props.activeLecture.presentationId;
