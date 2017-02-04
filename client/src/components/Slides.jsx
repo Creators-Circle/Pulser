@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import $ from 'jquery';
+
 import '../css/Slides.css';
 
 class Slides extends Component {

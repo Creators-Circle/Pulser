@@ -158,6 +158,7 @@ app.post('/newRoom', function (req, res) {
     // Listen for presenter's response with presesntation URL
     socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled) {
       // Send response to audience member
+      console.log('presentationInfoResponse,', feedbackEnabled);
       nsp.emit('presentationInfoResponse', presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled);
     });
 

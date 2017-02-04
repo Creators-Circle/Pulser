@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import { connect } from 'react-redux';
+
+import { ToggleQuestionUpvoted } from '../util/actions';
 
 class Question extends Component {
 
@@ -18,10 +19,7 @@ class Question extends Component {
     // Emit an event that a question was upvoted or downvoted
     socket.emit(upvoteDownvote, question, userId);
     // Update the store to reflect that an upvote/downvote has been fired
-    this.props.dispatch({
-      type: 'TOGGLE_UPVOTED',
-      questionId: this.props.id
-    });
+    this.props.toggleQuestionUpvoted(this.props.id);
   };
 
   render () {
@@ -46,4 +44,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Question);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleQuestionUpvoted: (questionId) => {
+      dispatch(ToggleQuestionUpvoted(questionId));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

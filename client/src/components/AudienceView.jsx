@@ -1,17 +1,19 @@
-import FeedbackBox from './FeedbackBox';
-import Slides from './Slides';
 import React, { Component } from 'react';
-import $ from 'jquery';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+
+import FeedbackBox from './FeedbackBox';
+import Slides from './Slides';
 import Navbar from './Navbar';
+
+import { ChangeRole } from '../util/actions'
 
 class AudienceView extends Component {
 
   componentDidMount () {
     let socket = this.props.activeLecture.socket;
-    this.props.dispatch({type: 'CHANGE_ROLE', role: 'audience'});
-    socket.on('stopPresentation', function () {
+    this.props.changeRole('audience');
+    socket.on('stopPresentation', () => {
       socket.disconnect();
       browserHistory.push('/');
     });
@@ -38,4 +40,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AudienceView);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeRole: role => dispatch(ChangeRole(role))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AudienceView);

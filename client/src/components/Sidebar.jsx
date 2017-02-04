@@ -1,9 +1,14 @@
-import FeedbackBox from './FeedbackBox';
 import { Link } from 'react-router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import $ from 'jquery';
+
+import FeedbackBox from './FeedbackBox';
 import TitleBar from './TitleBar';
+
+import $ from 'jquery';
+import { ToggleThumbs, ClearThumbsTopic, ToggleFeedback } from '../util/actions';
+import store from '../store'
+
 import '../css/Sidebar.css';
 
 class Sidebar extends Component {
@@ -13,9 +18,11 @@ class Sidebar extends Component {
     let socket = this.props.activeLecture.socket;
     let lectureId = this.props.activeLecture.lectureId;
     let thumbsToggle = false; // not sure if this is gonna work???
-    let dispatch = this.props.dispatch;
     let guestsPermitted = false;
-
+    const toggleThumbs = this.props.toggleThumbs,
+    clearThumbsTopic = this.props.clearThumbsTopic,
+    toggleFeedback = this.props.toggleFeedback,
+    stopTimer = this.props.stopTimer;
     // When ComponentToggle is clicked:
       // ToggleFade the Component out of the PresenterView
       // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
@@ -27,9 +34,7 @@ class Sidebar extends Component {
     // Toggle in/out 'Thumbs' component
     $('#thumbsToggle').on('click', function () {
       // update the store as well
-      dispatch({
-        type: 'TOGGLE_DISPLAY_THUMBS'
-      });
+      toggleThumbs();
     // If thumbs component isn't toggled, then toggle it in
       if (!thumbsToggle) {
         $('#PresThumbs').fadeToggle('slow');
@@ -39,7 +44,7 @@ class Sidebar extends Component {
         $('#topic').val('');
         $('#topic, #setTopic').fadeIn();
         socket.emit('close thumbs'); // emit event to close all audience thumbs components
-        dispatch({type: 'CLEAR_TOPIC'}); // dispatch action to clear store of thumb data
+        clearThumbsTopic();
       }
       thumbsToggle = !thumbsToggle; // toggle boolean value of thumbsToggle
     });
@@ -53,7 +58,8 @@ class Sidebar extends Component {
     });
 
     $('#feedbackToggle').on('click', function () {
-      dispatch({type: 'TOGGLE_DISPLAY_FEEDBACK'});
+      toggleFeedback();
+      console.log('toggleFeedback', store.getState())
       socket.emit('feedbackToggle');
     });
 
@@ -68,7 +74,7 @@ class Sidebar extends Component {
 
     // Events that end the presentation should alert the audience and server
     $('#stopPresentation, #exit').on('click', () => {
-      this.props.stopTimer();
+      stopTimer();
       let endTime = new Date();
       let endLecture = {
         id: lectureId,
@@ -136,4 +142,18 @@ const mapStatetoProps = (state) => {
   };
 };
 
-export default connect(mapStatetoProps)(Sidebar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleThumbs: () => {
+      dispatch(ToggleThumbs());
+    },
+    clearThumbsTopic: () => {
+      dispatch(ClearThumbsTopic());
+    },
+    toggleFeedback: () => {
+      dispatch(ToggleFeedback());
+    }
+  };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Sidebar);

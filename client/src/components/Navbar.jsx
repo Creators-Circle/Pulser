@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
 import LogoutButton from './LogoutButton';
 import UserInfo from './UserInfo';
+
 import '../css/Navbar.css';
-import { Link } from 'react-router';
 
 class Navbar extends Component {
   render () {

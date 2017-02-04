@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../css/FeedbackBox.css';
+
 import FeedbackButton from './FeedbackButton';
 import QuestionBox from './QuestionBox';
 import AudThumbs from './AudThumbs';
+
+import '../css/FeedbackBox.css';
 
 class FeedbackBox extends Component {
   render () {

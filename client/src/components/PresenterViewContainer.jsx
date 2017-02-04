@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import PresenterView from './PresenterView';
+
 import $ from 'jquery';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
 
@@ -13,6 +15,11 @@ class PresenterViewContainer extends Component {
       duration: undefined,
       intervalId: ''
     };
+  }
+
+  componentDidMount () {
+    this.timer();
+    this.setState({intervalId: setInterval(this.timer.bind(this), 1000)});
   }
 
   timer () {
@@ -43,11 +50,6 @@ class PresenterViewContainer extends Component {
       return `0${time}`;
     }
     return time;
-  }
-
-  componentDidMount () {
-    this.timer();
-    this.setState({intervalId: setInterval(this.timer.bind(this), 1000)});
   }
 
   stopTimer () {

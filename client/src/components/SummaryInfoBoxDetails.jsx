@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import SummaryInfoBoxDetail from './SummaryInfoBoxDetail.jsx';
 
 class SummaryInfoBoxDetails extends Component {

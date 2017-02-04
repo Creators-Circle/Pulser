@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+
 import io from 'socket.io-client';
 import $ from 'jquery';
+
 import lectureCheck from '../util/lectureCheck';
-import { browserHistory } from 'react-router';
+
+import { AssignLectureId, 
+         CreateQuestion,
+         ToggleQuestions,
+         ToggleThumbs,
+         SetThumbsTopic,
+         ToggleFeedback
+       } from '../util/actions';
+
 // takes a unique id as input and renders AudienceView for specific presentation
 class JoinPresBox extends Component {
   constructor () {
@@ -43,7 +54,7 @@ class JoinPresBox extends Component {
     let socket = io(`/${lectureId}`);
 
     // Preserve the context of "this"
-    let dispatch = this.props.dispatch;
+    const props = this.props;
     let userId = this.props.user.id;
     let request = {
       // userId will not be used, yet, but may play a role later
@@ -62,14 +73,7 @@ class JoinPresBox extends Component {
     socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId,
       questions, thumbs, feedbackEnabled) {
       // Update store with presentation data and store socket reference
-      dispatch({
-        type: 'ASSIGN_LECTURE_ID',
-        lectureId: lectureId,
-        embedUrl: presentationUrl,
-        socket: socket,
-        name: presentationName,
-        presentationId: presentationId
-      });
+      props.assignLectureId(lectureId, presentationUrl, socket, presentationName, presentationId);
       let lecture = {
         id: lectureId,
         name: presentationName,
@@ -77,42 +81,28 @@ class JoinPresBox extends Component {
         userId: userId,
         role: 'audience'
       };
+      console.log(feedbackEnabled);
       socket.emit('userLecture', lecture);
       // Dispatch all of the questions and displayed boolean into the store
       // Enabled key:value will also be dispatched as a question but will not
       // effect the store
       Object.keys(questions).forEach((questionId) => {
         if (questionId !== 'enabled') {
-          dispatch({
-            type: 'CREATE_QUESTION',
-            questionId: questionId,
-            questionText: questions[questionId].questionText,
-            votes: questions[questionId].votes
-          });
+          props.createQuestion(questionId, questions[questionId].questionText, questions[questionId].votes);
         };
       });
 
       if (questions.enabled) {
-        dispatch({
-          type: 'TOGGLE_ENABLED'
-        });
+        props.toggleQuestions();
       }
       // dispatch thumbs and displayed boolean into the store
       if (thumbs.displayed) {
-        dispatch({
-          type: 'TOGGLE_DISPLAY_THUMBS'
-        });
-        dispatch({
-          type: 'SET_TOPIC',
-          topicId: thumbs.topicId,
-          topicName: thumbs.topicName
-        });
+        props.toggleThumbs();
+        props.setThumbsTopic(thumbs.topicId, thumbs.topicName);
       }
       // dispatch feedbackButton display boolean into the store
       if (!feedbackEnabled) {
-        dispatch({
-          type: 'TOGGLE_DISPLAY_FEEDBACK'
-        });
+        props.toggleFeedback();
       }
       socket.removeListener('presentationInfoResponse');
       // Redirect user to <AudienceView/>
@@ -138,4 +128,27 @@ class JoinPresBox extends Component {
   };
 };
 
-export default connect(state => state)(JoinPresBox);
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+  assignLectureId(lectureId, embedUrl, socket, name, presentationId){
+    dispatch(AssignLectureId(lectureId, embedUrl, socket, name, presentationId));
+  },
+  createQuestion(questionId, questionText, votes) {
+    dispatch(CreateQuestion(questionId, questionText, votes));
+  },
+  toggleQuestions() {
+    dispatch(ToggleQuestions());
+  },
+  toggleThumbs() {
+    dispatch(ToggleThumbs());
+  },
+  setThumbsTopic(id, name) {
+    dispatch(SetThumbsTopic(id, name));
+  },
+  toggleFeedback() {
+    dispatch(ToggleFeedback());
+  },
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(JoinPresBox);

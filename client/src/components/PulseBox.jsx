@@ -1,14 +1,37 @@
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
+
+import $ from 'jquery';
 import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
-import React, { Component } from 'react';
-import $ from 'jquery';
+import { IncrementPulse, DecrementPulse, AddClickToUser } from '../util/actions';
+
 import '../css/PulseBox.css';
 
 // define LineChart component from react-d3
 const LineChart = rd3.LineChart;
 // this component is for displaying the live visualization of users' feedback
 class PulseBox extends Component {
+
+  // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
+  componentWillMount () {
+    // Set keyword this
+    let socket = this.props.activeLecture.socket;
+    let startTime = this.props.startTime;
+    let addClickToUser = this.props.addClickToUser;
+    // Socket event handler for an audience click that updates the presenter's pulse graph x axis
+    socket.on('updatedPulse', (action, currTime) => {
+      // compute the time difference and pass it with the action
+      let time = timeDiffToMinutes(startTime, currTime);
+      if( action === 'INCREMENT' ) this.props.incrementPulse(time);
+      else if (action === 'DECREMENT') this.props.decrementPulse(time);
+    });
+    // Socket event handler for an audience click that updates that audience member's array of clicks in the store
+    socket.on('userClicked', (action, currTime, user) => {
+      let time = timeDiffToMinutes(startTime, currTime);
+      addClickToUser(time, user);
+    });
+  };
 
   render () {
     let currTime = new Date();
@@ -72,33 +95,6 @@ class PulseBox extends Component {
       </div>
     );
   }
-
-  // Add Socket.io listener for FeedbackButton increments (and subsequent decrements)
-  componentWillMount () {
-    // Set keyword this
-    let socket = this.props.activeLecture.socket;
-    let startTime = this.props.startTime;
-    let dispatch = this.props.dispatch;
-    // Socket event handler for an audience click that updates the presenter's pulse graph x axis
-    socket.on('updatedPulse', (action, currTime) => {
-      // compute the time difference and pass it with the action
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      // Dispatch either DECREMENT or INCREMENT action
-      dispatch({
-        type: action,
-        time: timeDifference
-      });
-    });
-    // Socket event handler for an audience click that updates that audience member's array of clicks in the store
-    socket.on('userClicked', (action, currTime, user) => {
-      let timeDifference = timeDiffToMinutes(startTime, currTime);
-      dispatch({
-        type: action,
-        time: timeDifference,
-        user: user
-      });
-    });
-  };
 };
 
 const mapStateToProps = (state) => {
@@ -108,4 +104,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(PulseBox);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    incrementPulse: (time) => dispatch(IncrementPulse(time)),
+    decrementPulse: (time) => dispatch(DecrementPulse(time)),
+    addClickToUser: (time, user) => dispatch(AddClickToUser(time, user))
+    };
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(PulseBox);

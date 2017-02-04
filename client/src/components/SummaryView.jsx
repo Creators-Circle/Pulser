@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import '../css/SummaryView.css';
-import getLectureSummary from '../util/getLectureSummary';
 import { connect } from 'react-redux';
+
 import SummaryLeftPane from './SummaryLeftPane';
 import SummaryRightPane from './SummaryRightPane';
 import Navbar from './Navbar';
+
+import getLectureSummary from '../util/getLectureSummary';
+import { UpdateSummary } from '../util/actions';
+
+import '../css/SummaryView.css';
 
 class SummaryView extends Component {
 
   componentWillMount () {
     let lectureId = this.props.params.lectureId;
     // once this component loads, it gets the summary from the server and store it to the store
-    getLectureSummary(lectureId, (summary) => {
-      this.props.dispatch({
-        type: 'UPDATE_SUMMARY',
-        summary: summary
-      });
-    });
+    getLectureSummary(lectureId, summary => this.props.updateSummary(summary));
   }
 
   render () {
@@ -51,4 +50,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SummaryView);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateSummary: (summary) => {
+      dispatch(UpdateSummary(summary));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SummaryView);

@@ -66,8 +66,6 @@
 Courtesy of http://asciiflow.com/
 */
 
-import $ from 'jquery';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -75,7 +73,7 @@ import DashboardView from './DashboardView';
 import GuestView from './GuestView';
 
 import getUserData from '../util/getUserData';
-import {StoreUser} from '../util/actions';
+import { StoreUser } from '../util/actions';
 
 import '../css/Button.css';
 import '../css/Auth.css';

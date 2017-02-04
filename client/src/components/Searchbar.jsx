@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { UpdateSearchValue } from '../util/actions';
+
 class Searchbar extends Component {
   // function to update the searchValue reducer whenever a user types in the searchbar
   search (event) {
-    this.props.dispatch({
-      type: 'UPDATE_SEARCH_VALUE',
-      value: event.target.value
-    });
+    this.props.updateSearchValue(event.target.value);
   }
 
   render () {
@@ -21,4 +20,12 @@ class Searchbar extends Component {
   };
 };
 
-export default connect()(Searchbar);
+const mapDispatchToProps = (value) => {
+  return {
+    updateSearchValue: (value) => {
+      dispatch(UpdateSearchValue(value));
+    }
+  };
+};
+
+export default connect(mapDispatchToProps)(Searchbar);

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PresPreviews from './PresPreviews';
 import SearchResults from './SearchResults';
+
 import '../css/Dashboard.css';
-import { connect } from 'react-redux';
 
 class DashMainContent extends Component {
 

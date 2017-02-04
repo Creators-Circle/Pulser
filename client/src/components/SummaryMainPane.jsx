@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import SummaryInfoBox from './SummaryInfoBox';
 import { connect } from 'react-redux';
+
+import SummaryInfoBox from './SummaryInfoBox';
 
 class SummaryMainPane extends Component {
 

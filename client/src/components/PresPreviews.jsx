@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import PresThumbnail from './PresThumbnail';
-import getUserLectures from '../util/getUserLectures';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import PresThumbnail from './PresThumbnail';
+
+import getUserLectures from '../util/getUserLectures';
+import { StoreUserLectures } from '../util/actions';
+
 class PresPreviews extends Component {
-// Currently loading multiple copies of PresThumbnail for testing.  Will refactor eventually with a forEach.
-  constructor (props) {
-    super();
-  }
   componentWillMount () {
-    // store all the lectures of a specific user in the store
-    getUserLectures((lectures) => {
-      this.props.dispatch({
-        type: 'STORE_USER_LECTURES',
-        lectures: lectures
-      });
-    });
+    // store all the lectures of the user in the store
+    getUserLectures(lectures => this.props.storeUserLectures(lectures));
   }
 
   render () {
@@ -31,7 +25,7 @@ class PresPreviews extends Component {
           {
             recentLectures.length > 0
               ? recentLectures.map((lecture, i) =>
-              <li className='slideThumb'>
+              <li key={i}className='slideThumb'>
                 <Link key={i} to={`/summary/${lecture.lecture_id}`}>
                   <PresThumbnail date = {lecture.date} name = {lecture.name} />
                 </Link>
@@ -73,4 +67,13 @@ const mapStatetoProps = (state) => {
     userLectures: state.userLectures
   };
 };
-export default connect(mapStatetoProps)(PresPreviews) ;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    storeUserLectures: (lectures) => {
+      dispatch(StoreUserLectures(lectures));
+    }
+  };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(PresPreviews) ;

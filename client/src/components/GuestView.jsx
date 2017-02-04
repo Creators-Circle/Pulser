@@ -1,9 +1,10 @@
-import FeedbackBox from './FeedbackBox';
 import React, { Component } from 'react';
-import LogoutButton from './LogoutButton';
-import $ from 'jquery';
+
+import FeedbackBox from './FeedbackBox';
 import JoinPresBox from './JoinPresBox';
+import LogoutButton from './LogoutButton';
 import Navbar from './Navbar';
+
 import '../css/GuestView.css';
 
 class GuestView extends Component {

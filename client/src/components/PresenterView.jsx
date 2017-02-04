@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import store from '../store.jsx';
+
+import LogoutButton from './LogoutButton';
+import Navbar from './Navbar';
+import PresThumbs from './PresThumbs';
 import PulseBox from './PulseBox';
+import QuestionBox from './QuestionBox';
 import Slides from './Slides';
-import $ from 'jquery';
-import '../css/Presentation.css';
 import SummaryView from './SummaryView';
 import Sidebar from './Sidebar';
-import LogoutButton from './LogoutButton';
 import TitleBar from './TitleBar';
-import QuestionBox from './QuestionBox';
-import PresThumbs from './PresThumbs';
-import store from '../store.jsx';
-import Navbar from './Navbar';
+
+import $ from 'jquery';
+
+import '../css/Presentation.css';
 
 class PresenterView extends Component {
   constructor (props) {
@@ -20,22 +24,16 @@ class PresenterView extends Component {
     this.state = {
       audience: 0
     };
-  }
-
-  // componentDidMount () {
-
-  render () {
-    let socket = this.props.activeLecture.socket;
-    let props = this.props;
+    let socket = props.activeLecture.socket;
     socket.on('presentationInfoRequest', function () {
-      // let lectureState = store.getState();
       let presentationUrl = props.activeLecture.embedUrl;
       let presentationName = props.activeLecture.name;
       let presentationId = props.activeLecture.presentationId;
       let questions = store.getState().questions;
       let thumbs = store.getState().thumbs;
-      let feedbackEnabled = props.feedbackButton.displayed;
-    // Listen for audience request for presentation URL
+      console.log(props, 'in presenterview render');
+      let feedbackEnabled = store.getState().feedbackButton.displayed;
+      // Listen for audience request for presentation URL
       // response with presentation URL
       socket.emit('presentationInfoResponse',
         presentationUrl, presentationName, presentationId,
@@ -61,6 +59,9 @@ class PresenterView extends Component {
     socket.on('stopPresentation', function () {
       socket.disconnect();
     });
+  }
+   
+  render () {
 
     return (
       <div className = 'presenter-view-container'>

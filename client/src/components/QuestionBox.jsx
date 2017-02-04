@@ -1,50 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Question from './Question';
+
 import $ from 'jquery';
 import uuid from 'uuid/v1';
+import { UpvoteQuestion, 
+         DownvoteQuestion,
+         CreateQuestion,
+         ToggleQuestions,
+         ClearQuestions 
+       } from '../util/actions';
+
 import '../css/QuestionBox.css';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component
   constructor (props) {
     super();
-    let dispatch = props.dispatch;
     let role = props.role;
+    const upvoteQuestion = props.upvoteQuestion,
+    downvoteQuestion = props.downvoteQuestion,
+    createQuestion = props.createQuestion;
     this.socket = props.activeLecture.socket;
-    this.socket.on('upvoteQuestion', function (upvote, userId) {
-      dispatch({
-        type: 'UPVOTE',
-        questionId: upvote.questionId
-      });
-    });
-    this.socket.on('downvoteQuestion', function (downvote, userId) {
-      dispatch({
-        type: 'DOWNVOTE',
-        questionId: downvote.questionId
-      });
-    });
-    this.socket.on('submitQuestion', function (question) {
-      dispatch({
-        type: 'CREATE_QUESTION',
-        questionText: question.questionText,
-        questionId: question.questionId
-      });
-    });
+    this.socket.on('upvoteQuestion', 
+      (upvote, userId) => upvoteQuestion(upvote.questionId)
+    );
+    this.socket.on('downvoteQuestion', 
+      (downvote, userId) => downvoteQuestion(downvote.questionId)
+    );
+    this.socket.on('submitQuestion', 
+      question => createQuestion(question.questionId, question.questionText, null)
+    );
   };
 
   componentDidMount () {
     let gottenPresentationInformation = true;
-    let dispatch = this.props.dispatch;
-    let clearQuestions = false;
+    let shouldClearQuestions = false;
+    const toggleQuestions = this.props.toggleQuestions,
+    clearQuestions = this.props.clearQuestions;
     this.socket.on('questionToggle', function () {
       $('#QuestionBox, #QuestionBoxAudience').fadeToggle('slow');
-      dispatch({ type: 'TOGGLE_ENABLED' });
-      if (clearQuestions) {
+      toggleQuestions();
+      if (shouldClearQuestions) {
         $('.upvoteDownvote, questionText').detach();
-        dispatch({type: 'CLEAR_QUESTIONS'});
+        clearQuestions();
       }
-      clearQuestions = !clearQuestions;
+      shouldClearQuestions = !shouldClearQuestions;
     });
 
     $('#questionInput').keypress(function (e) {
@@ -123,4 +125,24 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(QuestionBox);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    upvoteQuestion: (questionId) => {
+      dispatch(UpvoteQuestion(questionId));
+    },
+    downvoteQuestion: (questionId) => {
+      dispatch(DownvoteQuestion(questionId));
+    },
+    createQuestion: (questionId, questionText, votes) => {
+      dispatch(CreateQuestion(questionId, questionText, votes));
+    },
+    toggleQuestions: () => {
+      dispatch(ToggleQuestions());
+    },
+    clearQuestions: () => {
+      dispatch(ClearQuestions());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionBox);

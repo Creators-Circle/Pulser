@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import uuid from 'uuid/v1';
 import $ from 'jquery';
+import { ThumbClicked, SetThumbsTopic } from '../util/actions';
+
 import '../css/PresThumbs.css';
 
 class PresThumbs extends Component {
 
   componentDidMount () {
     // retain 'this' context
-    let dispatch = this.props.dispatch;
+    let thumbClicked = this.props.thumbClicked;
     let render = this.forceUpdate.bind(this);
     // socket listener for when an audience member clicks on a thumb
     this.props.socket.on('thumb clicked', function (thumbChoice) {
       // increment the total tally in the store for the thumb chosen
-      dispatch({type: 'THUMB_CLICKED', thumbChoice: thumbChoice});
+      thumbClicked(thumbChoice);
       // trigger a re-render
       render();
     });
@@ -33,7 +36,7 @@ class PresThumbs extends Component {
     let topic = $('#topic').val();
     let lectureId = this.props.lectureId;
     socket.emit('submit thumbTopic', topicId, topic, lectureId);
-    this.props.dispatch({type: 'SET_TOPIC', topicId: topicId, topicName: topic});
+    this.props.setThumbsTopic(topicId, topic);
     // add thumb title, remove thumb form
     $('#topicTitle:first-child').append($('#topic').val());
     $('#topic, #setTopic').fadeOut();
@@ -76,4 +79,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(PresThumbs);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    thumbClicked: thumbChoice => dispatch(ThumbClicked(thumbChoice)),
+    setThumbsTopic: (id, name) => {
+      dispatch(SetThumbsTopic(id, name));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PresThumbs);

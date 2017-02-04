@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PresThumbnail from './PresThumbnail';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
+import PresThumbnail from './PresThumbnail';
 
 class SearchResults extends Component {
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import SummaryMainPane from './SummaryMainPane';
 import SummaryComment from './SummaryComment';
+
 import rd3 from 'rd3';
-import { connect } from 'react-redux';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
+
 const LineChart = rd3.LineChart;
 
 class SummaryRightPane extends Component {

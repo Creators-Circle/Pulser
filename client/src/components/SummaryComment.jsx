@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import postComment from '../util/postComment.js';
 
 class SummaryComment extends Component {
@@ -22,10 +23,12 @@ class SummaryComment extends Component {
       this.setState({toggleComment: false});
       this.props.upDateComment(userId, this.state.newComment);
     });
-  }
+  };
+
   handleChange (event) {
     this.setState({newComment: event.target.value});
   }
+  
   render () {
     // filter user by the either presenter or selected user
     if (this.props.users) {
