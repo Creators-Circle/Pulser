@@ -20,7 +20,7 @@ class AudThumbs extends Component {
     });
     $('.thumbButton').click((e) => {
       // get direction of thumb that was chosen
-      const thumbChoice = $(this)[0].id;
+      const thumbChoice = e.currentTarget.attributes.id.nodeValue;
       // emit choice to the server / presenter / database
       socket.emit('thumb clicked', currentTopicId, userId, thumbChoice);
       // fade out component and set 'displayed' property to false in the store

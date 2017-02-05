@@ -10,7 +10,6 @@ import '../css/PresThumbs.css';
 class PresThumbs extends Component {
 
   componentDidMount () {
-    // retain 'this' context
     const thumbClicked = this.props.thumbClicked;
     const render = this.forceUpdate.bind(this);
     // socket listener for when an audience member clicks on a thumb
@@ -81,7 +80,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    thumbClicked: thumbChoice => dispatch(ThumbClicked(thumbChoice)),
+    thumbClicked: (thumbChoice) => {
+      dispatch(ThumbClicked(thumbChoice));
+    },
     setThumbsTopic: (id, name) => {
       dispatch(SetThumbsTopic(id, name));
     }

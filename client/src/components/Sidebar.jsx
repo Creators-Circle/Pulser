@@ -14,7 +14,6 @@ import '../css/Sidebar.css';
 class Sidebar extends Component {
 
   componentDidMount () {
-    // Capture the this context
     const socket = this.props.activeLecture.socket;
     const lectureId = this.props.activeLecture.lectureId;
     let thumbsToggle = false; // not sure if this is gonna work???
