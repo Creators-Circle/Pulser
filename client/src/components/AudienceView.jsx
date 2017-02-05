@@ -6,12 +6,12 @@ import FeedbackBox from './FeedbackBox';
 import Slides from './Slides';
 import Navbar from './Navbar';
 
-import { ChangeRole } from '../util/actions'
+import { ChangeRole } from '../util/actions';
 
 class AudienceView extends Component {
 
   componentDidMount () {
-    let socket = this.props.activeLecture.socket;
+    const socket = this.props.activeLecture.socket;
     this.props.changeRole('audience');
     socket.on('stopPresentation', () => {
       socket.disconnect();

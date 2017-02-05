@@ -22,14 +22,14 @@ class TitleBar extends Component {
 
   changeTitle () {
     // update the activeLecture
-    let lecture = {
+    const lecture = {
       lectureId: this.props.activeLecture.lectureId,
       name: this.state.title || 'untitled',
       presentationId: this.props.activeLecture.presentationId,
       embedUrl: this.props.activeLecture.embedUrl,
       socket: this.props.activeLecture.socket
     };
-    
+
     this.props.updateTitle(lecture);
     // send a socket event to the server to update the database
     lecture.socket.emit('updateTitle', lecture.lectureId, lecture.name);

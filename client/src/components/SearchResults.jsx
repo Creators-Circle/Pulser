@@ -7,9 +7,9 @@ import PresThumbnail from './PresThumbnail';
 class SearchResults extends Component {
 
   render () {
-    let search = this.props.search.toLowerCase();
+    const search = this.props.search.toLowerCase();
     // filter the lectures by user input
-    let searchLectures = this.props.userLectures.filter(lecture =>
+    const searchLectures = this.props.userLectures.filter(lecture =>
       lecture.name.toLowerCase().includes(search)
     );
     return (

@@ -24,15 +24,14 @@ class PresenterView extends Component {
     this.state = {
       audience: 0
     };
-    let socket = props.activeLecture.socket;
-    socket.on('presentationInfoRequest', function () {
-      let presentationUrl = props.activeLecture.embedUrl;
-      let presentationName = props.activeLecture.name;
-      let presentationId = props.activeLecture.presentationId;
-      let questions = store.getState().questions;
-      let thumbs = store.getState().thumbs;
-      console.log(props, 'in presenterview render');
-      let feedbackEnabled = store.getState().feedbackButton.displayed;
+    const socket = props.activeLecture.socket;
+    socket.on('presentationInfoRequest', () => {
+      const presentationUrl = props.activeLecture.embedUrl;
+      const presentationName = props.activeLecture.name;
+      const presentationId = props.activeLecture.presentationId;
+      const questions = store.getState().questions;
+      const thumbs = store.getState().thumbs;
+      const feedbackEnabled = store.getState().feedbackButton.displayed;
       // Listen for audience request for presentation URL
       // response with presentation URL
       socket.emit('presentationInfoResponse',
@@ -56,13 +55,12 @@ class PresenterView extends Component {
       }
     });
 
-    socket.on('stopPresentation', function () {
+    socket.on('stopPresentation', () => {
       socket.disconnect();
     });
   }
-   
-  render () {
 
+  render () {
     return (
       <div className = 'presenter-view-container'>
         <Navbar/>

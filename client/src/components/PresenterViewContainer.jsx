@@ -24,23 +24,22 @@ class PresenterViewContainer extends Component {
 
   timer () {
     // set the current date
-    let time = new Date();
-    let hours = time.getHours().toString();
-    let minutes = time.getMinutes().toString();
-    let seconds = time.getSeconds().toString();
+    const time = new Date();
+    const hours = time.getHours().toString();
+    const minutes = time.getMinutes().toString();
+    const seconds = time.getSeconds().toString();
     // format the current time
-    let clock = `${this.parseTime(hours)} : ${this.parseTime(minutes)}`;
+    const clock = `${this.parseTime(hours)} : ${this.parseTime(minutes)}`;
     // check the difference of start time and current time
-    let diff = Math.abs(timeDiffToMinutes(this.startTime, time));
+    const diff = Math.abs(timeDiffToMinutes(this.startTime, time));
     this.setState({duration: this.convertDuration(diff)});
     this.setState({time: clock});
   }
   // function for computing the duration
   convertDuration (minutes) {
-    let hours, min, sec;
-    hours = Math.round(minutes / 60);
-    min = Math.round(minutes % 60);
-    sec = Math.round((minutes * 60) % 60);
+    const hours = Math.round(minutes / 60);
+    const min = Math.round(minutes % 60);
+    const sec = Math.round((minutes * 60) % 60);
     return `${this.parseTime(hours)} : ${this.parseTime(min)} : ${this.parseTime(sec)}`;
   }
   // function for formating time to a 2-digit number

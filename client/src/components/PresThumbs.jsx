@@ -11,10 +11,10 @@ class PresThumbs extends Component {
 
   componentDidMount () {
     // retain 'this' context
-    let thumbClicked = this.props.thumbClicked;
-    let render = this.forceUpdate.bind(this);
+    const thumbClicked = this.props.thumbClicked;
+    const render = this.forceUpdate.bind(this);
     // socket listener for when an audience member clicks on a thumb
-    this.props.socket.on('thumb clicked', function (thumbChoice) {
+    this.props.socket.on('thumb clicked', (thumbChoice) => {
       // increment the total tally in the store for the thumb chosen
       thumbClicked(thumbChoice);
       // trigger a re-render
@@ -22,7 +22,7 @@ class PresThumbs extends Component {
     });
 
     // handles enter key being pressed while topic input field is selected
-    $('#topic').keypress(function (e) {
+    $('#topic').keypress((e) => {
       if (e.which === 13) {
         $('#setTopic').click();
         return false;
@@ -31,10 +31,10 @@ class PresThumbs extends Component {
   }
 
   submitTopic () {
-    let socket = this.props.socket;
-    let topicId = uuid();
-    let topic = $('#topic').val();
-    let lectureId = this.props.lectureId;
+    const socket = this.props.socket;
+    const topicId = uuid();
+    const topic = $('#topic').val();
+    const lectureId = this.props.lectureId;
     socket.emit('submit thumbTopic', topicId, topic, lectureId);
     this.props.setThumbsTopic(topicId, topic);
     // add thumb title, remove thumb form

@@ -9,7 +9,7 @@ import '../css/FeedbackBox.css';
 
 class FeedbackBox extends Component {
   render () {
-    let title = this.props.title || this.props.activeLecture.name;
+    const title = this.props.title || this.props.activeLecture.name;
     return (
       <div id="FeedbackBox">
         <div className="lecture-title"><h1>{title}</h1></div>

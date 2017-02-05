@@ -12,7 +12,8 @@ module.exports = {
       "prefer-const":["error", {
         "ignoreReadBeforeAssign": false
       }],
-      "prefer-arrow-callback": 2
+      "prefer-arrow-callback": 2,
+      "no-var": 2
    }    
 };
 

@@ -6,10 +6,10 @@ import timeDiffToMinutes from '../util/timeDiffToMinutes.js';
 class PresThumbnail extends Component {
 
   render () {
-    let currDate = new Date();
-    let lectureDate = new Date(this.props.date);
+    const currDate = new Date();
+    const lectureDate = new Date(this.props.date);
     // if the lecture's date is more than 7 days ago, format like 'Sun, Jan 1 2017 8:52 AM' else 'Today at 2:00pm'
-    let formatDate = Math.abs(timeDiffToMinutes(currDate, lectureDate)) > 10080
+    const formatDate = Math.abs(timeDiffToMinutes(currDate, lectureDate)) > 10080
       ? moment(lectureDate).format('llll') : moment(lectureDate).calendar();
     return (
         <div className='thumbnails'>

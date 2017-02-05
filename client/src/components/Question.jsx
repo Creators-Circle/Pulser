@@ -6,13 +6,13 @@ import { ToggleQuestionUpvoted } from '../util/actions';
 class Question extends Component {
 
   toggleUpvote () {
-    let userId = this.props.user.id;
-    let questionId = this.props.id;
-    let socket = this.props.activeLecture.socket;
+    const userId = this.props.user.id;
+    const questionId = this.props.id;
+    const socket = this.props.activeLecture.socket;
     // toggle the upvoted property in store for this question
-    let upvoteDownvote = this.props.questions[this.props.id].upvoted ? 'downvoteQuestion' : 'upvoteQuestion';
+    const upvoteDownvote = this.props.questions[this.props.id].upvoted ? 'downvoteQuestion' : 'upvoteQuestion';
     // Build an upvote object to pass to the database
-    let question = {
+    const question = {
       userId: userId,
       questionId: questionId
     };
@@ -23,7 +23,7 @@ class Question extends Component {
   };
 
   render () {
-    let upvoteImg = this.props.questions[this.props.id].upvoted ? './img/arrows_up-green.svg' : './img/arrows_up.svg';
+    const upvoteImg = this.props.questions[this.props.id].upvoted ? './img/arrows_up-green.svg' : './img/arrows_up.svg';
     return (
       <div className='question' onClick={this.toggleUpvote.bind(this)}>
         <div className='voteContainer'>

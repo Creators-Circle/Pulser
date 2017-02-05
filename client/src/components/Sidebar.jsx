@@ -7,7 +7,7 @@ import TitleBar from './TitleBar';
 
 import $ from 'jquery';
 import { ToggleThumbs, ClearThumbsTopic, ToggleFeedback } from '../util/actions';
-import store from '../store'
+import store from '../store';
 
 import '../css/Sidebar.css';
 
@@ -15,24 +15,24 @@ class Sidebar extends Component {
 
   componentDidMount () {
     // Capture the this context
-    let socket = this.props.activeLecture.socket;
-    let lectureId = this.props.activeLecture.lectureId;
+    const socket = this.props.activeLecture.socket;
+    const lectureId = this.props.activeLecture.lectureId;
     let thumbsToggle = false; // not sure if this is gonna work???
     let guestsPermitted = false;
-    const toggleThumbs = this.props.toggleThumbs,
-    clearThumbsTopic = this.props.clearThumbsTopic,
-    toggleFeedback = this.props.toggleFeedback,
-    stopTimer = this.props.stopTimer;
+    const toggleThumbs = this.props.toggleThumbs;
+    const clearThumbsTopic = this.props.clearThumbsTopic;
+    const toggleFeedback = this.props.toggleFeedback;
+    const stopTimer = this.props.stopTimer;
     // When ComponentToggle is clicked:
-      // ToggleFade the Component out of the PresenterView
-      // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
+    // ToggleFade the Component out of the PresenterView
+    // And/or emit a ComponentToggle event to tell the AudienceView to toggleFade the Component
 
-    $('#questionToggle').on('click', function () {
+    $('#questionToggle').on('click', () => {
       socket.emit('questionToggle');
     });
 
     // Toggle in/out 'Thumbs' component
-    $('#thumbsToggle').on('click', function () {
+    $('#thumbsToggle').on('click', () => {
       // update the store as well
       toggleThumbs();
     // If thumbs component isn't toggled, then toggle it in
@@ -49,22 +49,21 @@ class Sidebar extends Component {
       thumbsToggle = !thumbsToggle; // toggle boolean value of thumbsToggle
     });
 
-    $('#timerToggle').on('click', function () {
+    $('#timerToggle').on('click', () => {
       $('.timer').fadeToggle('slow');
     });
 
-    $('#pulseToggle').on('click', function () {
+    $('#pulseToggle').on('click', () => {
       $('#PulseBox').fadeToggle('slow');
     });
 
-    $('#feedbackToggle').on('click', function () {
+    $('#feedbackToggle').on('click', () => {
       toggleFeedback();
-      console.log('toggleFeedback', store.getState())
       socket.emit('feedbackToggle');
     });
 
-    $('#guestsToggle').on('click', function () {
-      let lecture = {
+    $('#guestsToggle').on('click', () => {
+      const lecture = {
         lectureId: lectureId,
         guestsPermitted: !guestsPermitted
       };
@@ -75,8 +74,8 @@ class Sidebar extends Component {
     // Events that end the presentation should alert the audience and server
     $('#stopPresentation, #exit').on('click', () => {
       stopTimer();
-      let endTime = new Date();
-      let endLecture = {
+      const endTime = new Date();
+      const endLecture = {
         id: lectureId,
         endTime: endTime
       };
@@ -85,7 +84,7 @@ class Sidebar extends Component {
   }
 
   render () {
-    let embedUrl = this.props.activeLecture.embedUrl;
+    const embedUrl = this.props.activeLecture.embedUrl;
     return (
       <div id="Sidebar">
         <ul>

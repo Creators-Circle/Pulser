@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 import lectureCheck from '../util/lectureCheck';
 
-import { AssignLectureId, 
+import { AssignLectureId,
          CreateQuestion,
          ToggleQuestions,
          ToggleThumbs,
@@ -25,7 +25,7 @@ class JoinPresBox extends Component {
 
   componentDidMount () {
     // handles enter key being pressed while join input field is selected
-    $('#join, #joinInputGuest').keypress(function (e) {
+    $('#join, #joinInputGuest').keypress((e) => {
       if (e.which === 13) {
         $('#joinButton').click();
         return false;
@@ -35,7 +35,7 @@ class JoinPresBox extends Component {
 
   joinPresentation () {
     // Get lectureId from input box above join button
-    let lectureId = this.props.role === 'guest' ? $('#joinInputGuest').val() : $('#join').val();
+    const lectureId = this.props.role === 'guest' ? $('#joinInputGuest').val() : $('#join').val();
 
     // check if lectureId exists and increment failcount if it fails.
       // Will logout on 10 failed login.
@@ -51,12 +51,12 @@ class JoinPresBox extends Component {
     });
 
     // Subscribe to custom namespace based on lectureId
-    let socket = io(`/${lectureId}`);
+    const socket = io(`/${lectureId}`);
 
     // Preserve the context of "this"
     const props = this.props;
-    let userId = this.props.user.id;
-    let request = {
+    const userId = this.props.user.id;
+    const request = {
       // userId will not be used, yet, but may play a role later
       // with more advanced permissions
       userId: this.props.user.id,
@@ -64,53 +64,51 @@ class JoinPresBox extends Component {
       lectureId: lectureId
     };
     // Alert the guest that they aren't allowed to join a given presentation
-    socket.on('notAllowed', function () {
+    socket.on('notAllowed', () => {
       $('#joinBox, #joinInputGuestContainer').append(`<h1>Guests not permitted to join ${lectureId}</h1>`);
       socket.disconnect();
     });
 
     // Listen for presentation URL response from presenter
-    socket.on('presentationInfoResponse', function (presentationUrl, presentationName, presentationId,
-      questions, thumbs, feedbackEnabled) {
-      // Update store with presentation data and store socket reference
-      props.assignLectureId(lectureId, presentationUrl, socket, presentationName, presentationId);
-      let lecture = {
-        id: lectureId,
-        name: presentationName,
-        presentationId: presentationId,
-        userId: userId,
-        role: 'audience'
-      };
-      console.log(feedbackEnabled);
-      socket.emit('userLecture', lecture);
-      // Dispatch all of the questions and displayed boolean into the store
-      // Enabled key:value will also be dispatched as a question but will not
-      // effect the store
-      Object.keys(questions).forEach((questionId) => {
-        if (questionId !== 'enabled') {
-          props.createQuestion(questionId, questions[questionId].questionText, questions[questionId].votes);
+    socket.on('presentationInfoResponse',
+      (presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled) => {
+        // Update store with presentation data and store socket reference
+        props.assignLectureId(lectureId, presentationUrl, socket, presentationName, presentationId);
+        const lecture = {
+          id: lectureId,
+          name: presentationName,
+          presentationId: presentationId,
+          userId: userId,
+          role: 'audience'
         };
+        socket.emit('userLecture', lecture);
+        // Dispatch all of the questions and displayed boolean into the store
+        // Enabled key:value will also be dispatched as a question but will not
+        // effect the store
+        Object.keys(questions).forEach((questionId) => {
+          if (questionId !== 'enabled') {
+            props.createQuestion(questionId, questions[questionId].questionText, questions[questionId].votes);
+          };
+        });
+        if (questions.enabled) {
+          props.toggleQuestions();
+        }
+        // dispatch thumbs and displayed boolean into the store
+        if (thumbs.displayed) {
+          props.toggleThumbs();
+          props.setThumbsTopic(thumbs.topicId, thumbs.topicName);
+        }
+        // dispatch feedbackButton display boolean into the store
+        if (!feedbackEnabled) {
+          props.toggleFeedback();
+        }
+        socket.removeListener('presentationInfoResponse');
+        // Redirect user to <AudienceView/>
+        browserHistory.push('/audience');
       });
-
-      if (questions.enabled) {
-        props.toggleQuestions();
-      }
-      // dispatch thumbs and displayed boolean into the store
-      if (thumbs.displayed) {
-        props.toggleThumbs();
-        props.setThumbsTopic(thumbs.topicId, thumbs.topicName);
-      }
-      // dispatch feedbackButton display boolean into the store
-      if (!feedbackEnabled) {
-        props.toggleFeedback();
-      }
-      socket.removeListener('presentationInfoResponse');
-      // Redirect user to <AudienceView/>
-      browserHistory.push('/audience');
-    });
     // Emit request to server (and then to presenter) for presention URL
     socket.emit('presentationInfoRequest', request);
-  }
+  };
 
   render () {
     return this.props.role === 'guest'
@@ -131,24 +129,24 @@ class JoinPresBox extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  assignLectureId(lectureId, embedUrl, socket, name, presentationId){
+  assignLectureId (lectureId, embedUrl, socket, name, presentationId) {
     dispatch(AssignLectureId(lectureId, embedUrl, socket, name, presentationId));
   },
-  createQuestion(questionId, questionText, votes) {
+  createQuestion (questionId, questionText, votes) {
     dispatch(CreateQuestion(questionId, questionText, votes));
   },
-  toggleQuestions() {
+  toggleQuestions () {
     dispatch(ToggleQuestions());
   },
-  toggleThumbs() {
+  toggleThumbs () {
     dispatch(ToggleThumbs());
   },
-  setThumbsTopic(id, name) {
+  setThumbsTopic (id, name) {
     dispatch(SetThumbsTopic(id, name));
   },
-  toggleFeedback() {
+  toggleFeedback () {
     dispatch(ToggleFeedback());
-  },
+  }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(JoinPresBox);
+export default connect(mapStateToProps, mapDispatchToProps)(JoinPresBox);

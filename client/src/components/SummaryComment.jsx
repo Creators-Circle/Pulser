@@ -28,11 +28,11 @@ class SummaryComment extends Component {
   handleChange (event) {
     this.setState({newComment: event.target.value});
   }
-  
+
   render () {
     // filter user by the either presenter or selected user
     if (this.props.users) {
-      let user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
+      const user = !this.props.userId ? this.props.users.filter(user => user.role === 'presenter')[0]
         : this.props.users.filter(user => user.user_id === this.props.userId)[0];
       return (
         <div className='summary-comment'>

@@ -8,7 +8,7 @@ class SummaryInfoBox extends Component {
       showDetails: false
     };
   };
-  
+
   toggleView (toggle) {
     this.setState({showDetails: toggle});
   };

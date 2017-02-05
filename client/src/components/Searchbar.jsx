@@ -20,7 +20,7 @@ class Searchbar extends Component {
   };
 };
 
-const mapDispatchToProps = (value) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     updateSearchValue: (value) => {
       dispatch(UpdateSearchValue(value));

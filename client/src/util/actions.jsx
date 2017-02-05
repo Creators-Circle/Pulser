@@ -61,22 +61,22 @@ export const ToggleQuestionUpvoted = (questionId) => {
   return {
     type: 'TOGGLE_UPVOTED',
     questionId: questionId
-  }
-}
+  };
+};
 
 export const UpvoteQuestion = (questionId) => {
   return {
     type: 'UPVOTE',
-    questionId: questionId,
-  }
-}
+    questionId: questionId
+  };
+};
 
 export const DownvoteQuestion = (questionId) => {
   return {
     type: 'DOWNVOTE',
-    questionId: questionId,
-  }
-}
+    questionId: questionId
+  };
+};
 /** thumb actions **/
 export const ToggleThumbs = () => {
   return {
@@ -129,8 +129,7 @@ export const DecrementPulse = (time) => {
 export const AddClickToUser = (time, user) => {
   return {
     type: 'ADDCLICKTOUSER',
-    time: time,
-
+    time: time
   };
 };
 
@@ -138,10 +137,10 @@ export const AddClickToUser = (time, user) => {
 
 export const UpdateSearchValue = (value) => {
   return {
-    type: UPDATE_SEARCH_VALUE,
+    type: 'UPDATE_SEARCH_VALUE',
     value: value
-  }
-}
+  };
+};
 
 /* summary actions */
 

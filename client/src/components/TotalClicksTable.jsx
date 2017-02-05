@@ -28,7 +28,7 @@ class TotalClicksTable extends Component {
 
   upDateComment (id) {
     getComment(this.props.summary.lecture[0].id, id, (data) => {
-      let comment = data[0].comment;
+      const comment = data[0].comment;
       this.setState({comment: comment});
     });
   }
