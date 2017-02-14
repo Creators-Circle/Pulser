@@ -1,9 +1,10 @@
 // reducer for storing lecture's summary
 
 const summary = (state = {}, action) => {
+  console.log(action);
   switch (action.type) {
     case 'UPDATE_SUMMARY':
-      return action.summary;
+      return action.payload;
     default:
       return state;
   }

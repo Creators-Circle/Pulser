@@ -13,9 +13,11 @@ import '../css/SummaryView.css';
 class SummaryView extends Component {
 
   componentWillMount () {
+    console.log(this.props, 'in SummaryView componentWillMount');
     const lectureId = this.props.params.lectureId;
     // once this component loads, it gets the summary from the server and store it to the store
-    getLectureSummary(lectureId, summary => this.props.updateSummary(summary));
+    // getLectureSummary(lectureId, summary => this.props.updateSummary(summary));
+    this.props.updateSummary(lectureId);
   }
 
   render () {
@@ -52,8 +54,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateSummary: (summary) => {
-      dispatch(UpdateSummary(summary));
+    updateSummary: (lectureId) => {
+      dispatch(UpdateSummary(lectureId));
     }
   };
 };

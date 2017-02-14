@@ -1,3 +1,5 @@
+import { getLectureSummary } from './getLectureSummary';
+import $ from 'jquery';
 /** user actions **/
 export const StoreUser = (name, email, avatar, id) => {
   return {
@@ -144,10 +146,11 @@ export const UpdateSearchValue = (value) => {
 
 /* summary actions */
 
-export const UpdateSummary = (summary) => {
+export const UpdateSummary = (lectureId) => {
+  const lectureSummary = $.get(`/api/summary/${lectureId}`);
   return {
     type: 'UPDATE_SUMMARY',
-    summary: summary
+    payload: lectureSummary
   };
 };
 

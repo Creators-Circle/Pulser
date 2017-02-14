@@ -1,6 +1,5 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
-
 // import reducers here
 import user from './reducers/userReducer';
 import usersClicks from './reducers/usersClicks';
