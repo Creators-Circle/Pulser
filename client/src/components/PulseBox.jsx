@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import Store from '../store.jsx';
 
 import $ from 'jquery';
 import rd3 from 'rd3';
 import timeDiffToMinutes from '../util/timeDiffToMinutes';
-import { IncrementPulse, DecrementPulse, AddClickToUser } from '../util/actions';
+import { IncrementPulse, DecrementPulse, AddClickToUser, SampleAsync } from '../util/actions';
 
 import '../css/PulseBox.css';
 
@@ -108,7 +109,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     incrementPulse: (time) => dispatch(IncrementPulse(time)),
     decrementPulse: (time) => dispatch(DecrementPulse(time)),
-    addClickToUser: (time, user) => dispatch(AddClickToUser(time, user))
+    addClickToUser: (time, user) => dispatch(AddClickToUser(time, user)),
   };
 };
 
