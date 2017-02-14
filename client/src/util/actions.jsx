@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 /** user actions **/
-export const StoreUser = (name, email, avatar, id) => {
+export const StoreUser = () => {
   const userData = $.get('/api/user')
     .fail(({responseJSON}) => {
       responseJSON.error.errors.forEach((err) =>
@@ -33,7 +33,7 @@ export const AssignLectureId = (lectureId, embedUrl, socket, name, presentationI
   };
 };
 
-export const StoreUserLectures = (lectures) => {
+export const StoreUserLectures = () => {
   const userLectures = $.get('api/userLectures')
   .fail(({responseJSON}) => {
     responseJSON.error.errors.forEach((err) =>
