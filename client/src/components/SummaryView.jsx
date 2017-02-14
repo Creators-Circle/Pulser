@@ -5,7 +5,6 @@ import SummaryLeftPane from './SummaryLeftPane';
 import SummaryRightPane from './SummaryRightPane';
 import Navbar from './Navbar';
 
-import getLectureSummary from '../util/getLectureSummary';
 import { UpdateSummary } from '../util/actions';
 
 import '../css/SummaryView.css';
@@ -13,10 +12,8 @@ import '../css/SummaryView.css';
 class SummaryView extends Component {
 
   componentWillMount () {
-    console.log(this.props, 'in SummaryView componentWillMount');
     const lectureId = this.props.params.lectureId;
     // once this component loads, it gets the summary from the server and store it to the store
-    // getLectureSummary(lectureId, summary => this.props.updateSummary(summary));
     this.props.updateSummary(lectureId);
   }
 

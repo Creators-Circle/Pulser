@@ -4,13 +4,12 @@ import { Link } from 'react-router';
 
 import PresThumbnail from './PresThumbnail';
 
-import getUserLectures from '../util/getUserLectures';
 import { StoreUserLectures } from '../util/actions';
 
 class PresPreviews extends Component {
   componentWillMount () {
     // store all the lectures of the user in the store
-    getUserLectures(lectures => this.props.storeUserLectures(lectures));
+    this.props.storeUserLectures();
   }
 
   render () {
@@ -70,8 +69,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeUserLectures: (lectures) => {
-      dispatch(StoreUserLectures(lectures));
+    storeUserLectures: () => {
+      dispatch(StoreUserLectures());
     }
   };
 };

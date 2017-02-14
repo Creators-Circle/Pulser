@@ -1,13 +1,16 @@
-import { getLectureSummary } from './getLectureSummary';
 import $ from 'jquery';
+
 /** user actions **/
 export const StoreUser = (name, email, avatar, id) => {
+  const userData = $.get('/api/user')
+    .fail(({responseJSON}) => {
+      responseJSON.error.errors.forEach((err) =>
+      console.error(err)
+    );
+    });
   return {
     type: 'STORE_USER',
-    name: name,
-    email: email,
-    avatar: avatar,
-    id: id
+    payload: userData
   };
 };
 
@@ -31,9 +34,15 @@ export const AssignLectureId = (lectureId, embedUrl, socket, name, presentationI
 };
 
 export const StoreUserLectures = (lectures) => {
+  const userLectures = $.get('api/userLectures')
+  .fail(({responseJSON}) => {
+    responseJSON.error.errors.forEach((err) =>
+      console.error(err)
+    );
+  });
   return {
     type: 'STORE_USER_LECTURES',
-    lectures: lectures
+    payload: userLectures
   };
 };
 
@@ -147,7 +156,12 @@ export const UpdateSearchValue = (value) => {
 /* summary actions */
 
 export const UpdateSummary = (lectureId) => {
-  const lectureSummary = $.get(`/api/summary/${lectureId}`);
+  const lectureSummary = $.get(`/api/summary/${lectureId}`)
+  .fail(({responseJSON}) => {
+    responseJSON.error.errors.forEach((err) =>
+      console.error(err)
+    );
+  });
   return {
     type: 'UPDATE_SUMMARY',
     payload: lectureSummary

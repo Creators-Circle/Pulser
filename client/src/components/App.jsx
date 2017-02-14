@@ -72,7 +72,6 @@ import { connect } from 'react-redux';
 import DashboardView from './DashboardView';
 import GuestView from './GuestView';
 
-import getUserData from '../util/getUserData';
 import { StoreUser } from '../util/actions';
 
 import '../css/Button.css';
@@ -82,10 +81,7 @@ import '../css/body.css';
 // Primary App component.
 class App extends Component {
   componentWillMount () {
-    // store user data when App loads.
-    getUserData((user) => {
-      this.props.storeUser(user.name, user.email, user.avatar, user.id);
-    });
+    this.props.storeUser();
   }
 
   render () {
@@ -107,8 +103,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeUser: (name, email, avatar, id) => {
-      dispatch(StoreUser(name, email, avatar, id));
+    storeUser: () => {
+      dispatch(StoreUser());
     }
   };
 };
