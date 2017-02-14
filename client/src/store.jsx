@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import ReduxPromise from 'redux-promise';
 
 // import reducers here
 import user from './reducers/userReducer';
@@ -27,6 +28,6 @@ const combinedReducers = combineReducers({
   picker
 });
 
-const store = createStore(combinedReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = applyMiddleware(ReduxPromise)(createStore)(combinedReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

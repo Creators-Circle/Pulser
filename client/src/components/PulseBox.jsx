@@ -109,7 +109,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     incrementPulse: (time) => dispatch(IncrementPulse(time)),
     decrementPulse: (time) => dispatch(DecrementPulse(time)),
-    addClickToUser: (time, user) => dispatch(AddClickToUser(time, user)),
+    addClickToUser: (time, user) => dispatch(AddClickToUser(time, user))
   };
 };
 
