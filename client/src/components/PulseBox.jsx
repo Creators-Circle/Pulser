@@ -87,7 +87,7 @@ class PulseBox extends Component {
           domain={
             // set the maximum value of x to the estimated time of presentation
             // set the maximum value of y to the number of audience members
-            { x: [xMin, xMax], y: [0, audience] }
+            { x: [xMin * 10, xMax * 10], y: [0, audience] }
           }
           gridHorizontal={true}
           gridVertical={true}
