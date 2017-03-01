@@ -127,7 +127,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-// a route to create a new socket namespace
+// a route to create a new socket namespace (for a presentation)
 app.post('/newRoom', (req, res) => {
   // launch a custom namespace called 'nsp' for the presentation 'room'
   const nsp = io.of(`/${req.body.room}`);
@@ -153,7 +153,7 @@ app.post('/newRoom', (req, res) => {
       }
     });
 
-   // -----Presentation and Lecture Setup Sockets-----
+   // ------------------- SOCKETS FOR 'PRESENTATION AND LECTURE SETUP' -------------------
 
     // Listen for presenter's response with presesntation URL
     socket.on('presentationInfoResponse', (presentationUrl, presentationName, presentationId, questions, thumbs, feedbackEnabled) => {
@@ -171,7 +171,7 @@ app.post('/newRoom', (req, res) => {
       controllers.updateLectureTitle(title, lectureId);
     });
 
-//  Guests and Users Sockets
+//  ------------------- SOCKETS FOR 'GUESTS AND USERS' -------------------
 
     // Listen for guestsToggle event
     socket.on('guestsToggle', (lecture) => {
@@ -183,7 +183,7 @@ app.post('/newRoom', (req, res) => {
       controllers.userLecture(lecture);
     });
 
-//  Sockets for Pulse
+//  ------------------- SOCKETS FOR 'PULSE' -------------------
 
     // Listen for Audience button clicks
     socket.on('updatePulse', (action, currTime) => {
@@ -204,7 +204,7 @@ app.post('/newRoom', (req, res) => {
       controllers.saveClick(click);
     });
 
-//  Sockets for Questions
+//  ------------------- SOCKETS FOR 'QUESTIONS' -------------------
 
     // Listen for toggle events from the presenter and bounce them to the audience
     socket.on('questionToggle', () => {

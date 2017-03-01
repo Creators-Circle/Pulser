@@ -66,7 +66,7 @@ class PresenterView extends Component {
         <Navbar/>
         <div className='container presentation-view'>
           <div className='row'>
-            <div className='col-md-9 col-lg-9 pulse-row'>
+            <div className='col-md-9 pulse-row'>
                 <PulseBox startTime={this.date} audience={this.state.audience}/>
                 <div id="QuestionBoxPresenter">
                   <QuestionBox role={'presenter'}/>

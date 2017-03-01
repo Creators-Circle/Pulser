@@ -11,12 +11,13 @@
   }
 }
 */
+
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'STORE_USER':
       return {name: action.payload.name, email: action.payload.email, role: action.role, avatar: action.payload.avatar, id: action.payload.id};
     case 'CHANGE_ROLE':
-      return action.role === 'presenter' || action.role === 'audience'
+      return action.role === 'presenter' || action.role === 'audience' || action.role === 'tutee'
         ? Object.assign({}, state, {role: action.role}) : state;
     default:
       return state;

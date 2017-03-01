@@ -232,8 +232,8 @@ module.exports = {
   lectureCheck: function (req, res) {
     const lectureId = req.params.lecture_id;
     return db.select('*').from('lectures').where('id', lectureId)
-    .then((data) => {
-      res.send(data);
-    });
+      .then((data) => {
+        res.send(data);
+      });
   }
 };
