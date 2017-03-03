@@ -46,6 +46,12 @@ class PresenterView extends Component {
       toggleTitleBox: false,
       title: 'Tutorial Presentation'
     };
+    setInterval(() => {
+      console.log('adding a point to pulse');
+    }, 3000);
+    setInterval(() => {
+      console.log('removing a point from pulse');
+    }, 5000);
   }
 
   componentDidMount () {
@@ -121,7 +127,7 @@ class PresenterView extends Component {
                   <hr/>
                   <input className='form-control presenter-input' key={1} type="text" id="questionInput"></input>
                   <button className='btn submit-btn' key={2} id="submitQuestion" /* stuff to add a question clickhandler */>Submit</button>
-                  {Object.keys(this.state.questions).map((questionId, i) => {
+                  {Object.keys(this.state.questions).map((questionId, i) =>
                     (
                       <div className='question' /* handle toggle upvote stuff */>
                         <div className='voteContainer'>
@@ -130,8 +136,7 @@ class PresenterView extends Component {
                           </div>
                         <span className='questionText'>{this.state.questions[questionId].questionText}</span>
                       </div>
-                    );
-                  }
+                    )
                   )}
                 </div>
               </div>
@@ -172,7 +177,7 @@ class PresenterView extends Component {
                   <hr/>
                   <div className='sidebar-header'>
                     <h2>SHARE CODE</h2>
-                    <p>'6ChAr$'</p>
+                    <p>6ChAr$</p>
                   </div>
                   <hr/>
                   <div className='timer'>
