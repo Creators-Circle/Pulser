@@ -35,13 +35,9 @@ class PresenterView extends Component {
       questions: {
         1: {votes: 2,
           questionText: 'This question has two upvotes.',
-          upvoted: false},
-        2: {votes: 1,
-          questionText: 'You are the only one to upvote this question.',
-          upvoted: true},
-        3: {votes: 3,
-          questionText: 'You are one of three to upvote this question.',
-          upvoted: true}
+          upvoted: false,
+          demo: true
+        }
       },
       toggleTitleBox: false,
       title: 'Tutorial Presentation'
@@ -55,6 +51,7 @@ class PresenterView extends Component {
   }
 
   componentDidMount () {
+    // start clock code
     const startTime = this.state.startTime;
     let seconds = 0;
     let minutes = 0;
@@ -67,7 +64,6 @@ class PresenterView extends Component {
       $('.clock').empty().append(`<div class="col-md-12" id="clock"><span id="hours">${h}</span>
         : <span id="minutes">${m}</span>`);
       $('.duration').empty().text(`00:${checkTime(minutes)}:${checkTime(seconds)}`);
-      setTimeout(runClock, 1000);
     }
     function checkTime (i) {
       if (i < 10) {
@@ -84,7 +80,66 @@ class PresenterView extends Component {
       }
     }
     runClock();
+    this.clockInterval = setInterval(runClock, 1000);
   }
+
+  componentWillUnmount () {
+    clearInterval(this.clockInterval);
+    // end clock code
+  }
+  // Question Code
+  handleQuestion () {
+    this.setState({
+      questions: Object.assign(this.state.questions,
+        {
+          [(Object.keys(this.state.questions).length + 1).toString()]: {
+            votes: 0,
+            questionText: $('#questionInput').val(),
+            upvoted: false
+          }
+        })
+    });
+    $('#questionInput').val($(this).attr('placeholder'));
+  }
+
+  handleUpvoteDownvote (questionId) {
+    this.setState({
+      questions: Object.assign(this.state.questions,
+        {
+          [questionId]: Object.assign(this.state.questions[questionId],
+            {
+              upvoted: !this.state.questions[questionId].upvoted,
+              votes: this.state.questions[questionId].upvoted
+              ? this.state.questions[questionId].votes - 1
+              : this.state.questions[questionId].votes + 1,
+              questionText: this.state.questions[questionId].demo
+              ? this.state.questions[questionId].upvoted
+                ? 'This question has two upvotes'
+                : 'You are one of three to upvote this question'
+              : this.state.questions[questionId].questionText
+            })
+        })
+    });
+  }
+
+  toggleQuestions () {
+    $('#QuestionBoxPresenter').fadeToggle();
+  }
+  // end Question Code
+
+  // Thumbs Code
+  handleThumbsTopic () {
+    $('#topicTitle').text($('#topic').val());
+    $('#topic').val($(this).attr('placeholder'));
+    $('#thumbs-up').text('1');
+    $('#thumbs-down').text('2');
+    $('#thumbs-side').text('4');
+  }
+
+  toggleThumbs () {
+    $('#PresThumbs').fadeToggle();
+  }
+  // end Thumbs Code
 
   render () {
     const currTime = new Date();
@@ -125,11 +180,15 @@ class PresenterView extends Component {
                 <div id="QuestionBox">
                   <h2>Questions</h2>
                   <hr/>
-                  <input className='form-control presenter-input' key={1} type="text" id="questionInput"></input>
-                  <button className='btn submit-btn' key={2} id="submitQuestion" /* stuff to add a question clickhandler */>Submit</button>
+                  <input className='form-control presenter-input'
+                  key={1} type="text" id="questionInput"
+                  placeholder="Try posing a question here"></input>
+                  <button onClick = {this.handleQuestion.bind(this)}
+                  className='btn submit-btn' key={2}
+                  id="submitQuestion">Submit</button>
                   {Object.keys(this.state.questions).map((questionId, i) =>
                     (
-                      <div className='question' /* handle toggle upvote stuff */>
+                      <div className='question' onClick={() => this.handleUpvoteDownvote(questionId)}>
                         <div className='voteContainer'>
                           <img src={this.state.questions[questionId].upvoted ? '../img/arrows_up-green.svg' : '../img/arrows_up.svg'} className='upvoteDownvote'/>
                           <div className='questionVotes'>{this.state.questions[questionId].votes.toString()}</div>
@@ -142,22 +201,24 @@ class PresenterView extends Component {
               </div>
 
               <div id='PresThumbs' style={{width: '45%'}}>
-                <h2 id='topicTitle'>Topic: </h2>
-                <input className='form-control presenter-input' id='topic' type='text' name='topic' />
-                <button className='btn submit-btn' id='setTopic' /* handle topic setting click here */>Set Topic</button>
+                <h2 id='topicTitle'>Thumbs</h2>
+                <input className='form-control presenter-input'
+                placeholder="try setting a thumbs topic here"
+                id='topic' type='text' name='topic' />
+                <button className='btn submit-btn' id='setTopic' onClick={() => this.handleThumbsTopic()}>Set Topic</button>
                 <hr />
                 <div className='thumbs-list'>
                   <ul>
                     <li>
-                      <p>1</p>
+                      <p id="thumbs-up">0</p>
                       <img src='../img/1-thumb.png' alt='thumbs-up'/>
                     </li>
                     <li>
-                      <p>1</p>
+                      <p id="thumbs-side">0</p>
                       <img src='../img/2-thumb.png' alt='thumbs-side'/>
                     </li>
                     <li>
-                      <p>1</p>
+                      <p id="thumbs-down">0</p>
                       <img src='../img/3-thumb.png' alt='thumbs-down'/>
                     </li>
                   </ul>
@@ -204,8 +265,8 @@ class PresenterView extends Component {
                 </div>
 
                 <div className='row tools-row '>
-                  <button id='questionToggle' className='tool-btn btn'><span>Question</span><i className="fa fa-question-circle-o"></i></button>
-                  <button id='thumbsToggle' className='tool-btn btn'><span>Thumbs</span><i className="fa fa-thumbs-up"></i></button>
+                  <button id='questionToggle' onClick={this.toggleQuestions} className='tool-btn btn'><span>Question</span><i className="fa fa-question-circle-o"></i></button>
+                  <button id='thumbsToggle' onClick={this.toggleThumbs} className='tool-btn btn'><span>Thumbs</span><i className="fa fa-thumbs-up"></i></button>
                 </div>
 
                 <div className='row tools-row '>
