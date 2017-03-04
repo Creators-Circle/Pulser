@@ -29,9 +29,13 @@ class PresenterView extends Component {
       audience: 8,
       startTime: startTime,
       lineData: [{
-        values: [{x: 0, y: 0}, {x: 1, y: 1}, {x: 2, y: 2}],
+        values: [{x: 0, y: 0}],
         strokeWidth: 2
       }],
+      domain: {
+        x: [0, 10],
+        y: [0, 8]
+      },
       questions: {
         1: {votes: 2,
           questionText: 'This question has two upvotes.',
@@ -42,12 +46,37 @@ class PresenterView extends Component {
       toggleTitleBox: false,
       title: 'Tutorial Presentation'
     };
+    // mock pulse code
     setInterval(() => {
-      console.log('adding a point to pulse');
-    }, 3000);
-    setInterval(() => {
-      console.log('removing a point from pulse');
-    }, 5000);
+      if (Math.random() > 0.5 && this.state.lineData[0].values[this.state.lineData[0].values.length - 1].y !== 0) {
+        const xMin = this.state.lineData[0].values.length < 10 ? 0 : this.state.lineData[0].values.length - 10;
+        const xMax = this.state.lineData[0].values.length < 10 ? 10 : this.state.lineData[0].values.length;
+        this.setState({
+          lineData: [Object.assign(this.state.lineData[0], {
+            values: this.state.lineData[0].values.concat([{x: this.state.lineData[0].values[this.state.lineData[0].values.length - 1].x + 1,
+              y: this.state.lineData[0].values[this.state.lineData[0].values.length - 1].y - 1}]),
+            strokeWidth: 2
+          })],
+          domain: {
+            x: [xMin, xMax],
+            y: [0, 8]
+          }
+        });
+      } else if (this.state.lineData[0].values[this.state.lineData[0].values.length - 1].y !== 8) {
+        const xMin = this.state.lineData[0].values.length < 10 ? 0 : this.state.lineData[0].values.length - 10;
+        const xMax = this.state.lineData[0].values.length < 10 ? 10 : this.state.lineData[0].values.length;
+        this.setState({
+          lineData: [Object.assign(this.state.lineData[0], {
+            values: this.state.lineData[0].values.concat([{x: this.state.lineData[0].values[this.state.lineData[0].values.length - 1].x + 1,
+              y: this.state.lineData[0].values[this.state.lineData[0].values.length - 1].y + 1}]),
+            strokeWidth: 2
+          })],
+          domain: { x: [xMin, xMax], y: [0, 8] }
+        });
+      }
+    }, 1500);
+
+    // end mock pulse code
   }
 
   componentDidMount () {
@@ -81,6 +110,22 @@ class PresenterView extends Component {
     }
     runClock();
     this.clockInterval = setInterval(runClock, 1000);
+
+    // handles enter key being pressed while join input field is selected
+    $('#topic').keypress((e) => {
+      if (e.which === 13) {
+        $('#setTopic').click();
+        return false;
+      }
+    });
+    $('#questionInput').keypress((e) => {
+      if (e.which === 13) {
+        $('#submitQuestion').click();
+        return false;
+      }
+    });
+    $('#timerToggle').on('click', () => { $('.timer').fadeToggle(); });
+    $('#pulseToggle').on('click', () => { $('#PulseBox').fadeToggle(); });
   }
 
   componentWillUnmount () {
@@ -129,11 +174,22 @@ class PresenterView extends Component {
 
   // Thumbs Code
   handleThumbsTopic () {
+    const number1 = Math.ceil(Math.random() * this.state.audience);
+    let number2 = Math.ceil(Math.random() * (this.state.audience - number1));
+    let number3 = Math.ceil(Math.random() * (this.state.audience - number1 - number2));
+    number2 = number2 >= 0 ? number2 : 0;
+    number3 = number3 >= 0 ? number3 : 0;
+    const numbers = [number1, number2, number3];
+    const random1 = numbers[Math.round(Math.random() * 2)];
+    numbers.splice(numbers.indexOf(random1), 1);
+    const random2 = numbers[Math.round(Math.random())];
+    numbers.splice(numbers.indexOf(random2), 1);
+    const random3 = numbers[0];
     $('#topicTitle').text($('#topic').val());
     $('#topic').val($(this).attr('placeholder'));
-    $('#thumbs-up').text('1');
-    $('#thumbs-down').text('2');
-    $('#thumbs-side').text('4');
+    $('#thumbs-up').text(random1);
+    $('#thumbs-down').text(random2);
+    $('#thumbs-side').text(random3);
   }
 
   toggleThumbs () {
@@ -168,7 +224,7 @@ class PresenterView extends Component {
                     }}
                     circleRadius = {0}
                     domain={
-                      { x: [0, 10], y: [0, 8] }
+                      this.state.domain
                     }
                     gridHorizontal={true}
                     gridVertical={true}
@@ -176,7 +232,8 @@ class PresenterView extends Component {
                 </span>
               </div>
 
-              <div id='QuestionBoxPresenter' style={{width: '45%'}}>
+              <div id='QuestionBoxPresenter' style={{width: '45%'}}
+              title="Questions are visible to you and your audience">
                 <div id="QuestionBox">
                   <h2>Questions</h2>
                   <hr/>
@@ -200,8 +257,9 @@ class PresenterView extends Component {
                 </div>
               </div>
 
-              <div id='PresThumbs' style={{width: '45%'}}>
-                <h2 id='topicTitle'>Thumbs</h2>
+              <div id='PresThumbs' style={{width: '45%'}}
+              title="Thumbs give a broad feel for familiarity">
+                <h2 id='topicTitle' title="">Thumbs</h2>
                 <input className='form-control presenter-input'
                 placeholder="try setting a thumbs topic here"
                 id='topic' type='text' name='topic' />
@@ -238,7 +296,7 @@ class PresenterView extends Component {
                   <hr/>
                   <div className='sidebar-header'>
                     <h2>SHARE CODE</h2>
-                    <p>6ChAr$</p>
+                    <p title="Your audience will use this code to join your lecture">6ChAr$</p>
                   </div>
                   <hr/>
                   <div className='timer'>
@@ -252,31 +310,31 @@ class PresenterView extends Component {
                 </div>
 
                 <div className='row tools-row allow-guest'>
-                  <span>Permit Guests<input type="checkbox" id='guestsToggle'></input></span>
+                  <span title="Permit unauthenticated users to view your lecture">Permit Guests<input type="checkbox" id='guestsToggle'></input></span>
                 </div>
 
                 <hr/>
 
                 <div className='row tools-row '>
                   <div className='offset-md-1'>
-                    <a href='#' target="_blank"><button className='btn tool-btn btn'><span>Projector</span><i className="fa fa-desktop"></i></button></a>
-                    <button id='timerToggle' className='tool-btn btn'><span>Timer</span><i className="fa fa-clock-o"></i></button>
+                    <a target="_blank" href="https://docs.google.com/a/hackreactor.com/presentation/d/1gOaqBF6E_391ooiVkc5u83KIzYzz7l1mrLqtRXjWIvg/present"><button title="open up a separate tab with your slide deck"className='btn tool-btn btn'><span>Projector</span><i className="fa fa-desktop"></i></button></a>
+                    <button id='timerToggle' title="show/hide the timer and clock" className='tool-btn btn'><span>Timer</span><i className="fa fa-clock-o"></i></button>
                   </div>
                 </div>
 
                 <div className='row tools-row '>
-                  <button id='questionToggle' onClick={this.toggleQuestions} className='tool-btn btn'><span>Question</span><i className="fa fa-question-circle-o"></i></button>
-                  <button id='thumbsToggle' onClick={this.toggleThumbs} className='tool-btn btn'><span>Thumbs</span><i className="fa fa-thumbs-up"></i></button>
+                  <button id='questionToggle' title="show/hide the question box for you and your audience" onClick={this.toggleQuestions} className='tool-btn btn'><span>Question</span><i className="fa fa-question-circle-o"></i></button>
+                  <button id='thumbsToggle' title="show/hide the thumbs box for you and your audience" onClick={this.toggleThumbs} className='tool-btn btn'><span>Thumbs</span><i className="fa fa-thumbs-up"></i></button>
                 </div>
 
                 <div className='row tools-row '>
-                  <button id='pulseToggle' className='tool-btn btn'><span>Pulse</span><i className="fa fa-line-chart"></i></button>
-                  <button id='feedbackToggle' className='tool-btn btn'><span>Feedback</span><i className="fa fa-exclamation"></i></button>
+                  <button id='pulseToggle' title="show/hide the thumbs box for you and your audience" className='tool-btn btn'><span>Pulse</span><i className="fa fa-line-chart"></i></button>
+                  <button id='feedbackToggle' title="Disable audience feedback" className='tool-btn btn'><span>Feedback</span><i className="fa fa-exclamation"></i></button>
                 </div>
 
                 <div className='row tools-row '>
-                  <Link to={`/summary/TUTORI`}>
-                    <button id='stopPresentation' className='btn btn-red' >
+                  <Link to={`/`}>
+                    <button id='stopPresentation' className='btn btn-red' title="Go home. In your presentation, this will end the presentation and go to a summary">
                       <i className="fa fa-times"></i> Stop Presentation
                     </button>
                   </Link>
