@@ -208,7 +208,8 @@ class PresenterView extends Component {
         <div className = 'tutorial-view-container'>
           <div className="row">
             <div className="col-md-8">
-              <div id='PulseBox' className = "pulse-box">
+              <div id='PulseBox' title="This is a graph of how many audience members 'do not understand' what you're saying right now.
+              It will flash red if that number goes over 75% of your audience" className = "pulse-box">
                 <span id="GraphTitle">Pulse
                   <hr/>
                   <LineChart
@@ -258,7 +259,7 @@ class PresenterView extends Component {
               </div>
 
               <div id='PresThumbs' style={{width: '45%'}}
-              title="Thumbs give a broad feel for familiarity">
+              title="Thumbs give a broad feel for familiarity for the topic you set">
                 <h2 id='topicTitle' title="">Thumbs</h2>
                 <input className='form-control presenter-input'
                 placeholder="try setting a thumbs topic here"
