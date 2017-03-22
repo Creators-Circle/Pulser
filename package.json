@@ -1,5 +1,5 @@
 {
-  "name": "FollowMe",
+  "name": "Pulser",
   "version": "1.0.0",
   "description": "A presentation augmentation app that gives teachers and presenters real-time feedback on the effectiveness of their lecture.",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Creators-Circle/FollowMe.git"
+    "url": "git+https://github.com/Creators-Circle/Pulser.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Creators-Circle/FollowMe/issues"
+    "url": "https://github.com/Creators-Circle/Pulser/issues"
   },
-  "homepage": "https://github.com/Creators-Circle/FollowMe#readme",
+  "homepage": "https://github.com/Creators-Circle/Pulser#readme",
   "dependencies": {
     "authport-makerpass": "^1.0.0",
     "babel": "5.3.1",

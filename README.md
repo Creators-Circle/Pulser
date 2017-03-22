@@ -1,5 +1,5 @@
 ### Project Name
-FollowMe -- Give your teacher the thumb!
+Pulser -- Give your teacher the thumb!
 
 
 ### Table of Contents
@@ -16,7 +16,7 @@ FollowMe -- Give your teacher the thumb!
 
 ### Usage
 
-FollowMe allows the user to assume one of two roles: Presenter or Audience.
+Pulser allows the user to assume one of two roles: Presenter or Audience.
 	Presenter - Start Your Own Presentation:
 		1. At the login page: you will have the choice to login with Github or Google, or proceed as a Guest without logging in. Login with Google or Github; you cannot present as Guest.
 		2. In the upper left corner, click the 'New Presentation' button. 
@@ -41,7 +41,7 @@ FollowMe allows the user to assume one of two roles: Presenter or Audience.
 
 ### Requirements
 
-FollowMe uses the following technologies:
+Pulser uses the following technologies:
 
 server: Node w/ Express
 database: Knex/PostgresSQL
@@ -65,7 +65,7 @@ heroku pg:psql DATABASE_URL --app present-me-beta
 	## Run the Seed File
 	NOTE: THIS OPERATION WIPES THE DATABASE. USE WITH CAUTION. THIS MEANS YOU!!!
 
-	FollowMe comes with dummy data located in the /seeds directory
+	Pulser comes with dummy data located in the /seeds directory
 	To load this data into the database, type:
 	knex seed:run
 
