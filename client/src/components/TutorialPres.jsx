@@ -330,7 +330,7 @@ class PresenterView extends Component {
 
                 <div className='row tools-row '>
                   <button id='pulseToggle' title="show/hide the thumbs box for you and your audience" className='tool-btn btn'><span>Pulse</span><i className="fa fa-line-chart"></i></button>
-                  <button id='feedbackToggle' title="Disable audience feedback" className='tool-btn btn'><span>Feedback</span><i className="fa fa-exclamation"></i></button>
+                  <button id='feedbackToggle' title="Disable audience members' Did Not Grok button" className='tool-btn btn'><span>Not Grok</span><i className="fa fa-exclamation"></i></button>
                 </div>
 
                 <div className='row tools-row '>
