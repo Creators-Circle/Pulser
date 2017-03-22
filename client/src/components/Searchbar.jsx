@@ -28,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapDispatchToProps)(Searchbar);
+export default connect(null, mapDispatchToProps)(Searchbar);
