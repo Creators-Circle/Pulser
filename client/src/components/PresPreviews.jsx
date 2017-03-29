@@ -49,7 +49,7 @@ class PresPreviews extends Component {
             recentLectures.length > 0
               ? recentLectures.map((lecture, i) =>
                 <li className='slideThumb'>
-                  <a key={i} href={`https://docs.google.com/presentation/d/${lecture.presentation_id}/preview`} target='_blank'>
+                  <a key={i} href={`https://docs.google.com/presentation/d/${lecture.presentation_id || '1gOaqBF6E_391ooiVkc5u83KIzYzz7l1mrLqtRXjWIvg'}/preview`} target='_blank'>
                     <PresThumbnail
                       key={i}
                       id = {lecture.id}
