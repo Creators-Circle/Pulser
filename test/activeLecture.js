@@ -1,13 +1,12 @@
-const deepFreeze = require('deep-freeze');
-const assert = require('assert');
 import activeLecture from '../client/src/reducers/activeLecture';
 
-describe('activeLecture', function() {
+const deepFreeze = require('deep-freeze');
+const assert = require('assert');
 
- var testState, resultState;
+describe('activeLecture', () => {
+  let testState, resultState;
 
-  beforeEach(function() {
-  // runs before all tests in this block
+  beforeEach(() => {
     resultState = {
       lectureId: 'aaabbb',
       presentationId: '1Tt1MS8EhDTrmF6SUQBcnSs0yxQnUB7pwDJnzrLVfzX8',
@@ -23,13 +22,11 @@ describe('activeLecture', function() {
       embedUrl: null,
       socket: 'bargle'
     };
-
     deepFreeze(testState);
   });
 
-  describe('ASSIGN_LECTURE_ID', function(){
-
-    it('should associate a given presentationId and name with a given lectureId', function(){  
+  describe('ASSIGN_LECTURE_ID', () => {
+    it('should associate a given presentationId and name with a given lectureId', () => {
       assert.deepEqual(activeLecture(testState, {
         type: 'ASSIGN_LECTURE_ID',
         lectureId: 'aaabbb',
@@ -40,5 +37,4 @@ describe('activeLecture', function() {
       }), resultState);
     });
   });
-
 });

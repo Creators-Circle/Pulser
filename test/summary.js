@@ -1,21 +1,29 @@
-// test for summary reducer
-const assert = require('assert');
-const deepFreeze = require('deep-freeze');
 import summary from '../client/src/reducers/summary.jsx';
 
-describe('summary', function () {
-  var resultState = {user:[{name:'tester'}],clicks:[{'id':'121'}],questions:[{question:"is this working"}]},
-  testState = {};
+const assert = require('assert');
+const deepFreeze = require('deep-freeze');
+
+describe('summary', () => {
+  const resultState = { user: [ { name: 'tester' } ], clicks: [ { 'id': '121' } ], questions: [ {question: 'is this working'} ] };
+  const testState = {};
   deepFreeze(testState);
-  describe('UNDEFINED ACTION', function(){
-    it('should return default state if action is undefined', function () {
-      assert.deepEqual(testState, summary(testState, {type: 'TEST'}));
-    });
-  });
-  xdescribe('UPDATE_SUMMARY', function(){
-    it('should update the value of the state', function () {
-      assert.deepEqual(resultState, summary(testState, {type: 'UPDATE_SUMMARY', summary:{user:[{name:'tester'}],clicks:[{'id':'121'}],questions:[{question:"is this working"}]}}));
+
+  describe('UNDEFINED ACTION', () => {
+    it('should return default state if action is undefined', () => {
+      assert.deepEqual(testState, summary(testState, { type: 'TEST' }));
     });
   });
 
+  xdescribe('UPDATE_SUMMARY', () => {
+    it('should update the value of the state', () => {
+      assert.deepEqual(resultState, summary(testState, {
+        type: 'UPDATE_SUMMARY',
+        summary: {
+          user: [ { name: 'tester' } ],
+          clicks: [ { 'id': '121' } ],
+          questions: [ { question: 'is this working' } ]
+        }
+      }));
+    });
+  });
 });
