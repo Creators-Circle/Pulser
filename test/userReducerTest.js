@@ -21,15 +21,17 @@ describe('userReducer', () => {
   });
 
   describe('STORE_USER', () => {
-    xit('should store user\'s information', () => {
+    it('should store user\'s information', () => {
       assert.deepEqual(resultState,
         userReducer(testState, {
           type: 'STORE_USER',
-          name: 'Alice',
-          email: 'alice@y.com',
-          role: 'presenter',
-          avatar: 'alice_photo',
-          id: 'a056fe6'
+          payload: {
+            name: 'Alice',
+            email: 'alice@y.com',
+            role: 'presenter',
+            avatar: 'alice_photo',
+            id: 'a056fe6'
+          }
         })
       );
     });

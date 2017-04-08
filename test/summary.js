@@ -14,11 +14,11 @@ describe('summary', () => {
     });
   });
 
-  xdescribe('UPDATE_SUMMARY', () => {
+  describe('UPDATE_SUMMARY', () => {
     it('should update the value of the state', () => {
       assert.deepEqual(resultState, summary(testState, {
         type: 'UPDATE_SUMMARY',
-        summary: {
+        payload: {
           user: [ { name: 'tester' } ],
           clicks: [ { 'id': '121' } ],
           questions: [ { question: 'is this working' } ]
