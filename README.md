@@ -19,7 +19,7 @@
 
 Pulser allows the user to assume one of two roles: Presenter or Audience.
 
-####**Presenter** - Start Your Own Presentation:
+#### **Presenter** - Start Your Own Presentation:
 
     1. At the login page: you will have the choice to login with Github or Google, or proceed as a Guest without logging in. Login with Google or Github; you cannot present as Guest.  
     2. In the upper left corner, click the 'New Presentation' button.  
@@ -37,7 +37,7 @@ Pulser allows the user to assume one of two roles: Presenter or Audience.
       - **Summary:** Displays the Questions asked during the lesson, result of Thumbs polls, and number of times each student has clicked the feedback button.  
       Stop Presentation: Ends the presentation, and displays the Summary page.   
 
-####**Audience:** - View a Presentation:
+#### **Audience:** - View a Presentation:
     1. Log in with Github, Google, or as a Guest.   
     2. Depending on the options enabled by the Presenter, you will have different ways to interact with the Presenter.
 
