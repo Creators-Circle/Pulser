@@ -1,5 +1,4 @@
-### Project Name
-[Pulser](https://pulser-beta.herokuapp.com) -- Give your teacher the thumb!
+### [**Pulser**](https://pulser-beta.herokuapp.com) -- Give your teacher the thumb!
 
 ![Pulser App Screenshot](./pulser_screenshot.png)
 
