@@ -1,6 +1,7 @@
 ### Project Name
 Pulser -- Give your teacher the thumb!
 
+![Pulser App Screenshot](./pulser_screenshot.png)
 
 ### Table of Contents
 
