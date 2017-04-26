@@ -26,7 +26,6 @@ Pulser allows the user to assume one of two roles: Presenter or Audience.
  4. Near the top of the next page, you will see a six digit alphanumeric 'Join Code.'  
  5. Send this code to everyone you want to join the audience.  
  6. In the side panel there are a series of options for the presenter to enable or disable:  
-
    - **Projector:** This button opens a new tab with your slide deck at full size.   
    - **Questions:** This enables students to type and submit questions, which are displayed for the presenter and the whole class. Questions can be upvoted or downvoted, and are ranked by number of upvotes on your view. Note that this component does not display the question's author, but that data exists in the database, and is given to you in the Summary View  
    - **Thumbs:** Allows you to submit a topic for thumbs. Thumbs are intended to get a general feel from the audience. Audience members can vote up, down, or sideways. A running tally of audience thumbs will be displayed
