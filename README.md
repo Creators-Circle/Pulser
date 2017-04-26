@@ -21,25 +21,26 @@ Pulser allows the user to assume one of two roles: Presenter or Audience.
 
 #### **Presenter** - Start Your Own Presentation:
 
-    1. At the login page: you will have the choice to login with Github or Google, or proceed as a Guest without logging in. Login with Google or Github; you cannot present as Guest.  
-    2. In the upper left corner, click the 'New Presentation' button.  
-    3. Your Google Slides from your Google Drive will pop up - select the presentation you wish to give.  
-    4. Near the top of the next page, you will see a six digit alphanumeric 'Join Code.'  
-    5. Send this code to everyone you want to join the audience.  
-    6. In the side panel there are a series of options for the presenter to enable or disable:  
+ 1. At the login page: you will have the choice to login with Github or Google, or proceed as a Guest without logging in. Login with Google or Github; you cannot present as Guest.  
+ 2. In the upper left corner, click the 'New Presentation' button.  
+ 3. Your Google Slides from your Google Drive will pop up - select the presentation you wish to give.  
+ 4. Near the top of the next page, you will see a six digit alphanumeric 'Join Code.'  
+ 5. Send this code to everyone you want to join the audience.  
+ 6. In the side panel there are a series of options for the presenter to enable or disable:  
 
-      - **Projector:** This button opens a new tab with your slide deck at full size.   
-      - **Questions:** This enables students to type and submit questions, which are displayed for the presenter and the whole class. Questions can be upvoted or downvoted, and are ranked by number of upvotes on your view. Note that this component does not display the question's author, but that data exists in the database, and is given to you in the Summary View  
-      - **Thumbs:** Allows you to submit a topic for thumbs. Thumbs are intended to get a general feel from the audience. Audience members can vote up, down, or sideways. A running tally of audience thumbs will be displayed
-      - **Pulse:** Displays a running tally of the number of students that have clicked the 'DID NOT GROK' button. This total decrements automatically.   
-      - **Feedback:** Displays a 'Feedback' button for Users to click when having difficulty understanding the material. This button updates the running total under 'Pulse', described above.  
-      - **Permit Guests:** Determines whether non-logged in users ('Guests') will be allowed to join the presentation.  
-      - **Summary:** Displays the Questions asked during the lesson, result of Thumbs polls, and number of times each student has clicked the feedback button.  
-      Stop Presentation: Ends the presentation, and displays the Summary page.   
+ - **Projector:** This button opens a new tab with your slide deck at full size.   
+ - **Questions:** This enables students to type and submit questions, which are displayed for the presenter and the whole class. Questions can be upvoted or downvoted, and are ranked by number of upvotes on your view. Note that this component does not display the question's author, but that data exists in the database, and is given to you in the Summary View  
+ - **Thumbs:** Allows you to submit a topic for thumbs. Thumbs are intended to get a general feel from the audience. Audience members can vote up, down, or sideways. A running tally of audience thumbs will be displayed
+ - **Pulse:** Displays a running tally of the number of students that have clicked the 'DID NOT GROK' button. This total decrements automatically.   
+ - **Feedback:** Displays a 'Feedback' button for Users to click when having difficulty understanding the material. This button updates the running total under 'Pulse', described above.  
+ - **Permit Guests:** Determines whether non-logged in users ('Guests') will be allowed to join the presentation.  
+ - **Summary:** Displays the Questions asked during the lesson, result of Thumbs polls, and number of times each student has clicked the feedback button.  
+- **Stop Presentation:** Ends the presentation, and displays the Summary page.   
 
 #### **Audience:** - View a Presentation:
-    1. Log in with Github, Google, or as a Guest.   
-    2. Depending on the options enabled by the Presenter, you will have different ways to interact with the Presenter.
+
+ 1. Log in with Github, Google, or as a Guest.   
+ 2. Depending on the options enabled by the Presenter, you will have different ways to interact with the Presenter.
 
 
 
