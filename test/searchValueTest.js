@@ -1,21 +1,22 @@
-const assert = require('assert');
 import search from '../client/src/reducers/searchValue.jsx';
+
+const assert = require('assert');
 const deepFreeze = require('deep-freeze');
 
-describe('searchValue', function () {
-  var testState = "arglebargle";
-  var resultState = "search";
+describe('searchValue', () => {
+  const testState = 'arglebargle';
+  const resultState = 'search';
   deepFreeze(testState);
 
-  describe('UNDEFINED ACTION', function(){
-    it('should return default state if action is undefined', function () {
+  describe('UNDEFINED ACTION', () => {
+    it('should return default state if action is undefined', () => {
       assert.deepEqual(testState, search(testState, {type: 'TEST'}));
     });
   });
-  describe('UPDATE_SEARCH_VALUE', function(){
-    it('should update the value of the state ', function () {
-      assert.deepEqual(resultState, search(testState, {type: 'UPDATE_SEARCH_VALUE', value: "search"}));
+
+  describe('UPDATE_SEARCH_VALUE', () => {
+    it('should update the value of the state ', () => {
+      assert.deepEqual(resultState, search(testState, {type: 'UPDATE_SEARCH_VALUE', value: 'search'}));
     });
   });
-
 });

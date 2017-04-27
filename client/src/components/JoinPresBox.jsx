@@ -41,7 +41,7 @@ class JoinPresBox extends Component {
       // Will logout on 10 failed login.
     lectureCheck(lectureId, (data) => {
       if (data.length === 0) {
-        alert('Login failed.');
+        window.alert('Login failed.');
         this.failedLoginCount ++;
         if (this.failedLoginCount === 10) {
           this.failedLoginCount = 0;

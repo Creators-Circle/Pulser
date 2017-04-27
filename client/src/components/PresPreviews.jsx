@@ -82,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(PresPreviews) ;
+export default connect(mapStatetoProps, mapDispatchToProps)(PresPreviews);
