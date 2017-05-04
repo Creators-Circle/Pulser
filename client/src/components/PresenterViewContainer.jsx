@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import PresenterView from './PresenterView';
-
-import $ from 'jquery';
-import timeDiffToMinutes from '../util/timeDiffToMinutes';
 
 class PresenterViewContainer extends Component {
   constructor () {
@@ -11,7 +9,7 @@ class PresenterViewContainer extends Component {
     // set the start time when this compnent loads
     this.startTime = new Date();
     this.state = {
-      time: undefined,
+      clock: undefined,
       duration: undefined,
       intervalId: ''
     };
@@ -23,32 +21,19 @@ class PresenterViewContainer extends Component {
   }
 
   timer () {
-    // set the current date
-    const time = new Date();
-    const hours = time.getHours().toString();
-    const minutes = time.getMinutes().toString();
-    const seconds = time.getSeconds().toString();
-    // format the current time
-    const clock = `${this.parseTime(hours)} : ${this.parseTime(minutes)}`;
+    const clock = moment().format('HH:mm');
     // check the difference of start time and current time
-    const diff = Math.abs(timeDiffToMinutes(this.startTime, time));
-    this.setState({duration: this.convertDuration(diff)});
-    this.setState({time: clock});
-  }
-  // function for computing the duration
-  convertDuration (minutes) {
-    const hours = Math.round(minutes / 60);
-    const min = Math.round(minutes % 60);
-    const sec = Math.round((minutes * 60) % 60);
-    return `${this.parseTime(hours)} : ${this.parseTime(min)} : ${this.parseTime(sec)}`;
-  }
-  // function for formating time to a 2-digit number
-  parseTime (time) {
-    time = time.toString();
-    if (time.length < 2) {
-      return `0${time}`;
-    }
-    return time;
+    const diffToMiliseconds = moment().diff(this.startTime);
+    const newMoment = new moment.duration(diffToMiliseconds);
+    let newHours = Math.floor(newMoment.asHours()).toString();
+    let newMinutes = (Math.floor(newMoment.asMinutes()) % 60).toString();
+    let newSeconds = (Math.floor(newMoment.asSeconds()) % 60).toString();
+    // force two digits for time values
+    newHours = newHours.length < 2 ? `0${newHours}` : newHours;
+    newMinutes = newMinutes.length < 2 ? `0${newMinutes}` : newMinutes;
+    newSeconds = newSeconds.length < 2 ? `0${newSeconds}` : newSeconds;
+    const duration = `${newHours}:${newMinutes}:${newSeconds}`;
+    this.setState({ duration, clock });
   }
 
   stopTimer () {
@@ -58,7 +43,7 @@ class PresenterViewContainer extends Component {
   render () {
     return (
       <div className = 'presenter'>
-        <PresenterView time={this.state.time} duration={this.state.duration} stopTimer={this.stopTimer.bind(this)}/>
+        <PresenterView time={this.state.clock} duration={this.state.duration} stopTimer={this.stopTimer.bind(this)}/>
       </div>
     );
   }
