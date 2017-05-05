@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import FeedbackBox from './Audience/FeedbackBox';
 import JoinPresBox from './shared/JoinPresBox';
-import Navbar from './shared/Navbar/Navbar';
+import Navbar from './Navbar/Navbar';
 
 import '../css/GuestView.css';
 

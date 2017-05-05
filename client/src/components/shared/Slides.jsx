@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import '../../../css/Slides.css';
+import '../../css/Slides.css';
 
 const Slides = ({ activeLecture }) => {
   const embedUrl = activeLecture.embedUrl;

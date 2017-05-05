@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import '../../../css/UserInfo.css';
+import '../../css/UserInfo.css';
 
 const UserInfo = ({ user }) => (
       <span id='userInfo'>

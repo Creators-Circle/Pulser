@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import FeedbackButton from './FeedbackButton';
-import QuestionBox from '../shared/Widgets/QuestionBox';
+import QuestionBox from '../shared/QuestionBox';
 import AudThumbs from './AudThumbs';
 
 import '../../css/FeedbackBox.css';

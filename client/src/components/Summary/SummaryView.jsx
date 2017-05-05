@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import SummaryLeftPane from './SummaryLeftPane';
 import SummaryRightPane from './SummaryRightPane';
-import Navbar from '../shared/Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 import { UpdateSummary } from '../../util/actions';
 

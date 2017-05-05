@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { ToggleQuestionUpvoted } from '../../../util/actions';
+import { ToggleQuestionUpvoted } from '../../util/actions';
 
 class Question extends Component {
 

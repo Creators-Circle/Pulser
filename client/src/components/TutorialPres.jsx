@@ -4,13 +4,13 @@ import { Link } from 'react-router';
 
 import store from '../store.jsx';
 
-import Navbar from './shared/Navbar/Navbar';
+import Navbar from './Navbar/Navbar';
 import PresThumbs from './Presenter/PresThumbs';
 import PulseBox from './Presenter/PulseBox';
-import QuestionBox from './shared/Widgets/QuestionBox';
-import Slides from './shared/Widgets/Slides';
+import QuestionBox from './shared/QuestionBox';
+import Slides from './shared/Slides';
 import SummaryView from './Summary/SummaryView';
-import Sidebar from './shared/Widgets/Sidebar';
+import Sidebar from './shared/Sidebar';
 import TitleBar from './Presenter/TitleBar';
 
 import rd3 from 'rd3';

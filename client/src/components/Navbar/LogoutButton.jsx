@@ -1,4 +1,4 @@
-import '../../../css/LogoutButton.css';
+import '../../css/LogoutButton.css';
 
 const LogoutButton = () => (
   <input id='LogoutButton' className='btn btn-blue' type="button" value="Logout"

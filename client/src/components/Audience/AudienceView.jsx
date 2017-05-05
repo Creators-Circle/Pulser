@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import FeedbackBox from './FeedbackBox';
-import Slides from '../shared/Widgets/Slides';
-import Navbar from '../shared/Navbar/Navbar';
+import Slides from '../shared/Slides';
+import Navbar from '../Navbar/Navbar';
 
 import { ChangeRole } from '../../util/actions';
 

@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import store from '../../store.jsx';
 
-import Navbar from '../shared/Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 import PresThumbs from './PresThumbs';
 import PulseBox from './PulseBox';
-import QuestionBox from '../shared/Widgets/QuestionBox';
-import Slides from '../shared/Widgets/Slides';
+import QuestionBox from '../shared/QuestionBox';
+import Slides from '../shared/Slides';
 import SummaryView from '../Summary/SummaryView';
-import Sidebar from '../shared/Widgets/Sidebar';
+import Sidebar from '../shared/Sidebar';
 import TitleBar from './TitleBar';
 
 import $ from 'jquery';

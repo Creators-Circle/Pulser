@@ -10,9 +10,9 @@ import { UpvoteQuestion,
          CreateQuestion,
          ToggleQuestions,
          ClearQuestions
-       } from '../../../util/actions';
+       } from '../../util/actions';
 
-import '../../../css/QuestionBox.css';
+import '../../css/QuestionBox.css';
 
 class QuestionBox extends Component {
 // This component lets users enter questions; it also displays each individual question component

@@ -2,14 +2,14 @@ import { Link } from 'react-router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import FeedbackBox from '../../Audience/FeedbackBox';
-import TitleBar from '../../Presenter/TitleBar';
+import FeedbackBox from '../Audience/FeedbackBox';
+import TitleBar from '../Presenter/TitleBar';
 
 import $ from 'jquery';
-import { ToggleThumbs, ClearThumbsTopic, ToggleFeedback } from '../../../util/actions';
-import store from '../../../store';
+import { ToggleThumbs, ClearThumbsTopic, ToggleFeedback } from '../../util/actions';
+import store from '../../store';
 
-import '../../../css/Sidebar.css';
+import '../../css/Sidebar.css';
 
 class Sidebar extends Component {
 

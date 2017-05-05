@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import DashMainContent from './DashMainContent';
 import JoinPresBox from '../shared/JoinPresBox';
-import Navbar from '../shared/Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 import NewPresButton from './NewPresButton';
 import Searchbar from './Searchbar';
 
