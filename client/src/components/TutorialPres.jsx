@@ -4,15 +4,14 @@ import { Link } from 'react-router';
 
 import store from '../store.jsx';
 
-import LogoutButton from './LogoutButton';
-import Navbar from './Navbar';
-import PresThumbs from './PresThumbs';
-import PulseBox from './PulseBox';
-import QuestionBox from './QuestionBox';
-import Slides from './Slides';
-import SummaryView from './SummaryView';
-import Sidebar from './Sidebar';
-import TitleBar from './TitleBar';
+import Navbar from './Navbar/Navbar';
+import PresThumbs from './Presenter/PresThumbs';
+import PulseBox from './Presenter/PulseBox';
+import QuestionBox from './shared/QuestionBox';
+import Slides from './shared/Slides';
+import SummaryView from './Summary/SummaryView';
+import Sidebar from './shared/Sidebar';
+import TitleBar from './Presenter/TitleBar';
 
 import rd3 from 'rd3';
 const LineChart = rd3.LineChart;

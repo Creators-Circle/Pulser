@@ -13,8 +13,6 @@ module.exports = {
         "ignoreReadBeforeAssign": false
       }],
       "prefer-arrow-callback": 2,
-      "no-var": 2,
-      "new-cap": 1
-   }    
+      "no-var": 2
+   }
 };
-
