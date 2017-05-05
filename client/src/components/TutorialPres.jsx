@@ -317,7 +317,7 @@ class PresenterView extends Component {
 
                 <div className='row tools-row '>
                   <div className='offset-md-1'>
-                    <a target="_blank" href="https://docs.google.com/presentation/d/1g2jNIZ9QEyzXF1LBCrfapoedqa_o03GCsHSaYZyuuEI/pub?start=false&loop=false&delayms=60000"><button title="open up a separate tab with your slide deck"className='btn tool-btn btn'><span>Projector</span><i className="fa fa-desktop"></i></button></a>
+                    <a target="_blank" href="https://docs.google.com/presentation/d/1g2jNIZ9QEyzXF1LBCrfapoedqa_o03GCsHSaYZyuuEI/present"><button title="open up a separate tab with your slide deck"className='btn tool-btn btn'><span>Projector</span><i className="fa fa-desktop"></i></button></a>
                     <button id='timerToggle' title="show/hide the timer and clock" className='tool-btn btn'><span>Timer</span><i className="fa fa-clock-o"></i></button>
                   </div>
                 </div>

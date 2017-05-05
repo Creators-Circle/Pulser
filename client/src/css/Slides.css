@@ -1,10 +1,10 @@
 iframe {
 height: 100%;
-width: 100%;
+width: 70vw;
 }
 
 #SlidesContainer {
 	float: left;
-	width: 75vw;
+	width: 70vw;
 	height: 90vh;
 }

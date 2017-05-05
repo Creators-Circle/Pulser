@@ -14,5 +14,5 @@ module.exports = {
       }],
       "prefer-arrow-callback": 2,
       "no-var": 2
-   }    
+   }
 };
