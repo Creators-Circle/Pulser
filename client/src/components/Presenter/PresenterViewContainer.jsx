@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+import Moment, { duration as Duration } from 'moment';
 
 import PresenterView from './PresenterView';
 
@@ -23,11 +23,11 @@ class PresenterViewContainer extends Component {
   }
 
   timer () {
-    const clock = moment().format('HH:mm');
+    const clock = Moment().format('HH:mm');
     // check the difference of start time and current time
     // const diff = Math.abs(timeDiffToMinutes(this.startTime, time));
-    const diffToMiliseconds = moment().diff(this.startTime);
-    const newMoment = new moment.duration(diffToMiliseconds);
+    const diffToMiliseconds = Moment().diff(this.startTime);
+    const newMoment = new Duration(diffToMiliseconds);
     let newHours = Math.floor(newMoment.asHours()).toString();
     let newMinutes = (Math.floor(newMoment.asMinutes()) % 60).toString();
     let newSeconds = (Math.floor(newMoment.asSeconds()) % 60).toString();
